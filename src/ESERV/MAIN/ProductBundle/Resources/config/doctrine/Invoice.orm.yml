@@ -1,0 +1,89 @@
+ESERV\MAIN\ProductBundle\Entity\Invoice: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ProductBundle\Entity\InvoiceRepository
+    table: invoice
+    indexes:
+        fk_invoice_system_code1_idx:
+            columns:
+                - inv_status_system_code_id
+        fk_invoice_contact1_idx:
+            columns:
+                - contact_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        invoiceNo:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            column: invoice_no
+        description:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        invoiceDate:
+            type: datetime
+            nullable: false
+            column: invoice_date
+        invoiceAmount:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            column: invoice_amount
+        invoiceVatAmount:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            column: invoice_vat_amount
+        statusDate:
+            type: datetime
+            nullable: false
+            column: status_date
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        invStatusSystemCode:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                inv_status_system_code_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

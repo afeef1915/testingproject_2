@@ -1,0 +1,159 @@
+weblogsmainmtl_mylogsassign:
+    resource: "@WEBLOGSMAINMTLMylogsassignBundle/Resources/config/routing.yml"
+    prefix:   /
+
+weblogsmainmtl_dashboard:
+    resource: "@WEBLOGSMAINMTLDashboardBundle/Resources/config/routing.yml"
+    prefix:   /
+
+weblogsmainmtl_show_users:
+    resource: "@WEBLOGSMAINMTLShowUsersBundle/Resources/config/routing.yml"
+    prefix:   /
+weblogsmainmtl_my_logs:
+    resource: "@WEBLOGSMAINMTLMyLogsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+weblogsmainmtl_code_maintainance:
+    resource: "@WEBLOGSMAINMTLCodeMaintainanceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+weblogsmainmtl_myemail:
+    resource: "@WEBLOGSMAINMTLMyemailBundle/Resources/config/routing.yml"
+    prefix:   /
+
+weblogscommon_common:
+    resource: "@WEBLOGSMAINCOMMONCommonBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#weblogsmainmtl_dashboard:
+#    resource: "@WEBLOGSMAINMTLDashboardBundle/Resources/config/routing.yml"
+#    prefix:   /
+#
+#weblogsmainmtl_show_users:
+#    resource: "@WEBLOGSMAINMTLShowUsersBundle/Resources/config/routing.yml"
+#    prefix:   /
+#weblogsmainmtl_my_logs:
+#    resource: "@WEBLOGSMAINMTLMyLogsBundle/Resources/config/routing.yml"
+#    prefix:   /
+#weblogsmainmtl_myemail:
+#    resource: "@WEBLOGSMAINMTLMyemailBundle/Resources/config/routing.yml"
+#    prefix:   /
+#
+#weblogsmainmtl_code_maintainance:
+#    resource: "@WEBLOGSMAINMTLCodeMaintainanceBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+
+
+weblogs_home:
+    resource: "@WEBLOGSHomeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+eserv_home:
+    resource: "@ESERVHomeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+weblogs_dashboard:
+    resource: "@WEBLOGSDashboardBundle/Resources/config/routing.yml"
+    prefix:   /
+
+eservcore_helpers:
+    resource: "@ESERVMAINHelpersBundle/Resources/config/routing.yml"
+    prefix:   /
+
+eservcore_error_handling:
+    resource: "@ESERVMAINErrorHandlingBundle/Resources/config/routing.yml"
+    prefix:   /
+
+security_user_bundle:
+    resource: "@SecurityUserBundle/Resources/config/routing.yml"
+    prefix:   /    
+
+eservcore_communications:
+    resource: "@ESERVMAINCommunicationsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+weblogs_core_main_profile:
+    resource: "@WEBLOGSCOREMAINProfileBundle/Resources/config/routing.yml"
+    prefix:   /
+weblogs_core_main_media:
+    resource: "@WEBLOGSCOREMAINMediaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+##############################   PLEASE ENABLE FOLLOWING ROUTING ONLY WHEN YOU NEED IT  ##############################
+
+#security_session:
+#    resource: "@SecuritySessionBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eservmain_template:
+#    resource: "@ESERVMAINTemplateBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eserv_test:
+#    resource: "@ESERVTestBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eservcore_soap:
+#    resource: "@ESERVMAINSoapBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eservcore_media_bundle_componentsp_chart:
+#    resource: "@ESERVMAINMediaBundleComponentspChartBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eservcore_external:
+#    resource: "@ESERVMAINExternalBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eservcore_profile_web_services_routing:
+#    resource: "@ESERVMAINProfileBundle/Resources/config/ws/routing.yml"
+#    prefix:   /
+
+#eservcore_profile:
+#    resource: "@ESERVMAINProfileBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eservcore_history:
+#    resource: "@ESERVMAINHistoryBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eservcore_product:
+#    resource: "@ESERVMAINProductBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eservcore_wizard:
+#    resource: "@ESERVMAINWizardBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eserv_dashboard:
+#    resource: "@ESERVDashboardBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eserv_help:
+#    resource: "@ESERVHelpBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eservcore_contact_bundle_components_contact_details:
+#    resource: "@ESERVMAINContactBundleComponentsContactDetailsBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+eservcore_system_config:
+    resource: "@ESERVMAINSystemConfigBundle/Resources/config/routing.yml"
+    prefix:   /
+
+eservcore_media:
+    resource: "@ESERVMAINMediaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#eservcore_contact:
+#    resource: "@ESERVMAINContactBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eservcore_application_code:
+#    resource: "@ESERVMAINApplicationCodeBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#eservcore_activity:
+#    resource: "@ESERVMAINActivityBundle/Resources/config/routing.yml"
+#    prefix:   /

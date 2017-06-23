@@ -1,0 +1,7 @@
+eserv_main_external_bundle_proc_call:
+    pattern:  /procedure_call
+    defaults: { _controller: ESERVMAINExternalBundle:Procedure:callProcedure } 
+    
+eserv_main_external_bundle_api_call:
+    pattern:  /merlin-api
+    defaults: { _controller: ESERVMAINExternalBundle:MerlinAPI:callApi } 

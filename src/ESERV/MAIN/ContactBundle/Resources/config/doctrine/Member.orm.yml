@@ -1,0 +1,23 @@
+ESERV\MAIN\ContactBundle\Entity\Member:
+    type: entity
+    table: member
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        contact_id:
+            type: integer
+            length: 4
+        membership_number:
+            type: string        
+        external_id:
+            type: string
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint

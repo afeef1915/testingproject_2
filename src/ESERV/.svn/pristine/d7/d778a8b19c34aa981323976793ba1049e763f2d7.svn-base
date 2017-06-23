@@ -1,0 +1,54 @@
+ESERV\MAIN\QualificationBundle\Entity\QualMandControl:
+    type: entity
+    repositoryClass: ESERV\MAIN\QualificationBundle\Entity\QualMandControlRepository
+    table: qual_mand_control
+    indexes:
+        fk_qumaco_memorg_idx:
+            columns:
+                - membership_org_id        
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dateOpened:
+            type: datetime
+            nullable: true
+            column: date_closed
+        dateClosed:
+            type: datetime
+            nullable: false
+            column: date_opened
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by        
+    manyToOne:
+        membershipOrg:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\MembershipOrg
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                membership_org_id:
+                    referencedColumnName: id
+            orphanRemoval: false        
+    lifecycleCallbacks: {  }

@@ -1,0 +1,7 @@
+parameters:
+#    eservcore_contact.example.class: ESERV\MAIN\ContactBundle\Example
+
+services:
+    person_form_type_service:
+        class: ESERV\MAIN\ContactBundle\Form\PersonType
+        arguments: ["@doctrine.orm.entity_manager"]

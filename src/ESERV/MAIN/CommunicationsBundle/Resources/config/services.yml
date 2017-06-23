@@ -1,0 +1,7 @@
+parameters:
+#    eservcore_communications.example.class: ESERV\MAIN\CommunicationsBundle\Example
+
+services:
+#    eservcore_communications.example:
+#        class: %eservcore_communications.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

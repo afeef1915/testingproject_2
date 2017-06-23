@@ -1,0 +1,39 @@
+<h3><i class="fa fa-upload"></i> Export Files</h3>
+<hr />
+<form role="form" class="eserv_form">
+    <div class="row-fluid">
+        <h4>Select a Category</h4>
+        <fieldset>
+            <select class="selectpicker show-tick" data-style="btn-info" data-width="100%">
+                <option>-- Please Select --</option>
+                <option>Daily Teacher Amendment</option>
+                <option>Newly Awarded/Amend QTS</option>                
+            </select>
+        </fieldset>
+        <h4>Select Files</h4>
+        <fieldset>
+            <div style="width: 100%">
+                <div class="input-group">
+                    <input type="text" class="form-control" style="padding: 6px 12px;">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="button">Browse <span class="fa fa-folder-open-o"></span></button>
+                    </div><!-- /btn-group -->
+                </div><!-- /input-group -->
+            </div>
+        </fieldset>
+        <h4>Batch No.</h4>
+        <fieldset>
+            <div style="width: 100%">
+                <input type="text" class="form-control" style="padding: 6px 12px;">
+            </div>
+        </fieldset>
+    </div>
+    <hr />
+    <div class="row-fluid">
+        <button class="btn btn-success btn-lg center-block" type="button">Process Export <i class="fa fa-upload"></i></button>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $('.selectpicker').selectpicker();
+</script>

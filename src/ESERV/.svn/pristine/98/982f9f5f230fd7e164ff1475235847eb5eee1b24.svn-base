@@ -1,0 +1,59 @@
+ESERV\MAIN\ProductBundle\Entity\ProductPrice: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ProductBundle\Entity\ProductPriceRepository
+    table: product_price
+    indexes:
+        fk_product_price_product1_idx:
+            columns:
+                - product_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        startDate:
+            type: datetime
+            nullable: false
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: true
+            column: end_date
+        amount:
+            type: float
+            nullable: false
+            precision: 8
+            scale: 2
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        product:
+            targetEntity: ESERV\MAIN\ProductBundle\Entity\Product
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                product_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

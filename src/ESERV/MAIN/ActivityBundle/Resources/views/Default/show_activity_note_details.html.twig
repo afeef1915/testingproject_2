@@ -1,0 +1,54 @@
+<h3>View Note</h3>
+<form name="editEservNote" method="post" action="" class="eserv_form form-horizontal ng-pristine ng-valid ng-scope" id="editEservNote">
+    <div class="eserv_container_form_errors"></div>
+    <fieldset>
+        <div class="form-group ">
+            <label class="col-lg-3 control-label" for="eserv_main_activitybundle_activity_shortDescription">{{ form.shortDescription.vars.label }}</label>
+            <div class="col-lg-6">
+                <div class="eserv_field_value view eserv_main_activity_letter_shortDescription ">
+                    {{ form.shortDescription.vars.value }}
+                </div>
+            </div>
+        </div>
+        <div class="form-group ">
+            <label class="col-lg-3 control-label" for="eserv_main_activitybundle_activity_shortDescription">{{ form.activitySource.vars.label }}</label>
+            <div class="col-lg-6">
+                <div class="eserv_field_value view eserv_main_activity_letter_shortDescription ">
+                    {{ activity_source_name }}
+                </div>
+            </div>
+        </div>
+        <div class="form-group ">
+            <label class="col-lg-3 control-label" for="eserv_main_activitybundle_activity_shortDescription">{{ form.longDescription.vars.label }}</label>
+            <div class="col-lg-8">
+                <div class="eserv_field_value view eserv_main_activity_letter_shortDescription ">
+                    <textarea readonly="readonly" class="eserv_field_value view" rows="3" style="position: relative; left: -10px; resize: none; " >{{ form.longDescription.vars.value }}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-group ">
+            <label class="col-lg-3 control-label" for="eserv_main_activitybundle_activity_shortDescription">{{ form.showAlert.vars.label }}</label>
+            <div class="col-lg-6">
+                <div class="eserv_field_value view eserv_main_activity_letter_shortDescription ">
+                    {% if show_alert is defined %} 
+                        {% if show_alert == '1' %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="form-group ">
+            <label class="col-lg-3 control-label" for="eserv_main_activitybundle_activity_shortDescription">User</label>
+            <div class="col-lg-6">
+                <div class="eserv_field_value view eserv_main_activity_letter_shortDescription ">
+                    {{ createdByUserName }}
+                </div>
+            </div>
+        </div>        
+        
+    </fieldset>
+</form>
+                

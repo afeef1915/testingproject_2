@@ -1,0 +1,7 @@
+eserv_dashboard:
+    pattern:  /dashboard
+    defaults: { _controller: ESERVDashboardBundle:Default:index }
+
+eserv_dashboard_stats:
+    pattern:  /getDashboardStats
+    defaults: { _controller: ESERVDashboardBundle:Statistics:index }

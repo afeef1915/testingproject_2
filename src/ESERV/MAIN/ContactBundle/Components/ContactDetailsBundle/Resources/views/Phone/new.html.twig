@@ -1,0 +1,77 @@
+<div id="eserv_updatePhoneDetails_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'updatePhoneDetails' } })}}
+<div class="eserv_container_form_errors"></div>
+
+{% set isNewRecord = 'N' %}
+{% if has_records is defined %}
+    {% if has_records == 'N' %}
+        {% set isNewRecord = 'Y'%}
+    {% endif %}
+{% endif %}
+
+<fieldset>
+    <span>
+        <div class="col-lg-12">
+            {{ form_eservSelectRow (form.phoneType, { 'customPlaceHolder': 'Phone Type', 'fieldSize': 4 }) }}            
+            {% if isNewRecord == 'Y' %}
+                {{ form_eservRow(form.primaryRecord, { 'isCheckbox': 'true', 'fieldSize' : 1 , 'attr': {'checked': 'checked'} }) }}                  
+                <div id="{{ form.primaryRecord.vars.id }}_msg" class="form-group " style="display: none">
+                    <label class="col-lg-4 control-label "></label>
+                    <div class="col-md-8">
+                        <div class="controls has-error">                            
+                            <span class="help-block" style="display: block">The first record should be primary!</span>                            
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                {{ form_eservRow(form.primaryRecord, { 'isCheckbox': 'true', 'fieldSize' : 1 }) }} 
+            {% endif %}            
+            {#{{ form_eservRow (form.phoneStd, { 'customPlaceHolder': 'e.g. +44', 'fieldSize': 4 }) }}#}
+            {{ form_eservRow (form.phoneNumber, { 'customPlaceHolder': 'e.g. 07812345678', 'fieldSize': 4 }) }}
+        </div>
+    </span>
+</fieldset>
+
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12">
+           {#{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary',  'btn-loading': "is_processing.application_code_add", 'data-loading-text': "Saving..."} }) }}
+#}
+           {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'cancelNgClick' : 'cancel()', 'closeBtnId' : 'cancel_updatePhoneDetails_btn' } %}        
+        </div>
+    </div>        
+</fieldset>
+
+<div style="display: none">
+    {{form_rest(form)}}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+$(document).ready(function() {        
+        prepareAppForms('{{ form.vars.name }}', false, {
+            type: 'dataTable',
+            id: 'eserv_phone_table'
+        }, false, 'updatePhoneDetails', function(){
+            $('#cancel_updatePhoneDetails_btn').click();
+            refreshProtlet($('#eserv_render_teacher_main'));
+        });  
+        
+        $('#{{form.phoneType.vars.id}}').change(function () {
+            if ('{{ isNewRecord }}' == 'Y') {
+                $('#{{form.primaryRecord.vars.id}}').prop('checked', true);
+            }
+            $('#{{form.primaryRecord.vars.id }}_msg').hide();
+        });
+         
+        $('#{{form.primaryRecord.vars.id}}').change(function () { 
+            if ('{{ isNewRecord }}' == 'Y') {
+                $('#{{form.primaryRecord.vars.id}}').prop('checked', true);
+                $('#{{form.primaryRecord.vars.id }}_msg').show();
+            }
+        });
+});     
+     
+</script>
+

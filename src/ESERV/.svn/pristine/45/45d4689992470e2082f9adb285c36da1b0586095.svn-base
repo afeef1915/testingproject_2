@@ -1,0 +1,63 @@
+ESERV\MAIN\QualificationBundle\Entity\ContactQualificationSubj: 
+    type: entity
+    repositoryClass: ESERV\MAIN\QualificationBundle\Entity\ContactQualificationSubjRepository
+    table: contact_qualification_subj
+    indexes:
+        fk_qts_per_qualification_subject_qts_per_qualification1_idx:
+            columns:
+                - contact_qualification_id
+        fk_qts_per_qualification_subject_subject1_idx:
+            columns:
+                - subject_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        subjectOrderNo:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: subject_order_no
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contactQualification:
+            targetEntity: ESERV\MAIN\QualificationBundle\Entity\ContactQualification
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_qualification_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        subject:
+            targetEntity: ESERV\MAIN\QualificationBundle\Entity\Subject
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                subject_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

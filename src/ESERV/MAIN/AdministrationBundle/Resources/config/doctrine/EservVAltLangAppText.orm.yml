@@ -1,0 +1,60 @@
+ESERV\MAIN\AdministrationBundle\Entity\EservVAltLangAppText: 
+    type: entity
+    table: eserv_v_alt_lang_app_text
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: id
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        altLanguageAppTextId:
+            type: integer
+            nullable: false
+            column: alt_language_app_text_id
+        appTextId:
+            type: integer
+            nullable: false
+            column: app_text_id
+        altLanguageId:
+            type: integer
+            nullable: false
+            column: alt_language_id
+        code:
+            type: string
+            nullable: false
+            length: 32
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 2000
+            fixed: false
+        altName:
+            type: string
+            nullable: true
+            length: 2000
+            fixed: false
+            column: alt_name
+        altLanguageName:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            column: alt_language_name
+        altLanguageCode:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            column: alt_language_code
+        locale:
+            type: string
+            nullable: false
+            length: 2
+            fixed: false
+            column: locale

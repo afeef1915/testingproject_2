@@ -1,0 +1,70 @@
+ESERV\MAIN\HelpersBundle\Entity\AltLanguageMmhelpEquiv: 
+    type: entity
+    repositoryClass: ESERV\MAIN\HelpersBundle\Entity\AltLanguageMmhelpEquivRepository
+    table: alt_language_mmhelp_equiv
+    indexes:
+        fk_altmmhe_altlang_idx:
+            columns:
+                - alt_language_id
+        fk_altmmhe_mmhelp1_idx:
+            columns:
+                - mm_help_message_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        altTitle:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: alt_title
+        altDescription:
+            type: text
+            nullable: false
+            length: 65535
+            fixed: false
+            column: alt_description
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        altLanguage:
+            targetEntity: ESERV\MAIN\HelpersBundle\Entity\AltLanguage
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                alt_language_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        mmHelpMessage:
+            targetEntity: ESERV\MAIN\ProfileBundle\Entity\MmHelpMessage
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mm_help_message_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

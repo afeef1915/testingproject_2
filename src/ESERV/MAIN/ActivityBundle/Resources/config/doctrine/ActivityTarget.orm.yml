@@ -1,0 +1,58 @@
+ESERV\MAIN\ActivityBundle\Entity\ActivityTarget: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\ActivityTargetRepository
+    table: activity_target
+    indexes:
+        fk_acttar_act_idx:
+            columns:
+                - activity_id
+        fk_acttar_con:
+            columns:
+                - contact_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        activity:
+            targetEntity: ESERV\MAIN\ActivityBundle\Entity\Activity
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                activity_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

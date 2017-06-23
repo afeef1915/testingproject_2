@@ -1,0 +1,44 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\LogsheetNotifications:
+    type: entity
+    table: LOGSHEET_NOTIFICATIONS
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+  
+
+          
+ 
+    fields:
+        ID:
+            type: integer           
+            id: true
+            column: ID
+        USER_ID:
+            type: string
+            length: '20'
+            column: USER_ID
+        LOG_ID:
+            type: string
+            length: '20'
+            column: LOG_ID
+        CREATED_AT:
+            type: date
+            column: CREATED_AT
+        CREATED_BY:
+            type: string
+            length: '50'
+        CUSTOMER_ID:
+            type: string
+            length: '50'
+            column: CUSTOMER_ID
+        NOTIFICATION:
+            type: string
+            length: '500'
+            column: NOTIFICATION
+        STATUS:
+            type: string
+            length: '10'
+            column: STATUS

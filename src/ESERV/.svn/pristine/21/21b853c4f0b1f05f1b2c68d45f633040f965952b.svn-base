@@ -1,0 +1,53 @@
+ESERV\HelpBundle\Components\KnowledgeBaseBundle\Entity\VdocumentSearchResults:
+    type: entity
+    table: vdocument_search_results
+    id:
+        document_id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        search_id:
+            type: integer 
+        doc_name:
+            type: string 
+            length: 100
+        author_id:
+            type: integer
+        author_name:
+            type: string
+            length: 100
+        source_id:
+            type: integer
+        keyword_score:
+            type: integer
+        title:
+            type: string
+            length: 100
+        document_type:
+            type: string 
+            length: 1
+        external_text:
+            type: string 
+            length: 600
+        internal_text:
+            type: string 
+            length: 2000
+        session_id:
+            type: integer
+        size_text:
+            type: string
+            length: 15
+        document_extension:
+            type: string
+            length: 20
+        rating:
+            type: integer
+        review_date:
+            type: string
+        rated_by_count:
+            type: integer
+        viewed_by_count:
+            type: integer
+        topic_name:
+            type: string
+            length: 200

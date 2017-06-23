@@ -1,0 +1,49 @@
+ESERV\TestBundle\Entity\GtcwVTemplate: 
+    type: entity
+    table: gtcw_v_template
+    id:
+        template_id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        content:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        code:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: 'Used to identify Main templates to be used by auto processes, e.g. batch acknowledgement/results email'
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        template_type:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+            comment: ''
+        template_document_type:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        language:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''   

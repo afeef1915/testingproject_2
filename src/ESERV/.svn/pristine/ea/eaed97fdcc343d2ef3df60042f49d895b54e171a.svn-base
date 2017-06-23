@@ -1,0 +1,26 @@
+{{ dataTable | raw }}
+
+<label for="include_closed_schools" class="btn btn-success checkbox_switch_label">Show Closed Schools</label>
+<input id="include_closed_schools" type="checkbox" value="Y" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var wor_filter = '';
+        $("#include_closed_schools").bootstrapSwitch({
+            onText: 'Yes',
+            offText: 'No'
+        });
+        $('#include_closed_schools').on('switchChange.bootstrapSwitch', function (event, state) {
+            if (state) {
+                wor_filter = 'Y';
+            } else {
+                wor_filter = 'N';
+            }
+
+            var filters_array = {
+                "wor_date_closed": wor_filter,
+            };
+            dataTableVar_{{ dataTable_id }}.fnMultiFilter(filters_array);
+        });
+    });
+</script>

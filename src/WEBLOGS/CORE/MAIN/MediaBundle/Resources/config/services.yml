@@ -1,0 +1,4 @@
+services:
+#    merlinoracoremain_media.example:
+#        class: MERLINORA\CORE\MAIN\MediaBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

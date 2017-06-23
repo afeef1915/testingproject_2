@@ -1,0 +1,48 @@
+ESERV\TestBundle\Entity\GtcwVQualification: 
+    type: entity
+    table: gtcw_v_qualification
+    id:
+        qualification_id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        qualType:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: qual_type
+        dateOpened:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: date_opened
+        dateClosed:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: date_closed   
+        qualMandMemOrg:
+            type: string
+            nullable: true            
+            fixed: false
+            comment: ''
+            column: qual_mand_mem_org   

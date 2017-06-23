@@ -1,0 +1,36 @@
+ESERV\MAIN\ContactBundle\Entity\ContactRoleLanguage:
+    type: entity
+    table: contact_role_language
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        contact_role_id:
+            type: integer
+            length: 11
+        language_id:
+            type: integer
+            length: 11
+        external_id:
+            type: string
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint
+    uniqueConstraints:
+       idx_ContactRoleLang_a1_idx: 
+           columns: [ contact_role_id, language_id ]
+       idx_ContactRoleLang_b_idx: 
+           columns: [ language_id ]    
+    manyToOne:
+        contact_role:
+            targetEntity: ContactRole
+            inversedBy: contact_role_language
+            joinColumn:
+                name: contact_role_id
+                referencedColumnName: id

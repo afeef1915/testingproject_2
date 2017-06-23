@@ -1,0 +1,64 @@
+WEBLOGS\MAIN\MTL\ShowUsersBundle\Entity\CustomerContacts:
+    type: entity
+    table: customer_contacts
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+
+    fields:
+        csev_customer_id:
+            type: string
+            length: '10'
+            column: csev_customer_id
+        csev_seq_id:
+            type: string
+            length: '100'
+            id: true
+            column: csev_seq_id
+        csev_name:
+            type: string
+            length: '100'
+            column: csev_name
+        csev_title:
+            type: string
+            length: '100'
+            column: csev_title
+        csev_department:
+            type: string
+            length: '50'
+            column: csev_department
+        csev_email:
+            type: string
+            length: '50'
+            column: csev_email
+        csev_telephone_no:
+            type: string
+            length: '30'
+            column: csev_telephone_no
+        csev_extension:
+            type: string
+            length: '10'
+            column: csev_extension
+        csev_notes:
+            type: string
+            length: '200'
+            column: csev_notes
+        csev_status_code:
+            type: string
+            length: '20'
+            column: csev_status_code
+        csev_status_date:
+            type: date
+            
+            column: csev_status_date
+        csev_mtlgroup:
+            type: string
+            length: '200'
+            column: csev_mtlgroup
+       
+    
+       
+    lifecycleCallbacks: {  }

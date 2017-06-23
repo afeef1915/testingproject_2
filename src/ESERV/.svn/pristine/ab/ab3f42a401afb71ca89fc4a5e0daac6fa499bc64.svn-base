@@ -1,0 +1,47 @@
+ESERV\MAIN\SystemConfigBundle\Entity\EservStat:
+    type: entity
+    repositoryClass: ESERV\MAIN\SystemConfigBundle\Entity\EservStatRepository
+    table: eserv_stat
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 25
+            fixed: false
+        description:
+            type: string
+            nullable: false
+            length: 500
+            fixed: false
+        value:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

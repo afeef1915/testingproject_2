@@ -1,0 +1,83 @@
+
+   {# {{dump(app.request.isXmlHttpRequest()) }}#}
+    {% if data is defined and data|length >0 %}
+        {%set templates='Previous Responses <span id="response_badge" class="badge alert-danger">'~data|length~'</span>' %}
+        {#{{templates|raw}}#}
+        {%set flag=0 %}
+        {%if data|length < 3 %}
+            {%set flag=0 %}
+        {%else%}
+            {%set flag=1 %}
+        {%endif%}
+
+        {%if flag==1 %}
+            {%set templats='<a><span id="laodmore"  class="more">+Read more Response</span><a>' %}
+        {%endif%}
+
+
+        {%for key, value in data %}
+
+            {%set developer_text='' %}
+            {%if value.DEVELOPER_TEXT is defined and value.DEVELOPER_TEXT|length >0 %}
+                {%set  developer_text='<div class="well" style="padding: 5px; margin-bottom:1px;"><div class="header"><strong class="primary-font">Developer Response</strong> '~value.DEVELOPER_TEXT~'</div></div>'%}
+            {%endif%}
+
+           {# {% if loop.index > 2%}#}
+              {#  {%set template='<div style="display:none" class="panel-body"><ul class="chat"><li class="left clearfix">'%}
+            {%else%}#}
+                {%set template='<div  id="new_response_html" class="panel-body"><ul class="chat"><li class="left clearfix">'%}
+
+            {#{%endif%}#}
+
+
+
+            {# {%set template='<div class="panel-body"><ul class="chat"><li class="left clearfix">'%}#}
+            {%set template=template~'<span class="chat-img pull-left"><i class="mtl-icon icon-home small"></i></span><div class="chat-body clearfix">'%}
+            {%set template=template~'<div class="header"><strong class="primary-font">'~value.RESPONSE_USER_NAME~'</strong><small class="text-muted"><i class="fa fa-clock-o fa-fw"></i>'~value.RESPONSE_DATE|date('d-M-Y H:i')%}
+            {%set template=template~'</small><strong class="primary-font pull-right" style="float: right!important;">'~value.RESPONSE_ASSIGNED_USER_NAME~'</strong>'%}
+            {%set template=template~'</div><p>'~value.RESPONSE_TEXT~'<br></p>'%}
+            {%set template=template~'<p>'~developer_text~'<br></p>'%}
+            {%set template=template~'</div></li></ul></div>' %}
+
+
+            {{template|raw}}
+
+        {%endfor%}
+        {%if flag==1 %}
+           {# {{templats|raw}}#}
+        {%endif%}
+        <input id="response_badges" type="hidden" value={{data|length}} >
+
+    {%endif%}
+
+<script>
+
+   {# $("#laodmore").click(function() {
+        $(".panel-body").show();
+        $("#laodmore").hide();
+    });#}
+    //$(document).ready(function(){
+    var count = 0;
+    if ($("#response_badges").val() != undefined && $("#response_badges").val() != null)
+    {
+
+        count = $("#response_badges").val();
+    }
+    else
+    {
+
+        count = 0;
+    }
+
+
+    var html = 'Previous Responses  <span id="response_badge" class="badge alert-danger">' + count + '</span>';
+
+
+
+    {#if($(".portlet_heading").find(".badge").length < 1)
+    {#}
+        $("#new_responses").find(".portlet_heading").html(html);
+        // }
+        //  });
+       
+</script>

@@ -1,0 +1,54 @@
+ESERV\TestBundle\Entity\GtcwVMemMepPayment: 
+    type: entity
+    table: gtcw_v_mem_mep_payment
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:        
+        gtcwMemMepPaymentId:
+            type: integer
+            nullable: false
+            column: gtcw_mem_mep_payment_id
+        gtcwMemMepDetailId:
+            type: integer
+            nullable: false
+            column: gtcw_mem_mep_detail_id
+        claimDate:
+            type: datetime            
+            fixed: false
+            comment: '' 
+            column: claim_date            
+        learningDate:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: learning_date
+        authorisedDate:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: authorised_date
+        payAmount:
+            type: string                    
+            column: pay_amount
+        releaseDate:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: release_date
+        term:
+            type: string                    
+            column: term
+        payIndYear:
+            type: string                    
+            column: pay_ind_year
+        mepYear:
+            type: string                    
+            column: mep_year

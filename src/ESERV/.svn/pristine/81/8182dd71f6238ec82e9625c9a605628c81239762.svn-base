@@ -1,0 +1,8 @@
+<h3 class="pull-left">{{ 'Manage Mtl Colours' | trans }}</h3>
+<a class="btn btn-success pull-right" style="margin-bottom: 10px;margin-top: 20px;" ui-sref="admin.manage_mtl_colour.add">
+    <i class="fa fa-plus-circle"></i>
+    {{ 'Add Mtl Colour' | trans }}
+</a>
+<div class="clearfix"></div>
+<hr />
+{{ dataTable | raw }}

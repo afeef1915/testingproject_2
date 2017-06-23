@@ -1,0 +1,28 @@
+<tabset>
+    <tab id="contact_details_address_tab" heading="Address">
+        {% render controller('ESERVMAINContactBundleComponentsContactDetailsBundle:Address:addressList', {'contact_id': contact_id}) %}
+        <button class="btn btn-success pull-right" ng-controller="EservModalCtrl" ng-click="openEservModal('eservcore_contact_bundle_components_contact_details_address_new', 'New Address Detail', 'lg', {target_url: '{{ path('eservcore_contact_bundle_components_contact_details_address_new', {'id': contact_id}) }}'})">
+            <i class="fa fa-plus-circle"></i>
+                New 
+        </button>
+        <div class="clearfix"></div>
+    </tab>
+    <tab id="contact_details_email_tab" heading="Email">
+        {% render controller('ESERVMAINContactBundleComponentsContactDetailsBundle:Email:emailList', {'contact_id': contact_id}) %}
+        <div class="clearfix"></div><hr />
+        <button class="btn btn-success pull-right" ng-controller="EservModalCtrl" ng-click="openEservModal('eservcore_contact_bundle_components_contact_details_email_new', 'New Email Detail', 'lg', {target_url: '{{ path('eservcore_contact_bundle_components_contact_details_email_new', {'id': contact_id}) }}'})">
+            <i class="fa fa-plus-circle"></i>
+                New 
+        </button>
+        <div class="clearfix"></div>
+    </tab>
+    <tab id="contact_details_phone_tab" heading="Phone">        
+        {% render controller('ESERVMAINContactBundleComponentsContactDetailsBundle:Phone:phoneList', {'contact_id': contact_id}) %}
+        <div class="clearfix"></div><hr />
+        <button class="btn btn-success pull-right" ng-controller="EservModalCtrl" ng-click="openEservModal('eservcore_contact_bundle_components_contact_details_phone_new', 'New Phone Detail', 'lg', {target_url: '{{ path('eservcore_contact_bundle_components_contact_details_phone_new', {'id': contact_id}) }}'})">
+            <i class="fa fa-plus-circle"></i>
+                New 
+        </button>        
+        <div class="clearfix"></div>
+    </tab>
+</tabset> 

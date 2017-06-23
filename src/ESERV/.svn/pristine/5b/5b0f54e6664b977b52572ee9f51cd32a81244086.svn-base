@@ -1,0 +1,124 @@
+ESERV\MAIN\ProfileBundle\Entity\EservVUserNotification: 
+    type: entity
+    table: eserv_v_user_notification
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userNotificationId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: user_notification_id
+        fosUserId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: fos_user_id
+        type:
+            type: string
+            nullable: false
+            length: 64
+            fixed: false
+            column: type
+        levelCode:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            column: level_code
+        levelDescription:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            column: level_description
+        fileId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: file_id
+        priority:
+            type: string
+            nullable: true
+            length: 32
+            fixed: false
+            column: priority
+        priorityCode:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false            
+            column: priority_code
+        priorityOrder:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false            
+            column: priority_order
+        title:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: title
+        description:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            column: description
+        isActive:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: Y
+            column: is_active
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdAtDate:
+            type: string
+            nullable: true
+            column: created_at_date
+        createdAtTime:
+            type: string
+            nullable: true
+            column: created_at_time
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        statusRead:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            column: status_read
+        notifStatusCreatedAt:
+            type: datetime
+            nullable: true
+            column: notif_status_created_at
+        notifStatusUpdatedAt:
+            type: datetime
+            nullable: true
+            column: notif_status_updated_at
+        notifStatusCreatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: notif_status_created_by
+        notifStatusUpdatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: notif_status_updated_by
+        

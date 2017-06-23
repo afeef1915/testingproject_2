@@ -1,0 +1,52 @@
+ESERV\MAIN\ProfileBundle\Entity\UserNotificationStatus: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ProfileBundle\Entity\UserNotificationStatusRepository
+    table: user_notification_status
+    indexes:
+        fk_usenotsta_usenot_idx:
+            columns:
+                - user_notification_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        statusRead:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            column: status_read
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        userNotification:
+            targetEntity: ESERV\MAIN\ProfileBundle\Entity\UserNotification
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_notification_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

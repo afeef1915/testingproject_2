@@ -1,0 +1,25 @@
+ESERV\MAIN\ContactBundle\Entity\Country:
+    type: entity
+    table: country
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        code:
+            type: string            
+        description:
+            type: string
+        external_id:
+            type: string
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint
+    uniqueConstraints:
+       idx_Country_a1_idx: 
+           columns: [ code ]         

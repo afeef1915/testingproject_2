@@ -1,0 +1,64 @@
+ESERV\MAIN\HelpersBundle\Entity\AltLanguageAppText: 
+    type: entity
+    repositoryClass: ESERV\MAIN\HelpersBundle\Entity\AltLanguageAppTextRepository
+    table: alt_language_app_text
+    indexes:
+        fk_altapp_apptex_idx:
+            columns:
+                - app_text_id
+        fk_altapp_altlan_idx:
+            columns:
+                - alt_language_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        altName:
+            type: string
+            nullable: true
+            length: 2000
+            fixed: false
+            column: alt_name
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        appText:
+            targetEntity: ESERV\MAIN\HelpersBundle\Entity\AppText
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                app_text_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        altLanguage:
+            targetEntity: ESERV\MAIN\HelpersBundle\Entity\AltLanguage
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                alt_language_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

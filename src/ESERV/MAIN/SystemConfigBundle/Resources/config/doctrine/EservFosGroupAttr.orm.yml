@@ -1,0 +1,58 @@
+ESERV\MAIN\SystemConfigBundle\Entity\EservFosGroupAttr:
+    type: entity
+    repositoryClass: ESERV\MAIN\SystemConfigBundle\Entity\EservFosGroupAttrRepository
+    table: eserv_fos_group_attr
+    indexes:
+        fk_esfgatt_fosgrp_idx:
+            columns:
+                - fos_group_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fosGroupRole:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: fos_group_role
+        mainUrlSuffix:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            column: main_url_suffix
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        fosGroup:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\Group
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fos_group_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

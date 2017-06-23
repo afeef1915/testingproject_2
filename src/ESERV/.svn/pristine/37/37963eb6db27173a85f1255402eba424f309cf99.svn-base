@@ -1,0 +1,3 @@
+{% set show_password_warning = showPasswordResetWarning %}
+{% set date_diff = dateDiff %}
+{% extends '::base.html.twig' %}

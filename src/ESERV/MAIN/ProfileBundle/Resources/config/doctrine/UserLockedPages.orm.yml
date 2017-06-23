@@ -1,0 +1,36 @@
+ESERV\MAIN\ProfileBundle\Entity\UserLockedPages:
+    type: entity
+    table: user_locked_pages
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        type:
+            type: string
+            length: 64
+        fos_guard_user_id:
+            type: integer
+        url:
+            type: string
+            length: 1000
+        page_id:
+            type: string
+            length: 32
+        locked_at:
+            type: date            
+        created_at:
+            type: date 
+        created_by:
+            type: integer
+        updated_at:
+            type: date
+        updated_by:
+            type: integer
+#    manyToOne:
+#        exam_centre:
+#            targetEntity: FOS\UserBundle\Model\User
+#            inversedBy: user_browsing_history
+#            joinColumn:
+#                name: fos_guard_user_id
+#                referencedColumnName: id         

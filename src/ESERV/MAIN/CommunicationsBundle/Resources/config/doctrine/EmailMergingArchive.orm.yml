@@ -1,0 +1,61 @@
+ESERV\MAIN\CommunicationsBundle\Entity\EmailMergingArchive: 
+    type: entity
+    repositoryClass: ESERV\MAIN\CommunicationsBundle\Entity\EmailMergingArchiveRepository
+    table: email_merging_archive
+    indexes:
+        fk_ema_emla_idx:
+            columns:
+                - archive_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        emaSize:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: ema_size
+        filename:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        content:
+            type: blob
+            nullable: false
+            length: null
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        archive:
+            targetEntity: ESERV\MAIN\CommunicationsBundle\Entity\EmailMergingLookupArchive
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                archive_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

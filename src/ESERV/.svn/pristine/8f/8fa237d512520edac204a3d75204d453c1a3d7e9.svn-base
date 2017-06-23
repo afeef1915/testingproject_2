@@ -1,0 +1,87 @@
+ESERV\TestBundle\Entity\GtcwVMentorAdminMentee: 
+    type: entity
+    table: gtcw_v_mentor_admin_mentee
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        gtcwMentorTeacherId:
+            type: integer
+            nullable: false
+            column: gtcw_mentor_teacher_id
+        gtcwMentorContactId:
+            type: integer
+            nullable: false
+            column: gtcw_mentor_contact_id 
+        gtcwMentorTeachConId:
+            type: integer
+            nullable: false
+            column: gtcw_mentor_teach_con_id
+        menteeContactId:
+            type: integer
+            nullable: false
+            column: mentee_contact_id
+        referenceNo:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: reference_no
+        fullName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: '' 
+            column: full_name
+        laContactId:
+            type: integer
+            column: la_contact_id
+        la:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: '' 
+            column: la
+        schoolContactId:
+            type: integer
+            column: school_contact_id
+        school:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: '' 
+            column: school
+        indRouteId:
+            type: integer
+            column: ind_route_id 
+        indRouteName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: '' 
+            column: ind_route_name
+        startDate:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: '' 
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: '' 
+            column: end_date
+        

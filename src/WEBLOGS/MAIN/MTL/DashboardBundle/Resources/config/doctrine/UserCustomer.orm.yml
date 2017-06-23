@@ -1,0 +1,20 @@
+WEBLOGS\MAIN\MTL\DashboardBundle\Entity\UserCustomer:
+    type: entity
+    table: user_customer
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTO
+    fields:
+        userId:
+            type: string
+            id: true
+            length: '55'
+            column: user_id
+        customer_id:
+            type: string
+            length: '55'
+            column: customer_id
+    lifecycleCallbacks: {  }

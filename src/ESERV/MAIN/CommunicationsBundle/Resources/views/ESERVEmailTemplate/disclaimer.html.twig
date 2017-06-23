@@ -1,0 +1,21 @@
+<table>
+    <tr>
+        <td>
+            <table class="twelve columns">
+                <tr>
+                    <td align="center">
+                        <font style="font-size: 9px; font-family: Verdana; color: rgb(102, 102, 102);">
+                        <strong>
+                            {% if eserv_config is defined and eserv_config.client_email_disclaimer_address is defined %}
+                                {{ eserv_config.client_email_disclaimer_address }}
+                            {% else %}
+                                EWC 9th Floor Eastgate House, 35-43 Newport Road, Cardiff, CF24 0AB.
+                            {% endif %}
+                        </strong></font>
+                    </td>
+                    <td class="expander"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

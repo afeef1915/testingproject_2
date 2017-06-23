@@ -1,0 +1,58 @@
+ESERV\MAIN\ActivityBundle\Entity\ActivityJob: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\ActivityJobRepository
+    table: activity_job
+    indexes:
+        fk_actjob_act_idx:
+            columns:
+                - activity_id
+        fk_actjob_docjob_idx:
+            columns:
+                - document_job_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        activity:
+            targetEntity: ESERV\MAIN\ActivityBundle\Entity\Activity
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                activity_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        documentJob:
+            targetEntity: ESERV\MAIN\CommunicationsBundle\Entity\DocumentJob
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                document_job_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,153 @@
+    {% if cc is defined %} <span> {{ cc }}</span> {% endif %}
+    <div class="well">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group row flex-v-center">
+                    <div class="col-md-3">
+                        <label class="control-label" for="p_client_main">Customer</label>
+                    </div>
+                    <div class="col-md-7 "  ng-controller="parentController">
+                        <select  class="form-control" 
+                                 ng-change="change()" ng-model="value"  id="p_client_main" name="p_client_main" tabindex="2">
+                        </select>
+                    </div>
+                </div><!-- /.form-group -->
+            </div>
+            <div class="col-md-3"  ng-controller= "EservlogsModalCtrl">
+                {%set targe_url="'"~path("weblogsmainmtl_my_logs_new_create")~"'"  %}
+                <a class="btn btn-success pull-right" href="#" id="new_log_bt" ng-click="openlogsEservModal('eserv_main_user_add_new_logs','Create New logs','lg',{target_url: {{targe_url}} })" >
+                    <i class="fa fa-ticket"></i>Create New Log</a>
+            </div>
+            <!-- /.col-md-12 -->
+        </div></div>
+    <div class="row"  ng-controller="countCtrl">
+        <div class="col-md-4 col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-list-ol fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge" id="open_logs"></div>
+                            {#  <div class="huge" id="open_logs">0</div>#}
+                            <div>Total Open Logs</div>
+                        </div>
+                    </div>
+                </div>
+
+                {# <a id="p_to_all" href="#/code/edit/[[id]]" ui-sref="total_logs">#}
+                {#  <a id="p_to_all"  ng-click="RedirectToURL()">#}
+                <a id="p_to_all"  ui-sref='mylogs.open_logs'>
+                    {#<a id="p_to_all" href="wwv_logsheet.display_home?p_customer_id=">#}
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge" id="to_mtl"></div>
+                            {# <div class="huge" id="to_mtl">0</div>#}
+                            <div>Assigned to MTL</div>
+                        </div>
+                    </div>
+                </div>
+                <a id="p_to_mtl" ui-sref='mylogs.assigned_mtl'>
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-users fa-3x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge" id="to_client"></div>
+                            <div id="to_client_name">Assigned to <span id="client"></span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <a id="p_to_client" ui-sref="mylogs.clients">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Open Logs by Priority
+                        </div>
+                        <div class="panel-body" style="min-height: 396px;">
+                            <div id="prioritys" style="display:none">No Data Found</div>
+                            <a ui-sref="mylogs.priority">
+                                <div  style="position: relative;"   id="chart_priority">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Open Logs by Category
+                        </div>
+                        <div class="panel-body" style="min-height: 396px;">
+                            <div  id="category" style="display:none">No Data Found</div>
+                            <a ui-sref="mylogs.category">
+                                <div   style="position: relative;" id="chart_category">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-pie-chart fa-fw"></i> Open Logs by Task
+                </div>
+                <div class="panel-body" style="min-height: 396px;">
+                    <div id="task" style="display:none">No Data Found</div>
+                    <a ui-sref="mylogs.task">
+                        <div  id="chart_task" style="display: block; height: 300px;">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <input type="hidden"  id="last_customer_select">
+        <input type="hidden" id="customer">
+        {% set filter = app.session.get('userid') %}
+        {{app.session.get('userid')}}
+        <input type="hidden" is="userid" name="userid" value=" {{app.session.get('userid')}}">
+   

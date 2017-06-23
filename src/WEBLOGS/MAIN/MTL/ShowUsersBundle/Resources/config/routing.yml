@@ -1,0 +1,17 @@
+weblogsmainmtl_show_users_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: WEBLOGSMAINMTLShowUsersBundle:Default:index }
+weblogsmainmtl_show_users_list:
+    path:     /showusers/list
+    defaults: { _controller: WEBLOGSMAINMTLShowUsersBundle:ShowUsers:showUsersList }
+
+weblogsmainmtl_show_users_data:
+    path:     /showusers/data
+    defaults: { _controller: WEBLOGSMAINMTLShowUsersBundle:ShowUsers:showusersData }
+weblogsmainmtl_show_users_new:
+    path:     /showusers/new
+    defaults: { _controller: WEBLOGSMAINMTLShowUsersBundle:ShowUsers:showusersNew }
+weblogsmainmtl_show_users_create:
+    path:     /showusers/create
+    defaults: { _controller: WEBLOGSMAINMTLShowUsersBundle:ShowUsers:showusersCreate }
+    

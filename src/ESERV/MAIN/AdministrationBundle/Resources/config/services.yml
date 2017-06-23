@@ -1,0 +1,7 @@
+parameters:
+#    eservmain_administration.example.class: ESERV\MAIN\AdministrationBundle\Example
+
+services:
+#    eservmain_administration.example:
+#        class: %eservmain_administration.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

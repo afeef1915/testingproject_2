@@ -1,0 +1,81 @@
+ESERV\MAIN\ActivityBundle\Entity\ActivityEmail: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\ActivityEmailRepository
+    table: activity_email
+    indexes:
+        fk_actema_syscode_1_idx:
+            columns:
+                - email_status_system_code_id
+    uniqueConstraints:
+        fk_actema_acttar_idx:
+            columns:
+                - activity_target_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        statusDate:
+            type: datetime
+            nullable: false
+            column: status_date
+        fromEmailAddress:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: from_email_address
+        toEmailAddress:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: to_email_address
+        emailSubject:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: email_subject
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        activityTarget:
+            targetEntity: ESERV\MAIN\ActivityBundle\Entity\ActivityTarget
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                activity_target_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        emailStatusSystemCode:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                email_status_system_code_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

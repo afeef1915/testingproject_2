@@ -1,0 +1,7 @@
+parameters:
+#    eservcore_application_code.example.class: ESERV\MAIN\ApplicationCodeBundle\Example
+
+services:
+#    eservcore_application_code.example:
+#        class: %eservcore_application_code.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

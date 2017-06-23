@@ -1,0 +1,54 @@
+ESERV\MAIN\SystemConfigBundle\Entity\SystemIcon: 
+    type: entity
+    repositoryClass: ESERV\MAIN\SystemConfigBundle\Entity\SystemIconRepository
+    table: system_icon
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        icon_library:
+            type: string
+            nullable: false
+            length: 128
+            fixed: false
+            column: config_value
+        active:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            column: active
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

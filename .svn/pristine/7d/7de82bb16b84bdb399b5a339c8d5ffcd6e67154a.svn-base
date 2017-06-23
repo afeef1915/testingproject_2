@@ -1,0 +1,37 @@
+weblogsmainmtl_myemail_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: WEBLOGSMAINMTLMyemailBundle:Default:index }
+
+weblogsmainmtl_myemail_list:
+    path:     /myemail/list-email
+    defaults: { _controller: WEBLOGSMAINMTLMyemailBundle:Myemail:myemailList }
+    
+weblogsmainmtl_myemail_data_ajax_list:
+    path:     /myemail/list-email/ajax-list
+    defaults: { _controller: WEBLOGSMAINMTLMyemailBundle:Myemail:myemailData }
+
+weblogsmainmtl_myemail_add:
+    path:     /myemail/list-email/add
+    defaults: { _controller: WEBLOGSMAINMTLMyemailBundle:Myemail:emailNew }
+    
+weblogsmainmtl_myemail_create:
+    path:     /myemail/list-email/create
+    defaults: { _controller: WEBLOGSMAINMTLMyemailBundle:Myemail:emailCreate }
+    
+weblogsmainmtl_myemail_task:
+    path:     email/task
+    defaults: { _controller: WEBLOGSMAINMTLMyemailBundle:Myemail:task }
+    
+weblogsmainmtl_myemail_edit:
+    path:     /myemail/list-email/edit/{user_id}/customer/{customer}
+    defaults: { _controller: WEBLOGSMAINMTLMyemailBundle:Myemail:editEmail }
+    
+weblogsmainmtl_myemail_update:
+    path:     /myemail/list-email/update/{customerId}
+    defaults: { _controller: WEBLOGSMAINMTLMyemailBundle:Myemail:updateEmail }
+    
+weblogsmainmtl_myemail_delete:
+    path:     /myemail/list-email/delete/{customerId}
+    defaults: { _controller: WEBLOGSMAINMTLMyemailBundle:Myemail:deleteEmail }       
+    
+    

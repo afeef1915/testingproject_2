@@ -1,0 +1,16 @@
+{{ form(form) }}
+
+{% if sub_forms is defined %}
+    {% for form in sub_forms %}
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        <div>
+            <input type="submit" value="Save!"/>
+        </div>
+        {{ form_end(form) }}
+    {% endfor %}
+
+{% endif %}
+
+

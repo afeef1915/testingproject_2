@@ -1,0 +1,104 @@
+<div class="modal-header">
+    <button type="button" class="btn btn-danger close" ng-click="cancel()">&times;</button>
+    <h3 class="modal-title"><i class="fa fa-info"></i> Notes</h3>
+</div>
+<div class="modal-body">
+    <div role="alert" class="alert alert-info">
+        <strong>Tip!</strong> Tick the box in front of the note to mark it as read.
+    </div>
+    <div id="eserv_user_notes_container">
+        <div class="eserv_container_form_errors"></div>
+    </div>
+    {% set noNotesAvailableBanner = '<div class="text-center"> <span><h3>' ~ "No Notes available" |trans ~ '</h3></span> </div>' %}
+
+    <fieldset id="eserv_teacher_notes_alert_fieldset" class="tasks-list">
+
+        {% if teacher_notes is defined and teacher_notes | length > 0 %}
+            <table id="eserv_teacher_notes_alert_table" class="table table-hover">
+                <tr>
+                    <th style="width: 50px;">{{ 'Read?' | trans }}</th>
+                    <th>{{ 'Title' | trans }}</th>
+                    <th style="width: 100px;">{{ 'Created At' | trans }}</th>
+                    <th style="width: 300px;">{{ 'Description' | trans }}</th>
+                </tr>
+                {% for key, val in teacher_notes %}
+                    <tr class="teacher_notes_row_{{ val.id }}">
+                        <td><input tooltip-html-unsafe="Mark as read" tooltip-placement="right-bottom" type="checkbox" id="checkbox_id_{{ val.id }}" onclick='markNoteAsRead({{ val.id }})' /></td>
+                        <td>{{ val.title }}</td>
+                        <td>{{ val.created_at }}</td>
+
+                        {% if val.short_description is sameas(val.description) %}
+                            <td>{{ val.description }}</td>
+                        {% else %}
+                            <td>{{ val.short_description }}
+                                <a class="show-hide-lower-row-trigger trigger-more-less">>>more</a>
+                            </td>
+                        </tr>
+                        <tr style="display: none;" class="teacher_notes_row_{{ val.id }}"> 
+                            <td colspan="4" > 
+                                <div class="panel panel-default" style="padding: 10px"
+                                     <p> {{ val.description }} </p>
+                                </div>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            {{ noNotesAvailableBanner | raw  }}
+        {% endif %}
+
+    </fieldset>
+</div>   
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Done</button>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        PrepareTooltips();
+
+        $('.show-hide-lower-row-trigger').click(function () {
+            if ($(this).closest('tr').next('tr').is(':visible')) {
+                $(this).closest('tr').next('tr').hide();
+            } else {
+                $(this).closest('tr').next('tr').show();
+            }
+        });
+
+        $('.trigger-more-less').click(function () {
+            if ($(this).html() == '&gt;&gt;more') {
+                $(this).html('&lt;&lt;less');
+            } else {
+                $(this).html('&gt;&gt;more');
+            }
+        });
+    });
+
+    function markNoteAsRead(noteId) {
+        var chkbx = $('#checkbox_id_' + noteId);
+        if (chkbx.is(':checked')) {
+            $.ajax({
+                url: root_url + 'mark-note-as-read/' + noteId,
+                success: function (responseText) {
+                    if (responseText.success) {
+                        DisplayAppAlert('success', responseText.msg, 'eserv_user_notes_container', false);
+                        //$('#eserv_teacher_notes_alert_table tr > td input:checkbox[id="checkbox_id_' + noteId + '"]').closest('tr').remove();
+                        $('#eserv_teacher_notes_alert_table tr.teacher_notes_row_' + noteId).remove();
+                        var unreadAlerts = $('#eserv_teacher_notes_alert_table tr').length - 1;
+                        if (unreadAlerts < 1) {
+                            $('#eserv_teacher_notes_alert_table').remove();
+                            $('#eserv_teacher_notes_alert_fieldset').html('{{ noNotesAvailableBanner | raw }}')
+                        }
+                        RootScope.notes = removeObjFromArray('id', noteId, RootScope.notes);
+                    } else {
+                        DisplayAppAlert('danger', responseText.msg, 'eserv_user_notes_container', false);
+                    }
+                },
+                error: function () {
+                }
+            })
+        }
+    }
+
+</script>

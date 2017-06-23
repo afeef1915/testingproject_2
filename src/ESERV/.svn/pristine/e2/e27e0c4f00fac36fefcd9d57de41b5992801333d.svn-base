@@ -1,0 +1,7 @@
+parameters:
+#    eserv_test.example.class: ESERV\TestBundle\Example
+
+services:
+    contact_form_service:
+        class: ESERV\TestBundle\Form\Contact
+        arguments: ["@doctrine.orm.entity_manager"]

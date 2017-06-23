@@ -1,0 +1,27 @@
+Security\SessionBundle\Entity\MtlSession: 
+    type: entity
+    repositoryClass: Security\SessionBundle\Entity\MtlSessionRepository
+    table: mtl_session
+    id:
+        sessionId:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            id: true
+            column: session_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        sessionValue:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            column: session_value
+        sessionTime:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: session_time
+    lifecycleCallbacks: {  }

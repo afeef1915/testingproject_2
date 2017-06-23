@@ -1,0 +1,25 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\VWwvPersons:
+    type: entity
+    table: v_wwv_persons
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+
+    fields:
+        person_id:
+            type: string
+            length: '10'
+            id: true
+            column: person_id
+        fullname:
+            type: string
+            length: '20'
+            column: fullname
+        
+      
+    
+       
+    lifecycleCallbacks: {  }

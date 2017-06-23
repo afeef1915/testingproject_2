@@ -1,0 +1,54 @@
+Security\UserBundle\Entity\MmUserProfile: 
+    type: entity
+    repositoryClass: Security\UserBundle\Entity\MmUserProfileRepository
+    table: mm_user_profile
+    uniqueConstraints:
+        idx_MmUserProfile_a1_idx:
+            columns:
+                - code
+        idx_MmUserProfile_a_idx:
+            columns:
+                - default_group_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        description:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        defaultGroupId:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: default_group_id
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

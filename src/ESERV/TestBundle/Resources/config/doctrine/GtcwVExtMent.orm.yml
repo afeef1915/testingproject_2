@@ -1,0 +1,247 @@
+ESERV\TestBundle\Entity\GtcwVExtMent:
+    type: entity
+    table: gtcw_v_ext_ment
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: dtindex
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        firstName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: last_name
+        referenceNo:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: reference_no
+        dateOfBirth:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: date_of_birth
+        addressLine1:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: address_line1        
+        addressLine2:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: address_line2
+        addressLine3:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: address_line3
+        postcode:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+            column: postcode
+        town:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        county:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        phoneNumber:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: phone_number
+        emailAddress:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: email_address
+        programDetail:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: program_detail
+        inductionCommenced:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''
+            column: induction_commenced
+        totalSessions:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: total_sessions    
+        tInductionStarted:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''
+            column: t_induction_started
+        employerId:
+            type: integer
+            nullable: true
+            column: employer_id
+        laCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: la_code
+        laName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: la_name
+        laNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: la_name_welsh
+        tWorkplaceId:
+            type: integer
+            nullable: true
+            column: t_workplace_id
+        schoolCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: school_code
+        schoolName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: school_name
+        schoolNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: school_name_welsh
+        tRecordNo:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            column: t_record_no
+        tTermNo:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            column: t_term_no    
+        mepLaCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: mep_la_code
+        mepLaName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: mep_la_name
+        mepLaNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: mep_la_name_welsh
+        mepSchoolCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: mep_school_code
+        mepSchoolName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: mep_school_name
+        mepSchoolNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: mep_school_name_welsh    
+        mmdRecordNo:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            column: mmd_record_no
+        passDate:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''
+            column: pass_date
+        indStatusId:
+            type: integer
+            nullable: true
+            column: ind_status_id
+        statusCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: status_code
+        statusName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: status_name
+        statusNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: status_name_welsh
+        mentorContactId:
+            type: integer
+            nullable: true
+            column: mentor_contact_id

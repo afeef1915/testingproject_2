@@ -1,0 +1,7 @@
+{% include '@weblogs_templates/innerPageHeader.html.twig' with {
+            'label': 'Dashboard' | trans,
+            'fa_icon': 'user-circle',
+           
+        }
+%} 
+ {% include 'WEBLOGSMAINMTLDashboardBundle:Dashboard:dashboard.html.twig' with {'cc' : customerProfile} %}

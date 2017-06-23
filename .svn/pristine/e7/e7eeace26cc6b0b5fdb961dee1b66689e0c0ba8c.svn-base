@@ -1,0 +1,21 @@
+weblogsmainmtl_mylogsassign_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: WEBLOGSMAINMTLMylogsassignBundle:Default:index }
+    
+weblogsmainmtl_mylogsassign_list:
+    path:     mylogsassign/list
+    defaults: { _controller: WEBLOGSMAINMTLMylogsassignBundle:Mylogsassign:mylogsList }
+    
+
+weblogsmainmtl_mylogsassign_data_ajax_list:
+    path:     mylogsassign/list/ajax-list
+    defaults: { _controller: WEBLOGSMAINMTLMylogsassignBundle:Mylogsassign:mylogsData }
+    
+    
+   
+
+    
+    
+weblogsmainmtl_mylogsassign_mail:
+    path:     mylogsassign/mymail
+    defaults: { _controller: WEBLOGSMAINMTLMylogsassignBundle:Mylogsassign:logsMail }

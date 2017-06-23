@@ -1,0 +1,65 @@
+<h3>{{ 'Add an User' | trans }}</h3>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' with {'viewMode': 'view'} %}
+
+<div id="eserv_user_output"></div>
+{{form_start(form, { 'attr' : { 'id': 'updateSubject' } })}}
+
+<fieldset>
+    {{ form_eservRow (form.contact, { 'fieldSize': 4, 'labelSize':3, }) }}
+    {{ form_eservRow (form.username, { 'labelSize':3, 'fieldSize': 4 }) }}
+    {{ form_eservRow (form.password, { 'labelSize':3, 'fieldSize': 4 }) }}
+    {{ form_eservSelectRow (form.fosGroup, { 'labelSize':3, 'fieldSize': 4 }) }}
+    {#{{ form_eservSelectRow (form.accountType, { 'fieldSize': 4 }) }}#}
+    {{ form_eservRow(form.locked, { 'isCheckbox': 'true', 'labelSize':3, 'fieldSize' : 1 }) }}    
+</fieldset>
+
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12">
+            <a class="btn btn-danger direction1" href="#/admin/users">{{ 'Cancel' | trans }} </a>
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right direction2',  'btn-loading': "is_processing.application_code_add", 'data-loading-text': "Saving..." | trans } }) }}
+            <input class="btn btn-default pull-right direction2" value="{{ 'Reset' | trans }}" type="reset" id="_reset"/>
+        </div>
+    </div>        
+</fieldset>
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+
+{{form_end(form)}}
+
+<script type="text/javascript">    
+    $(document).ready(function() {        
+        prepareAppForms('{{ form.vars.name }}', false, false, '#/admin/users');
+    });    
+</script>
+
+{#
+<script type="text/javascript">
+    var accountTypeElem = $('#{{ form.accountType.vars.id }}');
+    var fosGroupElem = $('#{{ form.fosGroup.vars.id }}');
+    var resetElem = $('#_reset');
+    
+    $(document).ready(function() {
+        accountTypeElem.prop('disabled', true);
+        prepareAppForms('{{ form.vars.name }}', false, false, '#/admin/users');
+        
+        fosGroupElem.change(function () {
+            var la_fos_group = '{{ extra_data.la_user_group }}';
+            
+            if($(this).find("option:selected").text().trim() == la_fos_group.trim()){
+                accountTypeElem.prop('disabled', false); 
+                AddRequired(accountTypeElem);
+            }else{
+                accountTypeElem.prop('disabled', true);
+                RemoveRequired(accountTypeElem);
+                accountTypeElem.val('');
+            }
+        });
+        
+        resetElem.click(function () {
+            RemoveRequired(accountTypeElem);
+            accountTypeElem.prop('disabled', true);
+        });
+    });    
+</script>#}

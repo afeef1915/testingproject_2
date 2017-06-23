@@ -1,0 +1,33 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\CustomerTasks:
+    type: entity
+    table: customer_tasks
+#    id:
+#        dtindex:
+#            type: string
+#            nullable: false
+#            length: 10
+#            fixed: false
+#            id: true
+#            generator:
+#            strategy: IDENTITY
+    fields:
+        ctk_customer_id:
+            type: string
+            nullable: false
+            length: 100
+            id: true
+            fixed: false
+            column: ctk_customer_id
+        ctk_code:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            column: ctk_code
+        ctk_name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false   
+            column: ctk_name
+    lifecycleCallbacks: {  }

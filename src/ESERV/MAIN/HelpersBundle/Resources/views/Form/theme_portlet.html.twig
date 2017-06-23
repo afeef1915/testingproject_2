@@ -1,0 +1,20 @@
+<div 
+    {% if refresh_url is defined %}data-url="{{ refresh_url }}"{% endif %}
+    class="portlet with_preloader {% if initial is defined and initial == 'closed' %}init_closed{% endif %}" 
+    id="{{ id }}">
+    <div class="portlet-header">
+        <div class="eserv_portlet_header_icons pull-right"></div>
+        {% if fa_icon is defined %}
+            <i class="portlet_header_icon fa fa-{{ fa_icon }}"></i> 
+        {% else %}
+            <div class="header_icon"></div> 
+        {% endif %}
+        <span class="portlet_heading">{{ heading }}</span>
+    </div>
+    <div class="portlet-content">
+        {% if controller is defined and params is defined %}
+            {% render controller(controller, params) %}
+        {% endif %}
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,38 @@
+ESERV\ClientBundle\Entity\EservClientWelshlanguage:
+    type: entity
+    table: eserv_client_welshlanguage
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        entityId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: entity_id
+        welshspeaker:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+        welshmediumteacher:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+        welsh2ndlanguage:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

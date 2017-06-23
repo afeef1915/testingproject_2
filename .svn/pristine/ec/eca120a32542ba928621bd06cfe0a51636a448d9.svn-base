@@ -1,0 +1,148 @@
+
+<div id="eserv_AddCode_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'AddCodeNew' } })}}
+<div class="eserv_container_form_errors"></div>
+
+<fieldset>
+    <div class="col-lg-12">
+        {#{{ form_eservRow (form.ctk_customer_id, { 'labelSize': 3 ,'fieldSize': 4,'attr':{'readonly':'true'} }) }}#}
+        {{ form_eservSelectRow (form.ctk_customer_id, { 'labelSize': 3,'id':'customer_id' }) }}
+        {{ form_eservRow (form.ctk_code, { 'labelSize': 3, 'fieldSize': 4, 'extraFieldClass': 'mtl_input_tooltip', 'attr': 
+                { 
+                     
+                    'data-tooltip-pos-at': 'right center', 
+                    'data-tooltip-pos-my': 'left center'
+                } 
+            }) }}
+        {{ form_eservRow (form.ctk_name, { 'labelSize': 3, 'fieldSize': 4, 'extraFieldClass': 'mtl_input_tooltip', 'attr': 
+                { 
+                   
+                    'data-tooltip-pos-at': 'right center', 
+                    'data-tooltip-pos-my': 'left center'
+                } 
+            }) }}
+
+        {{ form_eservSelectRow (form.ctk_budget_code, { 'labelSize': 3, 'fieldSize': 4 }) }}
+
+    </div>
+</fieldset>
+
+<fieldset class="eserv_form_btns">
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'cancelNgClick' : 'cancel()' , 'closeBtnId' : 'addUserCancelBtn'} %}
+</fieldset>
+
+<div style="display: none">
+    {{form_rest(form)}}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        prepareAppForms('{{ form.vars.name }}', false, {
+            type: 'dataTable',
+            id: '{{ refresh_table_id }}'
+        }, false, "AddCodeNew", function (response,status) {
+             if(response.success==true){ 
+            $('#addUserCancelBtn').click();
+             }
+        });
+
+
+
+    });
+    
+    
+</script>
+
+
+<script type="text/javascript">
+    var title = $('.select2-selection__choice').attr('title');
+    $('#weblogs_main_mtl_codemaintainancebundle_customertasks_ctk_customer_id').attr('value', title);
+
+    var title = $(".select2-hidden-accessible").val();
+    $('#customer_id').attr('value', title);
+    if (title != null)
+    {
+
+        $('select option[value=' + title + ']').prop("selected", true);
+    }
+    if ($('#customer_id').val() != '')
+    {
+        //$("#customer_id").change(function(){ 
+        var dropdown = $('#weblogs_main_mtl_codemaintainancebundle_customertasks_ctk_budget_code');
+        dropdown.empty();
+
+        // var dropdown=$('#weblogs_emailbundle_email_main_exclude_task_code');
+        //dropdown.empty(); 
+        var id = $("#customer_id option:selected").val();
+        $.post(root_url + "code/task", {id: id}, function (data) {
+
+//console.log(data);
+    {#  $.each(data, function () {
+            $("#weblogs_codebundle_code_main_task_code").append($("<option>                                                      
+            </option>").val(this['CTK_CODE']).html(this['CTK_CODE']));
+        });#}
+
+                    $.each(data, function (i, obj)
+                    {
+                        // alert(obj.CTK_CODE+":"+obj.CTK_CODE);
+    {#  if(obj.CTK_NAME!='All'){
+       var div_data_t="<option value="+obj.CTK_CODE+">"+obj.CTK_NAME+"</option>";
+   }
+     if(obj.CTK_NAME!='None'){#}
+                     var div_data_et = "<option value=" + obj.MLB_BUDGET_CODE + ">" + obj.MLB_DESCRIPTION + "</option>";
+                     // }
+                     // console.log(div_data);
+                     $('#weblogs_main_mtl_codemaintainancebundle_customertasks_ctk_budget_code').append(div_data_et);
+                     // $('#weblogs_main_mtl_myemailbundle_mtlclientnotify_excludeTaskCode').append(div_data_t); 
+                 });
+    {# $($.parseJSON(data)).map(function () {
+   return $('<option>').val(this.CTK_CODE).text(this.CTK_CODE);
+}).appendTo('#weblogs_codebundle_code_main_task_code');
+      // $("span").html(result);
+   });#}
+           });
+           //});
+       }
+
+
+       $("#customer_id").change(function(){
+        $("#weblogs_main_mtl_codemaintainancebundle_customertasks_ctk_budget_code").attr('disabled', true);
+        $("#weblogs_main_mtl_codemaintainancebundle_customertasks_ctk_budget_code").addClass('updating_field');
+       var dropdown = $('#weblogs_main_mtl_codemaintainancebundle_customertasks_ctk_budget_code');
+               dropdown.empty();
+               // var dropdown=$('#weblogs_emailbundle_email_main_exclude_task_code');
+               //dropdown.empty(); 
+               var id = $("#customer_id option:selected").val();
+               $.post(root_url + "code/task", {id: id}, function(data){
+
+//console.log(data);
+    {#  $.each(data, function () {
+            $("#weblogs_codebundle_code_main_task_code").append($("<option>                                                      
+            </option>").val(this['CTK_CODE']).html(this['CTK_CODE']));
+        });#}
+
+                    $.each(data, function(i, obj)
+                    {
+                    // alert(obj.CTK_CODE+":"+obj.CTK_CODE);
+    {#  if(obj.CTK_NAME!='All'){
+       var div_data_t="<option value="+obj.CTK_CODE+">"+obj.CTK_NAME+"</option>";
+   }
+     if(obj.CTK_NAME!='None'){#}
+                 var div_data_et = "<option value=" + obj.MLB_BUDGET_CODE + ">" + obj.MLB_DESCRIPTION + "</option>";
+                         // }
+                         // console.log(div_data);
+                         $('#weblogs_main_mtl_codemaintainancebundle_customertasks_ctk_budget_code').append(div_data_et);
+                         // $('#weblogs_main_mtl_myemailbundle_mtlclientnotify_excludeTaskCode').append(div_data_t); 
+                 });
+                  $("#weblogs_main_mtl_codemaintainancebundle_customertasks_ctk_budget_code").attr('disabled', false);
+        $("#weblogs_main_mtl_codemaintainancebundle_customertasks_ctk_budget_code").removeClass('updating_field');
+    {# $($.parseJSON(data)).map(function () {
+   return $('<option>').val(this.CTK_CODE).text(this.CTK_CODE);
+}).appendTo('#weblogs_codebundle_code_main_task_code');
+      // $("span").html(result);
+   });#}
+               });
+                });
+</script>

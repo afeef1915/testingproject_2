@@ -1,0 +1,20 @@
+WEBLOGS\MAIN\MTL\MyemailBundle\Entity\VWwvCustomers:
+    type: entity
+    table: v_wwv_customers
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTO
+    fields:
+        customerId:
+            type: string
+            length: '100'
+            id: true
+            column: customer_id
+        name:
+            type: string
+            length: '200'
+            column: name
+    lifecycleCallbacks: {  }

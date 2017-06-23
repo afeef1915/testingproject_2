@@ -1,0 +1,12 @@
+eserv_client_new_form:
+    pattern:  /client_form_new/{table_id}/{entity_id}
+    defaults: { _controller: ESERVClientBundle:Default:newClientForm }
+    
+eserv_client_update_form:
+    pattern:  /client_form_update/{table_id}/{entity_id}
+    defaults: { _controller: ESERVClientBundle:Default:updateClientForm, table_id: null, entity_id: null}
+    methods : [POST]
+    
+eserv_client_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ESERVClientBundle:Default:index }

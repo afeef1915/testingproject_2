@@ -1,0 +1,194 @@
+ESERV\MAIN\QualificationBundle\Entity\ContactQualification:
+    type: entity
+    table: contact_qualification
+    indexes:
+        fk_conqua_appcode_1_idx:
+            columns:
+                - course_outcome_id
+        fk_conqua_qua_idx:
+            columns:
+                - qualification_id
+        fk_conqua_appcode_2_idx:
+            columns:
+                - qual_type_id
+        fk_conqua_appcode_3_idx:
+            columns:
+                - class_id
+        fk_conqua_appcode_4_idx:
+            columns:
+                - age_from_id
+        fk_conqua_appcode_5_idx:
+            columns:
+                - age_to_id
+        fk_conqua_appcode_6_idx:
+            columns:
+                - age_spec_from_id
+        fk_conqua_appcode_7_idx:
+            columns:
+                - age_spec_to_id
+        fk_conqua_con_1_idx:
+            columns:
+                - contact_id
+        fk_conqua_est_idx:
+            columns:
+                - establishment_id
+        fk_conqua_fosuse_idx:
+            columns:
+                - checked_user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        exitAcademicYear:
+            type: datetime
+            nullable: true
+            column: exit_academic_year
+        courseLength:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: course_length
+        yearOfAward:
+            type: datetime
+            nullable: true
+            column: year_of_award
+        completionDate:
+            type: datetime
+            nullable: true
+            column: completion_date
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+        checkedUserId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: checked_user_id
+        checked:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            default: N
+        checkedDate:
+            type: datetime
+            nullable: true
+            column: checked_date
+        qualLevel:
+            type: string
+            nullable: true
+            length: 5
+            fixed: false
+            column: qual_level
+    manyToOne:
+        courseOutcome:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                course_outcome_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        qualification:
+            targetEntity: ESERV\MAIN\QualificationBundle\Entity\Qualification
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                qualification_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        qualType:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                qual_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        class:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                class_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ageFrom:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                age_from_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ageTo:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                age_to_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ageSpecFrom:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                age_spec_from_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ageSpecTo:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                age_spec_to_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        establishment:
+            targetEntity: ESERV\MAIN\QualificationBundle\Entity\Establishment
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                establishment_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" id="ng-app" ng-app="MTLESERV" xmlns:ng="http://angularjs.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>{{ app_client_short_name }}</title>
+        <link  href="{{ asset ('common/assets/images/icons/search-icon.gif') }}" />
+        <link rel="shortcut icon" href="{{ asset ('common/assets/images/icons/favicon.ico') }}" />
+        <link href="{{ asset ('common/assets/libs/merlin/bootstrap/css/bootstrap.min.css') }}?v={{ app_version }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/merlin/bootstrap/css/bootstrap-theme.min.css') }}?v={{ app_version }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/merlin/font-awesome/css/font-awesome.min.css') }}?v={{ app_version }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/merlin/jquery-qtip/css/jquery.qtip.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/merlin/merlin/css/mtl_eserv.css') }}?v={{ app_version }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/css/themes/'~ app_theme ~'/main.css') }}?v={{ app_version }}" rel="stylesheet" />
+        <link href="{{ asset ('clients/'~ app_client ~'/themes/'~ app_theme ~'/css/client_main.css') }}?v={{ app_version }}" rel="stylesheet" />
+    </head>
+    <body ng-controller="MainController">        
+        {% include 'topMenu.html.twig' with { 'hideAllMenuOptions' : true, 'showSwitchCustomers' : false } %}
+        <div id="wrapper">
+            <div class="container">
+                <div class="content-header">
+                    <div class="header_menu">
+                        <h3 class="pull-left page_inner_header"><span>Please select your customer to proceed.</span></h3>
+                        <div class="pull-left" ncy-breadcrumb></div>
+                        <div id="app_main_alerts_area"></div>
+                        <!-- <button ng-show="comms_btn" ng-controller="CommsCtrl" class="btn btn-sm btn-default pull-right" ng-click="openComms('lg')">Communication</button> -->
+                        <div class="eserv_extra_btns pull-right" ng-bind-html="extra_btns ? (extra_btns | to_trusted) : ''"></div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <hr/>
+                <div ui-view>
+                    <div class="container">
+                        <div class="row">
+                            {% for k,v in customers %}
+                                <div class="col-sm-6 col-md-4" id="cust_{{ v['b64'] }}" data-custcode="{{ v['b64'] }}">
+                                    <button type="button" class="select_customer_box btn-lg btn-block btn btn-default">{{ v['raw'] }}</button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                 
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+            var domain = '56756truyju';
+            var datatables_loaded = true;
+            var root_url = '{{ path ('weblogs_home_homepage') }}';
+            var app_pre_title = '{{ app_client_short_name | trans }} ';
+            var logout_url = '{{ path ('eserv_user_bundle_user_do_logout') }}';
+        </script>
+        <script src="{{ asset ('common/assets/libs/merlin/jquery/jquery.min.js') }}?v={{ app_version }}"></script>
+        <script src="{{ asset ('common/assets/libs/merlin/jquery-ui/js/jquery-ui.min.js') }}?v={{ app_version }}"></script>
+        <script src="{{ asset ('common/assets/libs/merlin/jquery-cookie/jquery.cookie.js') }}?v={{ app_version }}"></script>
+        <script src="{{ asset ('common/assets/libs/merlin/bootstrap/js/bootstrap.min.js') }}?v={{ app_version }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function (){
+                $("div[id^=cust_]").click(function (){
+                    var tmpUrl = "{{ path('weblogs_customer_register_selected_customer_account', {'code' : 'tmp_123' }) }}";
+                    var customerB64 = $(this).data('custcode');
+                    var res = tmpUrl.replace("tmp_123", customerB64);                    
+                    document.location = res;
+                });
+            });
+        </script>
+    </body>
+</html>

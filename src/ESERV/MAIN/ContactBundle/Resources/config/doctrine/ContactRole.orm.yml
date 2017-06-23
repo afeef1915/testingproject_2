@@ -1,0 +1,85 @@
+ESERV\MAIN\ContactBundle\Entity\ContactRole:
+    type: entity
+    table: contact_role
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        contact_id:
+            type: integer
+            length: 11
+        contact_role_type_id:
+            type: integer
+            length: 11
+        unique_type_ref_no:
+            type: string
+        start_date:
+            type: datetime
+        end_date:
+            type: datetime
+        contact_role_status_id:
+            type: integer
+            length: 11
+        status_date:
+            type: datetime
+        external_id:
+            type: string
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint
+    uniqueConstraints:
+       idx_ContactRole_a1_idx: 
+           columns: [ contact_id, contact_role_type_id ]
+       idx_ContactRole_b1_idx: 
+           columns: [ contact_role_type_id, unique_type_ref_no ]
+       idx_ContactRole_d_idx: 
+           columns: [ unique_type_ref_no ]
+       idx_ContactRole_c_idx: 
+           columns: [ contact_role_status_id ]    
+    manyToOne:
+        contact:
+            targetEntity: Contact
+            inversedBy: contact_role
+            joinColumn:
+                name: contact_id
+                referencedColumnName: id
+        contact_role_type:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactRoleType
+            inversedBy: contact_role
+            joinColumn:
+                name: contact_role_type_id
+                referencedColumnName: id                
+    oneToMany:
+        contact_role_custom:
+            targetEntity: ContactRoleCustom
+            mappedBy: contact_role
+            joinColumn:
+                name: id
+                referencedColumnName: contact_role_id
+        contact_role_language:
+            targetEntity: ContactRoleLanguage
+            mappedBy: contact_role
+            joinColumn:
+                name: id
+                referencedColumnName: contact_role_id
+        contact_role_logo:
+            targetEntity: ContactRoleLogo
+            mappedBy: contact_role
+            joinColumn:
+                name: id
+                referencedColumnName: contact_role_id          
+        mm_user_settings:
+            targetEntity: ESERV\MAIN\ProfileBundle\Entity\MmUserSettings
+            mappedBy: contact_role
+            joinColumn:
+                name: id
+                referencedColumnName: contact_role_id        
+    oneToOne:
+      
+                

@@ -1,0 +1,44 @@
+{#
+// Example
+{% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 
+        'form_save' : form.save, 
+        'hide_edit_button' : true, 
+        'hide_cancel' : true, 
+        'cancel_link' : true,  
+        'cancelHref' : '#/admin/manage-canvas', 
+        'cancelUISref' : 'admin.manage_canvas', 
+        'closeBtnId' : 'cancel_AddFormsCanvasWeb_btn' 
+    } %} 
+#}
+
+{% set DisableEdit = false %}
+{% if disable_edit is defined %}
+    {% if disable_edit == true %}
+        {% set DisableEdit = true %}
+    {% endif %}
+{% endif %}
+
+{% if form_save is not sameas(false) %}
+{{ form_widget(form_save, {'attr': {'class': 'btn btn-primary eservSubmitBtn pull-right direction2',  'btn-loading': "is_processing.teacher", 'data-loading-text': "Saving..." | trans} }) }}
+{% endif %}
+
+{% if hide_edit_button is defined %} 
+    {% if hide_edit_button != true %}
+        <button class="btn btn-default eservEditBtn direction1" type="button" {% if DisableEdit == true %} disabled="disabled" {% endif %} >{{ 'Edit' | trans }}</button>    
+    {% endif %}    
+{% else %}
+    <button class="btn btn-default eservEditBtn direction1" type="button" {% if DisableEdit == true %} disabled="disabled" {% endif %} >{{ 'Edit' | trans }}</button>    
+{% endif %}    
+
+{% if hide_cancel is not defined or hide_cancel is defined and hide_cancel is sameas(false) %}
+<button {% if closeBtnId is defined %} id="{{ closeBtnId }}" {% endif %} class="btn btn-danger eservCancelBtn pull-left direction1" type="button" {% if cancelNgClick is defined %} ng-click="{{ cancelNgClick }}" {% endif %}>{{ 'Cancel' | trans }}</button>
+{% endif %}
+
+{% if cancel_link is defined and cancel_link is sameas(true) %}
+<a {% if closeBtnId is defined %} id="{{ closeBtnId }}" {% endif %} class="btn btn-danger eservCancelBtn pull-left direction1" {% if cancelHref is defined %} href="{{ cancelHref }}" {% endif %} {% if cancelUISref is defined %} ui-sref="{{ cancelUISref }}" {% endif %}>{{ 'Cancel' | trans }}</a>
+{% endif %}
+
+{% if hide_reset is not defined or hide_reset is defined and hide_reset is sameas(false) %}
+    <div style="margin-left: 2px"></div>
+    <button class="btn btn-default eservResetBtn pull-left direction1" type="reset" style="margin-left: 2px">{{ 'Reset' | trans }}</button>
+{% endif %}

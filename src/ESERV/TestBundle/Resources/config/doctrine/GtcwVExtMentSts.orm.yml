@@ -1,0 +1,310 @@
+ESERV\TestBundle\Entity\GtcwVExtMentSts:
+    type: entity
+    table: gtcw_v_ext_ment_sts
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: dtindex
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        firstName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: last_name
+        referenceNo:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: reference_no
+        dateOfBirth:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: date_of_birth
+        inductionCommenced:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''
+            column: induction_commenced
+        employerId:
+            type: integer
+            nullable: true
+            column: employer_id
+#        workplaceId:
+#            type: integer
+#            nullable: true
+#            column: workplace_id
+#        schoolCode:
+#            type: string
+#            nullable: true
+#            length: 50
+#            fixed: false
+#            column: school_code
+        schoolName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: school_name
+        schoolNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: school_name_welsh
+        tStartDate:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''
+            column: t_start_date
+        tRecordNo:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            column: t_record_no
+        tTermNo:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            column: t_term_no    
+#        indStatusId:
+#            type: integer
+#            nullable: true
+#            column: ind_status_id
+        statusCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: status_code
+        statusName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: status_name
+        statusNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: status_name_welsh
+        notifiedDate:    
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: notified_date
+        extLength:
+            type: string                    
+            column: ext_length
+        extUnitId:
+            type: integer
+            nullable: true
+            column: ext_unit_id
+        extUnit:
+            type: string                    
+            column: ext_unit
+        extUnitWelsh:
+            type: string                    
+            column: ext_unit_welsh 
+        tEmployerId:
+            type: integer
+            nullable: true
+            column: t_employer_id
+        tEmployerName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: t_employer_name
+        tEmployerNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: t_employer_name_welsh
+        fullPartTime:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: full_part_time
+        fullPartTimeWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: full_part_time_welsh
+        proportion:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: proportion
+        contractId:
+            type: integer
+            nullable: true
+            column: contract_id
+        contractName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: contract_name
+        contractNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: contract_name_welsh
+        contractDate:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: contract_date
+        minKeystageId:
+            type: integer
+            nullable: true
+            column: min_keystage_id
+        minKeystage:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: min_keystage
+        minKeystageWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: min_keystage_welsh
+        maxKeystageId:
+            type: integer
+            nullable: true
+            column: max_keystage_id
+        maxKeystage:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: max_keystage
+        maxKeystageWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: max_keystage_welsh
+        tutorContactId:
+            type: integer
+            nullable: true
+            column: tutor_contact_id
+        headContactId:
+            type: integer
+            nullable: true
+            column: head_contact_id
+        extmentContactId:
+            type: integer
+            nullable: true
+            column: extment_contact_id
+        minAgerangeId:
+            type: integer
+            nullable: true
+            column: min_agerange_id
+        minAgerange:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: min_agerange
+        minAgerangeWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: min_agerange_welsh
+        maxAgerangeId:
+            type: integer
+            nullable: true
+            column: max_agerange_id
+        maxAgerange:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: max_agerange
+        maxAgerangeWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: max_agerange_welsh
+        routeName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: route_name
+        routeNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: route_name_welsh
+        totalSessions:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: total_sessions
+        tRouteId:
+            type: integer
+            nullable: true
+            column: t_route_id
+        tRouteCode:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: t_route_code
+        tRouteName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: t_route_name
+        tRouteNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: t_route_name_welsh
+        mentorContactId:
+            type: integer
+            nullable: true
+            column: mentor_contact_id

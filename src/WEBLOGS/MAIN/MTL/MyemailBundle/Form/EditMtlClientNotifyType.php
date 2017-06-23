@@ -1,0 +1,102 @@
+<?php
+
+namespace WEBLOGS\MAIN\MTL\MyemailBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
+
+
+
+
+
+class EditMtlClientNotifyType extends AbstractType
+{
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+   // public $author;
+
+   
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $empty_task = array(
+          
+        );
+     //   print_r($this->get('security.context')->getToken()->getUser());die;
+        $builder
+             //   -> add('userId') 
+                ->add('userId', 'text')
+
+             ->add('customerId', 'entity', array(
+                'label' => 'Customer Name',
+                'required' => true,
+                'empty_value' => ' -- Choose an option -- ',
+                'class' => 'WEBLOGSMAINMTLMyemailBundle:VWwvCustomers',
+                'property' => 'name',
+//                'query_builder' => function(EntityRepository $er) {
+//                    return $er->createQueryBuilder('fg')
+//                            ->orderBy('fg.customerId', 'ASC')
+//                    ;
+//                },
+            ))      
+           
+             -> add('taskCode', 'choice',array(
+                    'label' => 'Task Code',
+                    'required' => true)) 
+                
+                 -> add('excludeTaskCode', 'choice',array(
+                    'label' => 'Exclude Task Code',
+                    'required' => true)) 
+                
+          //  ->add('exclude_task_code')
+             ->add('save', 'submit')
+            ->setMethod('POST')
+            ->getForm()
+        ;
+        
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+        $data = $event->getData();
+        $form = $event->getForm();
+        if ($form->has('taskCode')) {
+            $form->remove('taskCode');
+        }
+
+        $form->add('taskCode', 'choice', array(
+            'choices' => array($data['taskCode']=>'Whatever'),
+        ));
+        
+        if ($form->has('excludeTaskCode')) {
+            $form->remove('excludeTaskCode');
+        }
+
+        $form->add('excludeTaskCode', 'choice', array(
+            'choices' => array($data['excludeTaskCode']=>'Whatever'),
+        ));
+    });
+    
+    }
+    
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+//           'data_class' => 'WEBLOGS\MAIN\MTL\MyemailBundle\Entity\MtlClientNotify'
+        ));
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'weblogs_main_mtl_myemailbundle_mtlclientnotify';
+    }
+}

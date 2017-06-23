@@ -1,0 +1,69 @@
+ESERV\MAIN\TableQueryBundle\Entity\QueryDetailOrder:
+    type: entity
+    table: query_detail_order
+    indexes:
+        fk_qdeord_qmaste_idx:
+            columns:
+                - query_master_id
+        fk_qdeord_qviewf_idx:
+            columns:
+                - query_view_field_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        lineNo:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: line_no
+        qdoDescending:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: qdo_descending
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        queryMaster:
+            targetEntity: ESERV\MAIN\TableQueryBundle\Entity\QueryMaster
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                query_master_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        queryViewField:
+            targetEntity: ESERV\MAIN\TableQueryBundle\Entity\QueryViewField
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                query_view_field_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

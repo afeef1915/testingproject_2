@@ -1,0 +1,44 @@
+ESERV\TestBundle\Entity\GtcwVMemSubjectTaught: 
+    type: entity
+    table: gtcw_v_mem_subject_taught
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        id:
+            type: integer
+            nullable: false
+            column: id 
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        memberId:
+            type: integer
+            nullable: false
+            column: member_id 
+        memberSubjectId:
+            type: integer                    
+            column: member_subject_id
+        subjectCode:
+            type: string                    
+            column: subject_code
+        subjectName:
+            type: string                    
+            column: subject_name
+        membershipOrgCode:
+            type: string                    
+            column: membership_org_code
+        startDate:
+            type: datetime            
+            column: start_date        
+        endDate:
+            type: datetime            
+            column: end_date  

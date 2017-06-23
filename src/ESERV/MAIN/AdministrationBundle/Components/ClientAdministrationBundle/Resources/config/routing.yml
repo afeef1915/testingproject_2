@@ -1,0 +1,25 @@
+eserv_client_group_delete:
+    path:     /delete_client_group/{id}
+    defaults: { _controller: ESERVMAINAdministrationBundleComponentsClientAdministrationBundle:ClientAdministration:deleteClientGroup }
+
+eserv_client_field_create:
+    path:     /contact_field_add/create
+    defaults: { _controller: ESERVMAINAdministrationBundleComponentsClientAdministrationBundle:ClientAdministration:saveClientField }
+    methods: [POST]
+    
+eserv_client_field_show:
+    path:     /contact_field_add
+    defaults: { _controller: ESERVMAINAdministrationBundleComponentsClientAdministrationBundle:ClientAdministration:newClientField }
+    
+eserv_client_group_create:
+    path:     /contact_group_add/create
+    defaults: { _controller: ESERVMAINAdministrationBundleComponentsClientAdministrationBundle:ClientAdministration:saveClientGroup }
+    methods: [POST]
+    
+eserv_client_group_show:
+    path:     /contact_group_add
+    defaults: { _controller: ESERVMAINAdministrationBundleComponentsClientAdministrationBundle:ClientAdministration:newClientGroup }
+
+eservmain_administration_bundle_components_client_administration_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ESERVMAINAdministrationBundleComponentsClientAdministrationBundle:Default:index }

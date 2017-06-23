@@ -1,0 +1,46 @@
+<table class="row">
+    <tr>
+        <td class="wrapper last">
+
+            <table class="twelve columns">
+                <tr>
+                    <td>
+                        <h3>Dear {{ diplayName }},</h3>
+                        <p>&nbsp;</p>
+                        <p class="lead">We have created your account. However it has not been activated yet!</p>
+                        {% if show_activation is defined and show_activation == true %}
+                            <p>To activate your account please click on the activation link below</p>
+                            <p>&nbsp;</p>
+                            <p><a href="{% if activation_link is defined %} {{ activation_link }} {% endif %}" class="btn-primary">Click here to reset your password and activate your account!</a></p>
+                        {% endif %}
+                        <p>&nbsp;</p>
+                        <p><strong> Login Details : </strong></p>                  
+                        <p><strong> Username : </strong>{{ username }}</p>                  
+                        <p><strong> Password : </strong>{{ password }}</p>
+                        <p>&nbsp;</p>                  
+                    </td>
+                    <td class="expander"></td>
+                </tr>
+            </table>
+            {% if show_activation is defined and show_activation == true %}
+                <table class="row callout">
+                    <tr>
+                        <td class="wrapper last">
+
+                            <table class="twelve columns">
+                                <tr>
+                                    <td class="panel-danger panel">
+                                        <p>Please note that this link will expire in 48 hours.</p>
+                                    </td>
+                                    <td class="expander"></td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+            {% endif %}          
+
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,30 @@
+ESERV\MAIN\WizardBundle\Entity\WizardType:
+    type: entity
+    table: wizard_type
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        description:
+            type: string
+            length: 100
+        code:
+            type: string
+            length: 100
+        num_of_pages:
+            type: integer
+            length: 4
+        confirmation_page:
+            type: string
+            length: 1
+        external_id:
+            type: string          
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint      

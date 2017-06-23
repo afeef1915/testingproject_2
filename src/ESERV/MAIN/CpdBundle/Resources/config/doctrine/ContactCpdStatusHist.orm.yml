@@ -1,0 +1,70 @@
+ESERV\MAIN\CpdBundle\Entity\ContactCpdStatusHist: 
+    type: entity
+    repositoryClass: ESERV\MAIN\CpdBundle\Entity\ContactCpdStatusHistRepository
+    table: contact_cpd_status_hist
+    indexes:
+        fk_ccsthi_contact_idx:
+            columns:
+                - contact_id
+        fk_ccsthi_cpdsta_idx:
+            columns:
+                - cpd_status_id
+        fk_ccsthi_cocpst_idx:
+            columns:
+                - contact_cpd_status_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        cpdStatus:
+            targetEntity: ESERV\MAIN\CpdBundle\Entity\CpdStatus
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cpd_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contactCpdStatus:
+            targetEntity: ESERV\MAIN\CpdBundle\Entity\ContactCpdStatus
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_cpd_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

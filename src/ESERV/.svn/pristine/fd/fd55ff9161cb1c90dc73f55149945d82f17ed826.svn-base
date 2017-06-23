@@ -1,0 +1,66 @@
+ESERV\MAIN\WizardBundle\Entity\WzControl: 
+    type: entity
+    repositoryClass: ESERV\MAIN\WizardBundle\Entity\WzControlRepository
+    table: wz_control
+    indexes:
+        fk_wz_control_wizard_type1_idx:
+            columns:
+                - wizard_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        applicationId:
+            type: string
+            length: 32
+            nullable: false
+            column: application_id
+        password:
+            type: string
+            length: 15
+            nullable: false
+            column: password
+        started:
+            type: string
+            length: 1
+            nullable: false
+            default: 'N'
+            column: started        
+        dateCompleted:
+            type: datetime
+            nullable: true
+            column: date_completed
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        wzType:
+            targetEntity: ESERV\MAIN\WizardBundle\Entity\WzType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                wz_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

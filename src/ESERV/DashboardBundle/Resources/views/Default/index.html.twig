@@ -1,0 +1,97 @@
+<div class="row dashboard_stats_squares" ng-controller="DashboardCtrl">
+    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+        <a ui-sref="organisation.employer">
+            <section class="panel bg-info">
+                <div class="panel-body">
+                    <div class="circle-icon">
+                        <i class="fa fa-briefcase"></i>
+                    </div>
+                    <div>
+                        <div class="stats_numbers no-margin" ng-bind-html="employers"></div>
+                        Employers
+                    </div>
+                </div>
+            </section>
+        </a>
+    </div>
+    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+        <a ui-sref="organisation.school">
+            <section class="panel bg-danger">
+                <div class="panel-body">
+                    <div class="circle-icon">
+                        <i class="fa fa-book"></i>
+                    </div>
+                    <div>
+                        <div class="stats_numbers no-margin" ng-bind-html="workplaces"></div>
+                        Schools
+                    </div>
+                </div>
+            </section>
+        </a>
+    </div>
+    <!--
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <a ui-sref="teacher.list">
+            <section class="panel bg-success">
+                <div class="panel-body">
+                    <div class="circle-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div>
+                        <div class="stats_numbers no-margin" ng-bind-html="teachers"></div>
+                        Teachers
+                    </div>
+                </div>
+            </section>
+        </a>
+    </div>
+    
+    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+        <a ui-sref="organisation.establishment">
+            <section class="panel bg-purple">
+                <div class="panel-body">
+                    <div class="circle-icon">
+                        <i class="fa fa-tree"></i>
+                    </div>
+                    <div>
+                        <div class="stats_numbers no-margin" ng-bind-html="establishments"></div>
+                        Establishments
+                    </div>
+                </div>
+            </section>
+        </a>
+    </div>
+    -->
+</div>
+{#
+<!--
+<textarea ckeditor="editorOptions" ng-model="modelName"></textarea>
+<div class='row' ng-controller="SortableCTRL">
+    <div class="col_group_container" data-eserv_col_height="">
+        <div class="column left" id="col_small_1_a">
+            <div class="portlet" data-eserv-d-trigger="" id="portlet1" data-url="{{ path ('eserv_client_new_form', {'table_id': '15', 'entity_id': '166'}) }}">
+                <div class="portlet-header"><div class="eserv_portlet_header_icons pull-right"></div><div class="header_icon"></div>Portlet 1</div>
+                <div class="portlet-content">Refreshing data... Please wait</div>
+            </div>
+            <div class="portlet" data-eserv-d-trigger="" id="portlet2" data-url="">
+                <div class="portlet-header"><div class="eserv_portlet_header_icons pull-right">Menu</div><div class="header_icon"></div>Portlet 2</div>
+                <div class="portlet-content">Refreshing data... Please wait</div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="column right" id="col_small_1_b">
+            <div class="portlet" data-eserv-d-trigger="" id="portlet3" data-url="{{ path ('eserv_client_new_form', {'table_id': '1', 'entity_id': '16'}) }}">
+                <div class="portlet-header"><div class="eserv_portlet_header_icons pull-right">Menu</div><div class="header_icon"></div>Portlet 3</div>
+                <div class="portlet-content">Refreshing data... Please wait</div>
+            </div>
+            <div class="portlet" data-eserv-d-trigger="" id="portlet4" data-url="">
+                <div class="portlet-header"><div class="eserv_portlet_header_icons pull-right">Menu</div><div class="header_icon"></div>Portlet 4</div>
+                <div class="portlet-content">Refreshing data... Please wait</div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+-->
+#}

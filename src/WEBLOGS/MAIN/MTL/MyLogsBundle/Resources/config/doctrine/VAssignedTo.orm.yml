@@ -1,0 +1,28 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\VAssignedTo:
+    type: entity
+    table: v_assigned_to
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+
+    fields:
+        user_display_name:
+            type: string
+            length: '10'
+            column: user_display_name
+        user_id:
+            type: string
+            length: '20'
+            id: true
+            column: user_id
+        csev_mtlgroup:
+            type: string
+            length: '20'
+            column: csev_mtlgroup
+      
+    
+       
+    lifecycleCallbacks: {  }

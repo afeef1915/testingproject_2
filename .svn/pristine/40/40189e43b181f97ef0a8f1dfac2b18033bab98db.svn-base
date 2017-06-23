@@ -1,0 +1,56 @@
+<div id="eserv_AddCode_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'CreateNewUsers' } })}}
+<div class="eserv_container_form_errors"></div>
+
+<fieldset>
+    <div class="col-lg-12">
+       
+            {{ form_eservRow (form.csev_customer_id, { 'labelSize': 3, 'fieldSize': 4, 'extraFieldClass': 'mtl_input_tooltip', 'attr': 
+                { 
+                     
+                    'data-tooltip-pos-at': 'right center', 
+                    'data-tooltip-pos-my': 'left center'
+                } 
+            }) }}
+            {{ form_eservRow (form.ctk_code, { 'labelSize': 3, 'fieldSize': 4, 'extraFieldClass': 'mtl_input_tooltip', 'attr': 
+                { 
+                     
+                    'data-tooltip-pos-at': 'right center', 
+                    'data-tooltip-pos-my': 'left center'
+                } 
+            }) }}
+            {{ form_eservRow (form.ctk_name, { 'labelSize': 3, 'fieldSize': 4, 'extraFieldClass': 'mtl_input_tooltip', 'attr': 
+                { 
+                   
+                    'data-tooltip-pos-at': 'right center', 
+                    'data-tooltip-pos-my': 'left center'
+                } 
+            }) }}
+          
+    </div>
+</fieldset>
+
+<fieldset class="eserv_form_btns">
+        {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'cancelNgClick' : 'cancel()' , 'closeBtnId' : 'addUserCancelBtn'} %}
+</fieldset>
+
+<div style="display: none">
+    {{form_rest(form)}}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+    $(document).ready(function () {                   
+        prepareAppForms('{{ form.vars.name }}', false, {
+            type: 'dataTable',
+            id : '{{ refresh_table_id }}'
+        }, false, "CreateNewUsers", function(){
+            $('#addUserCancelBtn').click();
+        }); 
+        {#var title=$('.select2-selection__choice').attr('title');
+        $('#weblogs_main_mtl_codemaintainancebundle_customertasks_ctk_customer_id').attr('value',title);
+    });#}
+</script>
+
+

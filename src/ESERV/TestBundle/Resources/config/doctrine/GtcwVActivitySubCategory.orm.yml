@@ -1,0 +1,31 @@
+ESERV\TestBundle\Entity\GtcwVActivitySubCategory: 
+    type: entity
+    table: gtcw_v_activity_sub_category
+    id:
+        activity_sub_category_id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+            comment: ''
+        description:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        activity_category:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+            comment: ''

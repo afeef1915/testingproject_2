@@ -1,0 +1,18 @@
+<div ng-controller="ActivitiesCtrl">    
+    <div class="modal-header panel-primary">
+        <button type="button" class="btn btn-danger close" ng-click="cancel()">&times;</button>
+        <h3 class="modal-title">Activities</h3>
+    </div>
+    <div class="modal-body">
+        <div id="activity_output_error_container"></div>
+        <tabset-remote>
+            <taburl title="Activities" template-url="{{ path ('eserv_main_activity_list', {'entity_id': entity_id, 'entity_name':entity_name, 'contact_id':contact_id}) }}"></taburl>
+            <!--
+            <taburl title="Activity Targets" template-url="{{ path ('eserv_main_activity_target_list', {'entity_id': entity_id, 'entity_name':entity_name, 'contact_id':contact_id}) }}"></taburl>
+            -->
+        </tabset-remote>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="cancel()">Close</button>
+    </div>
+</div>

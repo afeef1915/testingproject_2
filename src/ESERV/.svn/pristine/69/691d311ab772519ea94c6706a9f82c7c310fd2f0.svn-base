@@ -1,0 +1,51 @@
+ESERV\MAIN\ContactBundle\Entity\ContactRoleType:
+    type: entity
+    table: contact_role_type
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        code:
+            type: string
+        description:
+            type: string
+        contact_type_id:
+            type: integer
+            length: 11
+        external_id:
+            type: string
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint
+    uniqueConstraints:
+       idx_ContactRoleType_a1_idx: 
+           columns: [ code ]
+       idx_ContactRoleType_a_idx: 
+           columns: [ contact_type_id ]        
+    oneToMany:
+        contact_role_status:
+            targetEntity: ContactRoleStatus
+            mappedBy: contact_role_type
+            joinColumn:
+                name: id
+                referencedColumnName: contact_role_type_id]
+        contact_role:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactRole
+            mappedBy: contact_role_type
+            joinColumn:
+                name: contact_role_type_id
+                referencedColumnName: id
+    oneToOne:
+        contact_type:
+            targetEntity: ContactType
+            mappedBy: contact_role_type
+            joinColumn:
+                name: id
+                referencedColumnName: id
+        

@@ -1,0 +1,56 @@
+ESERV\TestBundle\Entity\GtcwVEmpWor: 
+    type: entity   
+    table: gtcw_v_emp_wor
+    id:
+        emp_org_id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        emp_con_id:
+            type: integer
+            nullable: false  
+        emp_name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        emp_code:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+        emp_date_open:
+            type: datetime
+            nullable: false
+        wor_date_closed:
+            type: datetime
+            nullable: false            
+        wor_org_id:
+            type: integer
+            nullable: false
+        wor_con_id:
+            type: integer
+            nullable: false  
+        wor_name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        wor_code:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+        address_line1:
+            type: string
+            nullable: true
+            length: 255
+        postcode:
+            type: string
+            nullable: true
+            length: 30

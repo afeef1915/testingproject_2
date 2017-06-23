@@ -1,0 +1,71 @@
+ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\Email: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\EmailRepository
+    table: email
+    indexes:
+        fk_ema_con_idx:
+            columns:
+                - contact_id
+        fk_ema_appcod_idx:
+            columns:
+                - email_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        emailAddress:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: email_address
+        primaryRecord:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: primary_record
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        emailType:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                email_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

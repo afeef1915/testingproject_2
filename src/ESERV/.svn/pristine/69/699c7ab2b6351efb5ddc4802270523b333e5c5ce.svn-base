@@ -1,0 +1,67 @@
+ESERV\MAIN\CpdBundle\Entity\CpdActCodeControl:
+    type: entity
+    repositoryClass: ESERV\MAIN\CpdBundle\Entity\CpdActCodeControlRepository
+    table: cpd_act_code_control
+    indexes:
+        fk_cocpac_selfref_idx:
+            columns:
+                - cpd_act_cd_ctrl_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        displayOrder:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: display_order
+        multiRecord:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            column: multi_record
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        cpdActCdCtrl:
+            targetEntity: ESERV\MAIN\CpdBundle\Entity\CpdActCodeControl
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cpd_act_cd_ctrl_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

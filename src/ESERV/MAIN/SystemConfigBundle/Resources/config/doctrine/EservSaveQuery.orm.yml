@@ -1,0 +1,68 @@
+ESERV\MAIN\SystemConfigBundle\Entity\EservSaveQuery:
+    type: entity
+    repositoryClass: ESERV\MAIN\SystemConfigBundle\Entity\EservSaveQueryRepository
+    table: eserv_save_query
+    indexes:
+        fk_esesavque_appcod_idx:
+            columns:
+                - type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        pageCode:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            column: page_code
+        sqlQuery:
+            type: text
+            nullable: false
+            length: 65535
+            fixed: false
+            column: sql_query
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        type:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

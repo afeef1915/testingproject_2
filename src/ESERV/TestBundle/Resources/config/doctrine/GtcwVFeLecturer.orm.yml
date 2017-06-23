@@ -1,0 +1,161 @@
+ESERV\TestBundle\Entity\GtcwVFeLecturer:
+    type: entity
+    table: gtcw_v_fe_lecturer
+    id:
+        person_id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        contact_id:
+            type: integer
+            nullable: false  
+        first_name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        last_name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        reference_no:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        trn:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        ni_number:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        town:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        county:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        qts_date:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''  
+        date_of_birth:
+            type: datetime
+            nullable: false
+            fixed: false
+            comment: ''
+        address_line1:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        address_line2:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        address_line3:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        postcode:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+        full_address:
+            type: string
+            length: 255
+        workplace_id:
+            type: integer
+            nullable: false            
+        organisation_id:
+            type: integer
+            nullable: false 
+        employer_id:
+            type: integer
+            nullable: false
+        employer_name:
+            type: string
+            length: 100
+        primary_emp_code:
+            type: string
+            length: 30
+        primary_emp_name:
+            type: string
+            length: 100
+        job:
+            type: string
+            length: 100
+        hours:
+            type: string
+            length: 100
+        emp_description:
+            type: string
+        employment_description:
+            type: string
+        contact_status_id:
+            type: integer
+            nullable: true
+            column: contact_status_id
+        contact_status_code:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: contact_status_code
+        contact_status_name:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: contact_status_name
+        member_status_id:
+            type: integer
+            nullable: true
+            column: member_status_id
+        member_status_code:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: member_status_code
+        member_status_name:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: member_status_name
+        disciplinary_note:
+            type: string
+        disciplinary_type:
+            type: string
+        disciplinary_web_type:
+            type: string

@@ -1,0 +1,54 @@
+eserv_main_view_remove_notification:
+    pattern:  /remove_notification
+    defaults: { _controller: ESERVMAINProfileBundle:UserNotification:removeNotification }
+
+eserv_main_view_change_notification_status_read:
+    pattern:  /change_status_read
+    defaults: { _controller: ESERVMAINProfileBundle:UserNotification:changeStatusRead }
+
+eserv_main_view_user_notifications:
+    pattern:  /notification/view
+    defaults: { _controller: ESERVMAINProfileBundle:UserNotification:getNotification }
+
+eserv_main_get_all_user_notifications:
+    pattern:  /get_user_notifications
+    defaults: { _controller: ESERVMAINProfileBundle:UserNotification:getUserNotification }
+
+eserv_main_profile_save_settings:
+    pattern:  /user/saveSettings
+    defaults: { _controller: ESERVMAINProfileBundle:Default:saveSettings }
+    
+# HelpMessage
+eserv_main_help_message_list:
+    path:     /help_message
+    defaults: { _controller: ESERVMAINProfileBundle:MmHelpMessages:helpMessagesList }
+eserv_main_help_message_ajax_list:
+    path:     /help_message/ajaxList
+    defaults: { _controller: ESERVMAINProfileBundle:MmHelpMessages:data }
+
+eserv_main_help_message_new:
+    path:     /help_message/add
+    defaults: { _controller: ESERVMAINProfileBundle:MmHelpMessages:newHelpMessage }
+    
+eserv_main_help_message_create:
+    path:     /help_message/create
+    defaults: { _controller: ESERVMAINProfileBundle:MmHelpMessages:createHelpMessage }
+    methods : [POST]   
+    
+eserv_main_help_message_update:
+    path:     /help_message/update/{id}
+    defaults: { _controller: ESERVMAINProfileBundle:MmHelpMessages:updateHelpMessage, id: null }
+    methods : [POST]    
+    
+eserv_main_help_message_edit:
+    path:     /help_message/edit/{id}
+    defaults: { _controller: ESERVMAINProfileBundle:MmHelpMessages:editHelpMessage, id: null }
+    
+eserv_main_profile_user_locked_page_refresh:
+    path:     /profile/user-locked-page/refresh/{page_code}/{page_id}
+    defaults: { _controller: ESERVMAINProfileBundle:UserLockedPage:refresh, page_code: null, page_id: null}
+    
+eserv_main_profile_user_locked_page_unlock_page:
+    path:     /profile/user-locked-page/unlock-page/{page_code}/{page_id}
+    defaults: { _controller: ESERVMAINProfileBundle:UserLockedPage:unlockPage, page_code: null, page_id: null}
+

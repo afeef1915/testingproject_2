@@ -1,0 +1,44 @@
+ESERV\MAIN\ErrorHandlingBundle\Entity\MtlError: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ErrorHandlingBundle\Entity\MtlErrorRepository
+    table: mtl_error
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        objectName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            column: object_name
+        errorMessage:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            column: error_message
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

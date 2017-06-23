@@ -1,0 +1,54 @@
+<h3>{{ lang_name }}</h3>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' with {'viewMode': 'view'} %}
+{% set url1 = '' %}
+{% set url2 = '' %}
+{% if alt_lang_id is null %}
+    {% set url1 = '#/admin' %} 
+    {% set url2 = '#/admin/alternative_language' %}  
+{% else %}
+    {% set url1 = '#/admin/alternative_language/' ~ alt_lang_id %}  
+    {% set url2 = '#/admin/alternative_language/' ~ alt_lang_id %}  
+{% endif %}
+<div id="eserv_alt_lang_output"></div>
+{{form_start(form, { 'attr' : { 'id': 'addLanguage' } })}}
+
+<fieldset>
+    {{ form_eservRow (form.name, { 'labelSize':3, 'fieldSize': 8 }) }}
+    {{ form_eservRow (form.altName, { 'labelSize':3, 'fieldSize': 8 }) }}
+    {% if alt_lang_id is null %}
+        {{ form_eservSelectRow (form.altLanguage, {'labelSize':3,}) }}   
+    {% else %}
+        <div class="form-group">
+            <div class="col-lg-3 control-label remove_content" style="font-weight: bold">
+                {{ form.altLanguage.vars.label }}
+            </div>        
+            <div class="col-lg-6">            
+                <div style="padding: 3px 0;">{{ form.altLanguage.vars.value }}</div>
+            </div>
+        </div>        
+    {% endif %}    
+</fieldset>
+
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12">
+            <a class="btn btn-danger pull-left direction1" href="{{ url1 }}">{{ 'Cancel' | trans }}</a>
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right direction2',  'btn-loading': "is_processing.application_code_add", 'data-loading-text': "Saving..." | trans } }) }}
+            <input class="btn btn-default pull-right direction2" value="{{ 'Reset' | trans }}" type="reset" id="_reset"/>
+        </div>
+    </div>        
+</fieldset>
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+
+{{form_end(form)}}
+
+<script type="text/javascript">    
+    $(document).ready(function() {
+        $('#{{ form.altLanguage.vars.id }}').on('change', function(){            
+            prepareAppForms('{{ form.vars.name }}', false, false, '#/admin/alternative_language/' + $(this).val());
+        });
+        prepareAppForms('{{ form.vars.name }}', false, false, '{{ url2 }}');        
+    });    
+</script>

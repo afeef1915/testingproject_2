@@ -1,0 +1,17 @@
+
+{% include '@weblogs_templates/innerPageHeader.html.twig' with {
+            'label': 'My Email Notifications' | trans,
+            'fa_icon': 'user-circle',
+            'buttons': [
+                {
+                    'label': 'Create New Email Notification' | trans, 
+                    'css_class': 'btn btn-success direction2',
+                    'ng_controller': 'EservemailModalCtrl',
+                    'ng_click': "openemailEservModal('eserv_main_user_add_new_email', 'Add Email', 'lg', {target_url: '" ~ path('weblogsmainmtl_myemail_add', {}) ~ "'})",
+                    'fa_icon': 'plus-circle'
+                }
+            ]
+        }
+%}
+<hr/>
+{{ dataTable | raw }}

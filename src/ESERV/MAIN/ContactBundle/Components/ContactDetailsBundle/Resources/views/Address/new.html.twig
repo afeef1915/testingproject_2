@@ -1,0 +1,105 @@
+<div id="eserv_updateAddressDetails_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'updateAddressDetails' } })}}
+<div class="eserv_container_form_errors"></div>
+
+{% set isNewRecord = 'N' %}
+{% if has_records is defined %}
+    {% if has_records == 'N' %}
+        {% set isNewRecord = 'Y'%}
+    {% endif %}
+{% endif %}
+
+<fieldset>
+    <span class="postCodeLookupArea">
+        <div class="col-lg-12">
+            {{ form_eservSelectRow (form.addressType, { 'customPlaceHolder': 'Address Type'}) }}
+            
+            {% if isNewRecord == 'Y' %}
+                {{ form_eservRow(form.primaryRecord, { 'isCheckbox': 'true', 'fieldSize' : 1 , 'attr': {'checked': 'checked'} }) }}                  
+                <div id="{{ form.primaryRecord.vars.id }}_msg" class="form-group " style="display: none">
+                    <label class="col-lg-4 control-label "></label>
+                    <div class="col-md-8">
+                        <div class="controls has-error">                            
+                            <span class="help-block" style="display: block">The first record should be primary!</span>                            
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                {{ form_eservRow(form.primaryRecord, { 'isCheckbox': 'true', 'fieldSize' : 1 }) }} 
+                <div id="{{ form.primaryRecord.vars.id }}_exist_msg" class="form-group " style="display: none">
+                    <label class="col-lg-4 control-label "></label>
+                    <div class="col-md-8">
+                        <div class="controls has-error">                            
+                                <span class="help-block" style="display: block">Primary address for the selected address type already exists <br/> and that will be moved to history.   </span>                            
+                        </div>
+                    </div>
+                </div>
+            {% endif %} 
+            
+            {{ form_eservPostCodeLookup (form.postcode) }}
+            {% include 'ESERVMAINHelpersBundle:Form:eserv_address_selector.html.twig' %}
+            {{ form_eservRow (form.addressLine1, { 'extraGroupClass': 'target', 'extraFieldClass': 'street', 'customPlaceHolder': 'i.e. Flat 4', 'fieldSize': 4 }) }}
+            {{ form_eservRow (form.addressLine2, { 'extraGroupClass': 'target', 'extraFieldClass': 'ad2' , 'fieldSize': 4}) }}
+            {{ form_eservRow (form.addressLine3, { 'extraFieldClass': 'ad3' , 'fieldSize': 4 }) }}
+            {{ form_eservRow (form.town, { 'extraFieldClass': 'town', 'fieldSize': 3 }) }}
+            {{ form_eservRow (form.county, { 'extraFieldClass': 'county', 'fieldSize': 3 }) }}  
+        </div>
+    </span>
+</fieldset>
+
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12">
+            {#{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary',  'btn-loading': "is_processing.application_code_add", 'data-loading-text': "Saving..."} }) }}
+ #}
+            <button type="button" id="cancel_updateAddressDetails_btn" class="btn btn-danger direction1" ng-click="cancel()">Cancel</button>
+            <input class="btn btn-primary pull-right direction2" btn-loading="is_processing.application_code_add" data-loading-text="Saving..." value="Save" type="submit" />
+            <input class="btn btn-default pull-right direction2" value="Reset" type="reset" />
+        </div>
+    </div>        
+</fieldset>
+
+<div style="display: none">
+    {{form_rest(form)}}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        prepareAppForms('{{ form.vars.name }}', false, {
+            type: 'dataTable',
+            id: 'eserv_address_table'
+        }, false, 'updateAddressDetails', function () {
+            $('#cancel_updateAddressDetails_btn').click();
+            refreshProtlet($('#eserv_render_teacher_main'));
+        });
+        $('#{{form.addressType.vars.id}}').change(function () {
+            var selected_addressType_value = $(this).val();
+            if (selected_addressType_value == '{{ primary_add_type }}' ) {
+                $('#{{form.primaryRecord.vars.id}}').prop('checked', true);
+            }            
+            if ('{{ isNewRecord }}' == 'Y') {
+                $('#{{form.primaryRecord.vars.id}}').prop('checked', true);
+            }
+            $('#{{form.primaryRecord.vars.id }}_msg').hide();
+            $('#{{form.primaryRecord.vars.id }}_exist_msg').hide();
+        });
+        
+        $('#{{form.primaryRecord.vars.id}}').change(function () {
+            var selected_addressType_value = $('#{{form.addressType.vars.id}}').val();
+            if (selected_addressType_value == '{{ primary_add_type }}' ) {
+                $('#{{form.primaryRecord.vars.id}}').prop('checked', true);
+                $('#{{form.primaryRecord.vars.id }}_exist_msg').show();
+            }            
+            if ('{{ isNewRecord }}' == 'Y') {
+                $('#{{form.primaryRecord.vars.id}}').prop('checked', true);
+                $('#{{form.primaryRecord.vars.id }}_msg').show();
+            }            
+        });
+        
+    });
+
+
+</script>
+

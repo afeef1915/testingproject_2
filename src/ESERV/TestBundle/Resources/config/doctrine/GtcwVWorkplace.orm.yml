@@ -1,0 +1,158 @@
+ESERV\TestBundle\Entity\GtcwVWorkplace: 
+    type: entity
+    table: gtcw_v_workplace
+    id:
+        organisation_id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        contact_id:
+            type: integer
+            nullable: false  
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        address_line1:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''    
+        address_line2:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''    
+        address_line3:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''    
+        town:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''    
+        county:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''    
+        postcode:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: '' 
+        wp_date_closed:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''
+        wp_date_opened:
+            type: datetime
+            nullable: true
+        previous_name:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+        reference_no:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: 'This will be used for situations where we need to have a code for an organisation that wiill always apply even if the organisation has several types (contact_subtype).'        
+        created_at:
+            type: datetime
+            nullable: true
+        updated_at:
+            type: datetime
+            nullable: true
+        created_by:
+            type: integer
+            nullable: true
+            unsigned: false
+        updated_by:
+            type: integer
+            nullable: true
+            unsigned: false
+        workplaceTypeId:
+            type: integer
+            nullable: true
+            column: workplace_type_id
+        workplaceTypeCode:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: workplace_type_code
+        workplaceTypeName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: workplace_type_name
+        denomId:
+            type: integer
+            nullable: true
+            column: denom_id
+        denomCode:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: denom_code
+        denomName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: denom_name
+        welshName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: welsh_name
+        employerId:
+            type: integer
+            nullable: true
+            column: employer_id
+        employerCode:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: employer_code
+        employerName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: employer_name

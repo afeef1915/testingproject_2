@@ -1,0 +1,55 @@
+WEBLOGS\CORE\MAIN\MediaBundle\Entity\MediaStoreImageSize: 
+    type: entity
+    repositoryClass: WEBLOGS\CORE\MAIN\MediaBundle\Entity\MediaStoreImageSizeRepository
+    table: media_store_image_size
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        height:
+            type: integer
+            nullable: false
+            unsigned: false
+        width:
+            type: integer
+            nullable: false
+            unsigned: false        
+        contentBlob:
+            type: blob
+            nullable: false
+            fixed: false
+            column: content_blob
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        MediaStore:
+            targetEntity: ESERV\MAIN\MediaBundle\Entity\MediaStore
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                media_store_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

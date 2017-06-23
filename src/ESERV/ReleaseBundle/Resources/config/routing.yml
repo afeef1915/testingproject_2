@@ -1,0 +1,11 @@
+eserv_release_translations_update:
+    path:     /import_translations
+    defaults: { _controller: ESERVReleaseBundle:PostRelease:runUpdateTranslations }
+    
+eserv_release_import_translations_welsh:
+    path:     /import-translations/welsh
+    defaults: { _controller: ESERVReleaseBundle:PostRelease:importTranslationsWelsh }    
+
+eserv_release_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ESERVReleaseBundle:Default:index }

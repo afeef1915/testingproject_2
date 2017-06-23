@@ -1,0 +1,32 @@
+# src/ESERV/MAIN/QualificationBundle/Resources/config/validation.yml
+ESERV\MAIN\QualificationBundle\Entity\Qualification:
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                max: 100
+                maxMessage: "Name cannot be longer than {{ limit }} characters"
+        code:
+            - NotBlank: ~
+            - Length:
+                max: 10
+                maxMessage: "Code cannot be longer than {{ limit }} characters"
+        qualType:
+#            - NotBlank: ~
+        dateOpened:
+            - NotBlank: ~
+
+ESERV\MAIN\QualificationBundle\Entity\Subject:
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                max: 100
+                maxMessage: "Name cannot be longer than {{ limit }} characters"
+        code:
+            - NotBlank: ~
+            - Length:
+                max: 10
+                maxMessage: "Code cannot be longer than {{ limit }} characters"        
+        dateOpened:
+            - NotBlank: ~

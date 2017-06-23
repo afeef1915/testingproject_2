@@ -1,0 +1,45 @@
+ESERV\MAIN\MembershipBundle\Entity\EservVEmployeesOfEmployer: 
+    type: entity
+    table: eserv_v_employees_of_employer
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: id
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:  
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        employerId:
+            type: integer
+            nullable: false
+            column: employer_id
+        referenceNo:
+            type: string                    
+            column: reference_no
+        niNumber:
+            type: string                    
+            column: ni_number
+        title:
+            type: string                    
+            column: title
+        firstName:
+            type: string                    
+            column: first_name
+        lastName:
+            type: string                    
+            column: last_name
+        register:
+            type: string                    
+            column: register
+        otherEmployerId:
+            type: string                    
+            column: other_employer_id
+        
+        

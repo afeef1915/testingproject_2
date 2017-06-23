@@ -1,0 +1,47 @@
+ESERV\TestBundle\Entity\GtcwVRegAndFees: 
+    type: entity
+    table: gtcw_v_reg_and_fees
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        contact_id:
+            type: integer
+        member_id:
+            type: integer
+        membership_org_id:
+            type: integer    
+        register:
+            type: string
+            length: 255
+        status:
+            type: string
+            length: 255
+        reg_date:
+            type: datetime
+        status_date:
+            type: datetime
+        category:
+            type: string
+            length: 255
+        payment_method:
+            type: string
+            length: 255
+        primary_record:
+            type: string
+            length: 1
+        css_class:
+            type: string
+            length: 255
+        voting_category_id:
+            type: integer
+        voting_category_name:
+            type: string
+            length: 255
+ 

@@ -1,0 +1,64 @@
+ESERV\TestBundle\Entity\GtcwVItetQual: 
+    type: entity
+    table: gtcw_v_itet_qual
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:  
+        contactQualificationId:
+            type: integer
+            nullable: false
+            column: contact_qualification_id
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        exitAcademicYear:
+            type: datetime            
+            column: exit_academic_year  
+        qualification:
+            type: string                    
+            column: qualification
+        establishmentCode:
+            type: string                    
+            column: establishment_code
+        organisation:
+            type: string                    
+            column: organisation
+        class:
+            type: string                    
+            column: class
+        subject:
+            type: string                    
+            column: subject
+        courseOutcome:
+            type: string                    
+            column: course_outcome
+        completionDate:
+            type: datetime            
+            column: completion_date
+        verified:
+            type: string                    
+            column: verified
+        verifiedDate:
+            type: datetime            
+            column: verified_date
+        ageFromName:
+            type: string                    
+            column: age_from_name
+        ageToName:
+            type: string                    
+            column: age_to_name
+        ageSpecFromName:
+            type: string                    
+            column: age_spec_from_name
+        ageSpecToName:
+            type: string                    
+            column: age_spec_to_name

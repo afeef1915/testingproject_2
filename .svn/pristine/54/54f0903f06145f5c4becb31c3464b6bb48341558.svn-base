@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:tns="urn:updateMmUserSettingsServicewsdl"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="urn:updateMmUserSettingsServicewsdl">
+
+
+
+    <message name="updateMmUserSettingsServiceRequest">
+        <part name="salt" type="xsd:string"/> 
+        <part name="theme" type="xsd:string"/>
+    </message>
+
+    <message name="updateMmUserSettingsServiceResponse">       
+		<part name="return" type="xsd:array" />
+    </message>
+
+    <portType name="updateMmUserSettingsServicewsdlPortType">
+        <operation name="updateMmUserSettingsService">
+            <documentation>Hello World</documentation>
+            <input message="tns:updateMmUserSettingsServiceRequest" />
+            <output message="tns:updateMmUserSettingsServiceResponse" />
+        </operation>
+    </portType>
+
+    <binding name="updateMmUserSettingsServicewsdlBinding" type="tns:updateMmUserSettingsServicewsdlPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="updateMmUserSettingsService">
+            <soap:operation soapAction="urn:arnleadservicewsdl#updateMmUserSettingsService" style="rpc"/>
+
+            <input>
+                <soap:body use="encoded" namespace="urn:updateMmUserSettingsServicewsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:updateMmUserSettingsServicewsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="updateMmUserSettingsServiceservicewsdl">
+        <port name="updateMmUserSettingsServicewsdlPort" binding="tns:updateMmUserSettingsServicewsdlBinding">
+            <soap:address location="http://192.168.2.54:80/eserv/web/app_cieh.php/soap/mm_user_web_service/mm_user_settings.wsdl" />
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,4 @@
+services:
+#    weblogsmainmtl_dashboard.example:
+#        class: WEBLOGS\MAIN\MTL\DashboardBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

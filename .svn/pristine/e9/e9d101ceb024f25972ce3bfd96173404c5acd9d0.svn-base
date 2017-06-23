@@ -1,0 +1,83 @@
+
+{% include '@weblogs_templates/innerPageHeader.html.twig' with {
+            'label': 'Logs Assigned' | trans,
+            'fa_icon': 'user-circle',
+           
+        }
+%}
+
+{% set text_field_htm='<div class="form-group form-group-sm"><label class="control-label"></label>'%}
+
+{% set text_field_htm=text_field_htm~'<div id="keyword-not_found" style="display:none" class="alert alert-info"><b>Email has been send sucessfully</b><a  id="keyword-close" class="close" >&times;</a>'%}
+
+{% set text_field_htm=text_field_htm~'</div>'%}
+
+
+
+{#<hr/>#}
+{{ text_field_htm| raw}}
+
+<hr/>
+{{ dataTable | raw }}
+
+
+
+
+<script type="text/javascript">
+   // $(document).ready(function(){   
+   {# $('a').on('click',function(){
+    var id = $(this).attr("id");
+    alert(id);
+});#} 
+
+       $('#keyword-close').on('click', function(){
+        //   alert('dsaf');
+            $("#keyword-not_found").hide();
+       }); 
+        //$(this).find("a[id^='']").on('click', function(){
+         // $('.table_details_btn a').on('click',function(event){  
+         function openSolution(e) {
+            // alert('id');
+       //  $('.table_details_btn a').on('click',function(event){        
+        var id = ($(e).attr("id"));
+               
+               //alert(id);
+                $.post(root_url + "mylogsassign/mymail", {id: id}, function(data){
+                            //$('#').html(data);
+                             $("#keyword-not_found").show();
+                           // alert(data);
+//console.log(data);
+    {#  $.each(data, function () {
+            $("#weblogs_codebundle_code_main_task_code").append($("<option>                                                      
+            </option>").val(this['CTK_CODE']).html(this['CTK_CODE']));
+        });#}
+//alert(data);
+                  {#  $.each(data, function(i, obj)
+                    {
+                        alert(data);#}
+                    // alert(obj.CTK_CODE+":"+obj.CTK_CODE);
+    {#  if(obj.CTK_NAME!='All'){
+       var div_data_t="<option value="+obj.CTK_CODE+">"+obj.CTK_NAME+"</option>";
+   }
+     if(obj.CTK_NAME!='None'){#}
+               {#  var div_data_et = "<option value=" + obj.MLB_BUDGET_CODE + ">" + obj.MLB_DESCRIPTION + "</option>";
+                         // }
+                         // console.log(div_data);
+                         $('#weblogs_main_mtl_codemaintainancebundle_customertasks_ctk_budget_code').append(div_data_et);
+                         // $('#weblogs_main_mtl_myemailbundle_mtlclientnotify_excludeTaskCode').append(div_data_t); 
+                 });#}
+    {# $($.parseJSON(data)).map(function () {
+   return $('<option>').val(this.CTK_CODE).text(this.CTK_CODE);
+}).appendTo('#weblogs_codebundle_code_main_task_code');
+      // $("span").html(result);
+   });#}
+               });
+             // var id = $(this).attr("id");
+   // alert(id);
+          //  alert('ram');
+   // });
+   //  });
+    }
+    
+    
+    </script>

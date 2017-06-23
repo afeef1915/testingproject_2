@@ -1,0 +1,48 @@
+WEBLOGS\MAIN\MTL\ShowUsersBundle\Entity\VShowusers:
+    type: entity
+    table: v_showusers
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+
+    fields:
+        csev_seq_id:
+            type: string
+            length: '10'
+            id: true
+            column: csev_seq_id
+        csev_name:
+            type: string
+            length: '100'
+            column: csev_name
+        csev_title:
+            type: string
+            length: '100'
+            column: csev_title
+        csev_department:
+            type: string
+            length: '50'
+            column: csev_department
+        csev_email:
+            type: string
+            length: '50'
+            column: csev_email
+        csev_telephone_no:
+            type: string
+            length: '10'
+            column: csev_telephone_no
+        csev_extension:
+            type: string
+            length: '10'
+            column: csev_extension
+        customer_name:
+            type: string
+            length: '200'
+            column: customer_name
+       
+    
+       
+    lifecycleCallbacks: {  }

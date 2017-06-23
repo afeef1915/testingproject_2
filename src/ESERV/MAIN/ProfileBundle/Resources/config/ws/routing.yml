@@ -1,0 +1,3 @@
+eservcore_profile_update_mm_user_setting_wsdl:
+    pattern:  /ws/update_mm_user_setting/{salt}/{theme}/{xml}
+    defaults: { _controller: ESERVMAINProfileBundle:Default:updateMmUserSetting }

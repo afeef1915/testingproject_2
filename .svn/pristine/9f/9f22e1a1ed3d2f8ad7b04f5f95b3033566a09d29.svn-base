@@ -1,0 +1,2 @@
+<h3 class=""><i class="fa fa-dashboard"> &nbsp; </i> {{ 'Dashboard' | trans }}</h3>
+<hr/>

@@ -1,0 +1,221 @@
+<div id="eserv_updateAddressDetails_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'updateAddressDetails' } })}}
+
+{% set isHistoryRecord = 'N' %}
+{% if history_record is defined %}
+    {% if history_record == 'Y' %}
+        <div class="alert alert-info" role="alert">
+            <i class="fa fa-info-circle"></i> You are viewing a history record.
+        </div>
+        {% set isHistoryRecord = 'Y' %}
+    {% endif %}
+{% endif %}
+
+<div class="eserv_container_form_errors"></div>
+{% if isHistoryRecord == 'Y' %}
+    <fieldset>
+        <div class="col-lg-12">
+            <div class="form-group ">
+                <label class="col-lg-5 control-label"> Address Type</label>
+                <div class="col-lg-6">
+                    <div class="eserv_field_value">
+                        {{ form.addressType.vars.value }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ">
+                <label class="col-lg-5 control-label ">Postcode</label>
+                <div class="col-lg-6">
+                    <div class="eserv_field_value ">
+                        {{ form.postcode.vars.value }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ">
+                <label class="col-lg-5 control-label ">Address line1</label>
+                <div class="col-lg-6">
+                    <div class="eserv_field_value ">
+                        {{ form.addressLine1.vars.value}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ">
+                <label class="col-lg-5 control-label ">Address line2</label>
+                <div class="col-lg-6">
+                    <div class="eserv_field_value ">
+                        {{ form.addressLine2.vars.value}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ">
+                <label class="col-lg-5 control-label ">Address line3</label>
+                <div class="col-lg-6">
+                    <div class="eserv_field_value">
+                        {{ form.addressLine3.vars.value}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ">
+                <label class="col-lg-5 control-label ">Town</label>
+                <div class="col-lg-6">
+                    <div class="eserv_field_value ">
+                        {{ form.town.vars.value }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ">
+                <label class="col-lg-5 control-label"> County </label>
+                <div class="col-lg-6">
+                    <div class="eserv_field_value ">
+                        {{ form.county.vars.value }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <div class="form-group">
+            <div class="col-md-12"> 
+                <button type="button" id="ok_updateAddressDetails_btn" class="btn btn-default direction1" ng-click="cancel()">Close</button>
+            </div>
+        </div>        
+    </fieldset>                    
+                        
+{% else %}
+    <fieldset>
+        <span class="postCodeLookupArea">
+            <div class="col-lg-12">
+                {{ form_eservSelectRow (form.addressType, { 'customPlaceHolder': 'Address Type'}) }}            
+                {% if form.addressType.vars.value == primary_add_type %}
+                    <div class="form-group ">
+                        <label class="col-lg-4 control-label ">Primary</label>
+                        <div class="col-md-8">
+                            <div class="controls">
+                                <label>
+                                    <input type="checkbox"  checked="checked" disabled="disabled" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}                
+                    {{ form_eservRow (form.primaryRecord, {'isCheckbox': 'true', 'fieldSize' : 1, 'attr': { 'title': 'This is a primary address type.' } }) }}                 
+                    <div id="{{ form.primaryRecord.vars.id }}_msg" class="form-group " style="display: none">
+                        <label class="col-lg-4 control-label "></label>
+                        <div class="col-md-8">
+                            <div class="controls has-error">                            
+                                <span class="help-block" style="display: block">Primary address for the selected address Type already exists!</span>                            
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {{ form_eservPostCodeLookup (form.postcode, { 'extraFieldClass': 'do_not_reset_fields' }) }}
+                {% include 'ESERVMAINHelpersBundle:Form:eserv_address_selector.html.twig' %}
+                {{ form_eservRow (form.addressLine1, { 'extraGroupClass': 'target', 'extraFieldClass': 'street', 'customPlaceHolder': 'i.e. Flat 4', 'fieldSize': 4}) }}
+                {{ form_eservRow (form.addressLine2, { 'extraGroupClass': 'target', 'extraFieldClass': 'ad2', 'fieldSize': 4  }) }}
+                {{ form_eservRow (form.addressLine3, { 'extraFieldClass': 'ad3', 'fieldSize': 4 }) }}
+                {{ form_eservRow (form.town, { 'extraFieldClass': 'town', 'fieldSize': 3 }) }}
+                {{ form_eservRow (form.county, { 'extraFieldClass': 'county', 'fieldSize': 3 }) }}  
+            </div>
+        </span>
+    </fieldset>
+
+    <fieldset>
+        {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'cancelNgClick' : 'cancel()' } %}
+        {% if address_count > 1 and form.addressType.vars.value == primary_add_type %}
+            {% set message = 'You are about to move a primary address record to history. Are you sure? 
+                   <br/> Note:- This will make current non primary record to primary record.' %}    
+            <button ng-controller='EservConfirmCtrl' ng-click='OpenConfirm("Warning", "{{ message }}", {type: "url", 
+                        url: "{{ path ('eservcore_contact_bundle_components_contact_details_address_send_to_history', { 'id' : app.request.attributes.get('id') } ) }}", 
+                        close_modals: "all", close_button_id : "cancel_updateAddressDetails_btn", dataTable_id: "eserv_address_table", 
+                        refresh_portlet: "current", portlet_id:"eserv_render_teacher_main", form_id: "updateAddressDetails"
+                    })' 
+                        type="button" id="send_to_hist_btn" class="btn btn-success pull-right direction2" data-target="#confirm-delete" disabled>
+                <i class="fa fa-arrow-circle-down"></i>
+                Send to History
+            </button>
+        {% else %} 
+            {% set message = 'You are about to move an address record to history. Are you sure?' %}
+            <button ng-controller='EservConfirmCtrl' ng-click='OpenConfirm("Warning", "{{ message }}", {type: "url", 
+                        url: "{{ path ('eservcore_contact_bundle_components_contact_details_address_send_to_history', { 'id' : app.request.attributes.get('id') } ) }}", 
+                        close_modals: "all", close_button_id : "cancel_updateAddressDetails_btn", dataTable_id: "eserv_address_table", 
+                        refresh_portlet: "current", portlet_id:"eserv_render_teacher_main", form_id: "updateAddressDetails"
+                    })' 
+                        type="button" id="send_to_hist_btn" class="btn btn-success pull-right direction2" data-target="#confirm-delete">
+                <i class="fa fa-arrow-circle-down"></i>
+                Send to History
+            </button>
+        {% endif %} 
+    </fieldset>    
+{% endif %} 
+<div style="display: none">
+    {{form_rest(form)}}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var submitTestFlag = false;
+        $('form[name="{{ form.vars.name }}"]').submit(function (ev){
+            var postcodeVal = $('#{{ form.postcode.vars.id }}').val();
+            var message = '';
+            var stopSubmission = false;
+
+            if(postcodeVal == ''){
+                message = 'You haven\'t inserted a Postcode. Are you sure you want to continue?';
+                stopSubmission = true;
+            }                    
+            else if (!UKPostcodeRegex.test(postcodeVal)) {
+                message = 'The Postcode you entered is invalid. Are you sure you want to continue?';
+                stopSubmission = true;
+            }
+
+
+            if(submitTestFlag === false & stopSubmission){
+                ev.preventDefault();
+                var dlg = EservDialogs.confirm('Warning', message, {
+                    backdrop: 'static',
+                    size: 'md'
+                });
+                dlg.result.then(function (btn) {
+                    submitTestFlag = true;
+                    $('form[name="{{ form.vars.name }}"]').submit();                            
+                }, function (btn) {
+                    //No button
+                });
+
+            }                    
+
+        });
+                
+        prepareAppForms('{{ form.vars.name }}', false, {
+            type: 'dataTable',
+            id: 'eserv_address_table'
+        }, false, 'updateAddressDetails', function () {
+            $('#cancel_updateAddressDetails_btn').click();
+            refreshProtlet($('#eserv_render_teacher_main'));
+        });
+
+        $('#{{form.addressType.vars.id}}').change(function () {
+            var selected_Type_value = $(this).val();
+            if (selected_Type_value == '{{ primary_add_type }}') {
+                $('#{{form.primaryRecord.vars.id}}').prop('checked', true);
+            }
+            $('#{{form.primaryRecord.vars.id }}_msg').hide();
+        });
+
+        $('#{{form.primaryRecord.vars.id}}').change(function () {
+            var selected_addressType_value = $('#{{form.addressType.vars.id}}').val();
+            if (selected_addressType_value == '{{ primary_add_type }}') {
+                $('#{{form.primaryRecord.vars.id}}').prop('checked', true);
+                $('#{{form.primaryRecord.vars.id }}_msg').show();
+            }
+        });
+
+    });
+
+
+
+
+</script>

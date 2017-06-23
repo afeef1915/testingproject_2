@@ -1,0 +1,31 @@
+WEBLOGS\MAIN\MTL\MyemailBundle\Entity\MtlClientNotify:
+    type: entity
+    table: mtl_client_notify
+    repositoryClass: WEBLOGS\MAIN\MTL\MyemailBundle\Entity\EmailRepository
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTO
+    fields:
+        userId:
+            type: string
+            length: '10'
+            id: true
+            column: user_id
+        customerId:
+            type: string
+            length: 100
+            column: customer_id
+        
+        taskCode:
+            type: string
+            length: '10'
+            column: task_code
+        excludeTaskCode:
+            type: string
+            length: '10'
+            column: exclude_task_code
+      
+    lifecycleCallbacks: {  }

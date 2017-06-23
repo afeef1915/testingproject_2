@@ -1,0 +1,33 @@
+ESERV\MAIN\SecurityBundle\Entity\ESERVUserGroup:
+    type: entity
+    table: fos_user_group
+    id:
+        userId:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: user_id
+            generator:
+                strategy: IDENTITY 
+#    fields:
+#        userId:
+#            type: integer
+#            nullable: false
+#            column: user_id
+    manyToOne:
+        user:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\User
+            cascade: {  }
+            mappedBy: userId
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        group:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\Group
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

@@ -1,0 +1,161 @@
+WEBLOGS\MAIN\COMMON\CommonBundle\Entity\VMyLogs:
+    type: entity
+    table: v_mtl_logs
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+
+    fields:
+        job_no:
+            type: string
+            length: '10'
+            id: true
+            column: job_no
+            
+        job_no_autoselect:
+            type: string
+            length: '50'
+            
+            column: job_no_autoselect
+            
+            
+        customer:
+            type: string
+            length: '20'
+            column: customer
+        
+        category:
+            type: string
+            length: '20'
+            column: category
+            
+        title:
+            type: string
+            length: '500'
+            column: title
+            
+        attention_of:
+            type: string
+            length: '100'
+            column: attention_of
+            
+        requested_by:
+            type: string
+            length: '100'
+            column: requested_by
+            
+        requested:
+            type: datetime
+            column: requested
+            
+        priority:
+            type: string
+            length: '20'
+            column: priority
+            
+        developer_status:
+            type: string
+            length: '200'
+            column: developer_status
+            
+        mtl_action:
+            type: string
+            length: '20'
+            column: mtl_action
+            
+        updated:
+            type: datetime
+            column: updated
+            
+        due_by:
+            type: datetime
+            column: due_by
+            
+        dev_status:
+            type: string
+            length: '20'
+            column: dev_status
+            
+        customer_log_id:
+            type: string
+            length: '100'
+            column: customer_log_id
+            
+        assigned_to:
+            type: string
+            length: '100'
+            column: assigned_to
+            
+        brief_description:
+            type: string
+            length: '10000'
+            column: brief_description
+            
+        mtl_description:
+            type: string
+            length: '500'
+            column: mtl_description
+            
+        task_description:
+            type: string
+            length: '50'
+            column: task_description
+            
+        version_no:
+            type: string
+            length: '50'
+            column: version_no
+        chargeable:
+            type: string
+            length: '10'
+            column: chargeable
+            
+        mlo_quote_id:
+            type: string
+            length: '50'
+            column: mlo_quote_id
+            
+        completed_by:
+            type: string
+            length: '20'
+            column: completed_by
+            
+        date_completed:
+            type: datetime
+            column: date_completed
+            
+        mtl_status:
+            type: string
+            length: '50'
+            column: mtl_status
+            
+        mtl_person_id:
+            type: string
+            length: '50'
+            column: mtl_person_id
+            
+        assigned_to_id:
+            type: string
+            length: '100'
+            column: assigned_to_id
+            
+        department_code:
+            type: string
+            length: '100'
+            column: department_code
+            
+        group_id:
+            type: string
+            length: '100'
+            column: group_id
+        
+        task_code:
+            type: string
+            length: '50'
+            column: task_code
+            
+            
+    lifecycleCallbacks: {  }

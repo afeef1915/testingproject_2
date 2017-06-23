@@ -1,0 +1,33 @@
+{{ dataTable | raw }}
+<div class="clearfix"></div><hr />
+<button class="btn btn-danger direction1" ng-click="cancel()">Cancel</button>
+<button disabled="disabled" id="eserv_delete_items" ng-controller='EservConfirmCtrl' ng-click='OpenConfirm("Warning", "Are you sure you want to delete?", {type: "url", url: "{{ path ('deleteOutputDocument') }}", "extra_field_params": {"id": {"type": "array", "field_name": "input[name=\"eserv_dt_checkbox\"]:checked"} }, close_modals: "", dataTable_id: "{{ table_id }}"}, "enableDisableDeleteBtn" )' type="button" id="delete_btn" class="btn btn-danger pull-right direction2" data-target="#confirm-delete">
+    <i class="fa fa-trash"></i>
+    Delete
+</button> 
+
+<script>
+    function enableDisableDeleteBtn(elem)
+    {
+        if (typeof elem != 'undefined') {
+            var checked_count = $('#{{ table_id }} tbody input[type="checkbox"]:checked').length;
+            if (checked_count > 0) {
+                $('#eserv_delete_items').removeAttr('disabled');
+            } else {
+                $('#eserv_delete_items').attr('disabled', 'disabled');
+            }
+        } else {
+            $('#eserv_delete_items').attr('disabled', 'disabled');
+        }
+
+    }
+
+    function ToggleDeleteBtn(elem)
+    {
+        if ($(elem).is(':checked')) {
+            $('#eserv_delete_items').removeAttr('disabled');
+        } else {
+            $('#eserv_delete_items').attr('disabled', 'disabled');
+        }
+    }
+</script>

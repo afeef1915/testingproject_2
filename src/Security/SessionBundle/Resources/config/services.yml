@@ -1,0 +1,7 @@
+parameters:
+#    security_session.example.class: Security\SessionBundle\Example
+
+services:
+#    security_session.example:
+#        class: %security_session.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

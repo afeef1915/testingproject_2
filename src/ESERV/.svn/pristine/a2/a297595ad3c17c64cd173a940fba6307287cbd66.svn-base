@@ -1,0 +1,35 @@
+eserv_main_table_query_list:
+    path:     /table_query/list
+    defaults: { _controller: ESERVMAINTableQueryBundle:TableQuery:list }
+
+eserv_main_table_query_create:
+    path:     /table_query/create
+    defaults: { _controller: ESERVMAINTableQueryBundle:TableQuery:create }  
+    
+eserv_main_table_query_clear_application:
+    path:     /table_query/clear-application/add
+    defaults: { _controller: ESERVMAINTableQueryBundle:TableQuery:clearAddApplication }
+    
+eserv_main_table_query_step1:
+    path:     /table_query/add/step1
+    defaults: { _controller: ESERVMAINTableQueryBundle:TableQuery:newStep1 }
+    
+eserv_main_table_query_step2:
+    path:     /table_query/add/step2/{app_id}
+    defaults: { _controller: ESERVMAINTableQueryBundle:TableQuery:newStep2 }
+    
+eserv_main_table_query_step3:
+    path:     /table_query/add/step3/{app_id}
+    defaults: { _controller: ESERVMAINTableQueryBundle:TableQuery:newStep3 } 
+
+eserv_main_table_query_process_steps:
+    path:     /table_query/process-steps/{stepNo}
+    defaults: { _controller: ESERVMAINTableQueryBundle:TableQuery:processStep }    
+
+eservmain_table_query_get_view_fields_by_view_id:
+    path:     /table-query/get-view-fields
+    defaults: { _controller: ESERVMAINTableQueryBundle:TableQuery:getFieldsById }
+    
+eservmain_table_query_execute_count_query:
+    path:     /table-query/execute-count-query
+    defaults: { _controller: ESERVMAINTableQueryBundle:TableQuery:getExecuteCountSql }

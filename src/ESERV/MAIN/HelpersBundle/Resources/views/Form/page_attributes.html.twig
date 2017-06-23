@@ -1,0 +1,21 @@
+<div class="{{ css_class }}">    
+    {% if show_edit is defined and show_edit == true %}
+        <h6 class="jump_to_edit mtl_anchor">Edit</h6>
+    {% endif %}    
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#{{id}} .jump_to_edit').click(function (){
+           $('#{{id}} .eservEditBtn ').click();
+           $(this).fadeOut(2000);
+        });
+        
+        $('#{{id}} .eservCancelBtn').click(function (){
+           $('#{{id}} .jump_to_edit').fadeIn(1000);
+        });
+        
+        $('#{{id}} .eservEditBtn').click(function (){
+           $('#{{id}} .jump_to_edit').fadeOut(1000);
+        });
+    });
+</script>

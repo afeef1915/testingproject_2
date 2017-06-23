@@ -1,0 +1,7 @@
+parameters:
+#    eservcore_system_config.example.class: ESERV\MAIN\SystemConfigBundle\Example
+
+services:
+#    eservcore_system_config.example:
+#        class: %eservcore_system_config.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

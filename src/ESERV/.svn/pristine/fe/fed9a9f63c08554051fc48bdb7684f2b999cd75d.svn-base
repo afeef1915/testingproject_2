@@ -1,0 +1,47 @@
+ESERV\TestBundle\Entity\GtcwVDegreeQual: 
+    type: entity
+    table: gtcw_v_degree_qual
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:  
+        contactQualificationId:
+            type: integer
+            nullable: false
+            column: contact_qualification_id
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        yearOfAward:
+            #type: datetime
+            type: integer
+            column: year_of_award  
+        qualification:
+            type: string                    
+            column: qualification
+        establishmentCode:
+            type: string                    
+            column: establishment_code
+        organisation:
+            type: string                    
+            column: organisation
+        class:
+            type: string                    
+            column: class
+        subject:
+            type: string                   
+            column: subject
+        verified:
+            type: string                    
+            column: verified
+        verifiedDate:
+            type: datetime            
+            column: verified_date

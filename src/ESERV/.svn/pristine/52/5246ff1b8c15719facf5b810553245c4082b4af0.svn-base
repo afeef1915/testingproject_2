@@ -1,0 +1,103 @@
+ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\EservVContactEmail:
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\EservVContactEmailRepository
+    table: eserv_v_contact_email
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: id
+            generator:
+                strategy: IDENTITY
+
+    fields:
+        contactId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: contact_id
+        contactDisplayName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: contact_display_name
+        applicationCodeCode:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: application_code_code
+        applicationCodeName:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: application_code_name
+        emailId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: email_id
+        emailAddress:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: email_address
+        emailTypeId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: email_type_id
+        primaryRecord:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            default: N
+            column: primary_record
+        createdAt:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: created_at
+        createdBy:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: created_by
+        firstName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: first_name
+        lastName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: last_name
+        referenceNo:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: reference_no

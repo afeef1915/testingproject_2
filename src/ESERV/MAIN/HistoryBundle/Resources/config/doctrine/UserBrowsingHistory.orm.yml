@@ -1,0 +1,87 @@
+ESERV\MAIN\HistoryBundle\Entity\UserBrowsingHistory: 
+    type: entity
+    repositoryClass: ESERV\MAIN\HistoryBundle\Entity\UserBrowsingHistoryRepository
+    table: user_browsing_history
+    indexes:
+        fk_user_browsing_history_fos_user1_idx:
+            columns:
+                - fos_user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        type:
+            type: string
+            nullable: false
+            length: 64
+            fixed: false
+        selected:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+        title:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        parent:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        content:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+        controls:
+            type: string
+            nullable: true
+            length: 30
+            fixed: false
+        name:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+        histUrl:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            column: hist_url
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        fosUser:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fos_user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

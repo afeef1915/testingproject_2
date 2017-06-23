@@ -1,0 +1,43 @@
+ESERV\MAIN\ActivityBundle\Entity\SearchQuery: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\SearchQueryRepository
+    table: search_query
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        sqlQuery:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            column: sql_query
+        result:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

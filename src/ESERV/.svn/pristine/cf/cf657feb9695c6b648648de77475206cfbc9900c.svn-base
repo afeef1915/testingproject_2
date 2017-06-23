@@ -1,0 +1,181 @@
+{# <style type="text/css">
+    
+.group{
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    border: solid 1px #666;
+}
+
+.group-conditions{
+    margin-left: 20px;
+}
+
+.alert-group{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-color: rgb(192, 152, 83);
+    border-color: rgb(251, 238, 213);
+    border-color: rgb(220, 200, 150);
+}
+
+.condition, .group{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  
+}
+</style> #}
+
+<h3>Table Query - Create New - Step 2 (Where Clause)</h3>
+<br/>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+
+<div id="eserv_tableQueryStep2_output"></div>
+{{form_start(form, { 'attr' : { 'id': 'tableQueryStep2' } })}}
+    
+    <div ng-controller="QueryBuilderCtrl">      
+        {#{ form_eservRow(form.jsonSqlData) }#}
+        
+        <div class="alert alert-info hidden">
+            <strong>Query Output</strong><br>            
+            SELECT 'X' FROM {{ form.vars.value.viewDescription }} WHERE <span ng-bind-html="output"></span>
+        </div>
+       
+        <div class="alert alert-info">
+            <strong>SQL Output</strong><br>            
+            <div id="real_sql_query"> </div>
+        </div>
+        
+        <div class="alert" id="query_execution_output_div" style="display:none;">
+            <div id="query_execution_output">Output</div>
+        </div>
+        
+        <query-builder group="filter.group"></query-builder>
+        
+        <script type="text/ng-template" id="/queryBuilderDirective.html">
+            <div class="alert alert-warning alert-group">
+                <div class="form-inline">
+                    <button type="button" id="firstAddCondition" style="margin-left: 5px" ng-click="addCondition()" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add Condition</button>
+                    <button type="button" style="margin-left: 5px" ng-click="addGroup()" class="btn btn-sm btn-info firstAddGroup"><span class="glyphicon glyphicon-plus-sign"></span> Add Group</button>
+                    <button type="button" style="margin-left: 5px" ng-click="removeGroup()" class="btn btn-sm btn-danger firstRemGroup"><span class="glyphicon glyphicon-minus-sign"></span> Remove Group</button>
+                    <span class="cutomLabel"></span>
+                    <select ng-options="o.name as o.name for o in operators" ng-model="group.operator" class="form-control input-sm"></select>                    
+                </div>
+                <div class="group-conditions">
+                    <div ng-repeat="rule in group.rules | orderBy:'index'" class="condition" my-post-repeat-directive>
+                        <div ng-switch="rule.hasOwnProperty('group')">
+                            <div ng-switch-when="true">
+                                <query-builder group="rule.group"></query-builder>
+                            </div>
+                            <div ng-switch-default="ng-switch-default">
+                                        
+                                <div class="form-inline">
+                                    {#<select ng-options="t.name as t.name for t in fields" ng-model="rule.field" class="form-control input-sm"></select>#}
+                                    <select ng-model="rule.field" ng-options="t.id as t.name for t in fields" ng-change="change($index, rule.field)" class="form-control input-sm">{% verbatim %}{{t.name}}{% endverbatim %}</select>
+                                    {#
+                                    <select ng-model="rule.field" class="form-control input-sm" id="eserv_fields_dropdown" ng-change="change($index, rule.field)">
+                                        <option ng-repeat="t in fields" ng-model="rule.fieldType" ng-attr-abc="t.code" data-field-type-code="t.code">{% verbatim %}{{t.name}}{% endverbatim %}</option>
+                                    </select>
+                                    #}                                    
+                                    <select style="margin-left: 5px"  ng-change="changeCondition(rule.condition, $index)" ng-options="c.name as c.name for c in conditions" ng-model="rule.condition" class="form-control input-sm firstCondition rule_condition"></select>
+                                    <input style="margin-left: 5px; width:150px;" ng-show="showHideInputBox1(group,$index,'inputTextBox1_')"  ng-change="changeInputVal(group,$index,'inputTextBox_')" id="inputTextBox_{% verbatim %}{{$index}}{% endverbatim %}" type="text" ng-model="rule.data" class="form-control input-sm inputTextBox"/>
+                                    <span ng-show="showHideInputBox2(group,$index,'inputTextBox2_')">AND</span>
+                                    <input style="margin-left: 5px; width:150px; " ng-show="showHideInputBox2(group,$index,'inputTextBox2_')"  ng-change="changeInputVal2(group,$index,'inputTextBox2_')" id="inputTextBox2_{% verbatim %}{{$index}}{% endverbatim %}" type="text" ng-model="rule.data2" class="form-control input-sm inputTextBox"/>
+                                    <button style="margin-left: 5px" ng-click="removeCondition($index)" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-minus-sign"></span></button>                                    
+                                    <div style="margin-left: 5px; color: #d9534f; display:none;" class="customWarningArea"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+    </div>
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12">
+            <a class="btn btn-danger pull-left direction1 cancelTqWizardBtn" id="cancel_tableQueryStep2_btn" href="#/admin/table_query">{{ 'Cancel' | trans }}</a>
+            <a ui-sref="admin.manage_table_query.create.step1" class="btn btn-default direction1">
+                {{ 'Previous' | trans }} <span class="fa fa-circle-arrow-right"></span>
+            </a>
+                
+            {# {{ form_widget(form.next, {'attr': {'class': 'btn btn-primary pull-right direction2'} }) }} #}
+            <button type="button" class="btn btn-primary pull-right direction2" id="next_button_to_step3">{{ 'Next' | trans }}</button>
+            <div id="step2_tooltip" class="alert alert-info pull-right mtl_tooltip" style="padding: 6px" title="Please click the 'Count' button, before proceeding to the next step.">
+                <i class="fa fa-info-circle"></i>
+            </div>
+            <script type="text/javascript">
+                PrepareTooltips();
+            </script>  
+            <button type="button" class="btn btn-success pull-right direction2" id="count_query_button">{{ 'Count' | trans }}</button> 
+        </div>
+    </div>        
+</fieldset>
+
+<div style="display: none;">
+    {{ form_rest(form) }}
+</div>
+    
+{{form_end(form)}}
+<script type="text/javascript">    
+    $(document).ready(function() { 
+        $('#step2_tooltip').hide();
+        //$('#next_button_to_step3').attr('disabled','disabled');
+        //$('#wizard_step3_tab').attr('disabled','disabled');
+        
+        prepareAppForms('{{ form.vars.name }}', false, false, false, 'tableQueryStep2', function (res) { window.location = '#/admin/table_query/create/step3/' + res.application_id;});                
+        
+        $('#count_query_button').click(function (){
+            $('#eserv_main_loader').show();
+            $.ajax({
+                method: 'POST',
+                data: {
+                    rawSql: $('#eserv_main_table_query_step_2_rawSqlQuery').val()
+                },
+                url: root_url + 'table-query/execute-count-query',
+                success: function (responseText) {                        
+                    $('#eserv_main_table_query_step_2_isCountPressed').val('Y');
+                    $('#query_execution_output').html(responseText.msg);
+                    
+                    if(responseText.success == true){
+                        $('#query_execution_output_div').removeClass('alert-danger');
+                        $('#query_execution_output_div').addClass('alert-success');
+                        $('#next_button_to_step3').removeAttr('disabled');
+                        $('#step2_tooltip').hide();
+                    }else{
+                        $('#query_execution_output_div').removeClass('alert-success');
+                        $('#query_execution_output_div').addClass('alert-danger');                    
+                        $('#next_button_to_step3').attr('disabled','disabled');
+                        $('#step2_tooltip').show();
+                    }                    
+                    
+                    $('#query_execution_output_div').show();
+                    $('#eserv_main_loader').hide();
+                },
+                error: function (responseText) {
+                    $('#eserv_main_table_query_step_2_isCountPressed').val('N');
+                    $('#query_execution_output').html(responseText.msg);
+                    $('#query_execution_output_div').show();
+                    $('#eserv_main_loader').hide();
+                }
+            });
+        });
+        
+        $('#next_button_to_step3').click(function (){
+        //    if( $('#eserv_main_table_query_step_2_isCountPressed').val() == 'Y'){
+                $('#tableQueryStep2').submit();
+        //    }else{
+              // do not submit   
+        //    }            
+        });
+        
+        $('.cancelTqWizardBtn').click(function (e){
+            e.preventDefault();
+            var conf = confirm('This will reset your data in the Table Query Wizard. Are you sure?');
+            if(conf){
+                cancelTqWizard();
+            }          
+        });  
+    });    
+</script>
+    

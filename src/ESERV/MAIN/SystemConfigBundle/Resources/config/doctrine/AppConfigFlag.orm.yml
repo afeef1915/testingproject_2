@@ -1,0 +1,46 @@
+ESERV\MAIN\SystemConfigBundle\Entity\AppConfigFlag: 
+    type: entity
+    repositoryClass: ESERV\MAIN\SystemConfigBundle\Entity\AppConfigFlagRepository
+    table: app_config_flag
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        environment:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        value:
+            type: integer
+            nullable: false
+            unsigned: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

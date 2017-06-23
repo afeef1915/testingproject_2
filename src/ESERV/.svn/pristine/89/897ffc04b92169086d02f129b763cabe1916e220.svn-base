@@ -1,0 +1,306 @@
+ESERV\MAIN\WizardBundle\Entity\WzPage: 
+    type: entity
+    repositoryClass: ESERV\MAIN\WizardBundle\Entity\WzPageRepository
+    table: wz_page
+    indexes:
+        fk_wz_pages_wz_control_idx:
+            columns:
+                - wz_control_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        pageNo:
+            type: integer
+            nullable: false
+            length: 11
+            column: page_no
+        fieldOne:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_one
+        fieldTwo:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_two
+        fieldThree:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_three
+        fieldFour:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_four
+        fieldFive:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_five
+        fieldSix:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_six
+        fieldSeven:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_seven
+        fieldEight:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_eight
+        fieldNine:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_nine
+        fieldTen:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_ten
+        fieldEleven:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_eleven
+        fieldTwelve:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_twelve
+        fieldThirteen:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_thirteen
+        fieldFourteen:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_fourteen
+        fieldFifteen:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_fifteen
+        fieldSixteen:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_sixteen
+        fieldSeventeen:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_seventeen
+        fieldEighteen:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_eighteen
+        fieldNineteen:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_nineteen
+        fieldTwenty:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_twenty
+        fieldTwentyOne:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_twenty_one
+        fieldTwentyTwo:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_twenty_two
+        fieldTwentyThree:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_twenty_three
+        fieldTwentyFour:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_twenty_four
+        fieldTwentyFive:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_twenty_five
+        fieldTwentySix:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_twenty_six
+        fieldTwentySeven:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_twenty_seven
+        fieldTwentyEight:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_twenty_eight
+        fieldTwentyNine:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_twenty_nine
+        fieldThirty:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_thirty
+        fieldLongtextOne:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: field_longtext_one
+        fieldLongtextTwo:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: field_longtext_two
+        fieldLongtextThree:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: field_longtext_three
+        fieldLongtextFour:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: field_longtext_four
+        fieldLongtextFive:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: field_longtext_five        
+        fieldDateOne:
+            type: datetime
+            nullable: true
+            fixed: false
+            column: field_date_one
+        fieldDateTwo:
+            type: datetime
+            nullable: true
+            fixed: false
+            column: field_date_two
+        fieldDateThree:
+            type: datetime
+            nullable: true
+            fixed: false
+            column: field_date_three
+        fieldDateFour:
+            type: datetime
+            nullable: true
+            fixed: false
+            column: field_date_four
+        fieldDateFive:
+            type: datetime
+            nullable: true
+            fixed: false
+            column: field_date_five
+        fieldBooleanOne:
+            type: boolean
+            length: 1
+            nullable: true
+            column: field_boolean_one
+        fieldBooleanTwo:
+            type: string
+            length: 1
+            nullable: true
+            column: field_boolean_two
+        fieldBooleanThree:
+            type: string
+            length: 1
+            nullable: true
+            column: field_boolean_three
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+        completed:
+            type: string
+            nullable: true
+            length: 1
+            column: completed
+    manyToOne:
+        wzControl:
+            targetEntity: ESERV\MAIN\WizardBundle\Entity\WzControl
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                wz_control_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

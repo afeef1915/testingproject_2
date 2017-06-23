@@ -1,0 +1,87 @@
+ESERV\MAIN\AdministrationBundle\Components\ClientAdministrationBundle\Entity\ClientField: 
+    type: entity
+    repositoryClass: ESERV\MAIN\AdministrationBundle\Components\ClientAdministrationBundle\Entity\ClientFieldRepository
+    table: client_field
+    indexes:
+        field_group_id_idx:
+            columns:
+                - client_table_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        fieldName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: field_name
+        fieldType:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            column: field_type
+        fieldSize:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            column: field_size
+        notNull:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            column: not_null
+        symfonyFormType:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: symfony_form_type
+        fieldOrder:
+            type: integer
+            nullable: false
+            unsigned: false
+            default: '1'
+            column: field_order
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        clientTable:
+            targetEntity: ESERV\MAIN\AdministrationBundle\Components\ClientAdministrationBundle\Entity\ClientTable
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                client_table_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

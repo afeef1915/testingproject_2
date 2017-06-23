@@ -1,0 +1,96 @@
+ESERV\TestBundle\Entity\GtcwVMentorPayment: 
+    type: entity
+    table: gtcw_v_mentor_payment
+    id:
+        gtcwMentorPaymentId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: gtcw_mentor_payment_id
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dtindex:
+            type: integer
+            nullable: false
+            column: dtindex      
+        gtcwMentorEmpHistId:
+            type: integer
+            nullable: false
+            column: gtcw_mentor_emp_hist_id
+        payTypeId:
+            type: integer
+            nullable: false
+            column: pay_type_id
+        type:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: type
+        claimReceivedDate:
+            type: datetime
+            nullable: true
+            column: claim_received_date
+        claimDate:
+            type: datetime
+            nullable: true
+            column: claim_date
+        amountPaid:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: amount_paid           
+        dateAuthorised:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: date_authorised
+        releaseDate:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: release_date
+        term:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: term
+        year:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: year
+        datePaid:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: date_paid
+        paidBy:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: paid_by
+        paidByName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: paid_by_name
+#        endDate:
+#            type: datetime            
+#            fixed: false
+#            comment: ''
+#            column: end_date

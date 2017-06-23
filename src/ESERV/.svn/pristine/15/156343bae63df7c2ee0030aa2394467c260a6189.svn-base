@@ -1,0 +1,54 @@
+ESERV\MAIN\ProfileBundle\Entity\UserAlertFosUser:
+    type: entity
+    table: user_alert_fos_user
+    indexes:
+        fk_usafus_useale_idx:
+            columns:
+                - user_alert_id 
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+    manyToOne:
+        userAlertDetail:
+            targetEntity: ESERV\MAIN\ProfileBundle\Entity\UserAlertDetail
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_alert_detail_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        fosUser:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fos_user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

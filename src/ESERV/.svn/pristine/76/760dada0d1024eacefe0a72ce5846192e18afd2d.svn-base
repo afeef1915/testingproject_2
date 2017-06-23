@@ -1,0 +1,64 @@
+ESERV\MAIN\CpdBundle\Entity\ContactCpdActDet:
+    type: entity
+    repositoryClass: ESERV\MAIN\CpdBundle\Entity\ContactCpdActDetRepository
+    table: contact_cpd_act_det
+    indexes:
+        fk_cocade_ccpdac_idx:
+            columns:
+                - contact_cpd_act_id
+        fk_cocade_cpacde_idx:
+            columns:
+                - cpd_act_type_detail_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        conCpdActText:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: con_cpd_act_text
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contactCpdAct:
+            targetEntity: ESERV\MAIN\CpdBundle\Entity\ContactCpdAct
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_cpd_act_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        cpdActTypeDetail:
+            targetEntity: ESERV\MAIN\CpdBundle\Entity\CpdActTypeDetail
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cpd_act_type_detail_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

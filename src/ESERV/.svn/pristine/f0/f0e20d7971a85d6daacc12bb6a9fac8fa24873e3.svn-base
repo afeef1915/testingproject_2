@@ -1,0 +1,189 @@
+eserv_main_contact_bundle_people:
+    path:     /people
+    defaults: { _controller: ESERVMAINContactBundle:People:index }
+
+#Contact Status
+eserv_main_contact_contact_status_list:
+    path:     /contact-status/list
+    defaults: { _controller: ESERVMAINContactBundle:ContactStatus:listContactStatus }
+
+eserv_main_contact_contact_status_ajax_list:
+    path:     /contact-status/ajaxList
+    defaults: { _controller: ESERVMAINContactBundle:ContactStatus:dataContactStatus }
+    
+eserv_main_contact_contact_status_new:
+    path:     /contact-status/add
+    defaults: { _controller: ESERVMAINContactBundle:ContactStatus:newContactStatus }
+    
+eserv_main_contact_contact_status_create:
+    path:     /contact-status/create
+    defaults: { _controller: ESERVMAINContactBundle:ContactStatus:createContactStatus }
+    
+eserv_main_contact_contact_status_edit:
+    path:     /contact-status/edit/{id}
+    defaults: { _controller: ESERVMAINContactBundle:ContactStatus:editContactStatus }
+
+eserv_main_contact_contact_status_update:
+    path:     /contact-status/update/{id}
+    defaults: { _controller: ESERVMAINContactBundle:ContactStatus:updateContactStatus }
+
+#eserv_main_contact_contact_status_delete:
+#    path:     /contact-status/delete/{id}
+#    defaults: { _controller: ESERVMAINContactBundle:ContactStatus:deleteContactStatus }
+
+#Mentor
+eserv_main_mentor_render:
+    path:     /mentor_render/{id}
+    defaults: { _controller: ESERVMAINContactBundle:Mentor:renderMentor }
+
+eserv_main_mentor_list:
+    path:     /mentor/list
+    defaults: { _controller: ESERVMAINContactBundle:Mentor:mentorList }
+    
+eserv_main_mentor_ajax_list:
+    path:     /mentor/ajaxList
+    defaults: { _controller: ESERVMAINContactBundle:Mentor:data }
+
+eserv_main_mentor_update:
+    path:     /mentor/update/{id}
+    defaults: { _controller: ESERVMAINContactBundle:Mentor:updateMentor, id: null }
+    methods : [POST]
+    
+eserv_main_mentor_edit:
+    path:     /mentor/edit/{id}
+    defaults: { _controller: ESERVMAINContactBundle:Mentor:editMentor, id: null }
+    
+eserv_main_mentor_new:
+    path:     /mentor/add
+    defaults: { _controller: ESERVMAINContactBundle:Mentor:newMentor }
+
+eserv_main_mentor_create:
+    path:     /mentor/create
+    defaults: { _controller: ESERVMAINContactBundle:Mentor:createMentor } 
+    methods : [POST]
+
+#Individual
+eserv_main_individual_render:
+    path:     /individual_render/{id}
+    defaults: { _controller: ESERVMAINContactBundle:Individual:renderIndividual }
+
+eserv_main_individual_list:
+    path:     /individual/list
+    defaults: { _controller: ESERVMAINContactBundle:Individual:individualList }
+    
+eserv_main_individual_ajax_list:
+    path:     /individual/ajaxList
+    defaults: { _controller: ESERVMAINContactBundle:Individual:data }
+
+eserv_main_individual_update:
+    path:     /individual/update/{id}
+    defaults: { _controller: ESERVMAINContactBundle:Individual:updateIndividual, id: null }
+    methods : [POST]
+    
+eserv_main_individual_edit:
+    path:     /individual/edit/{id}
+    defaults: { _controller: ESERVMAINContactBundle:Individual:editIndividual, id: null }
+    
+eserv_main_individual_new:
+    path:     /individual/add
+    defaults: { _controller: ESERVMAINContactBundle:Individual:newIndividual }
+
+eserv_main_individual_create:
+    path:     /individual/create
+    defaults: { _controller: ESERVMAINContactBundle:Individual:createIndividual } 
+    methods : [POST]
+    
+#Person
+eserv_main_person_check_reference_no:
+    path:     /checkReferenceNo/{refNo}
+    defaults: { _controller: ESERVMAINContactBundle:Person:checkReferenceNo }
+
+eserv_main_person_check_ni_no:
+    path:     /checkNiNumberExists/{niNo}/{contactId}
+    defaults: { _controller: ESERVMAINContactBundle:Person:checkNiNo, contactId: null }
+
+eserv_main_person_check_duplication:
+    path:     /checkPDDuplication
+    defaults: { _controller: ESERVMAINContactBundle:Person:checkPDDuplication }
+
+#Teacher
+eserv_main_teacher_new:
+    path:     /teacher/add
+    defaults: { _controller: ESERVMAINContactBundle:Teacher:newTeacher }
+    
+eserv_main_teacher_create:
+    path:     /teacher/create
+    defaults: { _controller: ESERVMAINContactBundle:Teacher:createTeacher }
+    methods : [POST]
+
+eserv_main_teacher_edit_personal_details:
+    path:     /teacher/edit/{id}
+    defaults: { _controller: ESERVMAINContactBundle:Teacher:editTeacher, id: null }
+
+eserv_main_teacher_list:
+    path:     /teacher/list
+    defaults: { _controller: ESERVMAINContactBundle:Teacher:teachersList }
+eserv_main_teacher_ajax_list:
+    path:     /teacher/ajaxList
+    defaults: { _controller: ESERVMAINContactBundle:Teacher:data }
+    
+
+# Person & Organisation
+eserv_main_organisation:
+    path:     /organisation
+    defaults: { _controller: ESERVMAINContactBundle:Organisation:index }
+    
+eserv_main_organisation_index:
+    path:     /org_add/
+    defaults: { _controller: ESERVMAINContactBundle:Default:newOrganisation }
+
+eserv_main_organisation_create:
+    path:     /org_create/
+    defaults: { _controller: ESERVMAINContactBundle:Default:saveOrganisation }    
+    methods : [POST]
+
+eserv_main_person_render:
+    path:     /person_render/{id}
+    defaults: { _controller: ESERVMAINContactBundle:Default:renderPerson }
+    
+eserv_main_person_edit:
+    path:     /person_edit/{id}
+    defaults: { _controller: ESERVMAINContactBundle:Default:editPerson }
+    
+eserv_main_person:
+    path:     /person_add/
+    defaults: { _controller: ESERVMAINContactBundle:Default:newPerson }
+    
+eserv_main_person_create:
+    path:     /person_add/create
+    defaults: { _controller: ESERVMAINContactBundle:Default:savePerson }
+    methods : [POST]   
+    
+#Relationship
+#eserv_main_contact_relationship_list:
+#    path:     /relationship/list/{contact_a}/{contact_b}
+#    defaults: { _controller: ESERVMAINContactBundle:Relationship:listRelationship, contact_a: null, contact_b: null }
+#
+#eserv_main_contact_relationship_ajax_list:
+#    path:     /relationship/ajaxList
+#    defaults: { _controller: ESERVMAINContactBundle:Relationship:dataRelationship }
+#    
+#eserv_main_contact_relationship_new:
+#    path:     /relationship/add
+#    defaults: { _controller: ESERVMAINContactBundle:Relationship:newRelationship }
+#    
+#eserv_main_contact_relationship_create:
+#    path:     /relationship/create
+#    defaults: { _controller: ESERVMAINContactBundle:Relationship:createRelationship }
+#    
+#eserv_main_contact_relationship_edit:
+#    path:     /relationship/edit/{id}
+#    defaults: { _controller: ESERVMAINContactBundle:Relationship:editRelationship }
+#
+#eserv_main_contact_relationship_update:
+#    path:     /relationship/update/{id}
+#    defaults: { _controller: ESERVMAINContactBundle:Relationship:updateRelationship }
+
+#eserv_main_contact_relationship_delete:
+#    path:     /contact-status/delete/{id}
+#    defaults: { _controller: ESERVMAINContactBundle:Relationship:deleteRelationship }

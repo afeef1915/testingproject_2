@@ -1,0 +1,256 @@
+ESERV\TestBundle\Entity\GtcwVResultFile: 
+    type: entity
+    table: gtcw_v_result_file
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        resultFileId:
+            type: integer
+            nullable: false
+            column: result_file_id
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id      
+        referenceNo:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: '' 
+            column: reference_no
+        firstName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: '' 
+            column: last_name
+        dateOfBirth:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: '' 
+            column: date_of_birth
+        contactStatusId:
+            type: integer
+            nullable: true
+            column: contact_status_id
+        contactStatusCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: contact_status_code
+        contactStatusName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: contact_status_name
+        comments:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        dateSubmitted:
+            type: datetime
+            nullable: true
+            column: date_submitted
+        employerId:
+            type: integer
+            nullable: true
+            column: employer_id
+        employerCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: employer_code
+        employerName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: employer_name
+        employerNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: employer_name_welsh
+        extLength:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: ext_length
+        extUnitId:
+            type: integer
+            column: ext_unit_id
+        extUnitName:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: ext_unit_name
+        fullExtLength:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: full_ext_length
+        fileStatusId:
+            type: integer
+            column: file_status_id
+        fileStatusCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: file_status_code
+        fileStatusName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: file_status_name
+        fileStatusNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: file_status_name_welsh
+        indRouteId:
+            type: integer
+            nullable: true
+            column: ind_route_id
+        indRouteCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: ind_route_code
+        indRouteName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: ind_route_name
+        indRouteNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: ind_route_name_welsh
+        recordNo:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: record_no
+        indStartDate:
+            type: datetime
+            nullable: true
+            column: ind_start_date
+        resultId:
+            type: integer
+            nullable: true
+            column: result_id
+        resultCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: result_code
+        resultName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: result_name
+        resultNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: result_name_welsh
+        resultDate:
+            type: datetime
+            nullable: true
+            column: result_date
+        termNo:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: term_no   
+        workplaceId:
+            type: integer
+            nullable: true
+            column: workplace_id
+        workplaceCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: '' 
+            column: workplace_code
+        workplaceName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: '' 
+            column: workplace_name
+        workplaceNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: '' 
+            column: workplace_name_welsh               
+        rfCreatedById:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: rf_created_by_id
+        rfCreatedByName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: '' 
+            column: rf_created_by_name 
+        rfCreatedAt:
+            type: datetime
+            nullable: true
+            column: rf_created_at 
+        rfUpdatedById:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: rf_updated_by_id
+        rfUpdatedByName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: '' 
+            column: rf_updated_by_Name
+        rfUpdatedAt:
+            type: datetime
+            nullable: true
+            column: rf_updated_at

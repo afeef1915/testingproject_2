@@ -1,0 +1,27 @@
+parameters:
+    merlin_api:
+        secret_key: "THIS_IS_DEFAULT_KEY_PLEASE_CHANGE"
+        functions_class_path: "ESERV\MAIN\ExternalBundle\Services\MerlinAPIFunctions"
+    api:
+#        LoginVerification:
+#            description: "Login verification"
+#            key: ""
+#            username: ""
+#            password: ""
+#            avail_params: ["id, key"]
+##            type: "JSON"
+#            type: "XML"
+    routings:
+#        fallback_route: e_services_home_homepage
+        
+    pagecodes:
+#        PAGE001: e_services_sites_registered_practitioner_homepage
+#        PAGE002: e_services_sites_registered_practitioner_my_practice_details
+#        PAGE003: e_services_sites_registered_practitioner_induction_detail
+#        PAGE004: e_services_sites_registered_practitioner_induction_profile
+        
+    allowed_ips: ['81.144.135.114', '52.49.114.18', '52.49.135.167', '54.246.131.214', '50.18.197.173']
+    #81.144.135.114 is MTL ip address
+services:
+
+

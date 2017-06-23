@@ -1,0 +1,15 @@
+eservmain_cpd_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ESERVMAINCpdBundle:Default:index }
+    
+eservmain_cpd_contact_cpd_doc_lib_remove_files:
+    path:     /cpd/contact-cpd-doc-lib/remove/{id}
+    defaults: { _controller: ESERVMAINCpdBundle:Files:remove }
+
+eservmain_cpd_contact_cpd_doc_lib_download_files:
+    path:     /cpd/contact-cpd-doc-lib/download/{id}
+    defaults: { _controller: ESERVMAINCpdBundle:Files:download, id: null }
+
+eservmain_cpd_contact_cpd_doc_lib_upload_files:
+    path:     /cpd/contact-cpd-doc-lib/upload
+    defaults: { _controller: ESERVMAINCpdBundle:Files:upload }

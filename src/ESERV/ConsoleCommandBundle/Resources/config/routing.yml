@@ -1,0 +1,7 @@
+abc_test:
+    pattern:  /test/
+    defaults: { _controller: ESERVConsoleCommandBundle:Default:moveFiles }
+    
+eserv_console_command_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ESERVConsoleCommandBundle:Default:index }

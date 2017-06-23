@@ -1,0 +1,93 @@
+<div ng-controller="ManagEservNotificationsCtrl" class="eserv_notifications_management_area">
+    <div class="">
+        <div class="btn-group">
+            <div class="btn btn-default" ng-if="all_user_notifications.length > 0">
+                <div class="checkbox checkbox-warning checkbox-inline" style="vertical-align: top;">
+                    <input ng-click="getCheckedCount()" id="checkbox_all" type="checkbox" checkbox-all="all_user_notifications.isRead" />
+                    <label for="checkbox_all"></label>
+                </div>
+            </div>
+            <div class="notifications_edit_button pull-left">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="border-left: none;">
+                    <i class="fa fa-cog"></i> Actions <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <!-- <li><a ng-click="markReadUnread('Y')">Mark as Read</a></li> -->
+                    <li><a ng-click="markReadUnread('N')"><i class="fa fa-edit"></i> Mark as Unread</a></li>
+                    <li><a ng-click="deleteAllNotif()"><i class="fa fa-trash"></i> Delete</a></li>
+                </ul>
+            </div>
+            <!--  <button type="button" class="btn btn-default notifications_edit_button" ng-click="deleteAllNotif()" style="border-left: none;">
+                  <span class="desktop_inline_text">Delete</span> <i class="fa fa-trash"></i>
+              </button
+            -->
+            <button type="button" ng-click="refreshNotifications();" class="btn btn-default" data-toggle="tooltip" title="Refresh" ng-style="{'border-left': (all_user_notifications.length > 0 ? 'none' : '')}">
+                <span class="desktop_inline_text">Refresh</span> <i class="fa fa-refresh"></i>
+            </button>
+        </div>
+    </div>
+    <div class="eserv_notifications">
+        <div  class="eserv_reload_area"></div>
+        <div ng-if="all_user_notifications.length > 0">
+            <div class="list-group-item one_notification" ng-repeat="user_notification in all_user_notifications | startFrom:currentPage * pageSize | limitTo:pageSize" ng-class="(user_notification.statusRead == 'Y' ? 'read' : '')" id="notification_{% verbatim %}{{ user_notification.id}}{% endverbatim %}">
+                <div class="col-md-8" style="padding-left: 0">
+                    <div class="checkbox checkbox-warning checkbox-inline">
+                        <input ng-click="getCheckedCount()" id="checkbox_{% verbatim %}{{ user_notification.id}}{% endverbatim %}" type="checkbox" ng-model="user_notification.isRead" class="one_notification_cb">
+                        <label for="checkbox_{% verbatim %}{{ user_notification.id}}{% endverbatim %}"></label>
+                    </div>
+                    <i class="fa fa-exclamation-circle" ng-class="(user_notification.priorityCode == 'H' ? 'text-danger' : 'text-primary')"></i>
+                    <span class="fa" ng-class="(user_notification.fileId != null ? 'fa-paperclip' : '')"></span>
+                    <span class="main_title" style="min-width: 120px;display: inline-block;" ng-bind-html="user_notification.title"></span> 
+                </div>
+                <div class="col-md-4" style="padding-right: 0">
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-default btn-xs" ng-click="updateNotification(user_notification.id, user_notification.statusRead, 'Y', 'desc_');">
+                            <span class="desktop_inline_text">View</span> <i class="fa fa-edit"></i>
+                        </button>
+                        <button type="button" ng-click="remvNotification(user_notification.id)" class="btn btn-xs btn-danger">
+                            <span class="desktop_inline_text">Delete</span> <i class="fa fa-trash"></i>
+                        </button>    
+                    </div>
+
+                    <span class="pull-right datetime">
+                        <span ng-bind-html="user_notification.createdAtDate"></span>
+                        <i class="fa fa-clock-o"></i>
+                        <span ng-bind-html="user_notification.createdAtTime"></span> 
+                    </span>
+
+                </div>
+                <div class="clearfix"></div>
+                <div class="notification_description panel panel-default" id="desc_{% verbatim %}{{ user_notification.id}}{% endverbatim %}">
+                    <div class="panel-body" style="padding: 10px">
+                        <p ng-bind-html="user_notification.description"></p>
+                        <span ng-show="user_notification.fileId != null ? true : false">
+                            <hr style="padding: 0;margin: 10px 0" />
+                            <div class="text-right">
+                                <a ng-click="downloadFile(user_notification.fileId)" class="btn btn-success btn-sm"><i class="fa fa-download"></i> Download</a>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="ng-pagination-controls col-xs-12">
+                <div class="pull-right">
+                    <button class="btn btn-client1" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage - 1">
+                        {{ 'Previous' | trans }}
+                    </button>
+                    {% verbatim %}{{currentPage + 1}}/{{numberOfPages()}}{% endverbatim %}
+                    <button class="btn btn-client1" ng-disabled="currentPage >= all_user_notifications.length/pageSize - 1" ng-click="currentPage = currentPage + 1">
+                        {{ 'Next' | trans }}
+                    </button>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div ng-if="all_user_notifications.length <= 0" class="jumbotron center-block">
+            <h3 class="text-center">No Notifications at present</h3>
+        </div>
+    </div>
+</div>
+
+

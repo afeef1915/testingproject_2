@@ -1,0 +1,16 @@
+{% include '@weblogs_templates/innerPageHeader.html.twig' with {
+            'label': 'List of Users' | trans,
+            'fa_icon': 'user-circle',
+            'buttons': [
+                {
+                    'label': 'Add User' | trans, 
+                    'css_class': 'btn btn-success direction2',
+                    'ng_controller': 'EservModalCtrl',
+                    'ng_click': "openEservModal('eserv_main_user_add_new_user', 'Add User', 'lg', {target_url: '" ~ path('merlin_security_users_add', {}) ~ "'})",
+                    'fa_icon': 'plus-circle'
+                }
+            ]
+        }
+%}
+<hr/>
+{{ dataTable | raw }}

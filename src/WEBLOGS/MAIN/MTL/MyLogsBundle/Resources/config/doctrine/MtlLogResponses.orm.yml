@@ -1,0 +1,47 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\MtlLogResponses:
+    type: entity
+    table: mtl_log_responses
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+ 
+         
+    fields:
+        log_id:
+            type: string
+            length: '10'
+            id: true
+            column: log_id
+        response_id:
+            type: string
+            length: '50'
+            column: response_id
+        date_created:
+            type: datetime
+            column: date_created
+        date_updated:
+            type: datetime
+            column: date_updated
+        response_status_id:
+            type: string
+            length: '50'
+            column: response_status_id
+        response_by_id:
+            type: string
+            length: '50'
+            column: response_by_id
+        assigned_to_id:
+            type: string
+            length: '20'
+            column: assigned_to_id
+        response_text:
+            type: string
+            length: '5000'
+            column: response_text
+        developer_text:
+            type: string
+            length: '4000'
+            column: developer_text

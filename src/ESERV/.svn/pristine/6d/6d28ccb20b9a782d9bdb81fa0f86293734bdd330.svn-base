@@ -1,0 +1,78 @@
+ESERV\MAIN\ContactBundle\Entity\Relationship: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Entity\RelationshipRepository
+    table: relationship
+    indexes:
+        IDX_200444A07DD96C3:
+            columns:
+                - contact_id_a
+        IDX_200444A09ED4C779:
+            columns:
+                - contact_id_b
+        IDX_200444A0F15DB61A:
+            columns:
+                - relationship_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        startDate:
+            type: datetime
+            nullable: false
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: true
+            column: end_date
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        relationshipType:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\RelationshipType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                relationship_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contactA:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id_a:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contactB:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id_b:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

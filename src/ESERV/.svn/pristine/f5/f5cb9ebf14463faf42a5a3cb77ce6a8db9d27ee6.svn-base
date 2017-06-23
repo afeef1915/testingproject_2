@@ -1,0 +1,92 @@
+ESERV\MAIN\MembershipBundle\Entity\ContRate: 
+    type: entity
+    repositoryClass: ESERV\MAIN\MembershipBundle\Entity\ContRateRepository
+    table: cont_rate
+    indexes:
+        fk_cont_rate_cont_rate_master1_idx:
+            columns:
+                - cont_rate_master_id
+        fk_cont_rate_fund1_idx:
+            columns:
+                - fund_id
+        fk_cont_rate_frequency1_idx:
+            columns:
+                - frequency_id
+        fk_cont_rate_payment_method1_idx:
+            columns:
+                - payment_method_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        changeOverDate:
+            type: datetime
+            nullable: false
+            column: change_over_date
+        contAmount:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            column: cont_amount
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contRateMaster:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\ContRateMaster
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cont_rate_master_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        fund:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\Fund
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fund_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        frequency:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\Frequency
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                frequency_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        paymentMethod:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\PaymentMethod
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                payment_method_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

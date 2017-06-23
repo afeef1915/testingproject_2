@@ -1,0 +1,28 @@
+ESERV\MAIN\ExternalBundle\Entity\QueuedDbProcessesVars:
+    type: entity
+    table: queued_db_processes_vars
+    id:
+        queued_db_processes_id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        field_name:
+            type: string
+            length: 100
+        field_value:
+            type: string
+            nullable: true
+        field_param_ext:
+            type: string
+            length: 200
+        field_param_type:
+            type: string
+            length: 255
+        field_param_size:
+            type: string
+            length: 11
+        order_col:
+            type: integer
+            length: 15
+            nullable: true
+        

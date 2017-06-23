@@ -1,0 +1,85 @@
+eservmain_qualification_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ESERVMAINQualificationBundle:Default:index }
+    
+# Qualification
+eserv_main_qualification_list:
+    path:     /qualification
+    defaults: { _controller: ESERVMAINQualificationBundle:Qualification:qualificationsList }
+eserv_main_qualification_ajax_list:
+    path:     /qualification/ajaxList
+    defaults: { _controller: ESERVMAINQualificationBundle:Qualification:data }
+
+eserv_main_qualification_new:
+    path:     /qualification/add
+    defaults: { _controller: ESERVMAINQualificationBundle:Qualification:newQualification }
+    
+eserv_main_qualification_create:
+    path:     /qualification/create
+    defaults: { _controller: ESERVMAINQualificationBundle:Qualification:createQualification }
+    methods : [POST]   
+    
+eserv_main_qualification_update:
+    path:     /qualification/update/{id}
+    defaults: { _controller: ESERVMAINQualificationBundle:Qualification:updateQualification, id: null }
+    methods : [POST]    
+    
+eserv_main_qualification_edit:
+    path:     /qualification/edit/{id}
+    defaults: { _controller: ESERVMAINQualificationBundle:Qualification:editQualification, id: null }    
+
+# Subject
+eserv_main_subject_list:
+    path:     /subject
+    defaults: { _controller: ESERVMAINQualificationBundle:Subject:subjectsList }
+eserv_main_subject_ajax_list:
+    path:     /subject/ajaxList
+    defaults: { _controller: ESERVMAINQualificationBundle:Subject:data }
+
+eserv_main_subject_new:
+    path:     /subject/add
+    defaults: { _controller: ESERVMAINQualificationBundle:Subject:newSubject }
+    
+eserv_main_subject_create:
+    path:     /subject/create
+    defaults: { _controller: ESERVMAINQualificationBundle:Subject:createSubject }
+    methods : [POST]   
+    
+eserv_main_subject_update:
+    path:     /subject/update/{id}
+    defaults: { _controller: ESERVMAINQualificationBundle:Subject:updateSubject, id: null }
+    methods : [POST]    
+    
+eserv_main_subject_edit:
+    path:     /subject/edit/{id}
+    defaults: { _controller: ESERVMAINQualificationBundle:Subject:editSubject, id: null }    
+
+# Establishment
+eserv_main_establishment_new:
+    path:     /establishment/add
+    defaults: { _controller: ESERVMAINQualificationBundle:Establishment:newEstablishment }
+    
+eserv_main_establishment_create:
+    path:     /establishment/create
+    defaults: { _controller: ESERVMAINQualificationBundle:Establishment:createEstablishment }
+    methods : [POST]
+            
+eserv_main_establishment_update:
+    path:     /establishment/update/{id}
+    defaults: { _controller: ESERVMAINQualificationBundle:Establishment:updateEstablishment, id: null }
+    methods : [POST]    
+
+#eserv_main_establishmentrender:
+#    path:     /establishment/render/{id}
+#    defaults: { _controller: ESERVMAINQualificationBundle:Establishment:renderEstablishment }
+    
+eserv_main_establishment_edit:
+    path:     /establishment/edit/{id}
+    defaults: { _controller: ESERVMAINQualificationBundle:Establishment:editEstablishment, id: null }
+    
+eserv_main_establishment_list:
+    path:     /establishment/list
+    defaults: { _controller: ESERVMAINQualificationBundle:Establishment:establishmentsList }
+eserv_main_establishment_ajax_list:
+    path:     /establishment/ajaxList
+    defaults: { _controller: ESERVMAINQualificationBundle:Establishment:data }

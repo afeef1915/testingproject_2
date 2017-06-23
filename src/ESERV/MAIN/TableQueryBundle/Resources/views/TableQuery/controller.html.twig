@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div id="form-container">
+            <div class="wizard">
+                <div class="stepwizard-row setup-panel">
+                    <!-- ui-sref="admin.manage_table_query.create.step1" -->
+                    <a class="stepwizard-step" ui-sref-active="active">
+                        <div class="btn btn-circle btn-default stepwizard-num">1</div>
+                        <div class="stepwizard-title">{{ 'Step 1 (Choose View)' | trans }}</div>
+                    </a>
+                    <!-- ui-sref="admin.manage_table_query.create.step2" -->
+                    <a class="stepwizard-step" ui-sref-active="active">
+                        <div class="btn btn-circle btn-default stepwizard-num">2</div>
+                        <div class="stepwizard-title">{{ 'Step 2 (Where Clause)' | trans }}</div>
+                    </a>
+                    <!-- ui-sref="admin.manage_table_query.create.step3" -->
+                    <a class="stepwizard-step" ui-sref-active="active">
+                        <div class="btn btn-circle btn-default stepwizard-num">3</div>
+                        <div class="stepwizard-title">{{ 'Step 3 (Sort Order)' | trans }}</div>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div>
+                <div id="form-views" ui-view></div>
+            </div>
+        </div>
+    </div>
+</div>
+                    <script type="text/javascript">
+                        function cancelTqWizard()
+                        {
+                            $('#eserv_main_loader').show();
+                            $.ajax({
+                                method: 'POST',
+                                data: {                                           
+                                },
+                                url: root_url + 'table_query/clear-application/add',
+                                success: function (responseText) {                        
+                                    if(responseText.success == true){
+                                        window.location = '#/admin/table_query';
+                                    }else{
+                                        console.log('Not successful! - '. responseText);
+                                    }                    
+                                    $('#eserv_main_loader').hide();
+                                },
+                                error: function (responseText) {
+                                    console.log('Error - '.responseText);
+                                    $('#eserv_main_loader').hide();
+                                }
+                            });
+                        }
+                    </script>

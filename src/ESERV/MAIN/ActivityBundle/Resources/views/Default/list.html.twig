@@ -1,0 +1,44 @@
+{{ dataTable | raw }}
+<script type="text/javascript">
+    function eservActivityTableRowCallBackFunc(row) {
+        var status = $(row).find('.dt-status').html();
+        var actTypeCode = $(row).find('.dt-act-type-code').html();
+        var activityId = $(row).find('.dt-activity-id').html();
+        var url = '{{ path('eserv_main_activity_email_add_to_queue_db_process',{'id': '9999'}) }}';
+        url = url.replace('9999', activityId);
+        if (status === 'Deleted' && actTypeCode === 'OBE') {
+            $(row).find('.dt-view').html('<a href="javascript:;" data-href="' + url + '" class="dt-activity-resend"> <i class="fa fa-envelope-o"></i> <span class="desktop_inline_text">Resend</span> </a>');
+        }
+    }
+    
+    function bindResendFunctionality(){
+        $(".dt-activity-resend").click(function (e) {
+            $.ajax({
+                url: $(this).attr('data-href'),
+                success: function (responseText) {
+                    $('#eserv_main_loader').hide();
+                    if (responseText.success) {
+                        DisplayAlertMessage('success', responseText.msg, 'activity_output_error_container');
+                        $('#{{table_id}}').dataTable().fnReloadAjax();
+                    } else {
+                        DisplayAlertMessage('danger', 'ERROR: ' + responseText.msg, 'activity_output_error_container');
+                    }
+                },
+            });
+        });
+    }
+    
+    function DisplayAlertMessage(type, message, containerId){
+        var icon = getAlertIcon(type);
+        var msg = '<div class="alert alert-' + type + ' alert-dismissable affix-top eserv_alert " > <span class="close" data-dismiss="alert">×</span><i class="fa fa-'+ icon +'"></i>\n\
+                <strong class="">' + message + '</strong><div class="clearfix"></div></div>';
+        var errorContainer = $('#'+ containerId);
+        errorContainer.html(msg);
+        errorContainer.fadeIn(function () {
+            setTimeout(function () {
+                errorContainer.fadeOut();
+                }, 5000);
+        });
+    }
+
+</script>

@@ -1,0 +1,97 @@
+ESERV\MAIN\TemplateBundle\Entity\EservVTemplate: 
+    type: entity
+    table: eserv_v_template
+    id:
+        templateId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: template_id
+            generator:
+                strategy: IDENTITY
+                
+    fields:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: dtindex
+        content:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+            column: content
+        code:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: 'Used to identify Main templates to be used by auto processes, e.g. batch acknowledgement/results email'
+            column: code
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: name
+        templateType:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+            comment: ''
+            column: template_type
+        templateDocumentType:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: template_document_type
+        language:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: language
+        version:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: version
+        mailMergeType:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: mail_merge_type
+        createdBy:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+            comment: ''
+            column: created_by
+        createdAt:
+            type: datetime
+            nullable: false
+            length: 150
+            fixed: false
+            comment: ''
+            column: created_at
+        gotoUrl:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+            comment: ''
+            column: goto_url

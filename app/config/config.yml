@@ -1,0 +1,287 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+parameters:
+  pdo.db_options:
+      db_table:    mtl_session
+      db_id_col:   session_id
+      db_data_col: session_value
+      db_time_col: session_time
+      
+  domain_name: http://192.168.2.54:80/eserv/web/app_dev.php
+  
+  app_client: mtl
+  app_version: 1.6.10
+  app_environment: Development
+  
+  app_theme: default
+  app_default_theme: default-DEFAULT
+  app_date_format: 'd M Y H:i:s'
+  app_client_color1: '#31393C' # Dark Grey
+  app_client_color2: '#EF762E' # Orange
+  app_theme_color1: '#EF762E' # Orange
+  app_theme_color2: '#FFFFFF' # White
+
+  app_client_short_name: Web Logs 
+  app_dev_environments : ['weblogs_dev']
+  merlin_emailing_from_email: 'administrator@miller.co.uk'
+  
+  email_header_txtcolor: '#ffffff'
+  email_header_bgcolor: '#1f5b42'
+  
+  #Custom app logging
+  app_logging_enabled: false
+  
+  #Show/hide all chart legends
+  show_all_chart_legends : false
+    
+  #List of app wide constants
+  main_centre_address_code: 'M'
+  website_primary_yes: 'Y'
+  mobile_primary_yes: 'Y'
+  data_separator: 'M~T~L'
+  
+  app_date_picker_format: 'DD/MM/YYYY'    
+
+  #Constants for background processes
+  notify_user : true
+  enable_logging : true
+  notify_email_admins : false
+  maximum_attempts : 30000
+  items_per_batch : 30000
+        
+## AFD Params
+  afd:
+      url: 'http://pce.afd.co.uk/'
+      serial: '827497'
+      password: 'c03eMRO4'
+      
+      functions:
+        postcode_lookup: 'addresslist.pce'
+        address_lookup: 'addresslookup.pce'
+        bank_validate_account: 'bankvalaccount.pce'
+        bank_search: 'banksearch.pce'
+        bank_lookup: 'banklookup.pce'
+        
+  dataTable_extra_css_classes: 'table-hover'
+  datatable_disallow_null_search_enabled: false
+
+  data_table_config:
+        pre_load_data : false
+#        show_hide_checkboxes: false
+#        enable_show_hide_filter : true
+#        enable_col_visibility_btn : true
+#        auto_show_pagination : true
+#        case_insensitive_search : true
+#        clear_local_storage: true
+#        filter_by_nls_date_format: true
+  #      max_date: '4000-01-01 00:00:00'
+
+  eserv_config:
+        social_media:
+            Facebook: 
+                url: "https://www.facebook.com/mtlsoftware/"
+                img_src: "https://www.myewc.wales/clients/gtcw/themes/default/images/icons/Facebook.png"
+            Twitter: 
+                url: "https://twitter.com/wearemembership"
+                img_src: "https://www.myewc.wales/clients/gtcw/themes/default/images/icons/Twitter.png"
+            LinkedIn: 
+                url: "https://www.linkedin.com/company/mtl-software-group"
+                img_src: "http://www.dupont.com/etc/designs/dupont/phoenix/clientlibs/source/images/linkedin_icon.png"
+        contact_details:
+            phone: 020 7278 2081
+            email: administrator@miller.co.uk   
+        path_to_client_logo: "http://millertech.co.uk/sites/default/files/mtl_logo2small.png"
+        client_email_disclaimer_address: "MTL Software Solutions, 340 Grays Inn Road, London, WC1X 8BG"
+services:
+     pdo:
+        class: PDO
+        arguments:
+            - "mysql:host=%database_host%;dbname=%database_name%"
+            - "%database_user%"
+            - "%database_password%"
+        calls:
+            - [setAttribute, [3, 2]] # \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION
+
+     session.handler.pdo:
+        class:     ESERV\MAIN\FrameworkChanges\MtlPdoSessionHandler
+        arguments: ["@pdo", "%pdo.db_options%"]
+     core_function_services:
+        class:     ESERV\MAIN\Services\CoreFunctions
+        arguments: ["@request_stack","@service_container","@doctrine.orm.entity_manager"]
+     db_core_function_services:
+        class:     ESERV\MAIN\Services\DbCoreFunctions
+        arguments: ["@doctrine.orm.entity_manager","@service_container"]
+     eserv_email_services:
+        class:     ESERV\MAIN\Services\ESERVEmail
+        arguments: ["@service_container"]
+     eserv_translation_services:
+        class:     ESERV\MAIN\Services\ESERVTranslations
+        arguments: ["@service_container"]
+     datatables_services:
+        class:     ESERV\MAIN\Services\DataTables
+        arguments: ["@doctrine.orm.entity_manager","@service_container"]    
+     security_services:
+        class:     ESERV\MAIN\Services\ESERVSecurity
+        arguments: ["@doctrine.orm.entity_manager","@service_container"]
+     eserv_twig_extension:
+#        class: ESERV\MAIN\Services\Twig\ESERVExtension        
+        class: WEBLOGS\CORE\Services\Twig\WEBLOGSExtension
+        arguments: [@service_container, @translator]
+        tags:
+            - { name: twig.extension }
+     eserv.security.authentication_handler:
+        class: Security\UserBundle\Handler\AuthenticationHandler
+        public: false
+        arguments:
+            - @router
+            - @session
+            - @service_container
+#            - @doctrine.orm.entity_manager
+     authentication_entry_point:
+         class: Security\UserBundle\Handler\AuthenticationEntryPoint
+         public: false
+         arguments:
+            - @router
+            - @session
+     form.type.form:
+        class: ESERV\MAIN\Services\Form\EservFormType
+        arguments: ["@property_accessor"]
+        tags:
+            - { name: form.type, alias: form }     
+     eserv.form.type.autocomplete:
+        class: ESERV\MAIN\Services\Form\Type\AutoCompleteType
+        tags:
+            - { name: form.type, alias: autocomplete }
+     eserv.form.type.mtlcheckbox:
+        class: ESERV\MAIN\Services\Form\Type\MtlCheckboxType
+        tags:
+            - { name: form.type, alias: mtlcheckbox }
+     eserv.listener:
+        class: WEBLOGS\MAIN\Services\Listener\WEBLOGSListener
+        arguments: ["@service_container"]
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
+            - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }
+            - { name: doctrine.event_listener, event: preRemove, method: preRemove }
+            - { name: doctrine.event_listener, event: prePersist, method: prePersist }
+     weblogs.filter_response_listener:
+        class: WEBLOGS\MAIN\Services\Listener\KernelEventListener
+        arguments: ["@service_container"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+     weblogs_main_services:
+        class:     WEBLOGS\MAIN\Services\WEBLOGSMAINServices
+        arguments: ["@doctrine.orm.entity_manager","@service_container"]              
+#     eserv_soap: 
+#        class:     ESERV\MAIN\Services\ESERVSoap
+#        arguments: ["@service_container"]   
+        
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: ESERV\MAIN\SecurityBundle\Entity\User
+    group:
+        group_class: ESERV\MAIN\SecurityBundle\Entity\Group
+    
+framework:
+    #esi:             ~
+    translator:      { fallback: en }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+#        handler_id:  session.handler.pdo
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    exception_controller: "ESERVMAINErrorHandlingBundle:Default:index"
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    exception_controller: "ESERVMAINErrorHandlingBundle:Default:index"
+    paths:
+        "%kernel.root_dir%/../src/WEBLOGS/CORE/Services/Templates": weblogs_templates
+    
+    # Application theme
+    globals:
+      app_environment: %app_environment%
+      app_theme: %app_theme%
+      app_version: %app_version%
+      app_client: %app_client%
+      app_client_short_name: %app_client_short_name%
+      app_client_color1: %app_client_color1%
+      app_client_color2: %app_client_color2%
+      app_theme_color1: %app_theme_color1%
+      app_theme_color2: %app_theme_color2%
+      eserv_config: %eserv_config%
+      email_header_txtcolor: %email_header_txtcolor%
+      email_header_bgcolor: %email_header_bgcolor%
+    form:
+        resources:
+            - 'ESERVMAINHelpersBundle:Form:eserv_layout.html.twig'
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ 'WEBLOGSDashboardBundle' ]
+    filters:
+        cssrewrite: ~
+    assets:
+        data_tables_js:
+            inputs:
+                - %kernel.root_dir%/../vendor/datatables/js/jquery.dataTables.min.js
+                - %kernel.root_dir%/../vendor/datatables/js/datatables.bootstrap3.min.js
+        data_tables_css:
+            inputs:
+                - %kernel.root_dir%/../vendor/datatables/css/datatables.css
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        # path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true
+
+# Swiftmailer Configuration
+#swiftmailer:
+#    transport: smtp
+#    host: 192.168.1.18
+#    port: 25
+#    logging: true
+#    username: smtp
+#    password: mtl2014 
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     %kernel.root_dir%/../vendor/wkhtmltopdf/bin/wkhtmltopdf.exe
+        options:    []
+    image:
+        enabled:    true
+        binary:     %kernel.root_dir%/../vendor/wkhtmltopdf/bin/wkhtmltoimage.exe
+        options:    []

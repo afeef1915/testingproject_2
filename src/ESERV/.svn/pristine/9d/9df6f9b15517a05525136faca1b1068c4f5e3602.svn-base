@@ -1,0 +1,71 @@
+<style>
+    .test12{
+        max-height: 500px;
+        min-height: min-content;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+</style>
+
+<div id="eserv_multipleRec_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+
+<div class="test12"> 
+    <table id="table-transform" cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-hover table-bordered">          
+    </table>              
+    <script>
+        /*  $(function () {
+         var $table = $('#table-transform');
+         $('#transform').click(function () {
+         $table.bootstrapTable();
+         });
+         $('#destroy').click(function () {
+         $table.bootstrapTable('destroy');
+         });
+         }); */
+    </script>
+
+</div>
+<div class="eserv_container_form_errors"></div>
+
+<script>
+    $(document).ready(function () {
+        $('#table-transform').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "deferRender": true,
+            "sAjaxSource": "{{ path('eserv_comms_letter_list_recipients') }}",
+            "bSortClasses": false,
+            "aoColumns": [{"sTitle":"Reference No"}, {"sTitle":"Initials"}, {"sTitle":"First Name"}, {"sTitle":"Last Name"}, {"sTitle":"Date of Birth"}, {"sTitle":"Gender"}],
+            "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                if (typeof dataTable_ajax_request != "undefined") {
+                     dataTable_ajax_request.abort();
+                }       
+                dataTable_ajax_request = $.ajax({
+                    "url": sSource,
+                    "type": "POST",
+                    "data": aoData,
+                    "dataType": "json",
+                    "success": function(json){                        
+                        fnCallback(json);
+                    },
+                    "error": function(jqXHR, exception) {
+                        console.log('Exception :- ', exception);
+                    }
+                });
+            },
+            "fnServerParams": function (aoData) {
+                aoData.push(
+                    {'name': 'commsQ', 'value':'{{ commsQ }}'}
+                );
+            },
+            "oLanguage": {
+                "sProcessing": (typeof PreloaderImagePath != 'undefined' ? '<img alt="Loading data... Please wait" src="' + PreloaderImagePath + '" />' : 'Processing...'),
+                "sInfoFiltered": "",
+                "sLengthMenu": '<span class="desktop_inline_text">Show</span> _MENU_ <span class="desktop_inline_text">Rows</span>'
+            }
+        });
+        
+        applyBootstrap();
+    });
+</script>

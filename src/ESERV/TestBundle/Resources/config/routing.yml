@@ -1,0 +1,172 @@
+eserv_autocomplete_test:
+    pattern:  /autocompleteTest
+    defaults: { _controller: ESERVTestBundle:Default:autocompleteTest } 
+    
+eserv_pdf_test:
+    pattern:  /generatePdf
+    defaults: { _controller: ESERVTestBundle:Default:generatePdf } 
+    
+eserv_developers_test:
+    path:     /developer
+    defaults: { _controller: ESERVTestBundle:Developer:index }
+eserv_developers_test_create_eserv_user:
+    path:     /developer/createUser
+    defaults: { _controller: ESERVTestBundle:Developer:createUser }
+    
+gtcw_test_teacher_transfer:
+    path:     /test_teacher_transfer/
+    defaults: { _controller: ESERVTestBundle:Default:testTeacherTransfer }
+    
+test2:
+    path:     /test2/
+    defaults: { _controller: ESERVTestBundle:Default:test2 }
+
+gtcw_get_ref_num:
+    path:     /get_ref_num/
+    defaults: { _controller: ESERVTestBundle:Contact:getRefrenceNo }
+    
+
+gtcw_test_field_name_and_type:
+    path:     /test_field_name_and_type/{id}
+    defaults: { _controller: ESERVTestBundle:Default:testFieldNameAndForm }
+
+gtcw_test_abc:
+    path:     /test_abc/
+    defaults: { _controller: ESERVTestBundle:Default:deleteFromEntityFile }
+
+#gtcw_delete_table_3:
+#    path:     /delete_client_table/{id}
+#    defaults: { _controller: ESERVTestBundle:Default:deleteGroup }
+
+
+gtcw_tttt_3:
+    path:     /file_test/{tableName}
+    defaults: { _controller: ESERVTestBundle:CustomFields:appendToFile }
+
+
+gtcw_tttt_1:
+    path:     /import/{filter}
+    defaults: { _controller: ESERVTestBundle:CustomFields:executeImportCommand }
+
+gtcw_tttt_2:
+    path:     /generate/
+    defaults: { _controller: ESERVTestBundle:CustomFields:executeGenerateEntitiesCommand }
+    
+gtcw_tttt_4:
+    path:     /testSam/
+    defaults: { _controller: ESERVTestBundle:CustomFields:testSam }
+   
+aj_test:
+    path: /test_aj
+    defaults: { _controller: ESERVTestBundle:Developer:ajTest } 
+
+
+
+
+
+
+
+
+
+
+
+
+gtcw_contact_client_table_map2:
+    path:     /get_client_table_map/
+    defaults: { _controller: ESERVTestBundle:Default:getClientTableArray }
+
+#gtcw_contact_add_test2:
+#    path:     /contact_add_test2/
+#    defaults: { _controller: ESERVTestBundle:Default:add }
+    
+#gtcw_contact_create_test2:
+#    path:     /contact_add_test2/create
+#    defaults: { _controller: ESERVTestBundle:Default:save  }
+#    methods : [POST]    
+
+real_test:
+    pattern:  /real_test/
+    defaults: { _controller: ESERVTestBundle:Default:urlTest } 
+    
+#gtcw_custom_field_create_test:
+#    path:     /contact_field_add_test/create
+#    defaults: { _controller: ESERVTestBundle:CustomFields:saveCustomField }
+#    
+#gtcw_custom_field_add_test:
+#    path:     /contact_field_add_test/
+#    defaults: { _controller: ESERVTestBundle:CustomFields:newCustomField }
+#
+#gtcw_custom_group_create_test:
+#    path:     /contact_group_add_test/create
+#    defaults: { _controller: ESERVTestBundle:CustomFields:saveCustomFieldGroup }
+#    
+#gtcw_custom_group_add_test:
+#    path:     /contact_group_add_test/
+#    defaults: { _controller: ESERVTestBundle:CustomFields:newCustomFieldGroup }
+    
+gtcw_contact_edit_test:
+    path:     /contact_edit_test/{id}
+    defaults: { _controller: ESERVTestBundle:Contact:edit }
+    
+gtcw_contact_create_test:
+    path:     /contact_add_test/create
+    defaults: { _controller: ESERVTestBundle:Contact:create }
+    methods : [POST]
+    
+gtcw_contact_add_test:
+    path:     /contact_add_test/
+    defaults: { _controller: ESERVTestBundle:Contact:add }
+    
+gtcw_contact_edit_person_test:
+    path:     /contact_edit_person_test/{id}
+    defaults: { _controller: ESERVTestBundle:Contact:editPerson }
+    
+get_ref_no:
+    path:     /get_ref_no
+    defaults: { _controller: ESERVTestBundle:Contact:getRefrenceNo }
+
+mergeLetterTest:
+    pattern:  /mergeLetterTest
+    defaults: { _controller: ESERVTestBundle:Default:mergeLetterTest }
+    
+sendEmailTest:
+    pattern:  /sendEmailTest
+    defaults: { _controller: ESERVTestBundle:Default:sendEmailTest }
+
+interfaceTest:
+    pattern:  /interfaceTest/{name}/{fileId}
+    defaults: { _controller: ESERVTestBundle:Interface:runInterface }
+
+translationsTest:
+    pattern:  /translation-test
+    defaults: { _controller: ESERVTestBundle:Default:testTr }
+
+EmailSendingTest:
+    pattern:  /email-test/{email}
+    defaults: { _controller: ESERVTestBundle:Default:testEmail }
+    
+#ShaTest:
+#    pattern:  /shaTest
+#    defaults: { _controller: ESERVTestBundle:Default:shaTest }
+
+LiveEmailSendTest_with_attachment:
+    pattern:  /email-attachment-test-with-link
+    defaults: { _controller: ESERVTestBundle:Developer:liveEmailTest }
+
+test_destroy_session:
+    pattern:  /test-destroy-session
+    defaults: { _controller: ESERVTestBundle:Developer:destroySession }
+
+#This route only used to create the PLP documents (where induction has already been completed)
+#gtcwindplp:
+#    path:     /gtcwindplp
+#    defaults: { _controller: ESERVTestBundle:Default:gtcwIndToPlp }
+
+#This route only used to update contact_doc_access
+#UpdateContactDocAccess:
+#    path:     /UpdateContactDocAccess
+#    defaults: { _controller: ESERVTestBundle:Default:updateContactDocAccess }
+    
+eserv_pdf_test2:
+    pattern:  /generatePdfTest2
+    defaults: { _controller: ESERVTestBundle:Default:pdfTest2 } 

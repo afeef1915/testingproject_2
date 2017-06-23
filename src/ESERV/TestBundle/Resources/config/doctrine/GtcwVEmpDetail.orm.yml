@@ -1,0 +1,119 @@
+ESERV\TestBundle\Entity\GtcwVEmpDetail: 
+    type: entity
+    table: gtcw_v_emp_detail
+    id:
+        employmentDetailId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: employment_detail_id
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dtindex:
+            type: integer
+            nullable: false
+            column: dtindex
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        empDescId:
+            type: integer
+            nullable: true
+            column: emp_desc_id
+        empDescCode:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: emp_desc_code
+        empDescName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: emp_desc_name
+        employerId:
+            type: integer
+            nullable: true
+            column: employer_id
+        employerCode:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: employer_code
+        employer:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: employer
+        workplaceId:
+            type: integer
+            nullable: true
+            column: workplace_id
+        workplaceCode:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: workplace_code
+        school:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: school
+        hours:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: hours
+        primaryRecord:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: ''
+            column: primary_record
+        startDate:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: end_date
+        isHistory:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: ''
+            column: is_history
+        updatedBy:
+            type: integer
+            nullable: true
+            column: updated_by
+        updatedByName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: updated_by_name
+        

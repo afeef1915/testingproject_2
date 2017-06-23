@@ -1,0 +1,28 @@
+WEBLOGS\MAIN\MTL\MyemailBundle\Entity\CustomerTasks:
+    type: entity
+    table: customer_tasks
+    repositoryClass: WEBLOGS\MAIN\MTL\MyemailBundle\Entity\EmailRepository
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTO
+    fields:
+        
+        ctkCustomerId:
+            type: string
+            length: '10'
+            id: true
+            column: ctk_customer_id
+     
+        ctkCode:
+            type: string
+            length: '10'           
+            column: ctk_code
+        ctkName:
+            type: string
+            length: '10'
+            column: ctk_name
+      
+    lifecycleCallbacks: {  }

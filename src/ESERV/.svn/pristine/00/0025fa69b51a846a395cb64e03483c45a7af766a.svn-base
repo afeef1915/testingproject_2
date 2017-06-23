@@ -1,0 +1,15 @@
+# src/ESERV/MAIN/ActivityBundle/Resources/config/validation.yml
+ESERV\MAIN\ActivityBundle\Entity\ActivitySubCategory:
+    properties:
+        code:
+            - NotBlank: ~
+            - Length:
+                max: 30
+                maxMessage: "Code cannot be longer than {{ limit }} characters"
+        description:
+            - NotBlank: ~
+            - Length:
+                max: 100
+                maxMessage: "Description cannot be longer than {{ limit }} characters"
+        activityCategory:
+            - NotBlank: ~

@@ -1,0 +1,62 @@
+ESERV\MAIN\ActivityBundle\Entity\ActivitySubCategory: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\ActivitySubCategoryRepository
+    table: activity_sub_category
+    indexes:
+        fk_actsubcat_actcat_idx:
+            columns:
+                - activity_category_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+        description:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        defaultActivityDescription:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: default_activity_description
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        activityCategory:
+            targetEntity: ESERV\MAIN\ActivityBundle\Entity\ActivityCategory
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                activity_category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

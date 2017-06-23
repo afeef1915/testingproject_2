@@ -1,0 +1,7 @@
+parameters:
+#    eservcore_contact_bundle_components_contact_details.example.class: ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Example
+
+services:
+#    eservcore_contact_bundle_components_contact_details.example:
+#        class: %eservcore_contact_bundle_components_contact_details.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

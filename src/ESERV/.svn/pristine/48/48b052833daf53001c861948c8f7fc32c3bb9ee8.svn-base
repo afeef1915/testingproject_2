@@ -1,0 +1,69 @@
+ESERV\MAIN\TableQueryBundle\Entity\QueryLayoutDetail:
+    type: entity
+    table: query_layout_detail
+    indexes:
+        fk_qulade_qulama_idx:
+            columns:
+                - query_layout_master_id
+        fk_qualde_quvife_idx:
+            columns:
+                - query_view_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        lineNo:
+            type: integer
+            nullable: false
+            length: 11
+            fixed: false
+            column: line_no
+        codeDescBoth:
+            type: string
+            nullable: true
+            length: 11
+            fixed: false
+            column: code_desc_both
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        queryLayoutMaster:
+            targetEntity: ESERV\MAIN\TableQueryBundle\Entity\QueryLayoutMaster
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                query_layout_master_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        queryViewField:
+            targetEntity: ESERV\MAIN\TableQueryBundle\Entity\QueryViewField
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                query_view_field_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

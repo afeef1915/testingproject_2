@@ -1,0 +1,142 @@
+ESERV\TestBundle\Entity\GtcwVTeacher: 
+    type: entity
+    table: gtcw_v_teacher
+    id:
+        person_id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        contact_id:
+            type: integer
+            nullable: false  
+        first_name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        last_name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''        
+        reference_no:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        qts_date:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''  
+        date_of_birth:
+            type: datetime
+            nullable: false
+            fixed: false
+            comment: ''
+        address_line1:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''       
+        postcode:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: '' 
+        middle_name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        last_name_search:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        initials:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+        job_title:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        gender:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            comment: 'M-Male, F-Female'
+        previous_last_name:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        disabled:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            default: N
+        ni_number:
+            type: string
+            nullable: true
+            length: 30
+            fixed: false
+        address_line2:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        address_line3:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        town:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        county:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false       
+        email_address:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        code:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+        reg_category:
+            type: string
+            length: 255
+            column: reg_category
+        reg_category_search:
+            type: string
+            length: 255
+            column: reg_category_search
+        reg_status:
+            type: string
+            length: 255
+            column: reg_status

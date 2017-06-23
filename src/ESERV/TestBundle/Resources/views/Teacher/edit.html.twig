@@ -1,0 +1,278 @@
+{{form_start(form)}}
+
+
+{% if table_names_array is defined %}
+    {% set tblNamesArray = [] %}
+    {% for tbl_id,tbl_name in table_names_array %}
+        {% set tblNamesArray = tblNamesArray | merge([ tbl_name['name'] ]) %}        
+    {% endfor %}    
+{% for name,child in form.children %}
+    {% if name in tblNamesArray %}
+        {% for c in child %}
+            {{ form_widget(c, {'id': '', 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+        {% endfor %}    
+    {% else %}
+       
+    {% endif %}
+{% endfor %}
+{% endif %}
+
+    <div>   
+        {{ form_label(form.lastName) }}
+        {{ form_errors(form.lastName) }}
+        {{ form_widget(form.lastName) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.firstName) }}
+        {{ form_errors(form.firstName) }}
+        {{ form_widget(form.firstName) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.previousLastName) }}
+        {{ form_errors(form.previousLastName) }}
+        {{ form_widget(form.previousLastName) }}
+    </div>
+    
+    <div style="display: none;">   
+        {{ form_label(form.lastNameSearch) }}
+        {{ form_errors(form.lastNameSearch) }}
+        {{ form_widget(form.lastNameSearch) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.gender) }}
+        {{ form_errors(form.gender) }}
+        {{ form_widget(form.gender) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.dateOfBirth) }}
+        {{ form_errors(form.dateOfBirth) }}
+        {{ form_widget(form.dateOfBirth) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.disabled) }}
+        {{ form_errors(form.disabled) }}
+        {{ form_widget(form.disabled) }}
+    </div>        
+   
+    <div style="display: none;">   
+        {{ form_label(form.contact.contactStatus) }}
+        {{ form_errors(form.contact.contactStatus) }}
+        {{ form_widget(form.contact.contactStatus) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.address.addressLine1) }}
+        {{ form_errors(form.address.addressLine1) }}
+        {{ form_widget(form.address.addressLine1) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.address.addressLine2) }}
+        {{ form_errors(form.address.addressLine2) }}
+        {{ form_widget(form.address.addressLine2) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.address.addressLine3) }}
+        {{ form_errors(form.address.addressLine3) }}
+        {{ form_widget(form.address.addressLine3) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.address.town) }}
+        {{ form_errors(form.address.town) }}
+        {{ form_widget(form.address.town) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.address.county) }}
+        {{ form_errors(form.address.county) }}
+        {{ form_widget(form.address.county) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.address.postcode) }}
+        {{ form_errors(form.address.postcode) }}
+        {{ form_widget(form.address.postcode) }}
+    </div>
+    
+    <div style="display: none;">   
+        {{ form_label(form.address.addressType) }}
+        {{ form_errors(form.address.addressType) }}
+        {{ form_widget(form.address.addressType) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.phone.phoneNumber) }}
+        {{ form_errors(form.phone.phoneNumber) }}
+        {{ form_widget(form.phone.phoneNumber) }}
+    </div>
+    
+    <div style="display: none;">   
+        {{ form_label(form.phone.phoneType) }}
+        {{ form_errors(form.phone.phoneType) }}
+        {{ form_widget(form.phone.phoneType) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.mobileNumber) }}
+        {{ form_errors(form.mobileNumber) }}
+        {{ form_widget(form.mobileNumber) }}
+    </div>
+    
+    <div style="display: none;">   
+        {{ form_label(form.mobileType) }}
+        {{ form_errors(form.mobileType) }}
+        {{ form_widget(form.mobileType) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.email.emailAddress) }}
+        {{ form_errors(form.email.emailAddress) }}
+        {{ form_widget(form.email.emailAddress) }}
+    </div>
+    
+    <div style="display: none;">   
+        {{ form_label(form.email.emailType) }}
+        {{ form_errors(form.email.emailType) }}
+        {{ form_widget(form.email.emailType) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.nationality) }}
+        {{ form_errors(form.nationality) }}
+        {{ form_widget(form.nationality) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.ethnicGroup) }}
+        {{ form_errors(form.ethnicGroup) }}
+        {{ form_widget(form.ethnicGroup) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.nationalen) }}
+        {{ form_errors(form.nationalen) }}
+        {{ form_widget(form.nationalen) }}
+    </div>
+    
+    <div>   
+        {{ form_label(form.referenceNo) }}
+        {{ form_errors(form.referenceNo) }}
+        {{ form_widget(form.referenceNo) }}
+    </div>
+    
+   
+{% if myArray is defined %} 
+{% for indx, element in myArray %}
+    {{ element['title']  }} <hr/>
+    {% for key,child in element['view'] %}       
+        {% if field_name_and_types[indx][key] is defined %} 
+            {% set type = field_name_and_types[indx][key]['symfony_form_type'] %}
+            <!-- Title -->    {{ field_name_and_types[indx][key]['title'] }}
+                
+            {% if type == 'text' %}
+                {% for tbl_id,tbl_name in table_names_array %}
+                    {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                        {{ form_widget(child, {'id': 'eserv_temp_'~key, 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                        <input type="text" id="eserv_main_contactbundle_employer_{{tbl_name['name']}}_{{key}}" 
+                               name="eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}[{{key}}]"/>
+                        <script type="text/javascript">                            
+                            temp_val = $('#eserv_temp_{{key}}').val();
+                            $('#eserv_main_contactbundle_employer_{{tbl_name['name']}}_{{key}}').val(temp_val);                            
+                        </script>
+                    {% endif %}
+                {% endfor %}     
+                
+            {% elseif type == 'select' %}                
+                {% set select_options = field_name_and_types[indx][key]['options'] %}
+                    {% for tbl_id,tbl_name in table_names_array %}
+                        {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                            {{ form_widget(child, {'id': 'eserv_temp_'~key, 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                            <select id="eserv_main_contactbundle_employer_{{tbl_name['name']}}_{{key}}" 
+                                    name="eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}[{{key}}]">
+                            {% for optVal, optName in select_options %}
+                                <option value='{{optVal}}'>{{optName}}</option>
+                            {% endfor %}
+                            </select>
+                            <script type="text/javascript">                            
+                                temp_val = $('#eserv_temp_{{key}}').val();
+                                $('#eserv_main_contactbundle_person_{{tbl_name['name']}}_{{key}}').val(temp_val);                            
+                            </script>
+                        {% endif %}
+                    {% endfor %}
+            
+            {% elseif type == 'datetime' %}                
+                {% set select_options = field_name_and_types[indx][key]['options'] %}
+                    {% for tbl_id,tbl_name in table_names_array %}
+                        {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                            {{ form_widget(child, {'id': '', 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}                            
+                            <input type="text" id="eserv_main_contactbundle_person_{{tbl_name['name']}}_{{key}}_date" name="eserv_main_contactbundle_person[{{tbl_name['name']}}][{{key}}][date]" value="0000-00-00 00:00:00.000000"/>
+                            
+                        {% endif %}
+                    {% endfor %}
+                    
+            {% elseif type == 'radio' %}                
+                {% set select_options = field_name_and_types[indx][key]['options'] %}
+                    {% for tbl_id,tbl_name in table_names_array %}
+                        {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                            {{ form_widget(child, {'id': 'eserv_temp_'~key, 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                            {% for optVal, optName in select_options %}
+                                <input type="radio" id="eserv_main_contactbundle_person_{{tbl_name['name']}}_{{key}}" 
+                                       name="eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}[{{key}}]"
+                                       value="{{optVal}}">{{optName}}                                
+                                
+                            {% endfor %}
+                            <script type="text/javascript">                            
+                                temp_val = $('#eserv_temp_{{key}}').val();                                
+                                $('input[name="eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}[{{key}}]"][value='+temp_val+']').prop('checked',true);
+                            </script>
+                        {% endif %}
+                    {% endfor %}
+            
+            {% elseif type == 'checkbox' %}
+                
+                {% set select_options = field_name_and_types[indx][key]['options'] %}
+                    {% for tbl_id,tbl_name in table_names_array %}
+                    {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                        {{ form_widget(child, {'id': 'eserv_temp_'~key, 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                        <input type="checkbox" id="eserv_main_contactbundle_person_{{tbl_name['name']}}_{{key}}" 
+                               name="eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}[{{key}}]" 
+                               value=""
+                               onchange="changeDropDownValue(this.id);">                        
+                        <script type="text/javascript">                            
+                            temp_val = $('#eserv_temp_{{key}}').val(); 
+                            if(temp_val == 'Y'){
+                                $('#eserv_main_contactbundle_person_{{tbl_name['name']}}_{{key}}').prop('checked', true);
+                             
+                            }else{
+                                $('#eserv_main_contactbundle_person_{{tbl_name['name']}}_{{key}}').prop('checked', false);
+                         
+                            } 
+                            $('#eserv_temp_{{key}}').attr('name', 'changing_name_of_the_checkbox');
+                        </script>
+                    {% endif %}
+                {% endfor %}        
+                    
+            {% endif %}      
+                
+        {% else %}
+            <div style="display:none">
+                {{ form_row(child) }}
+            </div>
+        {% endif %}
+         <br/>
+    {% endfor %}
+         <hr/>
+{% endfor %}
+{% endif %}
+
+{{form_rest(form)}}
+
+{{form_end(form)}}
+

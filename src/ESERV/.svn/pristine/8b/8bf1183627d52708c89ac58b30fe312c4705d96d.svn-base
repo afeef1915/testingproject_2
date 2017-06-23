@@ -1,0 +1,91 @@
+ESERV\MAIN\MediaBundle\Entity\MediaStoreStaging: 
+    type: entity
+    repositoryClass: ESERV\MAIN\MediaBundle\Entity\MediaStoreStagingRepository
+    table: media_store_staging
+    indexes:
+        IDX_403D9663A49B0ADA:
+            columns:
+                - media_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fileSize:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: file_size
+        fileName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            column: file_name
+        fileExtension:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            column: file_extension
+        content:
+            type: blob
+            nullable: false
+            length: null
+            fixed: false
+        entityName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: entity_name
+        entityId:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: entity_id
+        width:
+            type: integer
+            nullable: true
+            unsigned: false
+        height:
+            type: integer
+            nullable: true
+            unsigned: false
+        dpi:
+            type: integer
+            nullable: true
+            unsigned: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        mediaType:
+            targetEntity: ESERV\MAIN\MediaBundle\Entity\MediaType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                media_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

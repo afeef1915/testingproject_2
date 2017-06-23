@@ -1,0 +1,57 @@
+ESERV\MAIN\ProfileBundle\Entity\UserAlertDetail:
+    type: entity
+    table: user_alert_detail
+    indexes:
+        fk_useald_usealt_idx:
+            columns:
+                - user_alert_id
+        fk_useald_quemas_idx:
+            columns:
+                - query_master_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+    manyToOne:
+        userAlert:
+            targetEntity: ESERV\MAIN\ProfileBundle\Entity\UserAlert
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_alert_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        queryMaster:
+            targetEntity: ESERV\MAIN\TableQueryBundle\Entity\QueryMaster
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                query_master_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

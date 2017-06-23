@@ -1,0 +1,65 @@
+ESERV\MAIN\ContactBundle\Entity\EservVContactStatus:
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Entity\EservVContactStatusRepository
+    table: eserv_v_contact_status
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: id
+            generator:
+                strategy: IDENTITY
+
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: code
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: name
+        contactTypeId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: contact_type_id
+        contactType:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: contact_type
+        statusTypeId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: status_type_id
+        statusType:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: status_type
+        mtlColourId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: mtl_colour_id
+        mtlColour:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: mtl_colour

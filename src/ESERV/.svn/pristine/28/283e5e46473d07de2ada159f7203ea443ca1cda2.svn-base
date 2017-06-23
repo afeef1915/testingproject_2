@@ -1,0 +1,54 @@
+ESERV\MAIN\WizardBundle\Entity\WzType: 
+    type: entity
+    repositoryClass: ESERV\MAIN\WizardBundle\Entity\WzTypeRepository
+    table: wz_type
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        description:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        code:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+        numOfPages:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: num_of_pages
+        confirmationPage:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: confirmation_page
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

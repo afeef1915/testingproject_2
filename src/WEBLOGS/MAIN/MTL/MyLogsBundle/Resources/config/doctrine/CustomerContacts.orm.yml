@@ -1,0 +1,36 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\CustomerContacts:
+    type: entity
+    table: customer_contacts
+#    id:
+#        dtindex:
+#            type: string
+#            nullable: false
+#            length: 10
+#            fixed: false
+#            id: true
+#            generator:
+#            strategy: IDENTITY
+    fields:
+        csev_customer_id:
+            type: string
+            nullable: false
+            length: 100
+           
+            fixed: false
+            column: csev_customer_id
+        csev_seq_id:
+            type: string
+            nullable: false
+            length: 300
+            id: true
+            fixed: false
+            column: csev_seq_id
+        csev_name:
+            type: string
+            nullable: false
+            length: 500
+           
+            fixed: false
+            column: csev_name
+        
+    lifecycleCallbacks: {  }

@@ -1,0 +1,26 @@
+{{ dataTable | raw }}
+<div class="clearfix"></div><hr />
+<label for="include_date_closed" class="btn btn-success checkbox_switch_label">Show Closed Employers</label>
+<input id="include_date_closed" type="checkbox" value="Y" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var is_closed = '';
+        $("#include_date_closed").bootstrapSwitch({
+            onText: 'Yes',
+            offText: 'No'
+        });
+        $('#include_date_closed').on('switchChange.bootstrapSwitch', function (event, state) {
+            if (state) {
+                is_closed = 'Y';
+            } else {
+                is_closed = 'N';
+            }
+
+            var filters = {
+                "is_closed": is_closed,
+            };
+            dataTableVar_{{ dataTable_id }}.fnMultiFilter(filters);
+        });
+    });
+</script>

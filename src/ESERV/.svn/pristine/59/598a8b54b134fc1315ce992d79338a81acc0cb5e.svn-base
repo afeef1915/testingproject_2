@@ -1,0 +1,73 @@
+ESERV\MAIN\MembershipBundle\Entity\MembershipOrg: 
+    type: entity
+    repositoryClass: ESERV\MAIN\MembershipBundle\Entity\MembershipOrgRepository
+    table: membership_org
+    uniqueConstraints:
+        fk_morg_org_idx:
+            columns:
+                - organisation_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+        potentialMembers:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: potential_members
+        potentialMembersDate:
+            type: datetime
+            nullable: true
+            column: potential_members_date
+        noMembers:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: no_members
+        noMembersDate:
+            type: datetime
+            nullable: true
+            column: no_members_date
+        priority:
+            type: integer
+            nullable: false
+            unsigned: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        organisation:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Organisation
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                organisation_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

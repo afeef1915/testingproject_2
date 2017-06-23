@@ -1,0 +1,83 @@
+ESERV\MAIN\HistoryBundle\Entity\History: 
+    type: entity
+    repositoryClass: ESERV\MAIN\HistoryBundle\Entity\HistoryRepository
+    table: history
+    indexes:
+        reason_type_idx:
+            columns:
+                - reason_type_id
+        history_ctrl_idx:
+            columns:
+                - history_control_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        entityId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: entity_id
+        entityName:
+            type: string
+            nullable: true
+            length: 1000
+            fixed: false
+            column: entity_name
+        fieldName:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            column: field_name
+        oldValue:
+            type: string
+            nullable: true
+            length: 2000
+            fixed: false
+            column: old_value
+        newValue:
+            type: string
+            nullable: true
+            length: 2000
+            fixed: false
+            column: new_value
+        reason:
+            type: string
+            nullable: true
+            length: 2000
+            fixed: false
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+    manyToOne:
+        reasonType:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                reason_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        historyControl:
+            targetEntity: ESERV\MAIN\HistoryBundle\Entity\HistoryControl
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                history_control_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

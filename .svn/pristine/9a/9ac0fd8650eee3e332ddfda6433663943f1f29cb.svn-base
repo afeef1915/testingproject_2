@@ -1,0 +1,4 @@
+services:
+#    weblogs_home.example:
+#        class: WEBLOGS\HomeBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

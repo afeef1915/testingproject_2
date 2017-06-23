@@ -1,0 +1,15 @@
+weblogs_dashboard_homepage:
+    path:     /dashboard
+    defaults: { _controller: WEBLOGSDashboardBundle:Default:index }
+    
+weblogs_customer_select_customer_account:
+    path:     /select-customer
+    defaults: { _controller: WEBLOGSDashboardBundle:Customer:index }
+    
+weblogs_customer_register_selected_customer_account:
+    path:     /register-selected-customer
+    defaults: { _controller: WEBLOGSDashboardBundle:Customer:registerSelectedCustomerProfile }    
+
+weblogs_customer_switch_customer:
+    path:     /switch-between-customer
+    defaults: { _controller: WEBLOGSDashboardBundle:Customer:switchCustomer }

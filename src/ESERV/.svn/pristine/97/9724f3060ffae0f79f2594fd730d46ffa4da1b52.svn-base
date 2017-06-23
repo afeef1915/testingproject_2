@@ -1,0 +1,84 @@
+ESERV\MAIN\MembershipBundle\Entity\MemberDisciplinary: 
+    type: entity
+    repositoryClass: ESERV\MAIN\MembershipBundle\Entity\MemberDisciplinaryRepository
+    table: member_disciplinary
+    indexes:
+        fk_memdis_member_idx:
+            columns:
+                - member_id
+        fk_memdis_memdty_idx:
+            columns:
+                - member_disc_type_id
+        fk_memdis_syscod_idx:
+            columns:
+                - web_enabled_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        disciplinaryNote:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: disciplinary_note
+        startDate:
+            type: datetime
+            nullable: true
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: true
+            column: end_date
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+    manyToOne:
+        member:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\Member
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                member_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        memberDiscType:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\MemberDisciplinaryType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                member_disc_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        webEnabled:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                web_enabled_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

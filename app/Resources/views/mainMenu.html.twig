@@ -1,0 +1,75 @@
+    <aside class="sidebar app_main_menu collapse navbar-collapse">
+        <nav class="sidebar-nav">
+            <ul class="main_nav" id="app_main_menu" ng-metis>
+                <li class="treeview desktop_mobile_text main-nav-title">
+                    <div class="main_menu_navigation_label pull-left" title="{{ 'Navigation' | trans }}" href="javascript:;">
+                        <span class="desktop_mobile_inline_text">{{ 'Navigation' | trans }}</span>
+                    </div>
+                    <button id="main_menu_switch_view_btn" type="button" class="btn pull-right desktop-only">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="clearfix"></div>
+                </li>
+                {% if hideAllMenuOptions is defined and hideAllMenuOptions is sameas(true) %}
+
+                {% else %}
+                    {# <li ng-class="{active: $state.includes('dashboard')}" class=""><a ui-sref="dashboard">{{ 'Home' | trans }}</a></li>#}
+                    <li class="treeview">
+                        <a ui-sref="dashboard" ng-class="{active: $state.includes('dashboard')}">
+                            <i class="fa fa-fw fa-dashboard"></i> 
+                            <span class="desktop_mobile_inline_text"> {{ 'Dashboard' | trans }}</span>
+                        </a>
+                    </li>
+
+                    {% if is_granted("ROLE_MTL") %}
+                        <li class="treeview">
+                            <a ui-sref="email.list" ng-class="{active: $state.includes('email.list')}">
+                                <i class="fa fa-fw fa-envelope-open"></i> 
+                                <span class="desktop_mobile_inline_text"> {{ 'My Email Notifications' | trans }}</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted("ROLE_MTL") %}
+                        <li class="treeview">
+                            <a ui-sref="code.list" ng-class="{active: $state.includes('code.list')}">
+                                <i class="fa fa-fw fa-cogs"></i> 
+                                <span class="desktop_mobile_inline_text"> {{ 'Codes Maintenance' | trans }}</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li class="treeview">
+                        <a ui-sref="mylogs.list" ng-class="{active: $state.includes('mylogs.list')}">
+                            <i class="fa fa-fw fa-th-list"></i> 
+                            <span class="desktop_mobile_inline_text"> {{ 'My Logs' | trans }}</span>
+                        </a>
+                    </li>
+                    {% if is_granted("ROLE_MTL") %}
+                        {#  <li class="dropdown">
+                                <a ui-sref="showusers.list">
+                                    <i class="fa fa-fw fa-users"></i> 
+                                    <span class="desktop_mobile_inline_text"> {{ 'Show Users' | trans }}</span>
+                                </a>
+                          </li>#}
+                    {% endif %}
+                    {% if is_granted("ROLE_MTL") %}
+                        {#<li class="dropdown">
+                            <a ui-sref="manageusers.list">
+                                <i class="fa fa-fw fa-users"></i> 
+                                <span class="desktop_mobile_inline_text"> {{ 'Manage User' | trans }}</span>
+                            </a>
+                        </li>#}
+                    {% endif %}
+                    {#  {{ dump(app.security.token.roles) }}#}
+                    {% if is_granted("ROLE_MTL") %}
+                        <li class="treeview">
+                            <a ui-sref="mylogsassign.list" ng-class="{active: $state.includes('mylogsassign.list')}">
+                                <i class="fa fa-fw fa-user-plus"></i> 
+                                <span class="desktop_mobile_inline_text"> {{ 'Logs Assigned' | trans }}</span>
+                            </a>                    
+                        </li>
+                    {% endif %}
+                {% endif %}
+                <!--- end of html --->
+            </ul>
+        </nav>
+    </aside>             

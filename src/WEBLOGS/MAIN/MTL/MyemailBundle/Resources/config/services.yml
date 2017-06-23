@@ -1,0 +1,4 @@
+services:
+#    weblogsmainmtl_myemail.example:
+#        class: WEBLOGS\MAIN\MTL\MyemailBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

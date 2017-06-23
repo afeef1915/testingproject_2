@@ -1,0 +1,80 @@
+ESERV\MAIN\SystemConfigBundle\Entity\Colour:
+    type: entity
+    repositoryClass: ESERV\MAIN\SystemConfigBundle\Entity\ColourRepository
+    table: colour
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        htmlCode:
+            type: string
+            nullable: false
+            length: 7
+            fixed: false
+            column: html_code
+        rgbRed:
+            type: string
+            nullable: false
+            length: 3
+            fixed: false
+            column: rgb_red
+        rgbGreen:
+            type: string
+            nullable: false
+            length: 3
+            fixed: false
+            column: rgb_green
+        rgbBlue:
+            type: string
+            nullable: false
+            length: 3
+            fixed: false
+            column: rgb_blue
+        hsvHue:
+            type: string
+            nullable: false
+            length: 3
+            fixed: false
+            column: hsv_hue
+        hsvSaturation:
+            type: string
+            nullable: false
+            length: 3
+            fixed: false
+            column: hsv_saturation
+        hsvValue:
+            type: string
+            nullable: false
+            length: 3
+            fixed: false
+            column: hsv_value
+        isWebsafe:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            column: is_websafe
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

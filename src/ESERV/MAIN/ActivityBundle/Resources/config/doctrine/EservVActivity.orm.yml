@@ -1,0 +1,146 @@
+ESERV\MAIN\ActivityBundle\Entity\EservVActivity:
+    type: entity
+    table: eserv_v_activity
+    
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY              
+    
+    fields:
+        activityId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: activity_id
+        entityId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: entity_id
+        entityName:
+            type: string
+            nullable: false
+            length: 250
+            fixed: false
+            comment: ''
+            column: entity_name
+        priorityId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: priority_id
+        parentId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: parent_id
+        shortDescription:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: short_description
+        activityDateTime:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: activity_date_time
+        statusDateTime:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: status_date_time
+        createdAt:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: updated_by
+        activityCategory:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+            comment: '' 
+            column: activity_category
+        status:
+            type: string
+            nullable: false
+            column: status
+        templateVersion:
+            type: string
+            nullable: true
+            length: 100
+            column: template_version
+        targetContact:
+            type: string
+            nullable: false
+            column: target_contact
+        targetContactId:
+            type: integer
+            nullable: false
+            column: target_contact_id
+        sourceContact:
+            type: string
+            nullable: false
+            column: source_contact
+        userDepartment:
+            type: string  
+            length: 100
+            column: user_department
+        activityTypeCode:
+            type: string  
+            length: 100
+            column: activity_type_code
+        gotoUrl:
+            type: string  
+            length: 100
+            column: goto_url
+        buttonLabel:
+            type: string  
+            length: 100
+            column: button_label
+        activitySourceId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: activity_source_id
+        activitySourceName:
+            type: string  
+            length: 100
+            column: activity_source_name
+        longDescription:
+            type: string
+            nullable: true
+            length: 500
+            fixed: false
+            comment: ''
+            column: long_description

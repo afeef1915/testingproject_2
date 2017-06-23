@@ -1,0 +1,58 @@
+<h3>{{ 'Import Files' | trans }}</h3>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' with {'viewMode': 'view'} %}
+
+<div id="eserv_InterfaceImportFiles_output"></div>
+{{form_start(import_form, { 'attr' : { 'id': 'InterfaceImportFiles' } })}}
+
+<div class="eserv_container_form_errors"></div>
+<fieldset>
+    {{ form_eservRow (import_form.name, {'labelSize':3,}) }}   
+    {{ form_eservSelectRow (import_form.category, {'labelSize':3,}) }}
+    {{ form_eservSelectRow (import_form.membershipOrg, {'labelSize':3,}) }}
+    {{ form_eservRow (import_form.description, {'labelSize':3,}) }}
+    {{ form_eservSelectRow (import_form.priority, {'labelSize':3,}) }}
+    {{ form_eservRow (import_form.attachment, {
+            'labelSize':3,
+            'isUploadFile': true,
+            'formId': 'InterfaceImportFiles',
+            'autoUpload': true,
+            'singleFileUpload': true,
+            'maxNumberOfFiles': 1,
+            'maxFileSize':3000000,
+            'acceptFileTypes': 'csv|txt',
+            'addFilesLabel': 'Browse..' | trans
+    }) }}
+</fieldset>
+
+<fieldset>
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : import_form.save, 'hide_edit_button' : true, 'hide_cancel' : true, 'cancel_link' : true,  'cancelHref' : '#/admin', 'closeBtnId' : 'cancel_importView_btn' } %}                                                                             
+</fieldset>
+<div style="display: none">
+    {{ form_rest(import_form) }}
+</div>
+
+{{form_end(import_form)}}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var membershipField = $('#{{ import_form.membershipOrg.vars.id }}');
+        membershipField.closest('.form-group').hide();
+        prepareAppForms('{{ import_form.vars.name }}', false, false, '#/admin', 'InterfaceImportFiles');
+        
+        $('#{{ import_form.category.vars.id }}').change(function () {            
+            var thisVal = $(this).val();
+            var catMemOrgArray = {{ cat_mem_org | json_encode | raw }};
+            
+            if(catMemOrgArray.indexOf(thisVal) > -1){
+                membershipField.closest('.form-group').show();
+                membershipField.show();
+                AddRequired(membershipField);                    
+            } else {
+                membershipField.closest('.form-group').hide();
+                membershipField.val('');
+                membershipField.hide();
+                RemoveRequired(membershipField);
+            }      
+        });
+    });
+</script>

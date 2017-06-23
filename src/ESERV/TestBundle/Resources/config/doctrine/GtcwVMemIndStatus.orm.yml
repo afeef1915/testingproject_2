@@ -1,0 +1,143 @@
+ESERV\TestBundle\Entity\GtcwVMemIndStatus:
+    type: entity
+#    repositoryClass: ESERV\TestBundle\Entity\GtcwVMemIndStatusRepository
+    table: gtcw_v_mem_ind_status
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: id
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactId:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: contact_id
+        contactStatusId:
+            type: integer
+            column: contact_status_id
+        contactStatusTypeCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: contact_status_type_code
+        contactStatusTypeName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: contact_status_type_name
+        memberStatusTypeCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: member_status_type_code
+        memberStatusTypeName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: member_status_type_name
+        referenceNo:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: reference_no
+        firstName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: '' 
+            column: last_name
+        contactName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: contact_name
+        dateOfBirth:
+            type: datetime
+            nullable: false
+            fixed: false
+            comment: ''
+            column: date_of_birth    
+        indStatusId:
+            type: integer
+            nullable: true
+            column: ind_status_id
+        indStatusCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: ind_status_code
+        indStatusName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: ind_status_name
+        indStatusNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: ind_status_name_welsh
+        startDate:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''
+            column: start_date 
+        passDate:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''
+            column: pass_date
+        failDate:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''
+            column: fail_date
+        employerId:
+            type: integer
+            nullable: true
+            column: employer_id
+        employerCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: employer_code
+        employerName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: employer_name
+        employerNameWelsh:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: employer_name_welsh

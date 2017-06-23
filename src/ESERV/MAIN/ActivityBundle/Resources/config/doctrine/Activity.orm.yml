@@ -1,0 +1,228 @@
+ESERV\MAIN\ActivityBundle\Entity\Activity: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\ActivityRepository
+    table: activity
+    indexes:
+        fk_act_actcat_idx:
+            columns:
+                - activity_category_id
+        fk_act_syscode_1_idx:
+            columns:
+                - status_id
+        fk_act_actset_idx:
+            columns:
+                - activity_set_id
+        fk_act_actsubcat_idx:
+            columns:
+                - activity_sub_category_id
+        fk_act_appcode_1_idx:
+            columns:
+                - comm_title_id
+        fk_act_templver_idx:
+            columns:
+                - template_version_id
+        fk_act_source_idx:
+            columns:
+                - activity_source_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        entityId:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: entity_id
+        entityName:
+            type: string
+            nullable: false
+            length: 250
+            fixed: false
+            column: entity_name
+        priorityId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: priority_id
+        parentId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: parent_id
+        shortDescription:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: short_description
+        activityDateTime:
+            type: datetime
+            nullable: true
+            column: activity_date_time
+        statusDateTime:
+            type: datetime
+            nullable: true
+            column: status_date_time
+        longDescription:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: long_description
+        adviceGiven:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: advice_given
+        isDeleted:
+            type: boolean
+            nullable: true
+            default: '0'
+            column: is_deleted
+        reissue:
+            type: string
+            nullable: true
+            length: 1
+            fixed: true
+            default: N
+        showAlert:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            default: N
+            column: show_alert
+        isReminder:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            column: is_reminder
+        noOfReminders:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: no_of_reminders
+        firstReminderDays:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: first_reminder_days
+        subsequentReminderDays:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: subsequent_reminder_days
+        commFirstName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: comm_first_name
+        commLastName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: comm_last_name
+        commPhoneNo:
+            type: string
+            nullable: true
+            length: 45
+            fixed: false
+            column: comm_phone_no
+        commEmail:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: comm_email
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        activityCategory:
+            targetEntity: ESERV\MAIN\ActivityBundle\Entity\ActivityCategory
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                activity_category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        status:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        activitySet:
+            targetEntity: ESERV\MAIN\ActivityBundle\Entity\ActivitySet
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                activity_set_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        activitySubCategory:
+            targetEntity: ESERV\MAIN\ActivityBundle\Entity\ActivitySubCategory
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                activity_sub_category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        commTitle:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                comm_title_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        templateVersion:
+            targetEntity: ESERV\MAIN\TemplateBundle\Entity\TemplateVersion
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                template_version_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        activitySource:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                activity_source_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

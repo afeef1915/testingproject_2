@@ -1,0 +1,3 @@
+eserv_merlin_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ESERVMerlinBundle:Default:index }

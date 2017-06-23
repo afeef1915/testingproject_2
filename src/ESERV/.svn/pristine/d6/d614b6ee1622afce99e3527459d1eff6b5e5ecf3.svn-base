@@ -1,0 +1,139 @@
+ESERV\MAIN\ContactBundle\Entity\RelationshipType:
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Entity\RelationshipTypeRepository
+    table: relationship_type
+    indexes:
+        fk_relationship_type_contact_type1_idx:
+            columns:
+                - contact_type_a_id
+        fk_relationship_type_contact_type2_idx:
+            columns:
+                - contact_type_b_id
+        fk_relationship_type_contact_subtype_list1_idx:
+            columns:
+                - contact_subtype_list_a_id
+        fk_relationship_type_contact_subtype_list2_idx:
+            columns:
+                - contact_subtype_list_b_id
+        fk_reltyp_fosgrp_idx:
+            columns:
+                - fos_group_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nameAB:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            column: name_a_b
+        nameBA:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            column: name_b_a
+        description:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        maxAllowed:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: max_allowed
+        inUse:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: 'If set to ''N'' then this record will NOT be shown or used'
+            default: N
+            column: in_use
+        userRestrict:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: 'If set to ''Y'' then these types cannot be maintained by users as they have been added as part of one of the system modules'
+            default: N
+            column: user_restrict
+        contactBEUser:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            default: N
+            column: contact_b_e_user
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contactTypeA:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_type_a_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contactTypeB:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_type_b_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contactSubtypeListA:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactSubtypeList
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_subtype_list_a_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contactSubtypeListB:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactSubtypeList
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_subtype_list_b_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        fosGroup:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\Group
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fos_group_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

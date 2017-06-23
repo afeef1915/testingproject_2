@@ -1,0 +1,92 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\LogsAttachments:
+    type: entity
+    table: logs_attachments
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+  
+          
+   
+    fields:
+        id:
+            type: string
+            length: '10'
+            id: true
+            column: id
+            
+        log_id:
+            type: string
+            length: '10'
+            column: log_id
+        
+        media_store_id:
+            type: string
+            length: '10'
+            column: media_store_id
+            
+#        file_name:
+#            type: string
+#            length: '200'
+#            column: file_name
+#            
+#        file_extension:
+#            type: string
+#            length: '100'
+#            column: file_extension
+#        
+#        content:
+#            type: string
+#            length: '1000'
+#            column: content
+#            
+#        entity_name:
+#            type: string
+#            length: '255'
+#            column: entity_name
+#            
+#        entity_id:
+#            type: string
+#            length: '255'
+#            column: entity_id
+#            
+#        width:
+#            type: string
+#            length: '20'
+#            column: width
+#        
+#        height:
+#            type: string
+#            length: '50'
+#            column: height
+#            
+#        dpi:
+#            type: string
+#            length: '50'
+#            column: dpi
+            
+        created_at:
+            type: datetime
+           
+            column: created_at
+            
+        updated_at:
+            type: datetime
+           
+            column: updated_at
+        
+        created_by:
+            type: datetime
+            column: created_by
+            
+        updated_by:
+            type: datetime
+            column: updated_by
+            
+        user_id:
+            type: string
+            length: '100'
+            column: user_id
+           

@@ -1,0 +1,157 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\VWwvMtlLogs:
+    type: entity
+    table: v_wwv_mtl_logs
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTO
+    fields:
+        log_id:
+            type: string
+            length: '10'
+            id: true
+            column: log_id
+        customer:
+            type: string
+            length: '20'
+        date_requested:
+            type: date
+            column: date_requested
+        date_required:
+            type: date
+            column: date_required
+        requested_by:
+            type: string
+            length: '50'
+            column: requested_by
+        approved_by:
+            type: string
+            length: '50'
+            column: approved_by
+        priority_level:
+            type: string
+            length: '10'
+            column: priority_level
+        category:
+            type: string
+            length: '10'
+            column: category
+        category_name:
+            type: string
+            length: '30'
+            column: category_name
+        description:
+            type: string
+            length: '4000'
+            column: description
+        mtl_person_id:
+            type: string
+            length: '10'
+            
+            column: mtl_person_id
+        estimate:
+            type: integer
+            column: estimate
+        date_completed:
+            type: date
+            column: date_completed
+        time_taken:
+            type: integer
+            column: time_taken
+        completed_by:
+            type: string
+            length: '10'
+            column: completed_by
+        mtl_description:
+            type: string
+            length: '4000'
+            column: mtl_description
+        developer_text:
+            type: string
+            length: '4000'
+            column: developer_text
+        mtl_category:
+            type: string
+            length: '10'
+            column: mtl_category
+        chargeable:
+            type: string
+            length: '10'
+            column: chargeable
+        invoice_no:
+            type: string
+            length: '10'
+            column: invoice_no
+        date_invoiced:
+            type: date
+            column: date_invoiced
+        slo_user_id:
+            type: string
+            length: '10'
+            column: slo_user_id
+        slo_date_last_updated:
+            type: date
+            column: slo_date_last_updated
+        slo_date_entered:
+            type: date
+            column: slo_date_entered
+        mlo_quote_id:
+            type: string
+            length: '10'
+            column: mlo_quote_id
+        customer_log_id:
+            type: string
+            length: '10'
+            column: customer_log_id
+        short_description:
+            type: string
+            length: '200'
+            column: short_description
+        invoice_amount:
+            type: decimal
+            column: invoice_amount
+        release_date:
+            type: date
+            column: release_date
+        sign_off_date:
+            type: date
+            column: sign_off_date
+        version_no:
+            type: string
+            length: '10'
+            column: version_no
+        mtl_budget_code:
+            type: string
+            length: '10'
+            column: mtl_budget_code
+        task:
+            type: string
+            length: '10'
+            column: task
+        assigned_to_id:
+            type: string
+            length: '10'
+            column: assigned_to_id
+        client_status_code:
+            type: string
+            length: '10'
+            column: client_status_code
+        urgent:
+            type: string
+            length: '10'
+            column: urgent
+        log_due_date:
+            type: date
+            column: log_due_date
+        mtl_dev_id:
+            type: string
+            length: '10'
+            column: mtl_dev_id
+        mtl_action:
+            type: string
+            length: '10'
+            column: mtl_action
+            
+    lifecycleCallbacks: {  }

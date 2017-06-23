@@ -1,0 +1,85 @@
+ESERV\MAIN\ContactBundle\Entity\ContactStatus: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Entity\ContactStatusRepository
+    table: contact_status
+    indexes:
+        fk_contact_status_system_code1_idx:
+            columns:
+                - status_type_id
+        fk_mtl_colour_idx:
+            columns:
+                - mtl_colour_id
+        FK_EB92529D5F63AD12:
+            columns:
+                - contact_type_id
+    uniqueConstraints:
+        idx_ContactStatus_a1_idx:
+            columns:
+                - code
+                - contact_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contactType:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        statusType:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                status_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        mtlColour:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\MtlColour
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mtl_colour_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

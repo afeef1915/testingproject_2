@@ -1,0 +1,68 @@
+ESERV\MAIN\CpdBundle\Entity\CpdActCodeVal:
+    type: entity
+    repositoryClass: ESERV\MAIN\CpdBundle\Entity\CpdActCodeValRepository
+    table: cpd_act_code_val
+    indexes:
+        fk_cpdacv_cpdacc_idx:
+            columns:
+                - cpd_act_code_control_id
+        fk_cpdacv_selfref2_idx:
+            columns:
+                - cpd_act_cd_val_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        cpdActCodeControl:
+            targetEntity: ESERV\MAIN\CpdBundle\Entity\CpdActCodeControl
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cpd_act_code_control_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        cpdActCdVal:
+            targetEntity: ESERV\MAIN\CpdBundle\Entity\CpdActCodeVal
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cpd_act_cd_val_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

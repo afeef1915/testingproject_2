@@ -1,0 +1,164 @@
+#weblogsmainmtl_my_logs_homepage:
+#    path:     /hello/{name}
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:Default:index }
+#weblogsmainmtl_my_logs_datatable_view:
+#    path:     /mylogs/list
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsList }
+#weblogsmainmtl_my_logs_datatable_data:
+#    path:     /mylogs/data
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsData }
+#    
+#weblogsmainmtl_my_logs_assigned_to:
+#    path:     /contact/name
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:AssisgnedTo }
+#weblogsmainmtl_my_logs_assigned_to_contact:
+#    path:     /contact/assigned
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogAssignedTo }
+#weblogsmainmtl_my_logs_new_create:
+#    path:     /mylogs/create
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsNew }
+#
+#weblogsmainmtl_my_logs_new_update:
+#    path:     /mylogs/updatelogs
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsCreate }
+#
+#weblogsmainmtl_my_logs_show:
+#    path:     /mylogs/show
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsNew }
+#
+#
+#weblogsmainmtl_my_logs_logcategory:
+#    path:     mylogs/logcategory
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:logCategory }
+#   
+#
+#weblogsmainmtl_my_logs_datatable_view_angular:
+#    path:     /mylogs/view/{id}
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsList1 }
+#
+weblogsmainmtl_my_logs_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:Default:index }
+weblogsmainmtl_my_logs_datatable_view:
+    path:     /mylogs/list
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsList }
+weblogsmainmtl_my_logs_datatable_data:
+    path:     /mylogs/data
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsData }
+weblogsmainmtl_my_logs_datatable_data1:
+    path:     /mylogs/data1
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsData1 }
+weblogsmainmtl_my_logs_assigned_to:
+    path:     /contact/name
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:AssisgnedTo }
+weblogsmainmtl_my_logs_assigned_to_contact:
+    path:     /contact/assigned
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogAssignedTo }
+weblogsmainmtl_my_logs_new_create:
+    path:     /mylogs/create
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsNew }
+weblogsmainmtl_my_logs_new_update:
+    path:     /mylogs/updatelogs
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsCreate }
+weblogsmainmtl_my_logs_show:
+    path:     /mylogs/show
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsNew }
+weblogsmainmtl_my_logs_logcategory:
+    path:     mylogs/logcategory
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:logCategory }
+weblogsmainmtl_my_logs_datatable_view_angular:
+    path:     /mylogs/view/{id}
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsList1 }
+weblogsmainmtl_my_logs_update_data:
+    path:     /mylogs/edit/{id}/customer/{customer}
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsEdit }
+weblogsmainmtl_my_logs_new_update_todo:
+    path:     /mylogs/update-data
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:mylogsUpdate }
+    
+weblogsmainmtl_my_logs_logs_tasks:
+    path:     /mylogs/logs_data
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:LogsTasks }
+weblogsmainmtl_my_logs_logs_category:
+    path:     /mylogs/logs_category
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:LogsCategory }
+weblogsmainmtl_my_logs_logs_attention_of:
+    path:     /mylogs/attention-of
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:AttentionOf }
+weblogsmainmtl_my_logs_logs_new_response_form_add:
+    path:     /mylogs/add-response
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:AddResponse }
+weblogsmainmtl_my_logs_logs_new_upload_image_form_add : 
+     path:     /mylogs/add-image
+     defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:AddImport }   
+
+weblogsmainmtl_my_logs_logs_new_upload_image_form_update : 
+     path:     /mylogs/upload-image
+     defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:UpdateImport }  
+
+eserv_main_media_files_upload_files:
+    path:     /files/upload_files
+    defaults: { _controller: ESERVMAINMediaBundle:Files:upload }
+    
+weblogsmainmtl_my_logs_logs_new_response_form_update:
+    path:     /mylogs/update-response
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:UpdateResponse }
+weblogsmainmtl_my_logs_logs_attention_of_render_html:
+    path:     /mylogs/attention-of/render-html
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:AttentionOfRenderToHtml }
+weblogsmainmtl_my_logs_logs_new_response_form_ajax_data:
+    path:     /mylogs/ajax-response
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:AjaxDataGetResponse } 
+#weblogsmainmtl_my_logs_portlets:
+#    path:     /mylogs/edit-portlet/{id}/customer/{customer}
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:MyLogsPortlet }
+    
+weblogsmainmtl_my_logs_datatable_edit_list:
+    path:     /mylogs/edit-portlets/{id}/customer/{customer}
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:MyLogsPortlet }
+
+weblogsmainmtl_my_logs_datatable_edit_list_data:
+    path:     /mylogs/edit-list-data
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:EditMyLogs:EditmylogsData }
+weblogsmainmtl_my_logs_new_response:
+    path:     /mylogs/new_responses/{id}
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:NewResponse }
+    
+weblogsmainmtl_my_logs_new_noti_inactive:
+    path:     /mylogs/noti_inactive
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:NotiInactive }
+#weblogsmainmtl_my_logs_person_id:
+#    path:     /getperson_id
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:GetPersonId }
+weblogsmainmtl_my_logs_job_status:
+    path:     /mylogs/job-status
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:JobStatus }
+weblogsmainmtl_my_logs_RenderPortletSearch:
+    path:     /mylogs/edit_portlets
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:RenderPortletSearch }
+weblogsmainmtl_my_logs_error_page_redirect:
+    path:     /mylogs/error
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:ErrorTemplate }
+weblogsmainmtl_my_logs_keyword_search:
+    path:     /mylogs/keyword
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:KeywordSearch }
+#weblogsmainmtl_assigned_mtl_mylogs:
+#    path:     /mylogs/assigned_mtl_mylogs
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:AssignedToMtlService }
+#weblogsmainmtl_total_open_logs_service:
+#    path:     /mylogs/total_open_logs_service
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:TotalOpenLogService }
+#weblogsmainmtl_total_open_logs_service:
+#    path:     /mylogs/assigned_to_customer_service
+#    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:MyLogs:AssignedToCustomerService }
+
+
+weblogsmainmtl_my_attachments_list:
+    path:     /attachments/list/{id}
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:Attachment:AttachmentsList }
+weblogsmainmtl_my_attachments_data:
+    path:     /attachments/data
+    defaults: { _controller: WEBLOGSMAINMTLMyLogsBundle:Attachment:AttachmentsData }
+
+    
+    

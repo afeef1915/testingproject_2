@@ -1,0 +1,97 @@
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' with {'viewMode': 'view'} %}
+
+<div id="eserv_updateNewEstablishment_output"></div>
+<hr />
+{{form_start(form, { 'attr' : { 'id': 'updateNewEstablishment' } })}}
+
+{% if table_names_array is defined %}
+    {% set tblNamesArray = [] %}
+    {% for tbl_id,tbl_name in table_names_array %}
+        {% set tblNamesArray = tblNamesArray | merge([ tbl_name['name'] ]) %}        
+    {% endfor %}    
+    {% for name,child in form.children %}
+        {% if name in tblNamesArray %}
+            {% for key,c in child %}
+                {{ form_widget(c, {'id': '', 'name': '', 'required': '', 'attr': {'style': 'display: none'} }) }}
+            {% endfor %}    
+        {% else %}
+
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<h3 class="">General info</h3>
+
+<fieldset>
+    {{ form_eservRow (form.code, { 'fieldSize': 2, 'customPlaceHolder': '' }) }}
+    {{ form_eservRow (form.name, { 'customPlaceHolder': 'English Name' }) }}
+    
+    {% include 'ESERVMAINHelpersBundle:Form:alt_languages.html.twig' with { 'alt_languages' : alt_languages } %}
+    
+    {{ form_eservSelectRow (form.type) }}
+</fieldset>
+<h3 class="">Contact Info </h3>
+
+<fieldset>    
+    <span class="postCodeLookupArea">
+        {{ form_eservPostCodeLookup (form.postcode) }}
+        {% include 'ESERVMAINHelpersBundle:Form:eserv_address_selector.html.twig' %}
+        {{ form_eservRow (form.address1, { 'extraGroupClass': 'target', 'extraFieldClass': 'street', 'customPlaceHolder': 'i.e. Flat 4', 'fieldSize': 4}) }}
+        {{ form_eservRow (form.address2, { 'extraGroupClass': 'target', 'extraFieldClass': 'ad2', 'fieldSize': 4  }) }}
+        {{ form_eservRow (form.address3, { 'extraFieldClass': 'ad3', 'fieldSize': 4 }) }}
+        {{ form_eservRow (form.town, { 'extraFieldClass': 'town', 'fieldSize': 4 }) }}
+        {{ form_eservRow (form.county, { 'extraFieldClass': 'county', 'fieldSize': 4 }) }}
+    </span>        
+    
+    {#{ form_eservSelectRow (form.phoneType) }#}
+    {{ form_eservRow (form.phoneNumber, { 'fieldSize': 4, 'customPlaceHolder': '' }) }}
+    {{ form_eservRow (form.webAddress, { 'fieldSize': 4, 'customPlaceHolder': '' }) }}
+    
+    {{ form_eservRow (form.dateOpened, { 'fieldType': 'date' }) }}
+</fieldset>
+
+{% include 'ESERVMAINAdministrationBundleComponentsClientAdministrationBundle:Default:CommonClientFields.html.twig' with {'myArray': myArray, 'form_name': 'eserv_main_contactbundle_establishment' } %}
+
+<fieldset>
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'hide_cancel' : true, 'cancel_link' : true,  'cancelHref' : '#/organisation/establishment', 'closeBtnId' : 'cancel_establishmentAdd_btn' } %}                                                                          
+</fieldset>
+
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        prepareAppForms('{{ form.vars.name }}', false, false, '#/organisation/establishment');
+       /* 
+        $('#{{ form.postcode.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.address1.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.address2.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.address3.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.town.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.county.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        }); */        
+    });
+    /*
+    function AddressValidationLoc(){ 
+        var postcodeF = $('#{{ form.postcode.vars.id }}');
+        var addressLine1F = $('#{{ form.address1.vars.id }}');
+        var addressLine2F = $('#{{ form.address2.vars.id }}');
+        var addressLine3F = $('#{{ form.address3.vars.id }}');
+        var townF = $('#{{ form.town.vars.id }}');
+        var countyF = $('#{{ form.county.vars.id }}');
+        AddressValidation(postcodeF,addressLine1F,addressLine2F,addressLine3F,townF,countyF);        
+    }*/
+</script>

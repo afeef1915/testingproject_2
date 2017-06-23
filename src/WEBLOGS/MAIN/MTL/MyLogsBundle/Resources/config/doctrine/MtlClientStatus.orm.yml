@@ -1,0 +1,28 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\MtlClientStatus:
+    type: entity
+    table: mtl_client_status
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+  
+          
+   
+    fields:
+        LOG_ID:
+            type: string
+            length: '10'
+            id: true
+            column: LOG_ID
+        STATUS:
+            type: string
+            length: '50'
+            column: STATUS
+        START_DATE:
+            type: date
+            column: START_DATE
+        END_DATE:
+            type: date
+            column: END_DATE

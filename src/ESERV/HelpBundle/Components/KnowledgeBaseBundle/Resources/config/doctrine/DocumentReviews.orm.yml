@@ -1,0 +1,52 @@
+#DRE_DOCUMENT_ID                          NUMBER
+#DRE_ITEM_SEQ                             NUMBER
+#DRE_PERSON_ID                            VARCHAR2(8)
+#DATE_CREATED                             DATE
+#REVIEW_TEXT                              VARCHAR2(2048)
+#DATE_ARCHIVED                            DATE
+#DRE_STATUS_CODE                          VARCHAR2(5)
+#DRE_STATUS_DATE                          DATE
+#DRE_STATUS_CHANGE_BY_ID                  VARCHAR2(8)
+#DRE_REASON_CODE                          VARCHAR2(5)
+
+ESERV\HelpBundle\Components\KnowledgeBaseBundle\Entity\DocumentReviews:
+    type: entity
+    table: document_reviews
+    id:
+        document_id:
+            type: integer
+            column: dre_document_id
+            generator: { strategy: AUTO }
+    fields:
+        item_seq:
+            type: integer 
+            column: dre_item_seq
+        person_id:
+            type: string 
+            column: dre_person_id
+            length: 8
+        date_created:
+            type: string 
+            column: date_created
+        review_text:
+            type: string 
+            column: review_text
+            length: 2048
+        date_archived:
+            type: string 
+            column: date_archived
+        status_code:
+            type: string 
+            column: dre_status_code
+            length: 5
+        status_date:
+            type: string 
+            column: dre_status_date
+        status_change_by_id:
+            type: string 
+            column: dre_status_change_by_id
+            length: 8
+        reason_code:
+            type: string 
+            column: dre_reason_code
+            length: 5

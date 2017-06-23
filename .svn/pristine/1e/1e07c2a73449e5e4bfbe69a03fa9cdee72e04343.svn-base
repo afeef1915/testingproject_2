@@ -1,0 +1,28 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\MtlLogAttentionOf:
+    type: entity
+    table: mtl_log_attention_of
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+  
+          
+   
+    fields:
+        LOG_ID:
+            type: string
+            length: '10'
+            id: true
+            column: LOG_ID
+        ASSIGNED_TO_ID:
+            type: string
+            length: '50'
+            column: ASSIGNED_TO_ID
+        START_DATE:
+            type: date
+            column: START_DATE
+        END_DATE:
+            type: date
+            column: END_DATE

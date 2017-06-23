@@ -1,0 +1,69 @@
+ESERV\TestBundle\Entity\GtcwVMemIndTerm: 
+    type: entity
+    table: gtcw_v_mem_ind_term
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        gtcwMemIndTermId:
+            type: integer
+            nullable: false
+            column: gtcw_mem_ind_term_id
+        startDate:
+            type: datetime            
+            fixed: false
+            comment: '' 
+            column: start_date            
+        completionDate:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: completion_date
+        leaveDate:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: leave_date
+        agencyName:
+            type: string                    
+            column: agency_name
+        bodyName:
+            type: string                    
+            column: body_name
+        schoolName:
+            type: string                    
+            column: school_name
+        sessionsCompleted:
+            type: integer            
+            column: sessions_completed
+        abscenses:
+            type: integer
+            column: abscenses
+        inductionRoute:
+            type: string            
+            column: induction_route
+        extLength:
+            type: string                    
+            column: ext_length
+#        endDate:
+#            type: datetime            
+#            fixed: false
+#            comment: ''
+#            column: end_date
+        fundingAmount:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: funding_amount

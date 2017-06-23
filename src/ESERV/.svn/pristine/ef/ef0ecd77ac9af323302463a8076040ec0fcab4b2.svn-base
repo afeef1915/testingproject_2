@@ -1,0 +1,174 @@
+<div id="eserv_updateTeacher_output1"></div>
+
+{{form_start(form)}}
+
+<fieldset style="background-color: {{ options.html_colour }}">
+    {{ options.contact_status }}   
+</fieldset>
+
+<h3>Personal Details</h3>
+        <fieldset>
+            <div class="col-lg-12">
+                <div class="form-group">
+                        {{ form_label(form.lastName, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.lastName, {'attr': {'class': 'form-control', 'placeholder': 'Surname'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.firstName, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.firstName, {'attr': {'class': 'form-control', 'placeholder': 'Forename(s)'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.previousLastName, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.previousLastName, {'attr': {'class': 'form-control', 'placeholder': 'Previous Surname'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.gender, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.gender, {'attr': { 'class': 'form-control', 'placeholder': 'Gender'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.dateOfBirth, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.dateOfBirth, {'attr': { 'class': 'form-control eserv_date_picker', 'placeholder': 'DD/MM/YYYY'} }) }}
+                    </div>
+                </div>        
+                <div class="form-group">
+                        {{ form_label(form.disabled, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-md-5">
+                        <div class="controls">
+                            <label class="checkbox inline">
+                                    {{ form_widget(form.disabled, {'attr': { 'placeholder': 'Disabled'} }) }}
+                            </label>
+                        </div>
+                    </div>
+                </div>                
+                <div class="form-group target">
+                        {{ form_label(form.address.addressLine1, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.address.addressLine1, {'attr': {'class': 'form-control', 'placeholder': 'Address Line 1'} }) }}
+                    </div>
+                </div>
+                <div class="form-group target">
+                        {{ form_label(form.address.addressLine2, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.address.addressLine2, {'attr': {'class': 'form-control', 'placeholder': 'Address Line 2'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.address.addressLine3, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.address.addressLine3, {'attr': { 'class': 'form-control', 'placeholder': 'Address Line 3'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.address.town, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.address.town, {'attr': { 'class': 'form-control', 'placeholder': 'Town'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.address.county, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.address.county, {'attr': {'class': 'form-control', 'placeholder': 'County'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.address.postcode, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.address.postcode, {'attr': { 'class': 'form-control', 'placeholder': 'Postcode'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.phone.phoneNumber, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.phone.phoneNumber, {'attr': { 'class': 'form-control', 'placeholder': 'Phone Number'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.mobileNumber, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.mobileNumber, {'attr': { 'class': 'form-control', 'placeholder': 'Mobile Number'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.email.emailAddress, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.email.emailAddress, {'attr': { 'class': 'form-control', 'placeholder': 'Email Address'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.nationality, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.nationality, {'attr': { 'class': 'form-control', 'placeholder': 'Nationality'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.ethnicGroup, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.ethnicGroup, {'attr': { 'class': 'form-control', 'placeholder': 'Ethnic Group'} }) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                        {{ form_label(form.nationalen, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+                    <div class="col-lg-6">
+                            {{ form_widget(form.nationalen, {'attr': {'class': 'form-control', 'placeholder': 'Nationalen'} }) }}
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        
+        <fieldset>
+            <div class="form-group">
+                <div class="col-md-12">
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right',  'btn-loading': "is_processing.teacher", 'data-loading-text': "Saving..."} }) }}
+
+                    <input class="btn btn-default" value="Reset" type="reset" />
+                    <a class="btn btn-danger" href="#/teacher">Cancel</a>
+                </div>
+            </div>        
+        </fieldset>
+
+        <div style="display: none"> 
+            {{ form_rest(form) }}
+            {{form_end(form)}}
+        </div>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $('.eserv_date_picker').datepicker({
+            dateFormat: "dd/mm/yy"
+        });
+
+        var options = {
+            target: '#eserv_updateTeacher_output1',
+            beforeSubmit: updateTeacher,
+            success: updateTeacherResult
+        };
+
+        $('form[name="{{ form.vars.name }}"]').ajaxForm(options);
+
+        function updateTeacher(formData, jqForm, options) {
+            $('#eserv_form_saving').show();
+            return true;
+        }
+
+        function updateTeacherResult(responseText, statusText, xhr, $form) {
+            $('#eserv_form_saving').hide();
+            if (responseText.success) {
+                DisplayAppAlert('success', responseText.msg);
+                refreshAllProtlets();
+                //window.location.replace(root_url + '#/teacher');
+            } else {
+                DisplayAppAlert('danger', responseText.msg);
+            }
+        }
+    });
+</script>

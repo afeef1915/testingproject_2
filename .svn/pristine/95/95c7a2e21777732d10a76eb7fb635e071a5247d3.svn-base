@@ -1,0 +1,371 @@
+
+{% include '@weblogs_templates/innerPageHeader.html.twig' with {
+            'label': 'My Logs' | trans,
+            'fa_icon': 'user-circle',
+            'buttons': [
+                {
+                    'label': 'Create New Log' | trans,
+                    'css_class': 'btn btn-success direction2',
+                    'ng_controller': 'EservlogsModalCtrl',
+                    'ng_click': "openlogsEservModal('eserv_main_user_add_new_logs', 'Create New Log', 'lg', {target_url: '" ~ path('weblogsmainmtl_my_logs_new_create', {}) ~ "'})",
+
+                    'fa_icon': 'plus-circle'
+                }
+            ]
+        }
+%}
+{%set dropdown_html='<div class="form-group form-group-sm"><label class="control-label">Job Status</label><select class="form-control" id="job_status">'%}
+{%set dropdown_html=dropdown_html~'<option value="O">Open</option>' %}
+{%set dropdown_html=dropdown_html~'<option value="C">Closed</option>' %}
+{%set dropdown_html=dropdown_html~'<option value="A">All</option>' %}
+{%set dropdown_html=dropdown_html~'</select></div>'%}
+
+{% set text_field_htm='<div class="form-group form-group-sm"><label class="control-label">Keyword</label>'%}
+{% set text_field_htm=text_field_htm~'<input class="form-control" placeholder="Search for Keywords" id="p_keyword">'%}
+{% set text_field_htm=text_field_htm~'<div id="keyword-not_found" style="display:none" class="alert alert-info"><a  id="keyword-close" class="close" >&times;</a>'%}
+{% set text_field_htm=text_field_htm~'<strong> Please Try With Different Keywords </strong></div>'%}
+{% set text_field_htm=text_field_htm~'</div>'%}
+
+
+
+{#<hr/>#}
+{{ text_field_htm| raw}}
+<hr/>
+
+{{ dataTable | raw }}
+<input type="hidden" value={{staff}} id="staff">
+<input type="hidden"  id="check_logs">
+<input type="hidden" value={%if assigned_to_id is defined and assigned_to_id is not null %}{{assigned_to_id}}{%endif%} id="assigned_to_id">
+<input type="hidden" value={%if mtl_perosn_id is defined and mtl_perosn_id is not null %}{{mtl_perosn_id}}{%endif%} id="mtl_perosn_id">
+<input type="hidden" value={%if user is defined and user is not null %}{{user}}{%endif%} id="user">
+
+<script>
+    $(document).ready(function () {
+
+
+        var page_url = sessionStorage.getItem("page_url");
+        var mylogs_list_url = window.location.href.split("#/")[1];
+
+
+        if (mylogs_list_url == 'mylogs/list')
+        {
+
+            page_url = mylogs_list_url;
+        } else
+        {
+
+            page_url = page_url;
+        }
+
+
+        // common filter function //
+        function filterEmploymentDetailTableCustomer(filterValue, filterValue1, filterValue2, filterValue3, filterValue4, filterValue5, filterValue6, filterValue7, filterValue8) {
+
+            var tablefilters = {
+                "customer": filterValue,
+                "attention_of": filterValue1,
+                "date_completed": filterValue2,
+                "priority": filterValue3,
+                "category": filterValue4,
+                "task_description": filterValue5,
+                "job_no_autoselect": filterValue6,
+                "assigned_to_id": filterValue7,
+                "mtl_person_id": filterValue8
+            };
+
+            dataTableVar_{{ dataTable_id }}.fnMultiFilter(tablefilters);
+
+        }
+
+        function filterKeyword(filterValue, filterValue1) {
+
+            var tablefilters = {
+                "job_no_autoselect": filterValue,
+                "date_completed": filterValue1,
+            };
+
+            dataTableVar_{{ dataTable_id }}.fnMultiFilter(tablefilters);
+
+        }
+
+        var customer_data = sessionStorage.getItem("customer_new");
+        var priority = sessionStorage.getItem("chart_priority");
+        var chart_task = sessionStorage.getItem("chart_task");
+        var chart_category = sessionStorage.getItem("chart_category");
+
+        $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_date_completed").val("IS NULL");
+
+        //$("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(customer_data);
+        // alert(page_url);
+        if (page_url == 'mylogs-list' || page_url == 'mylogs/list')
+        {
+          
+            if ($("#user").val() == 'CUSTOMER')
+            {
+                {#if (sessionStorage.getItem("save") !=1)
+                {#}
+                   
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_assigned_to_id").val($("#assigned_to_id").val());
+                   {# sessionStorage.setItem("save",0);
+                }#}
+                
+            }
+            
+            if ($("#user").val() == 'MTL')
+            {
+                {# if (sessionStorage.getItem("save") !=1)
+                {#}
+
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_mtl_person_id").val($("#mtl_perosn_id").val());
+                   {# sessionStorage.setItem("save",0);
+                }#}
+               
+            }
+            if ($("#staff").val() == 'N')
+            {
+
+
+                $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(customer_data);
+            }
+            filterEmploymentDetailTableCustomer(
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_date_completed").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_priority").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_category").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_task_description").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_job_no_autoselect").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_assigned_to_id").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_mtl_person_id").val()
+                    );
+            //  }
+
+        }
+        if (page_url == 'open-logs')
+        {
+
+            //customer set//attention_of
+            $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(customer_data);
+            $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val('%');
+            //filter callback//
+            filterEmploymentDetailTableCustomer(
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_date_completed").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_priority").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_category").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_task_description").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_job_no_autoselect").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_assigned_to_id").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_mtl_person_id").val()
+                    );
+        }
+
+        if (page_url == 'assigned-mtl')
+        {
+
+
+            $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val('MTL');
+            $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(customer_data);
+            filterEmploymentDetailTableCustomer(
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_date_completed").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_priority").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_category").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_task_description").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_job_no_autoselect").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_assigned_to_id").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_mtl_person_id").val()
+                    );
+
+        }
+        if (page_url == 'clients-data')
+        {
+            $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(customer_data);
+            // $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val('MTL');
+            filterEmploymentDetailTableCustomer(
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_date_completed").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_priority").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_category").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_task_description").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_job_no_autoselect").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_assigned_to_id").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_mtl_person_id").val()
+                    );
+
+
+        }
+
+
+        if (page_url == 'priority-data')
+        {
+            // console.log("priority");
+            $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_priority").val(priority);
+            $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(customer_data);
+
+            filterEmploymentDetailTableCustomer(
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_date_completed").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_priority").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_category").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_task_description").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_job_no_autoselect").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_assigned_to_id").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_mtl_person_id").val()
+                    );
+        }
+
+        if (page_url == 'category-data')
+        {
+            $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_category").val(chart_category);
+            $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(customer_data);
+            filterEmploymentDetailTableCustomer(
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_date_completed").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_priority").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_category").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_task_description").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_job_no_autoselect").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_assigned_to_id").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_mtl_person_id").val()
+                    );
+        }
+
+        if (page_url == 'task-data')
+        {
+            $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_task_description").val(chart_task);
+            $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(customer_data);
+
+            filterEmploymentDetailTableCustomer(
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_date_completed").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_priority").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_category").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_task_description").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_job_no_autoselect").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_assigned_to_id").val(),
+                    $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_mtl_person_id").val()
+                    );
+        }
+    {#if ($("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val() != '')
+    {
+
+        //triggerChange();
+
+    }#}
+            $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_search_trigger").click(function () {
+
+                $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_assigned_to_id").val('');
+                $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_mtl_person_id").val('');
+            });
+
+            $(".select2-hidden-accessible").select2({
+                maximumSelectionLength: 1,
+                tags: true,
+            });
+            //}
+    {# else
+     {
+             $(".select2-hidden-accessible").select2({
+             maximumSelectionLength: 1,
+
+             });
+     }#}
+             // });
+
+
+             $("#keyword-close").click(function () {
+                 $("#keyword-not_found").hide();
+             });
+             //keyword search js code //
+             //$(document).ready(function () {
+
+             $(".form-group:eq( 3 )").hide();
+             $(".form-group:eq(8)").hide();
+             $(".form-group:eq(10)").hide();
+               $(".form-group:eq(11)").hide();
+
+             $('#p_keyword').keypress(function (event)
+             {
+                 if (event.which == 13)
+                 {
+                     toggleMainLoader('Loading...', true);
+
+                     var keyword = $("#p_keyword").val();
+                     $.ajax({
+                         url: root_url + 'mylogs/keyword',
+                         cache: false,
+                         type: "POST",
+                         data: {'data': keyword},
+                         dataType: 'json',
+                         success: function (html)
+                         {
+                             // console.log(html.length);
+                             if (html.length == undefined)
+                             {
+                                 toggleMainLoader(null, false);
+
+                                 var keyword = html.keyword_search.data;
+                                 //console.log(keyword);
+                                 var jobNos = keyword.map(function (i) {
+                                     return i.LOG_ID;
+                                 });
+                                 //console.log(jobNos.length);
+
+                                 //console.log(jobNos.join(","));
+                                 filterEmploymentDetailTableCustomer(
+                                         $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val(),
+                                         $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val(),
+                                         $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_date_completed").val(),
+                                         $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_priority").val(),
+                                         $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_category").val(),
+                                         $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_task_description").val(),
+                                         jobNos.join(","),
+                                         $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_assigned_to_id").val(),
+                                         $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_mtl_person_id").val()
+                                         );
+                                 //filterEmploymentDetailTable(jobNos.join(","));
+
+                                 // $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_job_no").val(jobNos.join(","));
+                             } else
+                             {
+                                 toggleMainLoader(null, false);
+                                 $("#keyword-not_found").show();
+
+                             }
+                         }
+
+
+                     });
+                 }
+
+
+             });
+         });
+         //end of code //
+    {# var h_value=$("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val()
+     if(h_value=='%')
+     {
+        $(".form-group:eq( 7 )").hide();
+          
+        //   $(".form-group").attr('4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of').hide();
+     }#}
+
+
+
+                  
+    {# var h_value=$("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of").val()
+     if(h_value=='%')
+     {
+        $(".form-group:eq( 7 )").hide();
+          
+        //   $(".form-group").attr('4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_attention_of').hide();
+     }#}
+
+</script>

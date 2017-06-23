@@ -1,0 +1,31 @@
+
+# ApplicationCode
+eserv_main_application_code_type_list:
+    path:     /application_code_type
+    defaults: { _controller: ESERVMAINApplicationCodeBundle:ApplicationCode:applicationCodeTypeList }
+eserv_main_application_code_list:
+    path:     /application_code
+    defaults: { _controller: ESERVMAINApplicationCodeBundle:ApplicationCode:applicationCodeList }
+eserv_main_application_code_ajax_list:
+    path:     /application_code/ajaxList
+    defaults: { _controller: ESERVMAINApplicationCodeBundle:ApplicationCode:data }
+    
+    
+
+eserv_main_application_code_new:
+    path:     /application_code/add
+    defaults: { _controller: ESERVMAINApplicationCodeBundle:ApplicationCode:newApplicationCode }
+    
+eserv_main_application_code_create:
+    path:     /application_code/create
+    defaults: { _controller: ESERVMAINApplicationCodeBundle:ApplicationCode:createApplicationCode }
+    methods : [POST]   
+    
+eserv_main_application_code_update:
+    path:     /application_code/update/{id}
+    defaults: { _controller: ESERVMAINApplicationCodeBundle:ApplicationCode:updateApplicationCode, id: null }
+    methods : [POST]    
+    
+eserv_main_application_code_edit:
+    path:     /application_code/edit/{id}
+    defaults: { _controller: ESERVMAINApplicationCodeBundle:ApplicationCode:editApplicationCode, id: null }    

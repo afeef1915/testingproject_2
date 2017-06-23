@@ -1,0 +1,68 @@
+<h3>Add Application Code</h3>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' with {'viewMode': 'view'} %}
+
+<div id="eserv_updateApplicationCode_output"></div>
+{{form_start(form, { 'attr' : { 'id': 'updateApplicationCode' } })}}
+
+<fieldset>
+    <div class="form-group">
+        {{ form_label(form.name, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+        <div class="col-lg-5">
+            {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Name'} }) }}
+        </div>
+    </div>
+
+    {% include 'ESERVMAINHelpersBundle:Form:alt_languages.html.twig' with { 'alt_languages' : alt_languages } %}
+
+    <div class="form-group">
+        {{ form_label(form.code, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+        <div class="col-lg-3">
+            {{ form_widget(form.code, {'attr': {'class': 'form-control', 'placeholder': 'Code'} }) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.dateOpened, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+        <div class="col-lg-3">
+            {{ form_widget(form.dateOpened, {'attr': {'class': 'form-control eserv_date_picker', 'placeholder': 'DD/MM/YYYY'} }) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.dateClosed, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+        <div class="col-lg-3">
+            {{ form_widget(form.dateClosed, {'attr': {'class': 'form-control eserv_date_picker', 'placeholder': 'DD/MM/YYYY'} }) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.applicationCodeType, null, {'label_attr': {'class': 'col-lg-4 control-label remove_content'} }) }}
+        <div class="col-lg-5">
+            {% if type_name %}
+                <div style="padding: 3px 0;">{{ type_name }}</div>
+            {% else %}
+                {{ form_widget(form.applicationCodeType, {'attr': {'class': 'form-control', 'placeholder': 'Application Code Type'} }) }}
+            {% endif %}
+        </div>
+    </div>   
+</fieldset>
+
+<fieldset>
+    {% set appTypeIdLink = '' %}
+    {% if type_id != false %}
+        {% set appTypeIdLink = '/application_codes/group/view/' ~ type_id %}
+    {% endif %}
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'hide_cancel' : true, 'cancel_link' : true,  'cancelHref' : '#/admin' ~ appTypeIdLink, 'closeBtnId' : 'cancel_establishmentAdd_btn' } %}                                                                          
+</fieldset>
+
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+
+{{form_end(form)}}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#{{ form.applicationCodeType.vars.id }}').on('change', function(){            
+            prepareAppForms('{{ form.vars.name }}', false, false, '#/admin/application_codes/group/view/' + $(this).val());
+        });
+        prepareAppForms('{{ form.vars.name }}', false, false, '#/admin{% if type_id != false %}/application_codes/group/view/{{ type_id }}{% endif %}');
+    });
+</script>

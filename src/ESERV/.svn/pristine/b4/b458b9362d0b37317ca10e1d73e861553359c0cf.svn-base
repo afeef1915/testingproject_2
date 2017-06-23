@@ -1,0 +1,64 @@
+ESERV\MAIN\TableQueryBundle\Entity\QueryView:
+    type: entity
+    table: query_view
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        viewName:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+            column: view_name
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        entityName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: entity_name
+            comment: 'This will be the fully qualified doctrine entity name such as ESERVMAINActivityBundle:VActivityJobs'
+        isActive:
+            type: string
+            nullable: false
+            length: 1
+            column: is_active
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        userAlertFosGroup:
+            targetEntity: ESERV\MAIN\ProfileBundle\Entity\UserAlertFosGroup
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_alert_fos_group_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

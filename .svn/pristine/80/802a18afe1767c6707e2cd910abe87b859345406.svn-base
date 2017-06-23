@@ -1,0 +1,49 @@
+<div id="eserv_AddFosUser_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'AddFosUser' } })}}
+<div class="eserv_container_form_errors"></div>
+
+<fieldset>
+    <div class="col-lg-12">
+            {{ form_eservSelectRow (form.fosGroup, { 'labelSize': 3 }) }}
+            {{ form_eservRow (form.username, { 'labelSize': 3, 'fieldSize': 4, 'extraFieldClass': 'mtl_input_tooltip', 'attr': 
+                { 
+                    'title': 'Username must be 6 characters or more in length' | trans, 
+                    'data-tooltip-pos-at': 'right center', 
+                    'data-tooltip-pos-my': 'left center'
+                } 
+            }) }}
+            {{ form_eservRow (form.password, { 'labelSize': 3, 'fieldSize': 4, 'extraFieldClass': 'mtl_input_tooltip', 'attr': 
+                { 
+                    'title': 'Password must be 6 characters or more in length and different from the username above' | trans, 
+                    'data-tooltip-pos-at': 'right center', 
+                    'data-tooltip-pos-my': 'left center'
+                } 
+            }) }}
+            {{ form_eservRow (form.retypePassword, { 'labelSize': 3, 'fieldSize': 4, 'extraFieldClass': 'mtl_input_tooltip'}) }}
+            {{ form_eservRow (form.person, { 'labelSize': 3,  'fieldSize' : '4', 'isAutocomplete': true, 'acValues': ac_values_arr is defined ? ac_values_arr['persons'] : false }) }}
+            {{ form_eservRow (form.send_email, { 'isCheckbox': 'true', 'labelSize':3, 'fieldSize' : 1, 'customMsg': 'Send an email to the user containing the URL and the username and requesting them to activate their account' }) }}
+            {{ form_eservRow (form.locked, { 'isCheckbox': 'true', 'labelSize':3, 'fieldSize' : 1 }) }}
+    </div>
+</fieldset>
+
+<fieldset class="eserv_form_btns">
+        {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'cancelNgClick' : 'cancel()' , 'closeBtnId' : 'addUserCancelBtn'} %}
+</fieldset>
+
+<div style="display: none">
+    {{form_rest(form)}}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+    $(document).ready(function () {                   
+        prepareAppForms('{{ form.vars.name }}', false, {
+            type: 'dataTable',
+            id : '{{ refresh_table_id }}'
+        }, false, "AddFosUser", function(){
+            $('#addUserCancelBtn').click();
+        });      
+    });
+</script>
+

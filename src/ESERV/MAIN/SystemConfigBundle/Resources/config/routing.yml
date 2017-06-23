@@ -1,0 +1,27 @@
+eserv_main_system_config_mtl_colour_list:
+    path:     admin/mtl-colour/list
+    defaults: { _controller: ESERVMAINSystemConfigBundle:MtlColour:mtlColourList }
+
+eserv_main_system_config_view_mtl_colour_ajax_list:
+    path:     admin/mtl-colour/ajaxList
+    defaults: { _controller: ESERVMAINSystemConfigBundle:MtlColour:data }    
+    
+eserv_main_system_config_mtl_colour_new:
+    path:     admin/mtl-colour/add
+    defaults: { _controller: ESERVMAINSystemConfigBundle:MtlColour:newMtlColour }
+    
+eserv_main_system_config_mtl_colour_create:
+    path:     admin/mtl-colour/create
+    defaults: { _controller: ESERVMAINSystemConfigBundle:MtlColour:createMtlColour }    
+    
+eserv_main_system_config_mtl_colour_edit:
+    path:     admin/mtl-colour/edit/{id}
+    defaults: { _controller: ESERVMAINSystemConfigBundle:MtlColour:editMtlColour }
+
+eserv_main_system_config_mtl_colour_update:
+    path:     admin/mtl-colour/update/{id}
+    defaults: { _controller: ESERVMAINSystemConfigBundle:MtlColour:updateMtlColour }
+
+eserv_main_system_config_mtl_colour_delete:
+    path:     admin/mtl-colour/delete/{id}
+    defaults: { _controller: ESERVMAINSystemConfigBundle:MtlColour:deleteMtlColour }

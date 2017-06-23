@@ -1,0 +1,62 @@
+parameters:
+    chart_colors:
+      light_green:
+        R: 208
+        G: 244
+        B: 66
+        Alpha: 100
+      dark_green: 
+        R: 198
+        G: 234
+        B: 56
+        Alpha: 100
+      light_red:
+        R: 244
+        G: 120
+        B: 66
+        Alpha: 100
+      dark_red:
+        R: 234
+        G: 110
+        B: 56
+        Alpha: 100
+      light_yellow:
+        R: 244
+        G: 234
+        B: 66
+        Alpha: 100
+      dark_yellow:
+        R: 234
+        G: 224
+        B: 56
+        Alpha: 100
+      light_blue:
+        R: 66
+        G: 171
+        B: 244
+        Alpha: 100
+      dark_blue:
+        R: 56
+        G: 161
+        B: 234
+        Alpha: 100
+      purple:
+        R: 255
+        G: 100
+        B: 255
+        Alpha: 100
+      light_grey:
+        R: 220
+        G: 220
+        B: 220
+        Alpha: 100
+      dark_grey:
+        R: 190
+        G: 190
+        B: 190
+        Alpha: 100
+
+services:
+#    eservcore_media_bundle_componentsp_chart.example:
+#        class: %eservcore_media_bundle_componentsp_chart.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

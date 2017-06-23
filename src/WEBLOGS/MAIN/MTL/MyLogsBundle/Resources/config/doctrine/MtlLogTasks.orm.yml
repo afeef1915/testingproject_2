@@ -1,0 +1,23 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\MtlLogTasks:
+    type: entity
+    table: mtl_log_tasks
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+  
+          
+   
+    fields:
+        LOG_ID:
+            type: string
+            length: '10'
+            id: true
+            column: LOG_ID
+        TASK:
+            type: string
+            length: '50'
+            column: TASK
+        

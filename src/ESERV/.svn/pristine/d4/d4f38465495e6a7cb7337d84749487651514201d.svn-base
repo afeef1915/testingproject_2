@@ -1,0 +1,121 @@
+ESERV\MAIN\WizardBundle\Entity\WzPageOne:
+    type: entity
+    table: wz_page_one
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        wz_control_id:
+            type: integer
+            length: 4
+        field_one:     
+            type: string
+            length: 255
+        field_two:     
+            type: string
+            length: 255
+        field_three:     
+            type: string
+            length: 255
+        field_four:     
+            type: string
+            length: 255
+        field_five:     
+            type: string
+            length: 255    
+        field_six:     
+            type: string
+            length: 255    
+        field_seven:     
+            type: string
+            length: 255    
+        field_eight:     
+            type: string
+            length: 255
+        field_nine:     
+            type: string
+            length: 255
+        field_ten:     
+            type: string
+            length: 255
+        field_eleven:     
+            type: string
+            length: 255
+        field_twelve:     
+            type: string
+            length: 255
+        field_thirteen:     
+            type: string
+            length: 255
+        field_fourteen:     
+            type: string
+            length: 255
+        field_fifteen:     
+            type: string
+            length: 255
+        field_sixteen:     
+            type: string
+            length: 255
+        field_seventeen:     
+            type: string
+            length: 255
+        field_eighteen:     
+            type: string
+            length: 255
+        field_nineteen:     
+            type: string
+            length: 255
+        field_twenty:     
+            type: string
+            length: 255
+        field_twenty_one:     
+            type: string
+            length: 255
+        field_twenty_two:     
+            type: string
+            length: 255
+        field_twenty_three:     
+            type: string
+            length: 255
+        field_twenty_four:     
+            type: string
+            length: 255
+        field_twenty_five:     
+            type: string
+            length: 255
+        field_twenty_six:     
+            type: string
+            length: 255
+        field_twenty_seven:     
+            type: string
+            length: 255
+        field_twenty_eight:     
+            type: string
+            length: 255
+        field_twenty_nine:     
+            type: string
+            length: 255
+        field_thirty:     
+            type: string
+            length: 255
+        field_longtext_one:     
+            type: string            
+        field_longtext_two:     
+            type: string            
+        field_longtext_three:     
+            type: string           
+        field_longtext_four:     
+            type: string            
+        field_longtext_five:     
+            type: string                    
+        external_id:
+            type: string            
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint     

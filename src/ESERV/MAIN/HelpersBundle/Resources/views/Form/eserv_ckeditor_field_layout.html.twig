@@ -1,0 +1,22 @@
+{% use 'ESERVMAINHelpersBundle:Form:eserv_layout.html.twig' with widget_attributes as base_widget_attributes %}
+
+{% set LabelSize = 4 %}
+{% set FieldSize = 8 %}
+{% set ExtGrpClass = '' %}
+
+{% if labelSize is defined %} 
+    {% set LabelSize = labelSize %} 
+{% endif %}
+{% if fieldSize is defined %} 
+    {% set FieldSize = fieldSize %} 
+{% endif %}
+{% if extra_group_class is defined %} 
+    {% set ExtGrpClass = extra_group_class %} 
+{% endif %}
+{% if labelSize is defined and fieldSize is not defined %} 
+    {{ form_eservRow(form_field, { 'extraFieldClass': 'ignore_visible', 'labelSize': LabelSize, 'fieldSize': (12 - LabelSize), 'extraGroupClass': ExtGrpClass }) }}
+{% elseif labelSize is not defined and fieldSize is defined %}
+    {{ form_eservRow(form_field, { 'extraFieldClass': 'ignore_visible', 'labelSize': (12 - FieldSize), 'fieldSize': FieldSize, 'extraGroupClass': ExtGrpClass }) }}
+{% else %}
+    {{ form_eservRow(form_field, { 'extraFieldClass': 'ignore_visible', 'labelSize': LabelSize, 'fieldSize': FieldSize, 'extraGroupClass': ExtGrpClass }) }}
+{% endif %}

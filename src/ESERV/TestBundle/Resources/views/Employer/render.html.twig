@@ -1,0 +1,89 @@
+{% include 'ESERVMAINHelpersBundle:Form:edit_record_header.html.twig' with {'header': 'Edit ' ~ ('Employer' | trans), 'name': organisation['name'], 'id': employer['code'] } %}
+
+<div class='row' ng-controller="SortableCTRL">
+    <div class="col_group_container" data-eserv_col_height="">
+        <div class="column left" id="col_eserv_main_employer_portlet">
+            {% include 'ESERVMAINHelpersBundle:Form:theme_portlet.html.twig' 
+                with {
+                        'initial': "open",
+                        'id': "eserv_render_employer_main",
+                        'heading': "Main Details" | trans,
+                        'refresh_url': path ('eserv_main_employer_edit', {'id': id})
+                } 
+            %}            
+        </div>
+
+        <div class="column right" id="col_eserv_render_employer_portlets">
+            {% if employer_type == constant('\\ESERV\\MAIN\\Services\\AppConstants::AC_EMP_TYPE_LA_EMP') %}
+                {% include 'ESERVMAINHelpersBundle:Form:theme_portlet.html.twig' 
+                with {
+                        'initial': "closed",
+                        'id': "eserv_render_schools",
+                        'heading': "Schools" | trans,
+                        'refresh_url': path ('eserv_main_workplace_by_employer_list', {'id': id})
+                } 
+                %} 
+            {% endif %}
+            
+            {% if myArray is defined %}
+                {% for indx, element in myArray %}
+                    {% include 'ESERVMAINHelpersBundle:Form:theme_portlet.html.twig' 
+                        with {
+                                'initial': "closed",
+                                'id': "portlet_eserv_render_employer_" ~ element['table_id'],
+                                'heading': element['title'] | trans,
+                                'refresh_url': path ('eserv_client_new_form', {'table_id': element['table_id'], 'entity_id': element['entity_id']})
+                        } 
+                    %}                     
+                {% endfor %}
+            {% endif %}
+            
+            {% include 'ESERVMAINHelpersBundle:Form:theme_portlet.html.twig' 
+                with {
+                        'initial': "closed",
+                        'id': "gtcw_render_employer_relationships",
+                        'heading': "Related Contacts" | trans,
+                        'refresh_url': path ('gtcw_user_registration_relationship_list', {'org_id': id, 'entity_code': constant('\\GTCW\\Services\\GTCWConstants::CSL_EMPLOYER') })
+                } 
+            %}
+            {% include 'ESERVMAINHelpersBundle:Form:theme_portlet.html.twig' 
+                with {
+                        'initial': "closed",
+                        'id': "eserv_employer_employees",
+                        'heading': "Employees" | trans,
+                        'refresh_url': path ('eserv_main_employer_employee_list', {'org_id': id })
+                } 
+            %}
+                        
+            {% if employer_type == constant('\\ESERV\\MAIN\\Services\\AppConstants::AC_EMP_TYPE_WORK_BASED_CONTRACTOR') %}
+                {% include 'ESERVMAINHelpersBundle:Form:theme_portlet.html.twig' 
+                    with {
+                            'initial': "closed",
+                            'id': "eserv_employer_sub_contractors",
+                            'heading': "Sub Contractors" | trans,
+                            'refresh_url': path ('gtcw_contractor_sub_contractor_relationship_list', {'org_id': id })
+                    } 
+                %}         
+            {% endif %}
+                        
+            {% if employer_type == constant('\\ESERV\\MAIN\\Services\\AppConstants::AC_EMP_TYPE_WORK_BASED_SUB_CONTRACTOR') %}
+                {% include 'ESERVMAINHelpersBundle:Form:theme_portlet.html.twig' 
+                    with {
+                            'initial': "closed",
+                            'id': "eserv_employer_contractors",
+                            'heading': "Contractors" | trans,
+                            'refresh_url': path ('gtcw_sub_contractor_contractor_relationship_list', {'org_id': id })
+                    } 
+                %}         
+            {% endif %}
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        //refreshAllProtlets();
+    });
+</script>

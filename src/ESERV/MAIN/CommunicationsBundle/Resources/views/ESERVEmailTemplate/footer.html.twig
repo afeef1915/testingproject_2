@@ -1,0 +1,23 @@
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+        <tr>
+            <td width="1%" align="center">&nbsp;</td>
+            <td align="85%">
+                <font style="font-family:'Myriad Pro', Helvetica, Arial, sans-serif; color:#010203; font-size:10px;font-weight: normal">
+                Tel: {{ eserv_config.contact_details.phone }} | Email: <a style="color:#0066cc; text-decoration:none" href="mailto:{{ eserv_config.contact_details.email }}">{{ eserv_config.contact_details.email }}</a>
+                </font>
+            </td>
+            {% if show_social_media is defined and show_social_media == true %}
+                {% if eserv_config.social_media is defined %}
+                    {% for k,v in eserv_config.social_media %}
+                        <td width="4%" align="right">
+                            <a href="{{ v.url is defined ? v.url : v }}" target="_blank">
+                                <img border="0" src="{{ v.img_src is defined ? v.img_src : v }}" alt="{{ k }}" />
+                            </a>
+                        </td>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        </tr>
+    </tbody>
+</table>

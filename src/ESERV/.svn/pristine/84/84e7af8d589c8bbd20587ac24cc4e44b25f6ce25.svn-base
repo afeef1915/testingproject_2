@@ -1,0 +1,75 @@
+{% form_theme postcode 'ESERVMAINHelpersBundle:Form:eserv_postcode_lookup_layout.html.twig' %}
+{% form_theme address1 'ESERVMAINHelpersBundle:Form:eserv_postcode_lookup_layout.html.twig' %}
+{% form_theme address2 'ESERVMAINHelpersBundle:Form:eserv_postcode_lookup_layout.html.twig' %}
+{% form_theme address3 'ESERVMAINHelpersBundle:Form:eserv_postcode_lookup_layout.html.twig' %}
+{% form_theme town 'ESERVMAINHelpersBundle:Form:eserv_postcode_lookup_layout.html.twig' %}
+{% form_theme county 'ESERVMAINHelpersBundle:Form:eserv_postcode_lookup_layout.html.twig' %}
+
+<span class="postCodeLookupArea">
+    {% if postcode is defined %}
+        <div class="form-group">
+            {{ form_label(postcode, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <div class="eserv_field_value view">{{ postcode.vars.value }}</div>
+                    <span class="input-group-btn eserv_field_value edit">
+                        {{ form_widget(postcode, {'attr': {'class': 'form-control postcode_lookup_field eserv_field_value edit', 'placeholder': 'i.e. SW1 8UI'} }) }}
+                        <button class="btn btn-info postcode_lookup_trigger" type="button">Find Address</button>
+                    </span>
+                </div>
+                <span class="help-block"></span>
+            </div>
+        </div>
+    {% endif %}
+    {% include 'ESERVMAINHelpersBundle:Form:eserv_address_selector.html.twig' %}
+    {% if address1 is defined %}
+        <div class="form-group target">
+            {{ form_label(address1, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+            <div class="col-md-5">
+                {{ form_widget(address1, {'attr': {'class': 'form-control street eserv_field_value edit', 'placeholder': 'i.e. Flat 4'} }) }}
+                <div class="eserv_field_value view">{{ address1.vars.value }}</div>
+                <span class="help-block"></span>
+            </div>
+        </div>
+    {% endif %}
+    {% if address2 is defined %}
+        <div class="form-group target">
+            {{ form_label(address2, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+            <div class="col-md-5">
+                {{ form_widget(address2, {'attr': {'class': 'form-control ad2 eserv_field_value edit', 'placeholder': 'i.e. 123 King Street'} }) }}
+                <div class="eserv_field_value view">{{ address2.vars.value }}</div>
+                <span class="help-block"></span>
+            </div>
+        </div>
+    {% endif %}
+    {% if address3 is defined %}
+        <div class="form-group">
+            {{ form_label(address3, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+            <div class="col-lg-5">
+                {{ form_widget(address3, {'attr': {'class': 'form-control ad3 eserv_field_value edit', 'placeholder': 'Address Line 3'} }) }}
+                <div class="eserv_field_value view">{{ address3.vars.value }}</div>
+                <span class="help-block"></span>
+            </div>
+        </div>
+    {% endif %}
+    {% if town is defined %}
+        <div class="form-group">
+            {{ form_label(town, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+            <div class="col-lg-3">
+                {{ form_widget(town, {'attr': {'class': 'form-control town eserv_field_value edit', 'placeholder': 'i.e. Glasgow'} }) }}
+                <div class="eserv_field_value view">{{ town.vars.value }}</div>
+                <span class="help-block"></span>
+            </div>
+        </div>
+    {% endif %}
+    {% if county is defined %}
+        <div class="form-group">
+            {{ form_label(county, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+            <div class="col-lg-4">
+                {{ form_widget(county, {'attr': {'class': 'form-control county eserv_field_value edit', 'placeholder': 'County'} }) }}
+                <div class="eserv_field_value view">{{ county.vars.value }}</div>
+                <span class="help-block"></span>
+            </div>
+        </div>
+    {% endif %}
+</span>

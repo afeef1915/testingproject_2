@@ -1,0 +1,159 @@
+ESERV\TestBundle\Entity\GtcwVSchBMentoring:
+    type: entity
+    table: gtcw_v_sch_b_mentoring
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        mentorContactId:
+            type: integer
+            nullable: false
+            column: mentor_contact_id
+        mentorFirstName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: mentor_first_name
+        mentorLastName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: mentor_last_name
+        mentorReferenceNo:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: mentor_reference_no
+        menteeContactId:
+            type: integer
+            nullable: false
+            column: mentee_contact_id
+        menteeFirstName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: mentee_first_name
+        menteeLastName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: mentee_last_name
+        menteeReferenceNo:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: mentee_reference_no
+        menteeDateOfBirth:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: mentee_date_of_birth
+        employerId:
+            type: integer
+            nullable: true
+            column: employer_id
+        employerName:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: employer_name
+        indRouteId:
+            type: integer
+            nullable: true
+            column: ind_route_id
+        indRouteName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: ind_route_name
+        indStatusId:
+            type: integer
+            nullable: true
+            column: ind_status_id
+        indStatusName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: ind_status_name
+        mepStatusId:
+            type: integer
+            nullable: true
+            column: mep_status_id
+        mepStatusName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: mep_status_name
+        programme:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: programme
+        recordNo:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: record_no
+        sessionsCompleted:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: sessions_completed
+        termStartDate:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''
+            column: term_start_date
+        statusStartDate:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''
+            column: status_start_date
+        termNo:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: term_no
+        workplaceId:
+            type: integer
+            nullable: true
+            column: workplace_id
+        workplaceName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: '' 
+            column: workplace_name
+        mepDetailRecordNo:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: mep_detail_record_no

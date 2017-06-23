@@ -1,0 +1,9 @@
+<div class="record_type_colors">
+    <ul class="list-inline">
+        <li class="rec ">{{ 'Color Codes: ' | trans }}</li>
+        <li class="rec color primary_rec">{{ 'Primary' | trans }}</li>
+        <li class="rec color edited_rec">{{ 'Edited' | trans }}</li>
+        <li class="rec color deleted_rec">{{ 'Deleted' | trans }}</li>
+    </ul>
+    <div class="clearfix"></div>
+</div>

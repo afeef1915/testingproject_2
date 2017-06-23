@@ -1,0 +1,95 @@
+ESERV\MAIN\DocumentBundle\Entity\ContactDocAccess: 
+    type: entity
+    repositoryClass: ESERV\MAIN\DocumentBundle\Entity\ContactDocAccessRepository
+    table: contact_doc_access
+    indexes:
+        fk_condocacc_condoc_idx:
+            columns:
+                - contact_doc_id
+        fk_condocacc_fosgro_idx:
+            columns:
+                - fos_group_id
+        fk_docmasacc_con_idx:
+            columns:
+                - sign_off_contact_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        updateAccess:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: update_access
+        viewAccess:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: view_access
+        signOffAccess:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: sign_off_access
+        signOffDate:
+            type: datetime
+            nullable: true
+            column: sign_off_date
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contactDoc:
+            targetEntity: ESERV\MAIN\DocumentBundle\Entity\ContactDoc
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_doc_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        fosGroup:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\Group
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fos_group_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        signOffContact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                sign_off_contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

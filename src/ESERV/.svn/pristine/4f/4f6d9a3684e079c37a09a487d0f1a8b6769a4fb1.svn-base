@@ -1,0 +1,60 @@
+ESERV\MAIN\ActivityBundle\Entity\ActivityMergeData: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\ActivityMergeDataRepository
+    table: activity_merge_data
+    indexes:
+        fk_actmd_acttar_idx:
+            columns:
+                - activity_target_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        mergeFields:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: 'This will be a comma separated llist of mail-merge fields. Only the merge data fields required by the document (activity/template_version_id) will be stored e.g. "ContactID","Forename","Surname"'
+            column: merge_fields
+        mergeData:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: 'This will be a comma separated llist of mail-merge data corresponding to the fields list on merge_fields  e.g. "123456","Jane","Smith"'
+            column: merge_data
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        activityTarget:
+            targetEntity: ESERV\MAIN\ActivityBundle\Entity\ActivityTarget
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                activity_target_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

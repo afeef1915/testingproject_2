@@ -1,0 +1,80 @@
+<div id="color_legend_for_email_data_table" style="display: none;">
+    {{ include('ESERVMAINHelpersBundle:Form:colorCodeLegendForRecordType.html.twig') }}
+    <hr />
+</div>
+{{ dataTable | raw }}
+<div class="clearfix"></div><hr />
+<label for="include_hist_email" class="btn btn-success checkbox_switch_label">Show History</label>
+<input id="include_hist_email" type="checkbox" value="N" />
+
+<script type="text/javascript">
+    var emailType;
+    $(document).ready(function () {        
+        var fname_filter = '';
+        $("#include_hist_email").bootstrapSwitch({
+            onText: 'Yes',
+            offText: 'No'
+        });
+        
+        $('#include_hist_email').on('switchChange.bootstrapSwitch', function (event, state) {
+            if (state) {
+                fname_filter = 'Y';                
+                $('#color_legend_for_email_data_table').show();
+            } else {
+                $('#color_legend_for_email_data_table').hide();
+                fname_filter = 'N';
+            }
+            dataTableVar_{{ dataTable_id }}.fnMultiFilter({
+                "history_record": fname_filter,
+            });
+        });
+        
+        $.ajax({
+            url: '{{ path('eservcore_contact_bundle_components_contact_details_email_type_javascript_var') }}',
+            success: function(responseText){
+                if (responseText.email_type) {
+                    emailType = responseText.email_type;
+                }
+            },
+            error: function(){
+            }
+        });
+        
+    });
+      
+    function eservEmailTableRowCallBackFunc(row) {
+        var jsonStringData = $(row).find('.deleted-json-data').html();
+        if(jsonStringData){
+            var jsonArray = JSON.parse(jsonStringData);
+            $(row).find('.deleted-json-email-address').html(jsonArray[1].email_address);
+            var emailTypeId = jsonArray[8].email_type ? jsonArray[8].email_type.id : 0;
+            if(emailType) {
+                var emailTypeName = emailType[emailTypeId];
+                $(row).find('.deleted-json-email-type').html(emailTypeName);
+            } else {
+                $(row).find('.deleted-json-email-type').html(emailTypeId);
+            }
+            $(row).find('.deleted-json-primary-record').html(jsonArray[2].primary_record);
+        } 
+        var hist = $(row).find('.dt-history').html()
+        if (hist === 'Y'){  //if history record
+            $(row).find('.dt-history-view').find('a').html('<i class="fa fa-edit"></i> <span class="desktop_inline_text">' + '{{ 'View'| trans }}' + '</span>');
+        }
+        
+        if($('#include_hist_email').bootstrapSwitch('state')) {
+            var entityName = $(row).find('.dt-email-entity-name').html();
+            var primaryRecord = $(row).find('.dt-email-primary-record').html();
+            if (entityName === 'email' && primaryRecord === 'Y'){
+                $(row).addClass('primary_rec');
+            } else if (entityName === 'mtl_audit'){
+                $(row).addClass('edited_rec');
+            } else if (entityName === 'mtl_deleted_record'){
+                $(row).addClass('deleted_rec');
+            }
+        }
+        if ($(row).find('.deleted-json-email-address').html() == ''){
+            $(row).hide();
+        }
+    }
+          
+</script> 

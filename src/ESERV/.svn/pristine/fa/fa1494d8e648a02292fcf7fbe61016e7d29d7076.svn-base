@@ -1,0 +1,132 @@
+ESERV\MAIN\ContactBundle\Entity\EservVContactPerson:
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Entity\EservVContactPersonRepository
+    table: eserv_v_contact_person
+
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: id
+            generator:
+                strategy: IDENTITY
+
+    fields:
+        contactStatusId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: contact_status_id
+        displayName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: display_name
+        statusDate:
+            type: datetime
+            nullable: true
+            column: status_date
+        personId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: person_id
+        firstName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: first_name
+        middleName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: middle_name
+        lastName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: last_name
+        lastNameSearch:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: last_name_search
+        initials:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+        titleId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: title_id
+        dateOfBirth:
+            type: datetime
+            nullable: true
+            column: date_of_birth
+        jobTitle:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: job_title
+        gender:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            comment: 'M-Male, F-Female'
+        previousLastName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: previous_last_name
+        referenceNo:
+            type: string
+            nullable: true
+            length: 30
+            fixed: false
+            column: reference_no
+        disabled:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            default: N
+        nationalityId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: nationality_id
+        nationalIdenId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: national_iden_id
+        ethnicGroupId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: ethnic_group_id
+        niNumber:
+            type: string
+            nullable: true
+            length: 30
+            fixed: false
+            column: ni_number

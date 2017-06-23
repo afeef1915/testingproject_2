@@ -1,0 +1,24 @@
+ESERV\ClientBundle\Entity\EservClientNpqh:
+    type: entity
+    table: eserv_client_npqh
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        entityId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: entity_id
+        dateofaward:
+            type: datetime
+            nullable: false
+            comment: ''
+    lifecycleCallbacks: {  }

@@ -1,0 +1,109 @@
+ESERV\MAIN\AdministrationBundle\Entity\EservVUser: 
+    type: entity
+    repositoryClass: ESERV\MAIN\AdministrationBundle\Entity\EservVUserRepository
+    table: eserv_v_user
+    id:
+        fosUserId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: fos_user_id
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        mmUserSettingId:
+            type: integer
+            nullable: false
+            column: mm_user_setting_id
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        displayName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: display_name
+        userDeptName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: user_dept_name
+        userDeptDesc:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: user_dept_desc
+        username:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: username
+        fosUserEmail:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: fos_user_email
+        enabled:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: ''
+            column: enabled
+        password:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: password
+        lastLogin:
+            type: datetime
+            nullable: false            
+            column: last_login
+        locked:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: ''
+            column: locked
+        expired:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: ''
+            column: expired
+        expiresAt:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: expires_at
+        roles:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: roles
+        fosGroupName:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: fos_group_name

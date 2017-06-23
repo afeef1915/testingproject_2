@@ -1,0 +1,55 @@
+{% include '@weblogs_templates/innerPageHeader.html.twig' with {
+            'label': 'Edit ' ~ ('My Logs' | trans), 
+            'fa_icon': 'edit'
+        }
+%}
+
+<div class="">
+    <div ng-controller="SortableCTRL">
+        <div class="col_group_container" data-eserv_col_height="">
+
+            {#edit logs form#}
+            <div class="column" id="col_eserv_render_edit_form_portlets">
+
+                {% include 'ESERVMAINHelpersBundle:Form:theme_portlet.html.twig' 
+                with {
+                        'initial': "closed",
+                        'id': "edit_my_logs",
+                        'heading': "Edit My Logs" | trans,
+                        'refresh_url': path ('weblogsmainmtl_my_logs_update_data', {'id': id,'customer':customer})
+                } 
+                %}
+            </div>
+            {#attachments#}
+            <div class="column" id="col_eserv_render_edit_form_attachements">
+
+                {% include 'ESERVMAINHelpersBundle:Form:theme_portlet.html.twig' 
+                with {
+                        'initial': "closed",
+                        'id': "attachemnets",
+                        'heading': " Attachments " | trans,
+                        'refresh_url': path ('weblogsmainmtl_my_attachments_list', {'id': id})
+                } 
+                %}
+            </div>
+            {#new response form#}
+            <div class="column" id="col_eserv_render_edit_form_new_response">
+
+                {% include 'ESERVMAINHelpersBundle:Form:theme_portlet.html.twig' 
+                with {
+                        'initial': "closed",
+                        'id': "new_responses",
+                        'heading': "Previous Responses" | trans,
+                        'refresh_url': path ('weblogsmainmtl_my_logs_new_response', {'id': id})
+                } 
+                %}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //refreshAllProtlets();
+    });
+</script>

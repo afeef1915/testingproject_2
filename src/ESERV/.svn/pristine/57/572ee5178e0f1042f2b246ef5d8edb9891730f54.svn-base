@@ -1,0 +1,104 @@
+ESERV\MAIN\ProductBundle\Entity\InvoiceDetail: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ProductBundle\Entity\InvoiceDetailRepository
+    table: invoice_detail
+    indexes:
+        fk_invoice_detail_invoice1_idx:
+            columns:
+                - invoice_id
+        fk_invoice_detail_product1_idx:
+            columns:
+                - product_id
+        fk_invoice_detail_vat1_idx:
+            columns:
+                - vat_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        lineNo:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: line_no
+        productQuantity:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: product_quantity
+        productPrice:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            column: product_price
+        invDetAmount:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            column: inv_det_amount
+        invDetDiscountAmount:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: inv_det_discount_amount
+        invDetVatAmount:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: inv_det_vat_amount
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        invoice:
+            targetEntity: ESERV\MAIN\ProductBundle\Entity\Invoice
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                invoice_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        product:
+            targetEntity: ESERV\MAIN\ProductBundle\Entity\Product
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                product_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        vat:
+            targetEntity: ESERV\MAIN\ProductBundle\Entity\Vat
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                vat_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

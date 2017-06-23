@@ -1,0 +1,54 @@
+ESERV\MAIN\CommunicationsBundle\Entity\DocumentJob: 
+    type: entity
+    repositoryClass: ESERV\MAIN\CommunicationsBundle\Entity\DocumentJobRepository
+    table: document_job
+    indexes:
+        fk_docjob_syspri_idx:
+            columns:
+                - system_printer_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        processedDate:
+            type: datetime
+            nullable: true
+            column: processed_date
+        queuedDate:
+            type: datetime
+            nullable: true
+            column: queued_date
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        systemPrinter:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemPrinter
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                system_printer_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

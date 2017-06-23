@@ -1,0 +1,54 @@
+ESERV\MAIN\ActivityBundle\Entity\ActivityType: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\ActivityTypeRepository
+    table: activity_type
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+        description:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        autoCreateOnly:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: Y
+            column: auto_create_only
+        url:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

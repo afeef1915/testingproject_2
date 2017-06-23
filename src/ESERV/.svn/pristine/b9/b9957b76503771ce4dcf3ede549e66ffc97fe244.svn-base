@@ -1,0 +1,244 @@
+ESERV\TestBundle\Entity\GtcwVEmploymentDetail: 
+    type: entity
+    table: gtcw_v_employment_detail
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: id
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:        
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        personId:
+            type: integer
+            nullable: false
+            column: person_id
+        referenceNo:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+            column: reference_no
+        niNumber:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+            column: ni_number
+        firstName:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: last_name
+        dateOfBirth:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: date_of_birth
+        addressId:
+            type: integer
+            nullable: true
+            column: address_id
+        addressLine1:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: address_line1
+        addressLine2:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: address_line2
+        addressLine3:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: address_line3
+        town:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        county:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        postcode:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+        fullAddress:
+            type: string
+            length: 255
+            column: full_address
+        workplaceId:
+            type: integer
+            nullable: true
+            column: workplace_id
+        workplaceCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: '' 
+            column: workplace_code
+        workplaceName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: '' 
+            column: workplace_name
+#        workplaceNameWelsh:
+#            type: string
+#            nullable: true
+#            length: 255
+#            fixed: false
+#            comment: '' 
+#            column: workplace_name_welsh
+        employerId:
+            type: integer
+            nullable: true
+            column: employer_id
+        employerCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: employer_code
+        employerName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: employer_name
+#        employerNameWelsh:
+#            type: string
+#            nullable: true
+#            length: 255
+#            fixed: false
+#            column: employer_name_welsh
+        branchId:
+            type: integer
+            nullable: true
+            column: branch_id
+        jobId:
+            type: integer
+            nullable: true
+            column: job_id
+        jobCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: job_code
+        jobName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: job_name
+#        jobNameWelsh:
+#            type: string
+#            nullable: true
+#            length: 255
+#            fixed: false
+#            column: job_name_welsh
+        hoursId:
+            type: integer
+            nullable: true
+            column: hours_id
+        hoursCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: hours_code
+        hoursName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: hours_name
+#        hoursNameWelsh:
+#            type: string
+#            nullable: true
+#            length: 255
+#            fixed: false
+#            column: hours_name_welsh
+        primaryRecord:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            column: primary_record
+        startDate:
+            type: datetime            
+            fixed: false
+            comment: '' 
+            column: start_date            
+        endDate:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: end_date
+        memberStatusCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: member_status_code
+        memberStatusName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: member_status_name
+        memberStatusTypeCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: member_status_type_code
+        memberStatusTypeName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: member_status_type_name
+        membershipOrgCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: membership_org_code
+        

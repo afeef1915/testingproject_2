@@ -1,0 +1,71 @@
+ESERV\MAIN\HistoryBundle\Entity\MtlAudit: 
+    type: entity
+    repositoryClass: ESERV\MAIN\HistoryBundle\Entity\MtlAuditRepository
+    table: mtl_audit
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        type:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+        entityName:
+            type: string
+            nullable: false
+            length: 64
+            fixed: false
+            column: entity_name
+        entityId:
+            type: string
+            nullable: false
+            length: 1000
+            fixed: false
+            column: entity_id
+        fieldName:
+            type: string
+            nullable: false
+            length: 64
+            fixed: false
+            column: field_name
+        fieldType:
+            type: string
+            nullable: false
+            length: 32
+            fixed: false
+            column: field_type
+        oldValue:
+            type: string
+            nullable: true
+            length: 1000
+            fixed: false
+            column: old_value
+        newValue:
+            type: string
+            nullable: true
+            length: 1000
+            fixed: false
+            column: new_value
+        updateDate:
+            type: datetime
+            nullable: false
+            column: update_date
+        dbUserName:
+            type: string
+            nullable: false
+            length: 64
+            fixed: false
+            column: db_user_name
+        applicationUserName:
+            type: string
+            nullable: true
+            length: 64
+            fixed: false
+            column: application_user_name
+    lifecycleCallbacks: {  }

@@ -1,0 +1,64 @@
+{# src/ESERV/MAIN/HelpersBundle/Resources/views/Form/eserv_layout.html.twig #}
+
+{% use 'ESERVMAINHelpersBundle:Form:eserv_layout.html.twig' with widget_attributes as base_widget_attributes %}
+
+{% block choice_widget -%}
+    {% if expanded %}
+        {{- block('choice_widget_expanded') -}}
+    {% else %}
+        {% if required and empty_value is none and not empty_value_in_choices and not multiple -%}
+        {% set required = false %}
+    {%- endif -%}
+    
+    {% set viewVal = '' %}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {% if empty_value is not none -%}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+        {%- endif %}
+        {%- if preferred_choices|length > 0 -%}
+            {% set options = preferred_choices %}
+            {% for group_label, choice in options %}
+                {%- if choice is iterable -%}
+                    <optgroup label="{{ group_label|trans({}, translation_domain) }}">
+                        {% set options = choice %}
+                        {{- block('choice_widget_options') -}}
+                    </optgroup>
+                {%- else -%}
+                    <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% set viewVal = choice.value %}{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
+                {%- endif -%}
+            {% endfor %}
+            {% if choices|length > 0 and separator is not none -%}
+                <option disabled="disabled">{{ separator }}</option>
+            {%- endif %}
+        {%- endif -%}
+        {% set options = choices -%}
+
+            {% for group_label, choice in options %}
+                {%- if choice is iterable -%}
+                    <optgroup label="{{ group_label|trans({}, translation_domain) }}">
+                        {% set options = choice %}
+                        {{- block('choice_widget_options') -}}
+                    </optgroup>
+                {%- else -%}
+                    <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% set viewVal = choice.label %}{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
+                {%- endif -%}
+            {% endfor %}
+    </select>
+    <div class="eserv_field_value view">{{ viewVal }}</div>
+    {% endif %}
+{%- endblock choice_widget %}
+
+{% block form_widget_simple -%}
+    {% set type = type|default('text') -%}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{%- endblock form_widget_simple %}
+
+{% block form_widget_compound -%}
+    <div {{ block('widget_container_attributes') }}>
+        {%- if form.parent is empty -%}
+            {{ form_errors(form) }}
+        {%- endif -%}
+        {{- block('form_rows') -}}
+        {{- form_rest(form) -}}
+    </div>
+{%- endblock form_widget_compound %}

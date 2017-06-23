@@ -1,0 +1,36 @@
+ESERV\MAIN\ProfileBundle\Entity\UserNotificationsStatus:
+    type: entity
+    table: user_notifications_status
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        fos_user_id:
+            type: integer            
+        user_notifications_id:
+            type: integer
+        status_read:
+            type: string
+            length: 1            
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint
+    manyToOne:
+        fos_user:
+            targetEntity: FOS\UserBundle\Model\User
+            inversedBy: user_notifications_status
+            joinColumn:
+                name: fos_user_id
+                referencedColumnName: id    
+        user_notifications:
+            targetEntity: UserNotifications
+            inversedBy: user_notifications_status
+            joinColumn:
+                name: user_notifications_id
+                referencedColumnName: id 

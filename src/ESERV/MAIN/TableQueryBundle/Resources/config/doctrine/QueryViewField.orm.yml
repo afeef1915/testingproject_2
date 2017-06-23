@@ -1,0 +1,92 @@
+ESERV\MAIN\TableQueryBundle\Entity\QueryViewField:
+    type: entity
+    table: query_view_field
+    indexes:
+        qviewf_syscod_idx:
+            columns:
+                - field_type_id
+        qviewf_quview_idx:
+            columns:
+                - query_view_id
+        qviewf_qvilov_idx:
+            columns:
+                - query_view_lov_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fieldName:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+            column: field_name
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        isActive:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            column: is_active
+        isPrimaryKey:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            column: is_primary_key
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        fieldType:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                field_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        queryView:
+            targetEntity: QueryView
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                query_view_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        queryViewLov:
+            targetEntity: ESERV\MAIN\TableQueryBundle\Entity\QueryViewLov
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                query_view_lov_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

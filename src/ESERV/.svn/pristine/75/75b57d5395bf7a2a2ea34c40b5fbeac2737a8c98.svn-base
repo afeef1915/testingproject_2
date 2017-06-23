@@ -1,0 +1,38 @@
+ESERV\MAIN\SystemConfigBundle\Entity\EservTemp:
+    type: entity
+    repositoryClass: ESERV\MAIN\SystemConfigBundle\Entity\EservTempRepository
+    table: eserv_temp
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        tempValue:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: temp_value
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

@@ -1,0 +1,116 @@
+ESERV\MAIN\ExternalBundle\Entity\EservVQueuedDbProcess: 
+    type: entity
+    table: eserv_v_queued_db_process
+    id:
+        queuedDbProcessId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: queued_db_process_id
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        queuedDbProcessVarId:
+            type: integer
+            nullable: false
+            column: queued_db_process_var_id
+        fosUserId:
+            type: integer
+            nullable: false
+            column: fos_user_id
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: name
+        type:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: type
+        description:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: description
+        processed:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: ''
+            column: processed
+        attempts:
+            type: integer
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: attempts    
+        result:
+            type: string
+            nullable: false
+            length: 255
+            comment: ''
+            column: result
+        fileId:
+            type: integer
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: file_id
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at        
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        fieldName:
+            type: string
+            nullable: false
+            length: 255
+            comment: ''
+            column: field_name
+        fieldValue:
+            type: string
+            nullable: false
+            length: 255
+            comment: ''
+            column: field_value
+        fieldParamExt:
+            type: string
+            nullable: false
+            length: 255
+            comment: ''
+            column: field_param_ext
+        notificationPriority:
+            type: string
+            nullable: false
+            length: 50
+            comment: ''
+            column: notification_priority
+        fieldParamType:
+            type: string
+            nullable: false
+            length: 255
+            comment: ''
+            column: field_param_type
+        fieldParamSize:
+            type: string
+            nullable: false
+            length: 255
+            comment: ''
+            column: field_param_size
+        

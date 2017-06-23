@@ -1,0 +1,225 @@
+<h3>Send Email</h3>
+
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+<div id="eserv_sendEservEmail_output"></div>
+{{ form_start(form, { 'attr': { 'id': 'sendEservEmail' } }) }}
+<div class="eserv_container_form_errors"></div>
+<fieldset>
+<!--
+    {% for no_email in no_email_arr  %}
+        {% if loop.first %}
+    <div class="alert alert-danger">
+        <p>Cannot send email to the following Recipient(s) - no email address exists:</p>
+        {% endif %}
+        {{ no_email }}<br />
+        {% if loop.last %}
+    </div>        
+        {% endif %}
+    {% endfor %}
+-->
+<!--
+    {% if form.entityId.vars.value|length > 0 %}
+        <div class="form-group ">
+            <label class="col-lg-3 control-label">Recipient(s)</label>
+                <div class="col-lg-9">
+                    {{ form.rec_display.vars.value }}
+                </div>
+        </div>
+        {# recipients will be a hidden field as there is not explicit code to display it #}
+    {% else %}
+        {{ form_eservSelectRow(form.recipients, { 'labelSize': 3, 'isSelect2': true, 'fieldSize': 9 }) }}
+    {% endif %}
+-->
+{% if no_email_arr_count > 0 %}
+    <div class="alert alert-danger">
+    {% if no_email_arr_count > 5 %}
+        <p>Cannot send email to {{ no_email_arr_count|number_format }} Recipients - no email address exists:</p>
+        <span class="btn btn-sm btn-default" ng-controller="EservModalCtrl" ng-click="openEservModal('eserv_communications_view_multiple_recipients_modal', 'Recipients with no email address', 'lg', {target_url: '{{ path('eserv_communications_view_multiple_recipients', {'CommsQ': form.commsQ.vars.value, 'csl_code': form.csl_code.vars.value, 'comm_type': form.comm_type.vars.value, 'no_email': 'Y' }) }}'})">
+            <i class="fa fa-users"></i>
+            View
+        </span>
+    {% else %}
+        {% if form.entityId.vars.value != 0 %}
+        <p>Cannot send email to the Recipient - no email address exists</p>
+        {% else %}
+        <p>Cannot send email to the following Recipient(s) - no email address exists:</p>
+        {% for no_email in no_email_arr  %}
+        {{ no_email }}<br />
+        {% endfor %}
+        {% endif %}
+    {% endif %}
+    </div>
+{% endif %}
+
+{% if form.entityId.vars.value != 0 %}
+    <div class="form-group">
+        <label class="col-lg-3 control-label">Recipient</label>
+            <div class="col-lg-9">
+                {{ form.rec_display.vars.value | raw }}
+            </div>
+    </div>
+{% elseif form.entityId.vars.value == 0 %}
+    <div class="form-group">
+        <label class="col-lg-3 control-label">Recipient(s)</label>
+        <div class="col-lg-9">
+            <span class="btn btn-sm btn-default" ng-controller="EservModalCtrl" ng-click="openEservModal('eserv_communications_view_multiple_recipients_modal', 'Email Recipients', 'lg', {target_url: '{{ path('eserv_communications_view_multiple_recipients', {'CommsQ': form.commsQ.vars.value, 'csl_code': form.csl_code.vars.value, 'comm_type': form.comm_type.vars.value }) }}'})">
+                <i class="fa fa-users"></i>
+                View
+            </span>
+        </div>
+    </div>
+{# {% else %} #}
+{#         {{ form_eservSelectRow(form.recipients, { 'labelSize': 3, 'isSelect2': true, 'fieldSize': 9 }) }} #}
+{% endif %}
+
+{# {{ form_eservSelectRow(form.recipients, { 'labelSize': 3, 'isSelect2': true, 'fieldSize': 9 }) }} #}
+
+    {{ form_eservRow(form.shortDescription, { 'labelSize': 3, 'fieldSize': 6, 'customPlaceHolder': 'Subject' }) }}
+    {{ form_eservSelectRow(form.templateVersion, { 'isSelectPicker' : true, 'labelSize': 3, 'fieldSize': 6, 'extraHtml' : '<button class="btn btn-info pull-left" style="margin-left:2px" type="button" id="temp_ver_edit_btn">Edit</button> <div id="help_message_id" class="pull-left" style="width:40px; height:40px;"></div>' }) }}
+    
+    {{ form_eservRow (form.attachment, {
+            'labelSize': 3,
+            'fieldSize': 9,
+            'isUploadFile': true,
+            'formId': 'sendEservEmail',
+            'autoUpload': true,
+            'singleFileUpload': false,
+            'maxNumberOfFiles': 10,
+            'addFilesLabel': 'Browse..'
+    }) }}
+    
+    <div class="form-group hidden">
+        {{ form_label(form.temp_ver_edit, null, {'label_attr': {'class': 'col-lg-3 control-label'} }) }}
+        {{ form_widget(form.temp_ver_edit, {'attr': {'class': 'eserv_field_value selectpicker ignore_visible show-tick edit ', 'placeholder': 'Edit' } }) }}
+    </div>
+
+    <div id="email_template" class="hidden">    
+    {% include 'ESERVMAINHelpersBundle:Form:eserv_ckeditor_field_layout.html.twig' with {
+        'form_field': form.longDescription,
+        'fieldSize': 9
+    } %}
+    </div>
+</fieldset>
+
+<fieldset>
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'cancelNgClick' : 'cancel()', 'closeBtnId' : 'cancel_send_email_btn' } %}                                                                  
+</fieldset>    
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+
+{{ form_end(form) }}
+
+<script type="text/javascript">
+    var new_content;
+    
+    $(document).ready(function () {
+        if (!$('#{{ form.templateVersion.vars.id }}').val()) {
+            $('#temp_ver_edit_btn').attr('disabled', 'disabled');
+        } else {
+            $('#temp_ver_edit_btn').removeAttr('disabled');
+        }
+
+        prepareAppForms('{{ form.vars.name }}', false, false, false, 'sendEservEmail', function () {
+            $('#cancel_send_email_btn').click();
+        });        
+
+        $('#{{ form.templateVersion.vars.id }}').change(function () {
+            var thisDropDown = $(this);            
+                //console.log('before', $(this).val());    
+                if (!$(this).val()) {
+                    $('#temp_ver_edit_btn').attr('disabled', 'disabled');
+                    $('#email_template').addClass("hidden");
+                    $('#temp_ver_edit_btn').html('Edit');
+                    $('#temp_ver_edit_btn').removeClass('btn-danger');
+                    $('#temp_ver_edit_btn').addClass('btn-info');
+                    $('#{{ form.temp_ver_edit.vars.id }}').prop('checked', false);
+                    ckeditor_ajax_call.abort();
+                } else {
+                    $('#{{ form.longDescription.vars.id }}').removeClass('ignore_visible');
+                    $('#temp_ver_edit_btn').removeAttr('disabled');
+
+
+                    if ($('#{{ form.temp_ver_edit.vars.id }}').is(':checked')) {
+                        ckeditor_ajax_call.abort();
+                        new_content = $('#{{ form.longDescription.vars.id }}').val();
+                        if ((ckeditor_old_content.trim() != new_content.trim())) {
+                            conf = confirm('You have made changes to the Template. Changing the template will remove all your changes. Do you want to proceed ?');
+
+                            if (conf) {
+                                ckeditor_ajax_call = getTemplate('{{ path ('eserv_main_template_get_content') }}', 
+                                    {template_id: $('#{{ form.templateVersion.vars.id }}').val(), ajax_main_loader: false},
+                                    '{{ form.longDescription.vars.id }}',
+                                    'help_message_id',
+                                    'Membership'
+                                );
+                            } else {
+                                thisDropDown.val(3);
+                                $('.selectpicker').selectpicker('val', 3);
+                            }
+                        }
+                        else {
+                            ckeditor_ajax_call = getTemplate('{{ path ('eserv_main_template_get_content') }}',
+                                {template_id: $('#{{ form.templateVersion.vars.id }}').val(), ajax_main_loader: false},
+                                '{{ form.longDescription.vars.id }}',
+                                'help_message_id',
+                                'Membership'
+                            );
+                        }
+                    }
+                }
+        });
+
+        $('#temp_ver_edit_btn').click(function () {
+            if ($('#{{ form.temp_ver_edit.vars.id }}').is(':checked')) {
+                new_content = $('#{{ form.longDescription.vars.id }}').val();
+                if (ckeditor_old_content.trim() != new_content.trim()) {
+                    conf = confirm('You have made changes to the Template. Do you want to cancel all the changes ?');
+                    if (conf) {
+                        $('#{{ form.temp_ver_edit.vars.id }}').prop('checked', false);
+                        $('#email_template').addClass("hidden");
+                        $(this).html('Edit');
+                        $(this).removeClass('btn-danger');
+                        $(this).addClass('btn-info');
+                        $('#{{ form.longDescription.vars.id }}').removeClass('ignore_visible');
+                    } else {
+                        return false;
+                    }
+                }
+
+                $('#{{ form.temp_ver_edit.vars.id }}').prop('checked', false);
+                $('#email_template').addClass("hidden");
+                $(this).html('Edit');
+                $(this).removeClass('btn-danger');
+                $(this).addClass('btn-info');
+                $('#{{ form.longDescription.vars.id }}').removeClass('ignore_visible');
+                ckeditor_ajax_call.abort();
+            } else {
+                $('#{{ form.temp_ver_edit.vars.id }}').prop('checked', true);
+                $('#email_template').removeClass("hidden");
+                $(this).html('Cancel');
+                $(this).removeClass('btn-info');
+                $(this).addClass('btn-danger');
+                $('#{{ form.longDescription.vars.id }}').addClass('ignore_visible');
+                if ($('#{{ form.templateVersion.vars.id }}').val()) {
+                    ckeditor_ajax_call = getTemplate('{{ path ('eserv_main_template_get_content') }}', 
+                        {template_id: $('#{{ form.templateVersion.vars.id }}').val(),ajax_main_loader: false},
+                        '{{ form.longDescription.vars.id }}',
+                        'help_message_id',
+                        'Membership'
+                    );
+                }
+            }
+        }); //$('#temp_ver_edit_btn').click end
+
+        $('#form_reset').click(function () {
+            $('#temp_ver_edit_btn').html('Edit');
+            $('#temp_ver_edit_btn').removeClass('btn-danger');
+            $('#temp_ver_edit_btn').addClass('btn-info');
+            $('#temp_ver_edit_btn').attr('disabled', 'disabled');
+            $('#email_template').addClass("hidden");
+            $('.eserv_container_form_errors').hide();
+        }); //$('#form_reset').click end
+
+    }); //$(document).ready end
+</script>

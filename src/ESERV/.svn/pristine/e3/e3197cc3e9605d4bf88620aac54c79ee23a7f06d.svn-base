@@ -1,0 +1,68 @@
+ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCodeType: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCodeTypeRepository
+    table: application_code_type
+    indexes:
+        fk_application_code_type_mtl_module1_idx:
+            columns:
+                - mtl_module_id
+    uniqueConstraints:
+        code_UNIQUE:
+            columns:
+                - code
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        dateOpened:
+            type: datetime
+            nullable: false
+            column: date_opened
+        dateClosed:
+            type: datetime
+            nullable: true
+            column: date_closed
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        mtlModule:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\MtlModule
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mtl_module_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

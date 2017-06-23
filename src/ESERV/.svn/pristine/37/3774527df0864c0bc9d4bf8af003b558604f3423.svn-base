@@ -1,0 +1,39 @@
+{# {% include 'ESERVMAINHelpersBundle:Form:edit_record_header.html.twig' with {'header': 'Edit ' ~ ('Establishment' | trans), 'name': organisation['name'], 'id': mentor['code'] } %} #}
+
+<div class='row' ng-controller="SortableCTRL">
+    <div class="col_group_container" data-eserv_col_height="">
+        <div class="column" id="col_eserv_main_mentor_portlet">
+            <div class="portlet" data-eserv-d-trigger="" id="eserv_render_mentor_main" data-url="{{ path ('eserv_main_mentor_edit', {'id': id}) }}">
+                <div class="portlet-header">
+                    <div class="eserv_portlet_header_icons pull-right"></div>
+                    <div class="header_icon"></div>Main Details
+                </div>
+                <div class="portlet-content">Refreshing data... Please wait</div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        {% if myArray is defined %}
+            <div class="column" id="col_eserv_render_mentor_portlets">
+
+                {% for indx, element in myArray %}
+                    <div class="portlet" data-eserv-d-trigger="" id="portlet_eserv_render_mentor_{{ element['table_id'] }}" data-url="{{ path ('eserv_client_new_form', {'table_id': element['table_id'], 'entity_id': element['entity_id']}) }}">
+                        <div class="portlet-header">
+                            <div class="eserv_portlet_header_icons pull-right"></div>
+                            <div class="header_icon"></div>{{ element['title']  }}
+                        </div>
+                        <div class="portlet-content">Refreshing data... Please wait</div>
+                    </div>
+                {% endfor %}
+                <div class="clearfix"></div>
+            </div>
+        {% endif %}
+        <div class="clearfix"></div>
+    </div>
+</div>
+        
+<script type="text/javascript">
+    $(document).ready(function() {
+        //refreshAllProtlets();
+    });
+</script>

@@ -1,0 +1,7 @@
+parameters:
+#    eservcore_activity.example.class: ESERV\MAIN\ActivityBundle\Example
+
+services:
+#    eservcore_activity.example:
+#        class: %eservcore_activity.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

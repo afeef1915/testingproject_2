@@ -1,0 +1,4 @@
+services:
+#    eservmain_security.example:
+#        class: ESERV\MAIN\SecurityBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

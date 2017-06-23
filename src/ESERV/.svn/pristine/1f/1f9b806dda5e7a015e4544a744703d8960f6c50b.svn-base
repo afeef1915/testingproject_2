@@ -1,0 +1,48 @@
+ESERV\MAIN\SystemConfigBundle\Entity\SystemConfig: 
+    type: entity
+    repositoryClass: ESERV\MAIN\SystemConfigBundle\Entity\SystemConfigRepository
+    table: system_config
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        configValue:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: config_value
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

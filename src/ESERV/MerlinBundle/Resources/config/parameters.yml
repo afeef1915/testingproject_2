@@ -1,0 +1,55 @@
+# This file is auto-generated during the composer install
+parameters:
+    merlin_core_version: 1.0.0
+    client_date_format: 
+        date:
+            db: DD-MON-YYYY
+            php: d-M-Y
+            js: dd-mmm-yyyy
+            date_picker_js: dd-mmm-yyyy
+            html_place_holder: dd-Mon-yyyy
+        time:
+            db: HH24:MI:SS
+            php: H:i:s
+            js: H:i:s
+            date_picker_js: H:i:s
+            html_place_holder: H:i:s
+        date_time:
+            db: DD-MON-YYYY HH24:MI:SS
+            php: d-M-Y H:i:s
+            js: dd-mmm-yyyy H:i:s
+            date_picker_js: dd-mmm-yyyy H:i:s
+            html_place_holder: dd-Mon-yyyy H:i:s
+        
+    default_form_access: true
+
+    merlin_emailing_from_email: 'administrator@miller.co.uk'
+
+    email_header_txtcolor: '#ffffff'
+    email_header_bgcolor: '#1f5b42'
+
+    #Constants for background processes
+    notify_user : true
+    enable_logging : true
+    notify_email_admins : false
+    maximum_attempts : 30000
+    items_per_batch : 30000
+
+    dataTable_extra_css_classes: 'table-hover'
+    datatable_disallow_null_search_enabled: false
+  #  datatable_absolute_url: true
+  # Datatable Config params
+    data_table_config:
+        show_hide_checkboxes: false
+        enable_show_hide_filter : true
+        enable_col_visibility_btn : true
+        auto_show_pagination : true
+        case_insensitive_search : true
+        clear_local_storage: true
+        filter_by_nls_date_format: true
+        full_preloader: true
+  #      max_date: '4000-01-01 00:00:00'
+
+    prompt_validation: true
+    
+    new_layout_canvas_codes: ["DTOP_EMAIL", "DTOP_LETTER", "SC306DV_EMAIL_ADD", "SC306DV_EMAIL_EDIT", "SC307DV_EMAIL_ADD", "SC307DV_EMAIL_EDIT"]

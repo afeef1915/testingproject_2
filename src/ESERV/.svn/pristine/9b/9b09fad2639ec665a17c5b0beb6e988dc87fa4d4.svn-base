@@ -1,0 +1,63 @@
+ESERV\MAIN\ContactBundle\Entity\EservVRelationship: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Entity\EservVRelationshipRepository
+    table: eserv_v_relationship
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            column: 'name'
+        contactIdA:
+            type: integer
+            column: 'contact_id_a'
+        contactAName:
+            type: string
+            column: 'contact_a_name'
+        contactIdB:
+            type: integer
+            column: 'contact_id_b'
+        contactBName:
+            type: string
+            column: 'contact_b_name'
+        nameAB:
+            type: string
+            column: 'name_a_b'
+        nameBA:
+            type: string
+            column: 'name_b_a'
+        cobtactTypeACode:
+            type: string
+            column: 'contact_type_a_code'
+        cobtactTypeBCode:
+            type: string
+            column: 'contact_type_b_code'
+        mmUserSettingId:
+            type: integer
+            column: 'mm_user_setting_id'
+        isFosUser:
+            type: string
+            column: 'is_fos_user'
+        fosGroupId:
+            type: integer
+            column: 'fos_group_id'
+        startDate:
+            type: datetime
+            nullable: true
+            column: 'start_date'
+        endDate:
+            type: datetime
+            nullable: true
+            column: 'end_date'
+        isHistory:
+            type: string
+            nullable: true
+            length: 1
+            column: 'is_history'

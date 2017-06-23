@@ -1,0 +1,149 @@
+ESERV\MAIN\MembershipBundle\Entity\Member: 
+    type: entity
+    repositoryClass: ESERV\MAIN\MembershipBundle\Entity\MemberRepository
+    table: member
+    indexes:
+        fk_member_contact1_idx:
+            columns:
+                - contact_id
+        fk_member_workplace1_idx:
+            columns:
+                - workplace_id
+        fk_member_branch1_idx:
+            columns:
+                - branch_id
+        fk_member_membership_org1_idx:
+            columns:
+                - membership_org_id
+        fk_member_application_code1_idx:
+            columns:
+                - voting_category_id
+        fk_member_member_status1_idx:
+            columns:
+                - member_status_id
+        fk_member_memstarea_idx:
+            columns:
+                - status_reason_id
+    uniqueConstraints:
+        member_con_mem_org_idx:
+            columns:
+                - contact_id
+                - membership_org_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        statusDate:
+            type: datetime
+            nullable: true
+            column: status_date
+        primaryRecord:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: primary_record
+        membershipNo:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: 'Will be used to hold a membership number, if required'
+            column: membership_no
+        registrationDate:
+            type: datetime
+            nullable: true
+            column: registration_date
+        reinstateDate:
+            type: datetime
+            nullable: true
+            column: reinstate_date
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        workplace:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\Workplace
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                workplace_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        branch:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\Branch
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                branch_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        membershipOrg:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\MembershipOrg
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                membership_org_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        votingCategory:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                voting_category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        memberStatus:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\MemberStatus
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                member_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        statusReason:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\MemberStatusReason
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                status_reason_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

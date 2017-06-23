@@ -1,0 +1,25 @@
+    <div id="eserv_addHeader_output"></div>
+    {% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+    {{form_start(form, { 'attr' : { 'id': 'addHeader' } })}}
+
+    <h3>{{ 'Add a Footer' }}</h3>
+    <fieldset>        
+            {{ form_eservRow(form.name , {'labelSize':3, 'customPlaceHolder' : '', 'fieldSize':4 }) }}
+            {{ form_eservRow(form.code , {'labelSize':3, 'customPlaceHolder' : '', 'fieldSize':4 }) }}
+            {{ form_eservSelectRow(form.language , {'labelSize':3, }) }}
+            {% include 'ESERVMAINHelpersBundle:Form:eserv_ckeditor_field_layout.html.twig' with {'labelSize':3, 'form_field': form.content} %}
+    </fieldset>
+    <fieldset>
+        {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'hide_cancel' : true, 'cancel_link' : true,  'cancelHref' : '#/admin/templates', 'closeBtnId' : 'cancel_AddFooterr_btn' } %}                                                                             
+    </fieldset>
+ 
+    <div style="display: none"> 
+        {{ form_rest(form) }}
+    </div>
+    {{form_end(form)}}  
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            prepareAppForms('{{ form.vars.name }}', false, false, '#/admin/templates');
+        });
+    </script>

@@ -1,0 +1,372 @@
+
+    <div id="eserv_Addemail_output"></div>
+    {% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+    {{form_start(form, { 'attr' : { 'id': 'CreateNewLogs' } })}}
+    <div class="eserv_container_form_errors"></div>
+
+    {#
+    <fieldset>
+        <div class="col-lg-6">
+            {{ form_eservRow (form.job_no, {'labelName':'Job No', 'labelSize': 4 ,'fieldSize': 8,'attr':{'readonly':'true'} }) }}
+            {{ form_eservRow (form.customer, { 'labelSize': 4, 'fieldSize': 8 ,'value':customer,'attr':{'disabled':'disabled'} }) }}
+            {{ form_eservRow (form.requested, {'labelName':'Date Requested', 'labelSize': 4 ,'fieldSize': 8,'attr':{'readonly':'true'} }) }}
+            {{ form_eservRow (form.customer_log_id, { 'labelSize': 4, 'fieldSize': 8  }) }}
+            {{ form_eservSelectRow (form.task_description, { 'labelSize': 4, 'fieldSize': 8, 'value':log_tasks  }) }}
+            {{ form_eservRow (form.developer_status, { 'labelSize': 4, 'fieldSize': 8  ,'value':logs_status}) }}
+            {{ form_eservRow (form.category, { 'labelSize': 4, 'fieldSize': 8  }) }}
+            {{ form_eservRow (form.requested_by, { 'labelSize': 4, 'fieldSize': 8 ,'value':requested_by, 'attr':{'readonly':'true'} }) }}
+            {{ form_eservRow (form.attention_of, { 'labelSize': 4, 'fieldSize': 8 }) }}
+            {{ form_eservRow (form.priority, { 'labelSize': 4, 'fieldSize': 8 ,'value':priority_task }) }}
+            {{ form_eservRow (form.title, { 'labelSize': 4, 'fieldSize': 8  }) }}
+            {{ form_eservRow (form.brief_description, { 'labelSize': 4, 'fieldSize': 8,'rows':10, 'cols':100  }) }}
+        </div>
+             <div id="h_name">
+        <div class="col-lg-6">
+            {{ form_eservRow (form.assigned_to, { 'labelSize': 4, 'fieldSize': 8 ,'value':mtl_person_id }) }}
+            
+            {{ form_eservRow(form.dueby,{'labelSize': 4, 'fieldSize': 8,'fieldType': 'date','customPlaceHolder': 'DD/MM/YYYY'}) }}
+            {#{{ form_eservRow (form.dueby,{ 'fieldType': 'date','labelSize': 4, 'fieldSize': 8, 'customPlaceHolder': 'DD/MM/YYYY' }) }}#}
+
+    <fieldset>
+        <div class="col-lg-6">
+            {{ form_eservRow (form.job_no, {'labelName':'Job No', 'labelSize': 4 ,'fieldSize': 4,'attr':{'readonly':'true'} }) }}
+            {{ form_eservRow (form.customer, { 'labelSize': 4, 'fieldSize': 4 ,'value':customer,'attr':{'disabled':'disabled'} }) }}
+            {{ form_eservRow (form.requested, {'labelName':'Date Requested', 'labelSize': 4 ,'fieldSize': 4,'attr':{'readonly':'true'} }) }}
+            {{ form_eservRow (form.customer_log_id, { 'labelSize': 4, 'fieldSize': 8  }) }}
+            {{ form_eservSelectRow (form.task_description, { 'labelSize': 4, 'fieldSize': 8, 'value':log_tasks  }) }}
+          
+        
+        </div>
+         
+            <div class="col-lg-6">
+              {{ form_eservRow (form.developer_status, { 'labelSize': 4, 'fieldSize': 8  ,'value':logs_status}) }}
+            {{ form_eservRow (form.category, { 'labelSize': 4, 'fieldSize': 8  }) }}
+            {{ form_eservRow (form.requested_by, { 'labelSize': 4, 'fieldSize': 4 ,'value':requested_by, 'attr':{'readonly':'true'} }) }}
+            {{ form_eservRow (form.attention_of, { 'labelSize': 4, 'fieldSize': 8  }) }}
+            {{ form_eservRow (form.priority, { 'labelSize': 4, 'fieldSize': 8 ,'value':priority_task }) }}
+            </div>
+              <div class="col-lg-12">
+            {{ form_eservRow (form.title, { 'labelSize': 2, 'fieldSize': 10  }) }}
+            {{ form_eservRow (form.brief_description, { 'labelSize': 2, 'fieldSize': 10,'rows':10, 'cols':100  }) }}
+            </div>
+        <div id="h_name">
+            <div class="col-lg-6">
+                {{ form_eservRow (form.assigned_to, { 'labelSize': 4, 'fieldSize': 8 ,'value':mtl_person_id }) }}
+
+                {{ form_eservRow(form.dueby,{'labelSize': 4, 'fieldSize': 8,'fieldType': 'date','customPlaceHolder': 'DD/MM/YYYY'}) }}
+                {#{{ form_eservRow (form.dueby,{ 'fieldType': 'date','labelSize': 4, 'fieldSize': 8, 'customPlaceHolder': 'DD/MM/YYYY' }) }}#}
+
+                {#<fieldset>
+                    <div class="col-lg-6">
+                        {{ form_eservRow (form.job_no, {'labelName':'Job No', 'labelSize': 4 ,'fieldSize': 8,'attr':{'readonly':'true'} }) }}
+                        {{ form_eservRow (form.customer, { 'labelSize': 4, 'fieldSize': 8 ,'value':customer,'attr':{'disabled':'disabled'} }) }}
+                        {{ form_eservRow (form.requested, {'labelName':'Date Requested', 'labelSize': 4 ,'fieldSize': 8,'attr':{'readonly':'true'} }) }}
+                        {{ form_eservRow (form.customer_log_id, { 'labelSize': 4, 'fieldSize': 8  }) }}
+                        {{ form_eservSelectRow (form.task_description, { 'labelSize': 4, 'fieldSize': 8, 'value':log_tasks  }) }}
+                        {{ form_eservRow (form.developer_status, { 'labelSize': 4, 'fieldSize': 8  ,'value':logs_status}) }}
+                        {{ form_eservRow (form.category, { 'labelSize': 4, 'fieldSize': 8  }) }}
+                        {{ form_eservRow (form.requested_by, { 'labelSize': 4, 'fieldSize': 8 ,'value':requested_by, 'attr':{'readonly':'true'} }) }}
+                        {{ form_eservRow (form.attention_of, { 'labelSize': 4, 'fieldSize': 8  }) }}
+                        {{ form_eservRow (form.priority, { 'labelSize': 4, 'fieldSize': 8 ,'value':priority_task }) }}
+                        {{ form_eservRow (form.title, { 'labelSize': 4, 'fieldSize': 8  }) }}
+                        {{ form_eservRow (form.brief_description, { 'labelSize': 4, 'fieldSize': 8,'rows':10, 'cols':100  }) }}
+                    </div>
+                    <div id="h_name">
+                        <div class="col-lg-6">
+                            {{ form_eservRow (form.assigned_to, { 'labelSize': 4, 'fieldSize': 8 ,'value':contact}) }}#}
+
+
+                {#  {{ form_eservRow(form.dueby,{'labelSize': 4, 'fieldSize': 8,'fieldType': 'date','customPlaceHolder': 'DD/MM/YYYY'}) }}#}
+                {#{{ form_eservRow (form.dueby,{ 'fieldType': 'date','labelSize': 4, 'fieldSize': 8, 'customPlaceHolder': 'DD/MM/YYYY' }) }}#}
+
+                {{ form_eservRow (form.dev_status, { 'labelSize': 4, 'fieldSize': 8,'value':dev_status }) }}
+                {{ form_eservRow (form.version_no, { 'labelSize': 4, 'fieldSize': 8,'value':version_no  }) }}
+                {{ form_eservRow (form.chargeable, { 'labelSize': 4, 'fieldSize': 8 ,'value':chargeable }) }}
+               
+
+            </div>
+                 <div class="col-lg-6">
+                 {{ form_eservRow (form. mlo_quote_id, { 'labelSize': 4, 'fieldSize': 8  }) }}
+                {{ form_eservRow (form.completed_by, { 'labelSize': 4, 'fieldSize': 8,'value':completed_by  }) }}
+                {{ form_eservRow (form.date_completed,{ 'fieldType': 'date','labelSize': 4, 'fieldSize': 8, 'customPlaceHolder': 'DD/MM/YYYY' }) }}
+
+                {{ form_eservRow (form.mtl_status, { 'labelSize': 4, 'fieldSize': 8,'value':mtl_action  }) }}
+                 </div>
+        </div>
+                
+          
+   
+</fieldset>
+
+<fieldset class="eserv_form_btns">
+    <div class="form-group">
+        <div class="col-md-12">
+            <a id="cancel_AddFosUser_btn" ui-sref="mylogs.list" class="btn btn-danger pull-left direction1">{{ "Back" | trans }}</a>
+            {%set targe_url="'"~path("weblogsmainmtl_my_logs_logs_new_response_form_add")~"'"  %}
+
+            {%set targe_image_url="'"~path("weblogsmainmtl_my_logs_logs_new_upload_image_form_add")~"'"  %}
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right direction2',  'btn-loading': "is_processing.application_code_add", 'data-loading-text': "Saving..." | trans } }) }}
+            <input class="btn btn-default pull-left direction2" style="margin-left: 2px" value="{{ 'Reset' | trans }}" type="reset" id="_reset"/> 
+
+
+            <a class="btn pull-right btn btn-success direction2" ng-controller="EservimageModalCtrl" ng-click="openimageEservModal('eserv_main_user_upload_image_new_logs', 'New image', 'lg', {target_url: {{targe_image_url}} })" style="margin-left: 5px;">
+                <i class="fa fa-plus-circle"></i>
+                <span class="desktop_tablet_inline_text">Upload File</span>
+            </a>
+            <a class="btn pull-right btn btn-success direction2" ng-controller="EservlogsModalCtrl" ng-click="openlogsEservModal('eserv_main_user_add_new_logs', 'New Response', 'lg', {target_url: {{targe_url}} })" style="margin-left: 5px;">
+                <i class="fa fa-plus-circle"></i>
+                <span class="desktop_tablet_inline_text">Add Response</span>
+            </a>
+
+
+
+        </div>
+    </div>
+</fieldset>
+
+
+{#{% include 'WEBLOGSMAINMTLMyLogsBundle:mylogs:previous_response.html.twig' %}#}
+{#--------------------setting value in 9input fields ------------#}
+{%set task_val='' %}
+{%set log_category='' %}
+{%set log_attention='' %}
+{% if log_tasks is defined and log_tasks is not null %}
+    {%set task_val=log_tasks %}
+{%endif%}
+{% if category is defined and category is not null %}
+    {%set log_category=category %}
+{%endif%}
+{% if attention is defined and attention is not null %}
+    {%set log_attention=attention %}
+{%endif%}
+
+
+<input type="hidden" value="{{task_val}}" id="logs_tasks">
+<input type="hidden" value="{{log_category}}" id="logs_category" >
+<input type="hidden" value="{{log_attention}}" id="logs_attention" >
+
+<div style="display: none">
+    {{form_rest(form)}}
+</div>
+{{form_end(form)}}
+<input type="hidden" value={{user_group}} id="user_group">
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        prepareAppForms('{{ form.vars.name }}', false, {
+            type: 'dataTable',
+            id: '{{ refresh_table_id }}'
+        }, false, "AddLogsNotification", function() {
+            $('#addUserCancelBtn').click();
+        });
+    {#$("#weblogs_main_mtl_mylogsbundle_vmylogs_save").click(function(){
+               window.location.href=root_url+'#mylogs/list';
+           });#}
+                   var group = $("#user_group").val();
+                   // alert(group);  CUSTOMER
+                   if (group == 'CUSTOMER') {
+                       $('#h_name').hide();
+                   }
+
+               });
+    {#jQuery(window).load(function () {
+        if(window.location.href.split("#/")[1].split("/")[8]!='')
+            {
+                //alert("customer");
+
+                $("#weblogs_main_mtl_mylogsbundle_vmylogs_customer").val(window.location.href.split("#/")[1].split("/")[8]);
+            }
+        });#}
+
+</script>
+
+
+<script type="text/javascript">
+    $("#weblogs_main_mtl_mylogsbundle_vmylogs_customer").change(function() {
+        var dropdown = $('#weblogs_main_mtl_mylogsbundle_vmylogs_category');
+        dropdown.empty();
+
+        var id = $("#weblogs_main_mtl_mylogsbundle_vmylogs_customer option:selected").val();
+        $.post(root_url + "mylogs/logcategory", {id: id}, function(data) {
+            //   console.log(data);
+    {#  $.each(data, function () {
+            $("#weblogs_codebundle_code_main_task_code").append($("<option>
+            </option>").val(this['CTK_CODE']).html(this['CTK_CODE']));
+        });#}
+
+                    $.each(data, function(i, obj)
+                    {
+                        // alert(obj.CTK_CODE+":"+obj.CTK_CODE);
+                        if ("CATEGORY_CODE" in obj) {
+                            var div_data_et = "<option value=" + obj.CATEGORY_CODE + ">" + obj.NAME + "</option>";
+                        }
+                        if ("CSEV_SEQ_ID" in obj) {
+                            var div_data_e = "<option value=" + obj.CSEV_SEQ_ID + ">" + obj.CSEV_NAME + "</option>";
+                        }
+                        if ("CTK_CODE" in obj) {
+                            var div_data_t = "<option value=" + obj.CTK_CODE + ">" + obj.CTK_NAME + "</option>";
+                        }
+                        // console.log(div_data);
+                        $('#weblogs_main_mtl_mylogsbundle_vmylogs_category').append(div_data_et);
+                        $('#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of').append(div_data_e);
+                        $('#weblogs_main_mtl_mylogsbundle_vmylogs_task').append(div_data_t);
+                        ;
+                    });
+    {# $($.parseJSON(data)).map(function () {
+   return $('<option>').val(this.CTK_CODE).text(this.CTK_CODE);
+}).appendTo('#weblogs_codebundle_code_main_task_code');
+      // $("span").html(result);
+   });#}
+           });
+
+
+       });
+
+       //populate logs tasks data//
+       $(document).ready(function() {
+
+
+           $("#weblogs_main_mtl_mylogsbundle_vmylogs_date_completed").on("change", function() {
+
+               $("#weblogs_main_mtl_mylogsbundle_vmylogs_mtl_status").val('C');
+           });
+
+
+
+
+
+           var customer = $("#weblogs_main_mtl_mylogsbundle_vmylogs_customer").val();
+           //var customer=sessionStorage.getItem("customer_new");
+           //   $('#weblogs_main_mtl_mylogsbundle_vmylogs_category').attr('disabled', true);
+           $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").attr('disabled', true);
+           $("#weblogs_main_mtl_mylogsbundle_vmylogs_task_description").attr('disabled', true);
+           $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").attr('disabled', true);
+           $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").addClass('updating_field');
+           $("#weblogs_main_mtl_mylogsbundle_vmylogs_task_description").addClass('updating_field');
+           $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").addClass('updating_field');
+           $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").parents('form').find('button[type="submit"]').attr('disabled', true);
+           $.ajax({
+               url: root_url + 'mylogs/logs_data',
+               cache: false,
+               type: "POST",
+               data: {'customer_id': customer},
+               dataType: 'json',
+               success: function(html) {
+
+                   //looping over data//
+                   $("#weblogs_main_mtl_mylogsbundle_vmylogs_task_description").attr('disabled', false);
+                   $("#weblogs_main_mtl_mylogsbundle_vmylogs_task_description").removeClass('updating_field');
+                   
+                   $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").attr('disabled', false);
+                   $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").removeClass('updating_field');
+                   
+                   
+                    $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").attr('disabled', false);
+                        $('#weblogs_main_mtl_mylogsbundle_vmylogs_category').removeClass('updating_field');
+                   $.each(html, function(key, value) {
+
+                       //$('#weblogs_main_mtl_mylogsbundle_vmylogs_category').attr('disabled', false);
+                       $("#weblogs_main_mtl_mylogsbundle_vmylogs_task_description").append($('<option value=' + value.ctk_code + '>' + value.ctk_name + '</option>'));
+    {#  .append($("<option></option>")
+              .attr("value", value.ctk_code)
+              .text(value.ctk_name));#}
+                              });
+                              
+                              $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").parents('form').find('button[type="submit"]').attr('disabled', false);
+                              //logs tasks//
+                              if ($("#logs_tasks").val() != '')
+                              {
+
+
+                                  $("#weblogs_main_mtl_mylogsbundle_vmylogs_task_description").val($("#logs_tasks").val());
+                              }
+
+                          }
+                      });
+
+                      $.ajax({
+                          url: root_url + 'mylogs/logs_category',
+                          cache: false,
+                          type: "POST",
+                          data: {'customer_id': customer},
+                          dataType: 'json',
+                          success: function(html) {
+ // console.log(html);
+                              //looping over data//
+                       
+                              $.each(html, function(key, value) {
+
+      $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").append($('<option value=' + value.CATEGORY_CODE + '>' + value.NAME + '</option>'));
+ 
+                                 {# $("#weblogs_main_mtl_mylogsbundle_vmylogs_category")
+                                          .append($("<option></option>")
+                                                  .attr("value", value.CATEGORY_CODE)
+                                                  .text(value.NAME));#}
+                              });
+//
+
+                              if ($("#logs_category").val() != '')
+                              {
+                                 
+                                  $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").val($("#logs_category").val());
+                              }
+
+                          }
+                      });
+                      $.ajax({
+                          url: root_url + 'mylogs/attention-of',
+                          cache: false,
+                          type: "POST",
+                          data: {'customer_id': customer},
+                          dataType: 'json',
+                          success: function(html) {
+
+                              //looping over data//
+                               $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").attr('disabled', false);
+                               $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").removeClass('updating_field');
+                              $.each(html, function(key, value) {
+
+ $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").append($('<option value=' + value.CSEV_SEQ_ID + '>' + value.CSEV_NAME + '</option>'));
+ 
+                                {#  $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of")
+                                          .append($("<option></option>")
+
+                                                  .attr("value", value.CSEV_SEQ_ID)
+                                                  .text(value.CSEV_NAME));#}
+
+                              });
+//#}                                   
+                              
+
+                              if ($("#logs_attention").val() != '')
+                              {
+
+                                  $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").val($("#logs_attention").val());
+                              }
+
+
+                          }
+                      });
+
+    {#  var n=1;
+      for(var i=1;i<=n;i++)
+      {
+         console.log(document.getElementById("weblogs_main_mtl_mylogsbundle_vmylogs_task_description")[i]);
+       }#}
+               $("#weblogs_main_mtl_mylogsbundle_vmylogs_save").click(function(event) {
+                   //event.preventDefault();
+                   $("#weblogs_main_mtl_mylogsbundle_vmylogs_customer").attr("disabled", false);// Element(s) are now enabled.
+               });
+               $('select option')
+                       .filter(function() {
+                           return !this.value || $.trim(this.value).length == 0;
+                       })
+                       .remove();
+
+
+           });
+
+
+
+</script>

@@ -1,0 +1,7 @@
+{# src/ESERV/MAIN/HelpersBundle/Resources/views/Form/labelToPlaceholder.html.twig #}
+
+{% use 'form_div_layout.html.twig' with widget_attributes as base_widget_attributes %}
+{% block widget_attributes %}
+    {% set attr = {'placeholder': label|trans({}, translation_domain) ,'class': 'form-control'} %}
+    {{- block('base_widget_attributes') -}}
+{% endblock widget_attributes %}

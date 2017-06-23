@@ -1,0 +1,81 @@
+ESERV\MAIN\ExternalBundle\Entity\QueuedDbProcessVar: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ExternalBundle\Entity\QueuedDbProcessVarRepository
+    table: queued_db_process_var
+    indexes:
+        fk_qudbprva_qudbpr_idx:
+            columns:
+                - queued_db_process_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fieldName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            column: field_name
+        fieldValue:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            column: field_value
+        fieldParamExt:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            column: field_param_ext
+        fieldParamType:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: field_param_type
+        fieldParamSize:
+            type: string
+            nullable: true
+            length: 11
+            fixed: false
+            column: field_param_size
+        orderCol:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: order_col
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        queuedDbProcess:
+            targetEntity: ESERV\MAIN\ExternalBundle\Entity\QueuedDbProcess
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                queued_db_process_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,16 @@
+{% use 'ESERVMAINHelpersBundle:Form:eserv_layout.html.twig' with widget_attributes as base_widget_attributes %}
+
+{% block form_widget_simple -%}
+    {% set type = type|default('text') -%}
+    <input type="{{ type }}" {{ block('widget_attributes', {'type': type}) }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{%- endblock form_widget_simple %}
+
+{% block form_widget_compound -%}
+    <div {{ block('widget_container_attributes') }}>
+        {%- if form.parent is empty -%}
+            {{ form_errors(form) }}
+        {%- endif -%}
+        {{- block('form_rows') -}}
+        {{- form_rest(form) -}}
+    </div>
+{%- endblock form_widget_compound %}

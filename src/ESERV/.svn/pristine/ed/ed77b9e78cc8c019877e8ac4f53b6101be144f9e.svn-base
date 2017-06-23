@@ -1,0 +1,44 @@
+ESERV\MAIN\HistoryBundle\Entity\HistoryControl: 
+    type: entity
+    repositoryClass: ESERV\MAIN\HistoryBundle\Entity\HistoryControlRepository
+    table: history_control
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        tableName:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            column: table_name
+        fieldName:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            column: field_name
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

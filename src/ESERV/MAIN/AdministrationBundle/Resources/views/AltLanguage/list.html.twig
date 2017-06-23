@@ -1,0 +1,40 @@
+<h3 class="pull-left">{{ lang_name }}</h3>
+{#
+<a class="btn btn-success pull-right" style="margin-bottom: 10px;margin-top: 20px;" href="#/admin/alternative_language/{{alt_lang_id}}/add">
+    <i class="fa fa-plus-circle"></i>
+    {{ 'Add an alternative language for' | trans }} {{ lang_name }}
+</a>
+#}
+{% if is_granted('ROLE_ADMIN') %}
+    <button type="button" id="process_translations_btn" class="btn btn-danger pull-right" style="margin-bottom: 10px;margin-top: 20px;" data-url="{{ process_translations_url }}">
+        <i class="fa fa-flash"></i> 
+        {{ 'Process Translations' | trans }}
+    </button>
+{% endif %}
+
+<div class="clearfix"></div>
+<hr />
+{{ dataTable | raw }}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#process_translations_btn')
+                .unbind('click')
+                .click(function () {
+                    var ajax_url = $(this).data('url');
+                    toggleMainLoader('Processing Tanslations..', true);
+                    $.ajax({
+                        url: ajax_url,
+                        //dataType: 'jsonp',
+                        success: function (response) {
+                            console.log(response);
+                            toggleMainLoader('Processing Tanslations..', false);
+                        },
+                        error: function (error) {
+                            console.log(error);
+                            toggleMainLoader('Processing Tanslations..', false);
+                        }
+                    });
+                });
+    });
+</script>

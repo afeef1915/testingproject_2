@@ -1,0 +1,7 @@
+parameters:
+#    eservcore_helpers.example.class: ESERV\MAIN\HelpersBundle\Example
+
+services:
+#    eservcore_helpers.example:
+#        class: %eservcore_helpers.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

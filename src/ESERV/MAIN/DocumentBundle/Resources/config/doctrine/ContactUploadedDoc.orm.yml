@@ -1,0 +1,63 @@
+ESERV\MAIN\DocumentBundle\Entity\ContactUploadedDoc: 
+    type: entity
+    repositoryClass: ESERV\MAIN\DocumentBundle\Entity\ContactUploadedDocRepository
+    table: contact_uploaded_doc
+    indexes:
+        fk_conupldoc_condocsub_idx:
+            columns:
+                - con_doc_sub_id
+        fk_conupldoc_conupldocsto_idx:
+            columns:
+                - contact_uploaded_doc_store_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        orderBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: order_by
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        conDocSub:
+            targetEntity: ESERV\MAIN\DocumentBundle\Entity\ContactDocumentSubscription
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                con_doc_sub_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contactUploadedDocStore:
+            targetEntity: ESERV\MAIN\DocumentBundle\Entity\ContactUploadedDocStore
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_uploaded_doc_store_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

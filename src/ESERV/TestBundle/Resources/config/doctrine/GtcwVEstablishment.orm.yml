@@ -1,0 +1,138 @@
+ESERV\TestBundle\Entity\GtcwVEstablishment: 
+    type: entity
+    table: gtcw_v_establishment
+    id:
+        organisation_id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        establishmentId:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            column: establishment_id
+        contact_id:
+            type: integer
+            nullable: false  
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        dateOpened:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: date_opened        
+        dateClosed:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: date_closed
+        previousName:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            column: previous_name
+        referenceNo:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: 'This will be used for situations where we need to have a code for an organisation that wiill always apply even if the organisation has several types (contact_subtype).'        
+            column: reference_no
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+        addressLine1:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: address_line1    
+        addressLine2:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: address_line2
+        addressLine3:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: address_line3
+        town:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''    
+        county:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''    
+        postcode:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+        qualTypeId:
+            type: integer
+            nullable: true
+            column: qual_type_id
+        qualTypeCode:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: qual_type_code
+        qualTypeName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: qual_type_name
+        welshName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: welsh_name

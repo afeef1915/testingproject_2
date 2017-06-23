@@ -1,0 +1,1018 @@
+{# src/ESERV/MAIN/HelpersBundle/Resources/views/Form/eserv_layout.html.twig #}
+
+{% use "form_div_layout.html.twig" %}
+
+{% block form_label %}
+    {% spaceless %}
+
+        {% set useDevHelp = false %}
+        {% if use_dev_help() %}
+            {% set useDevHelp = true %}
+        {% endif %}
+
+        {% if not compound %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+            {{ label|trans({}, translation_domain) }}{% if attr.note is defined %} <span style="font: 11px normal; font-family: arial;">({{ attr.note }})</span>{% endif %}
+            {% if useDevHelp %}
+                <span class="merlin_dev_help label">({{ form.vars.name }})</span>
+            {% endif %}
+        </label>
+    {% endspaceless %}
+{% endblock form_label %}
+
+{% block form_eservRow %}
+    {% spaceless %}
+        {% set FieldType = '' %}
+
+        {% set LabelSize = 4 %}
+        {% set FieldSize = 8 %}
+        {% set ExtraGroupClass = '' %}
+        {% set ExtraLabelClass = '' %}
+        {% set ExtraFieldClass = '' %}
+        {% set ExtraViewClass = '' %}
+        {% set MaxLength = '' %}
+        {% set CustomPlaceHolder = form.vars.label %}
+        {% set Select2Vals = false %}
+
+        {% if labelSize is defined %} 
+            {% set LabelSize = labelSize %} 
+        {% endif %}
+        {% if select2Vals is defined %} 
+            {% set Select2Vals = select2Vals %} 
+        {% endif %}
+        {% if fieldSize is defined %} 
+            {% if fieldSize is sameas(false) %} 
+                {% set FieldSize = false %} 
+            {% else %}
+                {% set FieldSize = fieldSize %}
+            {% endif %}
+        {% endif %}
+        {% if extraGroupClass is defined %} 
+            {% set ExtraGroupClass = extraGroupClass %} 
+        {% endif %}
+        {% if extraLabelClass is defined %} 
+            {% set ExtraLabelClass = extraLabelClass %} 
+        {% endif %}
+        {% if extraFieldClass is defined %} 
+            {% set ExtraFieldClass = extraFieldClass %} 
+        {% endif %}
+        {% if extraViewClass is defined %} 
+            {% set ExtraViewClass = extraViewClass %} 
+        {% endif %}
+        {% if maxLength is defined %} 
+            {% set MaxLength = maxLength %} 
+        {% endif %}
+        {% if customPlaceHolder is defined %} 
+            {% set CustomPlaceHolder = customPlaceHolder %} 
+        {% endif %}
+
+        {% if fieldType is defined %} 
+            {% set FieldType = fieldType %} 
+            {% if FieldType == 'date' %}
+                {% set CustomPlaceHolder = (customPlaceHolder is defined) ? customPlaceHolder : 'DD/MM/YYYY' %}
+                {% set ExtraFieldClass = ExtraFieldClass ~ ' eserv_date_picker eserv_datepicker_width ll-skin-melon ' %}
+            {% elseif FieldType == 'dateNoDatepicker' %}                 
+                {% set ExtraFieldClass = ExtraFieldClass ~ ' eserv_datepicker_width eserv-date ' %}
+                {% set CustomPlaceHolder = (customPlaceHolder is defined) ? customPlaceHolder : 'DD/MM/YYYY' %}  
+            {% elseif FieldType == 'dateYYYY' %}
+                {% set ExtraFieldClass = ExtraFieldClass ~ 'eserv_datepicker_width eserv-year-only ' %}
+                {% set CustomPlaceHolder = (customPlaceHolder is defined) ? customPlaceHolder : 'YYYY' %}
+            {% elseif FieldType == 'dateMMYYYY' %}
+                {% set ExtraFieldClass = ExtraFieldClass ~ 'eserv_datepicker_width eserv-month-year ' %}
+                {% set CustomPlaceHolder = (customPlaceHolder is defined) ? customPlaceHolder : 'MM/YYYY' %}
+            {% elseif FieldType == 'dateTime' %}
+                {% set ExtraFieldClass = ExtraFieldClass ~ ' eserv_date_picker ll-skin-melon' %}
+                {% set CustomPlaceHolder = (customPlaceHolder is defined) ? customPlaceHolder :  'DD/MM/YYYY HH:mm' %}
+            {% elseif FieldType == 'amount' %}
+                {% set CustomPlaceHolder = (customPlaceHolder is defined) ? customPlaceHolder : '0.00' %}
+                {% set ExtraFieldClass = ExtraFieldClass ~ ' eserv_amount ' %}
+            {% elseif FieldType == 'proportion' %}
+                {% set CustomPlaceHolder = (customPlaceHolder is defined) ? customPlaceHolder : '0.1 - 0.9' %}
+                {% set ExtraFieldClass = ExtraFieldClass ~ ' eserv_proportion ' %}
+            {% elseif FieldType == 'niNumber' %}
+                {% set CustomPlaceHolder = (customPlaceHolder is defined) ? customPlaceHolder : 'i.e. QQ 12 34 56 A' %}
+                {% set ExtraFieldClass = ExtraFieldClass ~ ' eserv_ni_number ' %}
+            {% endif %}
+        {% endif %}
+
+        {% set CustomLabel = null %}
+        {% if customLabel is defined %} 
+            {% set CustomLabel = customLabel %} 
+        {% endif %}
+
+        {% set IsUploadFile = false %}
+        {% if isUploadFile is defined %} 
+            {% set IsUploadFile = isUploadFile %} 
+        {% endif %}
+
+        {% set IsCheckbox = false %}
+        {% if isCheckbox is defined %} 
+            {% set IsCheckbox = isCheckbox %} 
+        {% endif %}
+
+        {% set IsRadio = false %}
+        {% if isRadio is defined %} 
+            {% set IsRadio = isRadio %} 
+        {% endif %}
+
+        {% set NoLabel = false %}
+        {% if noLabel is defined and noLabel is sameas(true) %} 
+            {% set NoLabel = true %} 
+        {% endif %}
+
+        {% set RawValue = false %}
+        {% if rawValue is defined and rawValue is sameas(true) %} 
+            {% set RawValue = true %} 
+        {% endif %}
+
+        {% set ACValues = {'name': '', 'value': ''} %}
+        {% if acValues is defined and acValues is not sameas(false) %} 
+            {% set ACValues = acValues %} 
+        {% endif %}
+
+        {% if IsUploadFile %}
+
+            <div class="form-group {{ ExtraGroupClass }}">
+                {% if NoLabel is sameas(false) %}
+                    {% set ACRequired = '' %}
+                    {% if isAutocomplete is defined and isAutocomplete and dataESERVValidation is defined %}
+                        {% set tempArray = dataESERVValidation | split(',') %}
+                        {% if 'required' in tempArray | keys %}
+                            {% set ACRequired = dataESERVValidation %}
+                        {% endif %}
+                    {% endif %}
+                    {{ form_label(form, CustomLabel, {'label_attr': {'class': 'col-sm-' ~ LabelSize ~ ' control-label ' ~ ExtraLabelClass ~ ' ' ~  ACRequired } }) }}
+                {% endif %}
+                <div class="col-sm-{{ FieldSize }}">
+                    {% set F_Value = form.vars.value %}
+                    <div class="eserv_field_value view {{ form.vars.id }} {{ ExtraViewClass }}">
+                        {% if RawValue %}
+                            {{ F_Value | raw }}
+                        {% else %}
+                            {{ F_Value == '' ? (emptyValue is defined ? emptyValue : '') : F_Value }}
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% include 'ESERVMAINHelpersBundle:Form:eserv_upload_form.html.twig' with 
+                            {
+                                'field_id': form.vars.id,
+                                'form_id': formId
+                            }
+                        %}
+                        {% if MaxLength != '' %}
+                            {{ form_widget(form, {'attr': {'style': 'height: 0px;border: none;margin: 0px;padding: 0px;', 'class': 'form-control eserv_field_value edit ' ~ ExtraFieldClass, 'placeholder': CustomPlaceHolder, 'maxlength' : MaxLength } }) }}
+                        {% else %}
+                            {{ form_widget(form, {'attr': {'style': 'height: 0px;border: none;margin: 0px;padding: 0px;', 'class': 'form-control eserv_field_value edit ' ~ ExtraFieldClass, 'placeholder': CustomPlaceHolder } }) }}
+                        {% endif %}
+                    </div>
+                    <!-- The blueimp Gallery widget -->
+                    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+                        <div class="slides"></div>
+                        <h3 class="title"></h3>
+                        <a class="prev">‹</a>
+                        <a class="next">›</a>
+                        <a class="close">×</a>
+                        <a class="play-pause"></a>
+                        <ol class="indicator"></ol>
+                    </div>
+                </div>
+            </div>
+
+        {% elseif IsCheckbox %}
+            <div class="form-group {{ ExtraGroupClass }}">
+                {% if NoLabel is sameas(false) %}
+                    {{ form_label(form, CustomLabel, {'label_attr': {'class': 'col-sm-' ~ LabelSize ~ ' control-label ' ~ ExtraLabelClass } }) }}
+                {% endif %}
+                <div class="col-sm-8">
+                    <div class="eserv_field_value view" style="font-weight: normal;">{{ form.vars.checked ? 'Yes' : 'No' }}</div>
+                    <div class="eserv_field_value edit">
+                        <div class="checkbox checkbox-default checkbox-inline" {% if customMsg is defined %}style="position: absolute;margin: 0"{% endif %}>
+                            {{ form_widget(form, {'attr': {'class': 'eserv_field_value edit ' ~ ExtraFieldClass, 'placeholder': CustomPlaceHolder ? CustomPlaceHolder : label | trans({}, translation_domain) } }) }}
+                            <label for="{{ form.vars.id }}"></label>
+                        </div>
+                        {% if customMsg is defined %}
+                            <label for="{{ form.vars.id }}" style="margin: 7px 25px; width: auto; font-weight: normal; cursor: pointer">
+                                {{ customMsg | raw}}
+                            </label>
+                        {% endif %}
+                        <div class="help-block" {% if customMsg is defined %}style="clear: left"{% endif %}></div>
+                    </div>
+                </div>
+            </div>
+        {% elseif IsRadio %}
+            <div class="form-group {{ ExtraGroupClass }}">
+                {% if NoLabel is sameas(false) %}
+                    {{ form_label(form, CustomLabel, {'label_attr': {'class': 'col-sm-' ~ LabelSize ~ ' control-label ' ~ ExtraLabelClass } }) }}
+                {% endif %}
+                <div class="col-sm-8">
+                    <div class="eserv_field_value view" style="font-weight: normal;">                                
+                        {% for group_label, choice in form.vars.choices %}
+                            {% if choice.value == form.vars.data %}{{ choice.label }}{% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="eserv_field_value edit">
+                        {% for child in form %}
+                            <div class="radio {{ verticalRadioGroup is defined and verticalRadioGroup is sameas(true) ? '' : 'radio-inline' }}">
+                                {{ form_widget(child) }}
+                                <label for="{{ child.vars.id }}"> {{ child.vars.label | trans({}, translation_domain) }} </label>
+                            </div>
+                        {% endfor %}
+                        <span class="eserv_field_value edit help-block"></span>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="form-group {{ ExtraGroupClass }}">
+                {% if NoLabel is sameas(false) %}
+                    {% set ACRequired = '' %}
+                    {% if isAutocomplete is defined and isAutocomplete and dataESERVValidation is defined %}
+                        {% set tempArray = dataESERVValidation | split(',') %}
+                        {% if 'required' in tempArray | keys %}
+                            {% set ACRequired = dataESERVValidation %}
+                        {% endif %}
+                    {% endif %}
+                    {{ form_label(form, CustomLabel, {'label_attr': {'class': 'col-sm-' ~ LabelSize ~ ' control-label ' ~ ExtraLabelClass ~ ' ' ~  ACRequired } }) }}
+                {% endif %}
+
+                {% if fieldType is defined and fieldType == 'date'%}
+                    <div class="{% if FieldSize %}col-sm-{{ 12 - LabelSize }}{% endif %} eserv_datepicker">                    
+                    {% else%}
+                        <div class="{% if FieldSize %}col-sm-{{ FieldSize }}{% endif %} ">
+                        {% endif%}
+                        {% set F_Value = form.vars.value %}
+                        {% if FieldType == 'niNumber' %}
+                            {% set F_Value = F_Value | eserv_format_ni_number %}
+                        {% endif %}
+                        <div class="eserv_field_value view {{ form.vars.id }} {{ ExtraViewClass }}">
+                            {% set thisFieldVal = '' %}
+                            {% if RawValue %}
+                                {% set thisFieldVal = F_Value | raw %}
+                            {% else %}
+                                {% if isAutocomplete is defined and ACValues.name != false %}
+                                    {% set thisFieldVal = isAutocomplete is defined and isAutocomplete ? ACValues.name : (F_Value == '' ? (emptyValue is defined ? emptyValue : '') : F_Value) %}
+                                {% else %}
+                                    {% set thisFieldVal =  isAutocomplete is defined and isAutocomplete ? ACValues.name : (F_Value == '' ? (emptyValue is defined ? emptyValue : '') : (F_Value is not iterable ? F_Value : '')) %}
+                                {% endif %}
+                            {% endif %}
+                            {% if fieldHyperlink is defined and fieldHyperlink %}                                
+                                <a href="{{ fieldHyperlink }}">{{ thisFieldVal }}</a>                                
+                            {% else %}
+                                {{ thisFieldVal | raw  }}
+                            {% endif %}
+                        </div>
+                        {% if FieldType == 'niNumber' %}
+                            {{ form_widget(form, {'value' : F_Value , 'attr': {'class': 'form-control eserv_field_value edit ' ~ ExtraFieldClass, 'placeholder': CustomPlaceHolder } }) }}
+                        {% else %}
+                            {% if MaxLength != '' %}
+                                {{ form_widget(form, {'attr': {'class': 'form-control eserv_field_value edit ' ~ ExtraFieldClass, 'placeholder': CustomPlaceHolder, 'maxlength' : MaxLength } }) }}
+                            {% else %}
+                                {{ form_widget(form, {'attr': {'class': 'form-control eserv_field_value edit ' ~ ExtraFieldClass, 'placeholder': CustomPlaceHolder } }) }}
+                            {% endif %}
+                        {% endif %}
+                        {% if enableHistory is defined %}   
+                            <a class="ng-scope field_history_button" ng-controller="EservModalCtrl" 
+                               ng-click="openEservModal('eserv_main_history_list_modal_id', '{{ enableHistory.modal_title }}', 'lg', 
+                                        {target_url: '{{ path('eserv_main_history_list', {
+                                                                                        'entity_id' : enableHistory.entity_id,
+                                                                                        'entity_name' :  enableHistory.entity_name,
+                                                                                        'field_name' :  enableHistory.field_name
+                                                                                    }) }}'
+                                                    })">
+                                <i class="fa fa-history"></i> History               
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% endif %}
+            {% if extra_param is defined %}
+                {% set extraParam = extra_param %}
+                {% if extraParam.populate_elements is defined %}
+                    {% set populateElement = extraParam.populate_elements %}
+                    {% if populateElement.routing is defined %}
+                        {% set routing = populateElement.routing %}
+                        {% set url = path(routing)%}
+                        {% set params = {} %}
+                        {% if populateElement.params is defined %}
+                            {% set params = populateElement.params %}
+                        {% endif %}
+                        <script>
+                            $("#{{ form.vars.id }}").change(function (){
+                            populateElement('{{ url }}', {{ params|json_encode|raw }});
+                            });</script>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endspaceless %}
+        {% endblock form_eservRow %}
+
+    {% block form_eservSelectRow %}
+        {% spaceless %}
+
+            {% set LabelSize = 4 %}
+            {% set FieldSize = 8 %}
+
+            {% if labelSize is defined %} 
+                {% set LabelSize = labelSize %} 
+            {% endif %}
+            {% if fieldSize is defined %} 
+                {% set FieldSize = fieldSize %} 
+            {% endif %}
+
+            {% set CustomLabel = null %}
+            {% if customLabel is defined %} 
+                {% set CustomLabel = customLabel %} 
+            {% endif %}
+            {% set ExtraGroupClass = '' %}
+            {% if extraGroupClass is defined %} 
+                {% set ExtraGroupClass = extraGroupClass %} 
+            {% endif %}
+            {% set ExtraFieldClass = null %}
+            {% if extraFieldClass is defined %} 
+                {% set ExtraFieldClass = extraFieldClass %} 
+            {% endif %}
+
+            {% set IsSelect2 = false %}
+            {% if isSelect2 is defined %} 
+                {% set IsSelect2 = isSelect2 %} 
+            {% endif %}
+
+            {% set IsJSSelectPicker = false %}
+            {% if isSelectPicker is defined %} 
+                {% set IsJSSelectPicker = isSelectPicker %} 
+            {% endif %}
+
+            {% set ExtraHtml = false %}
+            {% if extraHtml is defined %} 
+                {% set ExtraHtml = extraHtml %} 
+            {% endif %}
+
+            {% set select_options = form.vars.choices %}
+
+            {% if value is defined %} 
+                {% set fieldValue = value %}
+            {% endif %}
+
+            {% set IsIconPicker = false %}
+            {% if isIconPicker is defined %} 
+                {% set IsIconPicker = isIconPicker %} 
+            {% endif %}
+
+            <div class="form-group {{ ExtraGroupClass }}">
+                {{ form_label(form, CustomLabel, {'label_attr': {'class': 'col-sm-' ~ LabelSize ~ ' control-label'} }) }}
+                <div class="col-sm-{{ (FieldSize) }}">
+                    {% if IsSelect2 %}
+                        {% set viewVal = '' %}
+                        {{ form_widget(form, {'ExtraHtml': ExtraHtml, 'attr': {'data-init-values': form.vars.value | join(','), 'multiple': 'multiple', 'class': 'eserv_field_value select2 edit ' ~ ExtraFieldClass, 'placeholder': label | trans({}, translation_domain) } }) }}
+                    {% elseif IsJSSelectPicker %}
+                        {% set viewVal = '' %}
+                        {{ form_widget(form, {'ExtraHtml': ExtraHtml, 'attr': {'class': 'form-control eserv_field_value eserv_select_field selectpicker ignore_visible show-tick edit pull-left ' ~ ExtraFieldClass, 'placeholder': label | trans({}, translation_domain) } }) }}
+                    {% elseif IsIconPicker %}
+                        {% set viewVal = '' %}
+                        {{ form_widget(form, {'ExtraHtml': ExtraHtml, 'attr': {'class': 'form-control eserv_field_value eserv_select_field selectpicker ignore_visible show-tick edit pull-left ' ~ ExtraFieldClass, 'placeholder': label | trans({}, translation_domain) } }) }}
+                        <script type="text/javascript">
+                            try {
+                                $('#{{ form.vars.id }}').samIconPicker({
+                                    optionValue: false,
+                                    popupTitle: 'Select your icon',
+                                    showTextbox: false
+                                });
+                            } catch (Exception) {
+                                alert('Icon picker has not loaded successfully!');
+                            }
+                        </script>
+                    {% else %}
+                        <div class="input-group">
+                            {% set viewVal = '' %}
+                            {{ form_widget(form, {'value': fieldValue, 'ExtraHtml': ExtraHtml, 'attr': {'class': 'form-control eserv_field_value edit pull-left ' ~ ExtraFieldClass, 'placeholder': label | trans({}, translation_domain) } }) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if extra_param is defined %}
+                {% set extraParam = extra_param %} 
+                {% if extraParam.params_from_form_element is defined %}
+                    {% set paramsFromFormElement = extraParam.params_from_form_element %}
+                    {% for param in paramsFromFormElement %}
+                        {% if param['element_id'] is defined and param['param_name'] is defined and param['routing'] is defined %}
+                            {% set elementId = param['element_id'] %}
+                            {% set paramName = param['param_name'] %} 
+                            {% set routing = param['routing'] %}
+                            {% set url = path(routing,{ paramName : 'paramValue' })%}
+                            <script>
+                                $("#{{ elementId }}").change(function (){
+                                populateElementByMasterElement($("#{{ elementId }}"), $('#{{ form.vars.id }}'), '{{url}}', '{{paramName}}', '{{ form.vars.value }}');
+                                });
+                                        //if($("#{{ elementId }}").val() != ''){
+                                        populateElementByMasterElement($("#{{ elementId }}"), $('#{{ form.vars.id }}'), '{{url}}', '{{paramName}}', '{{ form.vars.value }}');
+                                        //}
+                            </script>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+
+        {% endspaceless %}
+    {% endblock form_eservSelectRow %}
+    
+    {% block form_eservTree %}
+        {% spaceless %}
+            
+            {% set FieldType = '' %}
+
+        {% set LabelSize = 4 %}
+        {% set FieldSize = 8 %}
+        {% set ExtraGroupClass = '' %}
+        {% set ExtraLabelClass = '' %}
+        {% set ExtraFieldClass = '' %}
+        {% set ExtraViewClass = '' %}
+
+        {% if labelSize is defined %} 
+            {% set LabelSize = labelSize %} 
+        {% endif %}
+
+        {% if fieldSize is defined %} 
+            {% if fieldSize is sameas(false) %} 
+                {% set FieldSize = false %} 
+            {% else %}
+                {% set FieldSize = fieldSize %}
+            {% endif %}
+        {% endif %}
+        {% if extraGroupClass is defined %} 
+            {% set ExtraGroupClass = extraGroupClass %} 
+        {% endif %}
+        {% set GroupVisible = true %}
+        {% if groupVisible is defined and groupVisible is sameas(false) %} 
+            {% set GroupVisible = false %} 
+        {% endif %}
+        {% if extraLabelClass is defined %} 
+            {% set ExtraLabelClass = extraLabelClass %} 
+        {% endif %}
+        {% if extraFieldClass is defined %} 
+            {% set ExtraFieldClass = extraFieldClass %} 
+        {% endif %}
+        {% if extraViewClass is defined %} 
+            {% set ExtraViewClass = extraViewClass %} 
+        {% endif %}
+
+        {% set CustomLabel = null %}
+        {% if customLabel is defined %} 
+            {% set CustomLabel = customLabel %} 
+        {% endif %}
+        
+        {% set WithView = true %}
+        {% if withView is defined %} 
+            {% set WithView = withView %} 
+        {% endif %}
+
+        {% set IncludeFilter = (plugins is defined and 'search' in plugins) ? true : false %}
+
+        {% set NoLabel = false %}
+        {% if noLabel is defined and noLabel is sameas(true) %} 
+            {% set NoLabel = true %} 
+        {% endif %}
+
+        {% set RawValue = false %}
+        {% if rawValue is defined and rawValue is sameas(true) %} 
+            {% set RawValue = true %} 
+        {% endif %}
+
+        <div class="form-group merlin-tree {{ ExtraGroupClass }} {% if WithView is sameas(true) %}with-view{% endif %}">  
+            {% if NoLabel is sameas(false) and WithView is sameas(false) %}
+                {{ form_label(form, CustomLabel, {'label_attr': {'class': 'col-sm-' ~ LabelSize ~ ' control-label ' ~ ExtraLabelClass } }) }}
+            {% endif %}
+
+            {{ form_widget(form, { 'attr': {'style': 'display:table;visibility: hidden; height: 0px; padding: 0px; margin: 0px; border: none;'} }) }}
+            <div class="{% if WithView is sameas(true) %}col-sm-5{% else %}col-sm-7{% endif %} merlin-tree-menu">
+                {% if IncludeFilter is sameas(true) %}
+                    <input type="text" style="width: 100%;border-color: #ddd !important;" class="form-control" id="{{ form.vars.id }}_tree_search_box" placeholder="{{ 'Filter tree..' | trans }}" />
+                    <div class="clearfix"></div>
+                {% endif %}
+                <div id="{{ form.vars.id }}_jstree_div"></div>
+            </div>
+            {% if WithView is sameas(true) %}
+                <div class="col-sm-7 merlin-tree-view">
+                    <div id="event_result"></div>
+                </div>
+            {% endif %}
+            <input type="hidden" id="tree_{{ form.vars.id }}" name="tree_{{ form.vars.name }}" value="" />
+            <div class="clearfix" style="border-left: 1px solid transparent;"></div>
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var treeItems = {{ tree_options | json_encode() | raw }};
+                $('#{{ form.vars.id }}_jstree_div').on('changed.jstree', function (e, data) {
+                    
+                    var xmlDoc = $.parseXML(data.node.a_attr['data-item-details']);
+                    var $xml = $( xmlDoc );
+                    var fieldsHTML = '';
+                    
+                    $("field", $xml).each(function () {
+                        fieldsHTML = fieldsHTML + '<div>' + $(this).attr('label') + ' ' + $(this).attr('operator') + ' ' + $(this).attr('value') + '</div>';
+                    });
+
+                    var html = '\n\
+                        <h3 style="padding: 0px; margin: 0px;">' + data.node.text + '</h3>\n\
+                        <hr style="border-color:#ddd;margin-bottom: 10px;margin-top: 10px;" />\n\
+                        <div>Query ID: ' + data.node.a_attr['data-item-value'] + '</div>\n\
+                        <div>' + fieldsHTML + '</div>';
+                    $('#event_result').html(html);
+                    $('#{{ form.vars.id }}').val(data.node.a_attr['data-item-value']);
+                }).jstree({
+                    core: {
+                        check_callback: true
+                        //state: {
+                        //    key: 'merlin_tree_state_{{ form.vars.id }}_saved_searches'
+                        //},
+                        , data: treeItems
+                    }
+                    , plugins: {% if plugins is defined and plugins | length > 0 %}{{ plugins | json_encode() | raw }}{% else %}[]{% endif %}
+                    {% if contextMenu is defined and contextMenu is not sameas(false) %}, contextmenu: {items: {{ contextMenu }}}{% endif %}
+                });
+                
+                {% if IncludeFilter is sameas(true) %}
+                var to = false;
+                $('#{{ form.vars.id }}_tree_search_box').keyup(function () {
+                    if (to) {
+                        clearTimeout(to);
+                    }
+                    to = setTimeout(function () {
+                        var v = $('#{{ form.vars.id }}_tree_search_box').val();
+                        $('#{{ form.vars.id }}_jstree_div').jstree(true).search(v);
+                    }, 250);
+                });
+                {% endif %}
+                
+                $('#{{ form.vars.id }}_jstree_div').focusout(function(){
+                    var v = $('#{{ form.vars.id }}_jstree_div').jstree(true).get_json('#', {flat:true})
+                    var treeData = JSON.stringify(v);
+
+                    $('#tree_{{ form.vars.id }}').val(treeData);
+                });
+            });
+        </script>
+
+        {% endspaceless %}
+    {% endblock form_eservTree %}
+
+    {% block choice_widget -%}
+
+
+        {% if expanded %}
+            {{- block('choice_widget_expanded') -}}
+        {% else %}
+            {% if required and empty_value is none and not empty_value_in_choices and not multiple %}
+                {% set required = false %}
+            {% endif %}
+
+            {% set viewVal = '' %}
+            {% set c_values = [] %}
+            <span class="eserv_field_value edit clearfix">
+                <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+                    {% if empty_value is not none %}
+                        <option data-option-value="" value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+                    {% endif %}
+                    {% if preferred_choices|length > 0 %}
+                        {% set options = preferred_choices %}
+                        {% for group_label, choice in options %}
+                            {%- if choice is iterable -%}
+                            <optgroup label="{{ group_label|trans({}, translation_domain) }}">
+                                {% set options = choice %}
+                                {{- block('choice_widget_options') -}}
+                            </optgroup>
+                            {%- else -%}
+                            {% if choice is selectedchoice(value) %}
+                                {% set c_values = c_values|merge([choice.label|trans({}, translation_domain)]) %}
+                            {% endif%}
+                            <option data-option-value="{{ choice.label|trans({}, translation_domain) }}" value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% set viewVal = choice.value %}{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
+                            {%- endif -%}
+                        {% endfor %}
+                        {% if choices|length > 0 and separator is not none %}
+                            <option data-option-value="" disabled="disabled">{{ separator }}</option>
+                        {% endif %}
+                    {% endif %}
+                    {% set options = choices -%}
+
+                    {% for group_label, choice in options %}
+                        {%- if choice is iterable -%}
+                        <optgroup label="{{ group_label|trans({}, translation_domain) }}">
+                            {% set options = choice %}
+                            {{- block('choice_widget_options') -}}
+                        </optgroup>
+                        {%- else -%}
+                        {% if choice is selectedchoice(value) %}
+                            {% set c_values = c_values|merge([choice.label|trans({}, translation_domain)]) %}
+                        {% endif%}
+                        {% set choiceAttr = '' %}
+                        {% if eserv_choice_attr[choice.value] is defined %}
+                            {% for attrName, attrVal in eserv_choice_attr[choice.value] %}
+                                {% set choiceAttr = choiceAttr ~ attrName ~ '="' ~ attrVal ~ '" ' %}
+                            {% endfor %}
+                        {% endif%}
+                        <option {{ choiceAttr | raw }} data-option-value="{{ choice.label|trans({}, translation_domain) }}" value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% set viewVal = choice.label %}{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
+                        {%- endif -%}
+                    {% endfor %}
+                </select>
+                {% if ExtraHtml is defined and ExtraHtml is not sameas( false) %}
+                    {{ ExtraHtml | raw }}
+                {% endif %}
+                <span class="eserv_field_value edit help-block"></span>
+            </span>
+            <div class="eserv_field_value view">
+                {% set thisFieldVal = c_values | join('<br />') | raw %}
+
+                {% if fieldHyperlink is defined and fieldHyperlink %}
+                    <a href="{{ fieldHyperlink }}">{{ thisFieldVal }}</a>
+                {% else %}
+                    {{ thisFieldVal }}
+                {% endif %}
+            </div>
+
+        {% endif %}
+    {% endblock choice_widget %}
+
+    {% block form_eservPostCodeLookup %}
+        {% spaceless %}
+            {% set CustomLabel = null %}
+            {% if customLabel is defined %} 
+                {% set CustomLabel = customLabel %} 
+            {% endif %}
+
+            {% set ExtraGroupClass = '' %}
+            {% if extraGroupClass is defined %} 
+                {% set ExtraGroupClass = extraGroupClass %} 
+            {% endif %}
+
+            {% set ExtraFieldClass = '' %}
+            {% if extraFieldClass is defined %} 
+                {% set ExtraFieldClass = extraFieldClass %} 
+            {% endif %}
+
+            <div class="form-group {{ ExtraGroupClass }}">
+                {{ form_label(form, CustomLabel, {'label_attr': {'class': 'col-sm-4 control-label'} }) }}
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        {{ form_widget(form, {'no_help_block': true, 'attr': {'class': 'form-control eserv_field_value edit postcode_lookup_field ' ~ ExtraFieldClass, 'placeholder': 'i.e. SW1 8UI' | trans} }) }}
+                        <div class="eserv_field_value view">
+                            {% set thisFieldVal = form.vars.value %}
+
+                            {% if fieldHyperlink is defined and fieldHyperlink %}
+                                <a href="{{ fieldHyperlink }}">{{ thisFieldVal }}</a>
+                            {% else %}
+                                {{ thisFieldVal }}
+                            {% endif %}
+                        </div>
+                        <span class="input-group-btn" style="width: auto">
+                            <button class="btn btn-info postcode_lookup_trigger eserv_field_value edit" type="button">{{ 'Find Address' | trans }}</button>
+                        </span>
+                    </div>                                  
+                    <span class="help-block"></span>
+                </div>                               
+            </div>            
+        {% endspaceless %}
+    {% endblock form_eservPostCodeLookup %}
+
+    {% block form_eservAddressSelector %}
+        {% spaceless %}
+            {% set CustomLabel = null %}
+            {% if customLabel is defined %} 
+                {% set CustomLabel = customLabel %} 
+            {% endif %}
+
+            <div {{ block('widget_container_attributes') }}>
+                <div class="form-group">
+                    {{ form_label(form, CustomLabel, {'label_attr': {'class': 'col-sm-4 control-label'} }) }}
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            {{ form_widget(form, {'attr': {'class': 'form-control eserv_field_value edit postcode_lookup_field', 'placeholder': 'i.e. SW1 8UI'} }) }}
+                            <div class="eserv_field_value view">
+                                {% set thisFieldVal = form.vars.value %}
+
+                                {% if fieldHyperlink is defined and fieldHyperlink %}
+                                    <a href="{{ fieldHyperlink }}">{{ thisFieldVal }}</a>
+                                {% else %}
+                                    {{ thisFieldVal }}
+                                {% endif %}
+                            </div>
+                            <span class="input-group-btn">
+                                <button class="btn btn-info postcode_lookup_trigger eserv_field_value edit" type="button">Find Address</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endspaceless %}
+    {% endblock form_eservAddressSelector %}
+
+    {% block form_eservRadio %}
+        {% spaceless %}
+            <div {{ block('widget_container_attributes') }}>
+                {% for index, child in form %}
+                    {% if child.vars.value != null %}
+                        <div class="radio">
+                            <label> 
+                                {{ form_widget(child) }}
+                                {{ child.vars.label|trans }}
+                            </label>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endspaceless %}
+    {% endblock form_eservRadio %}
+
+    {% block field_errors %}
+        {% spaceless %}
+            {% if errors|length > 0 %}
+                <ul class="error_list">
+                    {% for error in errors %}
+                        <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
+                        {% endfor %}
+                </ul>
+            {% endif %}
+        {% endspaceless %}
+    {% endblock field_errors %}
+
+    {% block field_label %}
+        {{ block('base_field_label') }}
+        {% if required %}
+            <span class="required" title="This field is required">*</span>
+        {% endif %}
+    {% endblock %}
+
+
+    {% block form_widget_simple %}
+        {% set type = type|default('text') -%}
+        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        {% if no_help_block is defined and no_help_block is sameas(true) %}
+        {% else %}
+            <span class="help-block"></span>
+        {% endif %}
+    {% endblock form_widget_simple %}
+
+    {% block form_widget_compound %}
+        <div {{ block('widget_container_attributes') }}>
+            {%- if form.parent is empty -%}
+            {{ form_errors(form) }}
+            {%- endif -%}
+            {{- block('form_rows') -}}
+            {{- form_rest(form) -}}
+        </div>
+        <!-- <span class="fa fa-times form-control-feedback"></span> -->
+        <span class="help-block"></span>
+    {% endblock form_widget_compound %}
+
+    {% block textarea_widget %}
+        <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+        <span class="help-block"></span>
+    {% endblock textarea_widget %}
+
+    {% block datetime_widget %}
+        {% if widget == 'single_text' %}
+            {{- block('form_widget_simple') -}}
+        {% else %}
+            <div {{ block('widget_container_attributes') }}>
+                {{- form_errors(form.date) -}}
+                {{- form_errors(form.time) -}}
+                {{- form_widget(form.date) -}}
+                {{- form_widget(form.time) -}}
+            </div>
+            <span class="help-block"></span>
+        {% endif %}
+    {% endblock datetime_widget %}
+
+    {% block date_widget %}
+        {% if widget == 'single_text' %}
+            {{- block('form_widget_simple') -}}
+        {% else %}
+            <div {{ block('widget_container_attributes') }}>
+                {{- date_pattern|replace({
+                '{{ year }}':  form_widget(form.year),
+                                            '{{ month }}': form_widget(form.month),
+                                            '{{ day }}':   form_widget(form.day),
+                                            })|raw -}}
+            </div>
+            <span class="help-block"></span>
+        {% endif %}
+    {% endblock date_widget %}
+
+    {% block time_widget %}
+        {% if widget == 'single_text' %}
+            {{- block('form_widget_simple') -}}
+        {% else %}
+            {% set vars = widget == 'text' ? { 'attr': { 'size': 1 }} : {} %}
+            <div {{ block('widget_container_attributes') }}>
+                {{ form_widget(form.hour, vars) }}{% if with_minutes %}:{{ form_widget(form.minute, vars) }}{% endif %}{% if with_seconds %}:{{ form_widget(form.second, vars) }}{% endif %}
+            </div>
+            <span class="help-block"></span>
+        {% endif %}
+    {% endblock time_widget %}
+
+    {% block widget_attributes %}
+        {% set type = type|default('text') %}
+        id="{{ id }}" name="{{ full_name }}" data-eservfieldtype="{{ type }}" data-eservvalidation="{{ dataESERVValidation }}"
+        {% if read_only %} readonly="readonly"{% endif %}
+        {% if disabled %} disabled="disabled"{% endif %}
+        {% if is_date is defined and is_date %} 
+            {% if is_date['format'] is defined %} data-dateformat="{{ is_date['format'] }}"{% endif %}
+            {% if is_date['yearrange'] is defined %} data-yearrange="{{ is_date['yearrange'] }}"{% endif %}
+            {% if is_date['view_mode'] is defined %} data-date-view-mode="{{ is_date['view_mode'] }}"{% endif %}
+            {% if is_date['min_view_mode'] is defined %} data-date-min-view-mode="{{ is_date['min_view_mode'] }}"{% endif %}
+            {% if is_date['start_date'] is defined %} data-date-start-date="{{ is_date['start_date'] }}"{% endif %}
+            {% if is_date['end_date'] is defined %} data-date-end-date="{{ is_date['end_date'] }}"{% endif %}
+        {% endif %}
+        {% if is_date_time is defined and is_date_time %} 
+            {% if is_date_time['date']['format'] is defined %} data-dateformat="{{ is_date_time['date']['format'] }}"{% endif %}
+            {% if is_date_time['time']['format'] is defined %} data-timeformat="{{ is_date_time['time']['format'] }}"{% endif %}
+            {% if is_date_time['date']['yearrange'] is defined %} data-yearrange="{{ is_date_time['date']['yearrange'] }}"{% endif %}
+            {% if is_date_time['date']['view_mode'] is defined %} data-date-view-mode="{{ is_date_time['date']['view_mode'] }}"{% endif %}
+            {% if is_date_time['date']['min_view_mode'] is defined %} data-date-min-view-mode="{{ is_date_time['date']['min_view_mode'] }}"{% endif %}
+            {% if is_date_time['date']['start_date'] is defined %} data-date-start-date="{{ is_date_time['date']['start_date'] }}"{% endif %}
+            {% if is_date_time['date']['end_date'] is defined %} data-date-end-date="{{ is_date_time['date']['end_date'] }}"{% endif %}
+        {% endif %}
+        {% if is_regx is defined and is_regx %} 
+            {% if is_regx['format'] is defined %} data-regxformat='{{ is_regx['format'] }}'{% endif %}
+            {% if is_regx['error_msg'] is defined %} data-regxerror="{{ is_regx['error_msg'] }}"{% endif %}
+        {% endif %}
+        {% if is_lettercase is defined   %} 
+            data-lettercase="{{ is_lettercase }}"       
+        {% endif %}
+        {% for attrname, attrvalue in attr %}
+            {{- " " -}}
+            {% if attrname in ['placeholder', 'title'] %}
+                {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
+            {% elseif attrvalue is sameas(true) %}
+                {{- attrname }}="{{ attrname }}"
+            {% elseif attrvalue is not sameas(false) %}
+                {{- attrname }}="{{ attrvalue }}"
+            {% endif %}
+        {% endfor %}
+    {% endblock widget_attributes %}
+
+    {% block autocomplete_widget %}
+        {% set CustomPlaceHolder = form.vars.name|humanize %}        
+
+        {% if customPlaceHolder is defined %} 
+            {% set CustomPlaceHolder = customPlaceHolder %} 
+        {% else %}
+            {% set CustomPlaceHolder = 'Start Typing...' %} 
+        {% endif %}
+
+        {% if customClass is defined %} 
+            {% set CustomClass = customClass %} 
+        {% else %}
+            {% set CustomClass = '' %} 
+        {% endif %}
+
+
+        {% set ACValues = {'name': '', 'value': ''} %}
+        {% if acValues is defined %} 
+            {% if acValues is not sameas(false) %}
+                {% set ACValues = acValues %} 
+            {% endif %}
+        {% endif %}
+
+        {% spaceless %}
+
+            {% set fixedESERVParams = [] %}
+            {% if fixed_eservparams is defined %} 
+                {% if fixed_eservparams is not sameas(false) %}
+                    {% set fixedESERVParams = fixed_eservparams %} 
+                {% endif %}
+            {% endif %}
+
+
+            {% set ac_extraparams = '' %}
+
+            {% set tmpArray = [] %}
+
+            {% if dataESERVACOptions.extra_params is defined %}
+                {% for index,val in dataESERVACOptions.extra_params %}
+                    {% set tmpArray = tmpArray | merge({ (loop.index0): index ~ '|' ~ val}) %}
+                {% endfor %}
+            {% endif %}
+
+            {% for index,obj in fixedESERVParams %}
+                {% set tmpArray = tmpArray | merge({ (loop.index0): index ~ '|' ~ obj['id']}) %}
+                <input type="hidden" id="{{ obj['id'] }}" value="{{ obj['value'] }}" />
+            {% endfor %}
+
+            {% set ac_extraparams = tmpArray | join(',') %}
+
+            {% if dataESERVACOptions.isSelect2 is defined and dataESERVACOptions.isSelect2 == true  %}
+                <span class="ac_container">
+                    {% set fieldAttrStr = '' %}
+                    {% if fieldAttr is defined %}
+                        {% for attrName, attrVal in fieldAttr %}
+                            {% set fieldAttrStr = fieldAttrStr ~ attrName ~ '="' ~ attrVal ~ '" ' %}
+                        {% endfor %}
+                    {% endif%}
+                    <select data-eservvalidation="{{ dataESERVValidation }}" multiple="multiple" id="{{ form.vars.id }}_select2" name="{{ form.vars.full_name }}[]" 
+                            data-ajax--cache="true" class="{{ 'form-control eserv-select2 select2-hidden-accessible ' ~ CustomClass | raw }}"
+                            data-init-values="{{ form.vars.value | join(',') }}"
+                            {{ fieldAttrStr | raw }} 
+                    >
+                   {# <select multiple="multiple" id="{{ form.vars.id }}_select2" name="{{ form.vars.full_name }}[]" data-ajax--cache="true" class="{{ CustomClass }}"> #}
+                        {% if select2Vals is defined and select2Vals != false  %}                           
+                            {% for k,v in select2Vals %}
+                                <option value="{{ v['id'] }}" selected="selected">{{ v['text'] }}</option>
+                            {% endfor %}  
+                        {% endif %}    
+                    </select>                                                        
+                    <script>
+                                $("#{{ form.vars.id }}_select2").select2({
+                                minimumInputLength: 1,
+                                placeholder: typeof select2DefaultPlaceholder != 'undefined' ? select2DefaultPlaceholder : '{{ "Start typing or press space bar."  | trans }}',
+                                ajax: {
+                                url: '{{ dataESERVACOptions.url }}',
+                                        data: function (params) {
+                                        return {
+                                        q: params.term, // search term
+                                                additional_attributes: {% if dataESERVACOptions.additional_attributes is defined and dataESERVACOptions.additional_attributes != '' %} $('#{{ dataESERVACOptions.additional_attributes }}').val() {% else %} null{% endif %}
+                                                {% if dataESERVACOptions.extra_url_params is defined %}
+                                                    , {{ dataESERVACOptions.extra_url_params | join(',') | raw }}
+                                                {% endif %}
+                                        };
+                                        }
+                                }
+                        });</script>
+                </span>
+                <span class="help-block"></span>
+            {% else %}  
+                <span class="ac_container">
+                    <!-- <div class="input-group"> -->
+                    <div class="{% if add_on_btns is defined %}input-group{% endif %}">
+                        <input id="ac_{{ form.vars.id }}" 
+                               class="form-control eserv_autocomplete eserv_field_value edit" 
+                               value="{{ ACValues.name }}"
+                               data-targetelementid="{{ form.vars.id }}"
+                               data-showallcheckboxid="{{ form.vars.id }}_showAllCheckBoxId"
+                               data-extraparams="{{ ac_extraparams }}"
+                               data-eservvalidation="{{ dataESERVValidation }}"
+                               data-eservsourceurl="{{ dataESERVACOptions.url }}" 
+                               placeholder="{{ CustomPlaceHolder }}" />
+                        {% if add_on_btns is defined %}
+                            {% if add_on_btns|length > 0 %}
+                                {% for btn in add_on_btns %}
+                                    <span class="input-group-btn {{ form.vars.id }}_tooltip">
+                                        {{ btn.html | raw }}
+                                    </span>
+                                {% endfor %}
+                                <script type="text/javascript">
+                                            if (typeof PrepareTooltips == 'function') {
+                                    PrepareTooltips('.{{ form.vars.id }}_tooltip');
+                                    }
+                                </script>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+
+                    {{ form_widget(form, { 'attr': {'value': ACValues.value} }) }}
+                    <!--
+                        <select id="ac_{{ form.vars.id }}_checkbox">
+                            <option value="10">10</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    -->
+                    <!-- </div> -->
+                    {% if showAllCheckBoxId is defined and showAllCheckBoxId == true %}
+                        <input type="checkbox" name="{{ form.vars.id }}_showAllCheckBoxId" id="{{ form.vars.id }}_showAllCheckBoxId"/> Show all
+                    {% endif %}
+
+                </span>
+            {% endif %}     
+
+
+        {% endspaceless %}
+    {% endblock %}
+
+    {# Samir: This is a test - please do not remove :-)
+    {% block number_widget %}
+        {% spaceless %}
+            {% set type = type|default('number') %}
+            <div class="input-group spinner">
+                <input type="{{ type }}" {{ block('widget_attributes', {'type': type}) }} {% if value is not empty %}value="{{ value }}" {% endif %} />
+                {% if no_help_block is defined and no_help_block is sameas(true) %}
+                {% else %}
+                    <span class="help-block"></span>
+                {% endif %}
+            </div>
+        {% endspaceless %}
+    {% endblock number_widget %}
+    #}
+
+    {% block mtlcheckbox_widget %}
+        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    {% endblock mtlcheckbox_widget %}

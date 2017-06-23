@@ -1,0 +1,50 @@
+ESERV\MAIN\TableQueryBundle\Entity\QueryLayoutMaster:
+    type: entity
+    table: query_layout_master
+    indexes:
+        fk_qulama_quevie_idx:
+            columns:
+                - query_view_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        queryView:
+            targetEntity: ESERV\MAIN\TableQueryBundle\Entity\QueryView
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                query_view_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

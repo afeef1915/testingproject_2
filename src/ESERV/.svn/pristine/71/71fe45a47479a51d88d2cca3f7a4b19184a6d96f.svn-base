@@ -1,0 +1,46 @@
+ESERV\MAIN\ActivityBundle\Entity\ActivitySet: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\ActivitySetRepository
+    table: activity_set
+    indexes:
+        fk_actset_syscode1_idx:
+            columns:
+                - act_set_type_system_code_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        actSetTypeSystemCode:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                act_set_type_system_code_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

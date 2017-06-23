@@ -1,0 +1,61 @@
+ESERV\TestBundle\Entity\GtcwVContactDocAccessList: 
+    type: entity
+    table: gtcw_v_contact_doc_access_list
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: dtindex
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactDocAccessId:
+            type: integer
+            nullable: false
+            column: contact_doc_access_id
+        contactDocId:
+            type: integer
+            nullable: false
+            column: contact_doc_id
+        fosGroupId:
+            type: integer
+            nullable: false
+            column: fos_group_id
+        fosGroupName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: fos_group_name
+        updateAccess:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            column: update_access
+        viewAccess:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            column: view_access
+        signOffAccess:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            column: sign_off_access
+        isSignedOff:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            column: is_signed_off
+        signOffDate:
+            type: datetime            
+            column: sign_off_date    
+        
+        

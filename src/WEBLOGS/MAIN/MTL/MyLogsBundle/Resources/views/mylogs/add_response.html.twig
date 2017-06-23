@@ -1,0 +1,339 @@
+
+    <div id="eserv_AddResponse_output"></div>
+    {% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+    {{form_start(form, { 'attr' : { 'id': 'New_Response' } })}}
+    <div class="eserv_container_form_errors"></div>
+
+
+
+    {#<div class="col-lg-6">
+        {{ form_eservRow (form.attention_of, { 'labelSize': 3, 'fieldSize': 4 ,'extraFieldClass': 'new_response_mylogs' }) }}#}
+
+
+
+    <fieldset>
+        <div class="col-lg-6">
+            {{ form_eservRow (form.attention_of, { 'labelSize': 4, 'fieldSize': 8,'extraFieldClass': 'new_response_mylogs' }) }}
+
+
+            {# {{ form_eservRow (form.customer, { 'labelSize': 3,'fieldSize': 4  }) }}#}
+
+            {{ form_eservRow (form.brief_description, { 'labelSize': 4, 'fieldSize': 8 }) }}
+            {# {{ form_eservRow (form.customer, { 'labelSize': 3,'fieldSize': 4  }) }}#}
+            <div id="h_names">
+                {{ form_eservRow (form.mtl_status, { 'labelSize': 4, 'fieldSize': 8 }) }}
+                {{ form_eservRow (form.customer, { 'labelSize': 4, 'fieldSize': 4,'attr':{'disabled':'disabled'} }) }}
+                {{ form_eservRow (form.job_no, { 'labelSize': 4, 'fieldSize': 4,'extraFieldClass': 'new_response_jobno','attr':{'readonly':'true'} }) }}
+
+
+
+                {{ form_eservRow (form.date_completed,{ 'fieldType': 'date','labelSize': 4, 'fieldSize': 4, 'customPlaceHolder': 'DD/MM/YYYY','extraFieldClass':'new_response_date' }) }}
+                {{ form_eservRow (form.completed_by, { 'labelSize': 4, 'fieldSize': 8 }) }}
+
+                {{ form_eservRow (form.dev_status, { 'labelSize': 4, 'fieldSize': 8  }) }}
+                {{ form_eservRow (form.title, { 'labelSize': 4, 'fieldSize': 8 }) }}
+
+
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="eserv_form_btns">
+        <div class="form-group">
+            <div class="col-md-12"  ng-controller="EservlogsModalCtrl" >
+
+                <a  ng-click="cancel()" class="btn btn-danger pull-left direction1 cancel_AddFosUser_btn">{{ "Cancel" | trans }}</a>
+
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right direction2','id':'websave', 'btn-loading': "is_processing.application_code_add", 'data-loading-text': "Saving..." | trans } }) }}
+                <input class="btn btn-default pull-left direction2" style="margin-left: 2px" value="{{ 'Reset' | trans }}" type="reset" id="_reset"/>
+
+            </div>
+    </fieldset>
+    <div style="display: none">
+        {{form_rest(form)}}
+    </div>
+    {{form_end(form)}}
+    <input type="hidden" value={{user_group}} id="user_group">
+    <input type="hidden" value={{ app.request.cookies.get('new_response') }} id="new_response_cookie">
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var cust = $('#weblogs_main_mtl_mylogsbundle_vmylogs_customer').val();
+
+
+        //$('weblogs_main_mtl_mylogsbundle_vmylogs_customer')
+    {#  prepareAppForms('{{ form.vars.name }}', false, {
+          type: 'dataTable',
+          id: '{{ refresh_table_id }}'
+      }, false, "AddLogsNotification", function() {
+          $('#cancel_AddFosUser_btn').click();
+      });#}
+              var group = $("#user_group").val();
+              // alert(group);
+              //CUSTOMER
+              if (group == 'CUSTOMER') {
+                  //  alert('customer');
+                  $('#h_names').hide();
+              }
+          });
+          $(document).ready(function () {
+
+              //membershipField.closest('.form-group').hide();
+
+
+
+              prepareAppForms('{{ form.vars.name }}', false, {
+                  type: 'dataTable',
+                  id: '{{ refresh_table_id }}'
+              }, false, "AddEmailNotification", function (response, status) {
+                  //console.log(response.success);
+                  if (response.success == true)
+                  {
+
+
+
+
+                      $.ajax({
+                          url: root_url + 'mylogs/new_responses/' + parseInt(location.href.split('#')[1].split("/")[3]),
+                          cache: false,
+                          type: "POST",
+                          //dataType: 'json',
+                          success: function (htmls) {
+                              //console.log(htmls);
+                              $("#new_response_html").remove();
+
+                              var count = 0;
+                              if ($("#response_badges").val() != undefined && $("#response_badges").val() != null)
+                              {
+
+                                  count = $("#response_badges").val();
+                              } else
+                              {
+
+                                  count = 0;
+                              }
+
+
+                              var html = ' <span id="response_badge" class="badge alert-danger">' + count + '</span>';
+
+
+
+    {#if($(".portlet_heading").find(".badge").length < 1)
+    {#}
+                            $("#response_badge").html(html);
+                            $("#new_response_html").append(htmls);
+
+
+                        }
+                    });
+
+                    //  console.log(status);
+                    $('.cancel_AddFosUser_btn').click();
+                }
+
+            });
+        });
+
+
+</script>
+
+
+<script type="text/javascript">
+    // $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").attr('disabled',true);
+    //     $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").addClass('updating_field');
+    $('#weblogs_main_mtl_mylogsbundle_newresponsetype_customer').parents('.form-group').hide();
+    $('#weblogs_main_mtl_mylogsbundle_newresponsetype_job_no').parents('.form-group').hide();
+    //$("#weblogs_main_mtl_mylogsbundle_vmylogs_customer").parents().hide();
+
+    // $(".form-group:eq( 5 )").hide();
+    $(document).ready(function () {
+        $("#weblogs_main_mtl_mylogsbundle_newresponsetype_date_completed").on("change", function () {
+
+            $("#weblogs_main_mtl_mylogsbundle_newresponsetype_mtl_status").val('C');
+        });
+
+        var customer = $("#weblogs_main_mtl_mylogsbundle_vmylogs_customer").val();
+        $("#weblogs_main_mtl_mylogsbundle_newresponsetype_customer").val($("#weblogs_main_mtl_mylogsbundle_vmylogs_customer").val());
+        $("#weblogs_main_mtl_mylogsbundle_newresponsetype_save").click(function (event) {
+            //event.preventDefault();
+            $("#weblogs_main_mtl_mylogsbundle_newresponsetype_customer").attr("disabled", false);// Element(s) are now enabled.
+            // $("#weblogs_main_mtl_mylogsbundle_newresponsetype_save").click(function()
+            //{
+
+
+            //});
+        });
+        if ($("#weblogs_main_mtl_mylogsbundle_vmylogs_date_completed").val() != '')
+        {
+            $("#weblogs_main_mtl_mylogsbundle_vmylogs_mtl_status").val('C');
+        }
+
+        //});
+    {# $.ajax({
+         url: root_url + 'mylogs/logs_data',
+         cache: false,
+         type: "POST",
+         data: {'customer_id': customer},
+         dataType: 'json',
+         success: function (html) {
+
+             //looping over data//
+             $.each(html, function (key, value) {
+
+
+                 $("#weblogs_main_mtl_mylogsbundle_vmylogs_task_description")
+                         .append($("<option></option>")
+                                 .attr("value", value.ctk_code)
+                                 .text(value.ctk_name));
+             });
+//
+
+             //logs tasks//
+             if ($("#logs_tasks").val() != '')
+             {
+                 $("#weblogs_main_mtl_mylogsbundle_vmylogs_task_description").val($("#logs_tasks").val());
+             }
+
+         }
+     });
+
+     $.ajax({
+         url: root_url + 'mylogs/logs_category',
+         cache: false,
+         type: "POST",
+         data: {'customer_id': customer},
+         dataType: 'json',
+         success: function (html) {
+
+             //looping over data//
+             $.each(html, function (key, value) {
+
+
+                 $("#weblogs_main_mtl_mylogsbundle_vmylogs_category")
+                         .append($("<option></option>")
+                                 .attr("value", value.CATEGORY_CODE)
+                                 .text(value.NAME));
+             });
+//
+
+             if ($("#logs_category").val() != '')
+             {
+                 $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").val($("#logs_category").val());
+             }
+
+         }
+     });#}
+
+             $("#weblogs_main_mtl_mylogsbundle_newresponsetype_attention_of").attr('disabled', true);
+             $("#weblogs_main_mtl_mylogsbundle_newresponsetype_attention_of").addClass('updating_field');
+             $.ajax({
+                 url: root_url + 'mylogs/attention-of',
+                 cache: false,
+                 type: "POST",
+                 data: {'customer_id': customer},
+                 dataType: 'json',
+                 success: function (html) {
+
+                     //looping over data//
+                     $.each(html, function (key, value) {
+                         
+                                            
+                                                $(".new_response_mylogs").append(('<option value=' + value.CSEV_SEQ_ID + '>' + value.CSEV_NAME + '</option>'));
+                                            {#.attr("value", value.CSEV_SEQ_ID)
+                                            .text(value.CSEV_NAME));#}
+                                         
+                                            $('select option')
+    .filter(function() {
+        return !this.value || $.trim(this.value).length == 0;
+    })
+   .remove();
+                                                 });
+//#}
+                                                 $("#weblogs_main_mtl_mylogsbundle_newresponsetype_attention_of").attr('disabled', false);
+                                                 $("#weblogs_main_mtl_mylogsbundle_newresponsetype_attention_of").removeClass('updating_field');
+
+                                                 $(".new_response_mylogs").val($("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").val());
+                                                 $("#weblogs_main_mtl_mylogsbundle_newresponsetype_mtl_status").val($("#weblogs_main_mtl_mylogsbundle_vmylogs_mtl_status").val());
+
+                                                 $("#weblogs_main_mtl_mylogsbundle_newresponsetype_completed_by").val($("#weblogs_main_mtl_mylogsbundle_vmylogs_completed_by").val());
+                                                 $("#weblogs_main_mtl_mylogsbundle_newresponsetype_dev_status").val($("#weblogs_main_mtl_mylogsbundle_vmylogs_dev_status").val());
+    {#                 if($(".new_response_mylogs").val()!='')
+                     {
+                     $.ajax({
+                     url: root_url + 'mylogs/update-response',
+                     cache: false,
+                     type: "POST",
+                     data: {'customer_id': sessionStorage.getItem("customer_new"),'attention_of':$(".new_response_mylogs").val()},
+                     dataType: 'json',
+                     success: function (html) {
+                     }
+
+                     });
+         }#}
+
+
+
+                     }
+                 });
+                 if ($(".new_response_date").val() == '')
+                 {
+                     $(".new_response_date").val($("#weblogs_main_mtl_mylogsbundle_vmylogs_date_completed").val());
+                 }
+                 $(".new_response_customer").val($("#weblogs_main_mtl_mylogsbundle_vmylogs_customer").val());
+                 $(".new_response_jobno").val($("#weblogs_main_mtl_mylogsbundle_vmylogs_job_no").val());
+
+                 //posting customer id so AttentionOfRenderToHtmlAction function //
+
+
+    {#  var n=1;
+      for(var i=1;i<=n;i++)
+      {
+         console.log(document.getElementById("weblogs_main_mtl_mylogsbundle_vmylogs_task_description")[i]);
+       }#}
+    {#$("#weblogs_main_mtl_mylogsbundle_vmylogs_save").click(function (event) {
+        //event.preventDefault();
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_customer").attr("disabled", false);// Element(s) are now enabled.
+    });#}
+
+
+
+            // });
+            $.ajax({
+                url: root_url + 'mylogs/new_responses/' + parseInt(location.href.split('#')[1].split("/")[3]),
+                cache: false,
+                type: "POST",
+                //dataType: 'json',
+                success: function (htmls) {
+                    //console.log(htmls);
+                    $("#new_response_html").remove();
+
+
+                    var count = 0;
+                    if ($("#response_badges").val() != undefined && $("#response_badges").val() != null)
+                    {
+
+                        count = $("#response_badges").val();
+                    } else
+                    {
+
+                        count = 0;
+                    }
+
+
+                    // var html = 'Previous Responses  <span id="response_badge" class="badge alert-danger">' + count + '</span>';
+                    var html = ' <span id="response_badge" class="badge alert-danger">' + count + '</span>';
+
+
+    {#if($(".portlet_heading").find(".badge").length < 1)
+    {#}
+                    $("#response_badge").html(html);
+                    $("#new_response_html").append(htmls);
+                }
+
+            });
+        });
+
+
+
+</script>

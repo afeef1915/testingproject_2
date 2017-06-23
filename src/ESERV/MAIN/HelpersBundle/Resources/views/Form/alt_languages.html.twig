@@ -1,0 +1,8 @@
+{% for i, element in alt_languages %}
+    <div class="form-group">
+        {{ form_label(form[element] , null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+        <div class="col-lg-5">
+            {{ form_widget(form[element], {'attr': {'class': 'form-control', 'placeholder': element | trans } }) }}
+        </div>
+    </div>    
+{% endfor %}

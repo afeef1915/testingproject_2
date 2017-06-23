@@ -1,0 +1,66 @@
+ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\AddressType: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\AddressTypeRepository
+    table: address_type
+    indexes:
+        FK_F19287C25F63AD12:
+            columns:
+                - contact_type_id
+    uniqueConstraints:
+        idx_AddressType_a1_idx:
+            columns:
+                - code
+                - contact_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        url:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contactType:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

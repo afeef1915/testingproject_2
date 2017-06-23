@@ -1,0 +1,64 @@
+ESERV\MAIN\CpdBundle\Entity\ContactCpdStatusDetailHist: 
+    type: entity
+    repositoryClass: ESERV\MAIN\CpdBundle\Entity\ContactCpdStatusDetailHistRepository
+    table: contact_cpd_status_detail_hist
+    indexes:
+        fk_ccsdhi_cocshi_idx:
+            columns:
+                - contact_cpd_status_hist_id
+        fk_ccsdhi_cpstde_idx:
+            columns:
+                - cpd_status_detail_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        conCpdStatusText:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: con_cpd_status_text
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contactCpdStatusHist:
+            targetEntity: ESERV\MAIN\CpdBundle\Entity\ContactCpdStatusHist
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_cpd_status_hist_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        cpdStatusDetail:
+            targetEntity: ESERV\MAIN\CpdBundle\Entity\CpdStatusDetail
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cpd_status_detail_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

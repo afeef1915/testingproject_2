@@ -1,0 +1,34 @@
+WEBLOGS\MAIN\MTL\MyemailBundle\Entity\VMtlClientNotifications:
+    type: entity
+    table: v_mtl_client_notifications
+    #repositoryClass: WEBLOGS\MAIN\MTL\MyemailBundle\Entity\EmailRepository
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTO
+    fields:
+        user_id:
+            type: string
+            length: '10'
+            id: true
+            column: user_id
+        customer_id:
+            type: string
+            length: '10'
+            column: customer_id
+        client:
+            type: string
+            length: '10'
+            column: client
+        task_code:
+            type: string
+            length: '10'
+            column: task_code
+        exclude_task_code:
+            type: string
+            length: '10'
+            column: exclude_task_code
+      
+    lifecycleCallbacks: {  }

@@ -1,0 +1,41 @@
+<h3><i class="fa fa-download"></i> Import Files</h3>
+<hr />
+<form role="form" class="eserv_form">
+    <div class="row-fluid">
+        <h4>Select a Category</h4>
+        <fieldset>
+            <select class="selectpicker show-tick" data-style="btn-info" data-width="100%">
+                <option>-- Please Select --</option>
+                <option>Fee Payment Load</option>                
+                <option>Induction File Load</option>
+                <option>NPQH File Load</option>
+                <option>Teacher Text File Load</option>
+                <option>Bulk Notes File Load</option>
+                <option>QTS File TTR1 Load</option>
+                <option>QTS File TTR4 Load</option>
+                <option>Employment Details Load</option>
+                <option>School Notes File Load</option>
+                <option>Suitability Load</option>
+                <option>Student File TTR2 Load</option>
+            </select>
+        </fieldset>
+        <h4>Select Files</h4>
+        <fieldset>
+            <div style="width: 100%">
+                <div class="input-group">
+                    <input type="text" class="form-control" style="padding: 6px 12px;">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="button">Browse <span class="fa fa-folder-open-o"></span></button>
+                    </div><!-- /btn-group -->
+                </div><!-- /input-group -->
+            </div>
+        </fieldset>
+    </div>
+    <hr />
+    <div class="row-fluid">
+        <button class="btn btn-success btn-lg center-block" type="button">Process Import <i class="fa fa-download"></i></button>
+    </div>
+</form>
+<script type="text/javascript">
+    $('.selectpicker').selectpicker();
+</script>

@@ -1,0 +1,7 @@
+eserv_main_history_list:
+    path:     /field-history/{entity_name}/{field_name}/{entity_id}
+    defaults: { _controller: ESERVMAINHistoryBundle:History:listFieldHistory}
+    
+eserv_main_history_ajax_list:
+    path:     /field-history-ajax-list/{entity_name}/{field_name}/{entity_id}
+    defaults: { _controller: ESERVMAINHistoryBundle:History:dataFieldHistory}

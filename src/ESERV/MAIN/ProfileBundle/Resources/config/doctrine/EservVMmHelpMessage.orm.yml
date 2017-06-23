@@ -1,0 +1,95 @@
+ESERV\MAIN\ProfileBundle\Entity\EservVMmHelpMessage: 
+    type: entity
+    table: eserv_v_mm_help_message
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+        messageTypeId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: message_type_id
+        messageTypeCode:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: message_type_code
+        messageTypeName:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: message_type_name
+        isActive:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: ''
+            default: Y
+            column: is_active
+        moreLink:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: more_link
+        severityId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: severity_id
+        severityCode:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: severity_code
+        severityName:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: severity_name
+        code:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: code
+        title:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+        createdAt:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: updated_at

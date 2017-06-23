@@ -1,0 +1,58 @@
+ESERV\MAIN\ActivityBundle\Entity\ActivityLink: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\ActivityLinkRepository
+    table: activity_link
+    indexes:
+        fk_actlink_act_1_idx:
+            columns:
+                - original_activity_id
+        fk_actlink_act_2_idx:
+            columns:
+                - linked_activity_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        originalActivity:
+            targetEntity: ESERV\MAIN\ActivityBundle\Entity\Activity
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                original_activity_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        linkedActivity:
+            targetEntity: ESERV\MAIN\ActivityBundle\Entity\Activity
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                linked_activity_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

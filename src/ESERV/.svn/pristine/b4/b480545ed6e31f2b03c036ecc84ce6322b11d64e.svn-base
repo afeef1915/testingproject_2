@@ -1,0 +1,94 @@
+<div id="eserv_historyEmailDetails_output"></div>
+<div class="alert alert-info" role="alert">
+    <i class="fa fa-info-circle"></i> {{ "You are viewing a history record." | trans }}
+</div>
+<form class="eserv_form form-horizontal eserv_form_editable ng-pristine ng-valid ng-scope"> 
+    {% if record_type == 'edited_record' %}
+        <fieldset>
+            <div class="col-lg-12">
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Email Type" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value">
+                            {{ eserv_v_email.emailTypeName }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Email Address" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value ">
+                            {{ eserv_v_email.emailAddress }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Email Address Changed To" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value ">
+                            {{ eserv_v_email.newEmailAddress }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Changed At" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value ">
+                            {{ eserv_v_email.createdAt ? eserv_v_email.createdAt | date('d/m/Y') : '' }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Changed By" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value">
+                            {{ eserv_v_email.createdByUserName }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    {% else %} 
+        <fieldset>
+            <div class="col-lg-12">
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Email Type" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value">
+                            {{ deleted_email.emailTypeName }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Email Address" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value ">{{ deleted_email.emailAddress }}</div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Deleted At" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value ">
+                            {{ deleted_email.deletedAt ? deleted_email.deletedAt | date('d/m/Y') : '' }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Deleted By" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value">
+                            {{ deleted_email.deletedByUserName }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>  
+    {% endif %}
+    <fieldset>
+        <div class="form-group">
+            <div class="col-md-12"> 
+                <button type="button" class="btn btn-default direction1" ng-click="cancel()">{{ "Close" | trans }}</button>
+            </div>
+        </div>        
+    </fieldset> 
+</form>

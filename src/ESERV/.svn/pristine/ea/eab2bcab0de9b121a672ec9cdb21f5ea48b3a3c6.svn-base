@@ -1,0 +1,52 @@
+{% extends isAJAX ? 'ESERVMAINErrorHandlingBundle:Default:minimum.html.twig' : '::base.html.twig' %}
+
+{% block text_block %}{{ Code }}{% endblock %}
+
+{% block body_block %}
+    <style>
+        .error_box {
+            padding: 20px;
+            text-align: center;
+            background: #fff;
+            max-width: 500px;
+        }
+        .error_box .fa.icon {
+            font-size: 40px;
+        }
+        .error_box h1, .error_box .h1 {
+            font-size: 110px;
+            font-weight: bold;
+        }
+        .alert_no_icon {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    </style>
+    <div class="col-md-12">
+        <div class="error_box block-exception center-block">
+            <i class="fa fa-exclamation-circle icon text-danger"></i>
+            <h1>{{ ErrorCode }}</h1>
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    {{ TitleMessage | trans }}
+                </div>
+                <div class="panel-body">
+                    {{ Message | trans }}
+                </div>
+            </div>
+            <div class="error_box-footer">
+                <div class="error-actions">
+                    <a class="btn btn-primary navigating_away" data-processing="{{ "Loading home page..." | trans }}" href="{{ path ('eserv_error_home_homepage') }}">
+                        <i class="fa fa-home"></i> {{ "Back to home" | trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <center>
+        <h3>Error code - {{ ErrorCode }} </h3> 
+        <h3>Message [{{ Code }}] - {{ Message }} </h3>     
+    </center>
+    -->
+{% endblock %}

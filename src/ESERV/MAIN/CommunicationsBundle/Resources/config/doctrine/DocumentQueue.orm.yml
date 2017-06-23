@@ -1,0 +1,50 @@
+ESERV\MAIN\CommunicationsBundle\Entity\DocumentQueue: 
+    type: entity
+    repositoryClass: ESERV\MAIN\CommunicationsBundle\Entity\DocumentQueueRepository
+    table: document_queue
+    indexes:
+        fk_docque_act_idx:
+            columns:
+                - activity_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dateRequested:
+            type: datetime
+            nullable: false
+            column: date_requested
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        activity:
+            targetEntity: ESERV\MAIN\ActivityBundle\Entity\Activity
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                activity_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

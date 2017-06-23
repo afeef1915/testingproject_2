@@ -1,0 +1,8 @@
+<h3 class="pull-left">{{ 'Manage' | trans }} {{ type_name is not null ? type_name : 'Application' }}</h3>
+<a class="btn btn-success pull-right" style="margin-bottom: 10px;margin-top: 20px;" ui-sref="admin.manage_application_codes.application_code_groups.view.add_new_application_code({ type_id: {{ type_id }} })">
+    <i class="fa fa-plus-circle"></i>
+    {{ 'Add a New Code' | trans }}
+</a>
+<div class="clearfix"></div>
+<hr />
+{{ dataTable | raw }}

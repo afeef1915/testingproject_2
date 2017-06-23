@@ -1,0 +1,8 @@
+parameters:
+#    eserv_console_command.example.class: ESERV\ConsoleCommandBundle\Example
+
+services:
+#    command_console_services:
+#        class:     ESERV\ConsoleCommandBundle\Command\EservCommand
+#        calls:
+#             - [setServicesContainer, ["@service_container"]]       

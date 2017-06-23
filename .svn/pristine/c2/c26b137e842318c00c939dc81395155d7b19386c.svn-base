@@ -1,0 +1,29 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\VPersons:
+    type: entity
+    table: v_persons
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+
+    fields:
+        person_id:
+            type: string
+            length: '10'
+            id: true
+            column: person_id
+        fullname:
+            type: string
+            length: '200'
+            column: fullname
+        forename:
+            type: string
+            length: '200'
+            column: forename
+        
+      
+    
+       
+    lifecycleCallbacks: {  }

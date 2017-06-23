@@ -1,0 +1,64 @@
+ESERV\MAIN\SystemConfigBundle\Entity\EservSaveQueryDetail:
+    type: entity
+    repositoryClass: ESERV\MAIN\SystemConfigBundle\Entity\EservSaveQueryDetailRepository
+    table: eserv_save_query_detail
+    indexes:
+        fk_esesavquedet_esesavque_idx:
+            columns:
+                - eserv_save_query_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        columnName:
+            type: string
+            nullable: false
+            length: 32
+            fixed: false
+            column: column_name
+        clientColumnName:
+            type: string
+            nullable: false
+            length: 32
+            fixed: false
+            column: client_column_name
+        columnValue:
+            type: text
+            nullable: false
+            length: 65535
+            fixed: false
+            column: column_value
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        eservSaveQuery:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\EservSaveQuery
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                eserv_save_query_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

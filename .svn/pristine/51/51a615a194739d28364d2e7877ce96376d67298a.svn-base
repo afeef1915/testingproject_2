@@ -1,0 +1,36 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\VWwvPriorityLevel:
+    type: entity
+    table: v_wwv_priority_level
+#    id:
+#        dtindex:
+#            type: string
+#            nullable: false
+#            length: 10
+#            fixed: false
+#            id: true
+#            generator:
+#            strategy: IDENTITY
+    fields:
+              
+         
+        PRIORITY_ID:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            column: PRIORITY_ID
+        DESCRIPTION:
+            type: string
+            nullable: false
+            length: 300
+            fixed: false
+            column: DESCRIPTION
+        PRIORITY_ORDER:
+            type: string
+            nullable: false
+            length: 500
+            id: true
+            fixed: false
+            column: PRIORITY_ORDER
+        
+    lifecycleCallbacks: {  }

@@ -1,0 +1,63 @@
+ESERV\MAIN\QualificationBundle\Entity\QualMand:
+    type: entity
+    repositoryClass: ESERV\MAIN\QualificationBundle\Entity\QualMandRepository
+    table: qual_mand
+    indexes:
+        fk_quaman_qualfi_idx:
+            columns:
+                - qualification_id
+        fk_quaman_qamaco_idx:
+            columns:
+                - qual_mand_control_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        qualMandValue:
+            type: string
+            nullable: false
+            length: 1
+            column: qual_mand_value
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by        
+    manyToOne:
+        qualification:
+            targetEntity: ESERV\MAIN\QualificationBundle\Entity\Qualification
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                qualification_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        qualMandControl:
+            targetEntity: ESERV\MAIN\QualificationBundle\Entity\QualMandControl
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                qual_mand_control_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

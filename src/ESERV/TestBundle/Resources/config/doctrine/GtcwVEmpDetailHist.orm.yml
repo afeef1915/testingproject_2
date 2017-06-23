@@ -1,0 +1,92 @@
+ESERV\TestBundle\Entity\GtcwVEmpDetailHist: 
+    type: entity
+    table: gtcw_v_emp_detail_hist
+    id:
+        employmentDetailHistId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: employment_detail_hist_id
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dtindex:
+            type: integer
+            nullable: false
+            column: dtindex
+        employmentDetailId:
+            type: integer
+            nullable: false
+            column: employment_detail_id        
+        employmentDescription:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: employment_description
+        employer:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: employer
+        otherEmployer:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: other_employer
+        school:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: school
+        hours:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: hours
+        primaryRecord:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: ''
+            column: primary_record
+        startDate:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: end_date
+        empLevel:
+            type: string
+            nullable: true
+            length: 5
+            fixed: false
+            column: emp_level
+        createdAt:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: created_at
+        createdBy:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: created_by

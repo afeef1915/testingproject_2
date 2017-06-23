@@ -1,0 +1,172 @@
+ESERV\MAIN\TemplateBundle\Entity\TemplateVersion: 
+    type: entity
+    repositoryClass: ESERV\MAIN\TemplateBundle\Entity\TemplateVersionRepository
+    table: template_version
+    indexes:
+        fk_template_type_id_idx:
+            columns:
+                - template_type_id
+        fk_temver_maimertyp_idx:
+            columns:
+                - mail_merge_type_id
+        fk_template_document_id_idx:
+            columns:
+                - template_document_group_id
+        fk_header_id_idx:
+            columns:
+                - header_id
+        fk_footer_id_idx:
+            columns:
+                - footer_id
+        fk_system_printer_id_idx:
+            columns:
+                - system_printer_id
+        fk_language_id_idx:
+            columns:
+                - language_id
+        fk_template_version_template1_idx:
+            columns:
+                - template_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        content:
+            type: text
+            nullable: false
+            length: 65535
+            fixed: false
+        version:
+            type: integer
+            nullable: false
+            unsigned: false
+        code:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: 'Used to identify Main templates to be used by auto processes, e.g. batch acknowledgement/results email'
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        isCustomised:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: 'To identify the template record that is created when issuing individual email/letter for contacts.'
+            default: N
+            column: is_customised
+        isDefault:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            comment: 'used to assign the default letter/email template for the system to display when running the activity letter/email page'
+            column: is_default
+        reportId:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: 'Used for template type report to construct the URL to call the report from Pentaho report tool'
+            column: report_id
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        templateType:
+            targetEntity: ESERV\MAIN\TemplateBundle\Entity\TemplateType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                template_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        mailMergeType:
+            targetEntity: ESERV\MAIN\TemplateBundle\Entity\MailMergeType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mail_merge_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        templateDocumentGroup:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                template_document_group_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        header:
+            targetEntity: ESERV\MAIN\TemplateBundle\Entity\TemplateVersion
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                header_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        footer:
+            targetEntity: ESERV\MAIN\TemplateBundle\Entity\TemplateVersion
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                footer_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        systemPrinter:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemPrinter
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                system_printer_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        language:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\Language
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                language_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        template:
+            targetEntity: ESERV\MAIN\TemplateBundle\Entity\Template
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                template_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

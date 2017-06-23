@@ -1,0 +1,68 @@
+ESERV\MAIN\ContactBundle\Entity\Contact: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Entity\ContactRepository
+    table: contact
+    indexes:
+        fk_contact_contact_status1_idx:
+            columns:
+                - contact_status_id
+        fk_contact_contact_type1_idx:
+            columns:
+                - contact_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        displayName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: display_name
+        statusDate:
+            type: datetime
+            nullable: false
+            column: status_date
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contactStatus:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactStatus
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contactType:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

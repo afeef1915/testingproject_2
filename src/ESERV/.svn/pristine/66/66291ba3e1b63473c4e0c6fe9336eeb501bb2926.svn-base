@@ -1,0 +1,56 @@
+ESERV\MAIN\CpdBundle\Entity\CpdActCategory: 
+    type: entity
+    repositoryClass: ESERV\MAIN\CpdBundle\Entity\CpdActCategoryRepository
+    table: cpd_act_category
+    indexes:
+        fk_cpacca_cpdact_idx:
+            columns:
+                - cpd_act_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        cpdAct:
+            targetEntity: ESERV\MAIN\CpdBundle\Entity\CpdAct
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cpd_act_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

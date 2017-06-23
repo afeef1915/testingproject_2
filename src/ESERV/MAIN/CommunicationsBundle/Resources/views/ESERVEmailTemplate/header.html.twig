@@ -1,0 +1,18 @@
+{% if logo_path == 'default' %}
+    {% set LogoPath = app.request.getSchemeAndHttpHost() ~ asset ('clients/'~ app_client ~'/themes/' ~ app_theme ~ '/images/logos/client_email_logo.png') %}
+{% else  %}
+    {% set LogoPath = logo_path %}
+{% endif %}
+
+<table width="700" cellpadding="10" bgcolor="{{ email_header_bgcolor }}" align="center">
+    <tbody>
+        <tr>
+            <td>
+                <img src="{{ eserv_config.path_to_client_logo }}" alt="{{ app_client_short_name }} Logo" />
+            </td>
+            <td>
+                <h3 style="color: {{ email_header_txtcolor }}; font-family: 'Myriad Pro',Helvetica,Arial,sans-serif; font-size: 15px; text-align: right;">{{ header_text }}</h3>
+            </td>
+        </tr>
+    </tbody>
+</table>

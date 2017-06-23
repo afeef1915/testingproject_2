@@ -1,0 +1,70 @@
+WEBLOGS\MAIN\COMMON\CommonBundle\Entity\VmediaStore:
+    type: entity
+    table: vmedia_store
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+  
+          
+   
+    fields:
+        
+        media_id:
+            type: string
+            length: '10'
+            id: true
+            column: media_id
+            
+        media_type_id:
+            type: string
+            length: '100'
+            column: media_type_id
+        
+       
+            
+        file_name:
+            type: string
+            length: '200'
+            column: file_name
+            
+       
+            
+        created_at:
+            type: datetime
+           
+            column: created_at
+            
+        updated_at:
+            type: datetime
+           
+            column: updated_at
+        
+        created_by:
+            type: datetime
+            column: created_by
+            
+        updated_by:
+            type: datetime
+            column: updated_by
+        
+        display_name:
+            type: string
+            length: '200'
+            column: display_name
+        
+        token:
+            type: string
+            length: '300'
+            column: token
+            
+        job_no:
+            type: string
+            length: '30'
+            column: job_no
+
+            
+        
+           

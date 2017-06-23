@@ -1,0 +1,39 @@
+{#
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' with {'viewMode': 'view'} %}
+#}
+<div id="security_viewActResend_output"></div>
+{{form_start(form, { 'attr' : { 'id': 'viewActResend' } })}}
+
+<div class="eserv_container_form_errors"></div>
+
+<fieldset>
+    {#{ form_eservSelectRow (form.language) }#}
+</fieldset>
+<div class="alert alert-warning">
+    <div class="icon">
+        <i class="fa fa-warning"> </i>
+    </div>
+    Pressing the 'Send' button will reset the user account and send an email with a verification code to {{ details_array['displayName'] }} at '{{ details_array['email'] }}', with an activation link. Are you sure ?
+</div>
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12">
+            <button type="button" id="cancel_viewActResend_btn" class="btn btn-danger direction1" ng-click="cancel()">{{ 'Cancel' | trans }}</button>
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right direction2',  'btn-loading': "is_processing.individual_add", 'data-loading-text': "Saving..."} }) }}
+        </div>
+    </div>        
+</fieldset>
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+
+{{form_end(form)}}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        prepareAppForms('{{ form.vars.name }}', false, false, false, 'viewActResend', function (){
+            $('#cancel_viewActResend_btn').click();
+            //refreshProtlet($('#eserv_render_mentor_admin_main'));
+        });
+    });       
+</script>

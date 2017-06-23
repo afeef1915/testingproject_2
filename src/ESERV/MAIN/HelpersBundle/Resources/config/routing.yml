@@ -1,0 +1,33 @@
+eserv_postcode_lookup_url:
+    pattern:  /postcodeLookup
+    defaults: { _controller: ESERVMAINHelpersBundle:Default:postcodeLookup }
+
+eserv_postcode_lookup_address_details:
+    pattern:  /postcodeAddressDetails
+    defaults: { _controller: ESERVMAINHelpersBundle:Default:postcodeAddressDetails }
+
+eserv__validate_bank:
+    pattern:  /validateBankAcc
+    defaults: { _controller: "ESERVMAINHelpersBundle:Default:validateBankAccount" }
+
+eserv_data_table_export:
+    pattern:  /data-table-export
+    defaults: { _controller: "ESERVMAINHelpersBundle:DTOutputOptions:exportDataTable" }
+
+eserv_print_data_table_process_q_force_download:
+    pattern:  /data-table-export/force/{id}
+    defaults: { _controller: "ESERVMAINHelpersBundle:DTOutputOptions:processExport" }
+
+eserv_bottom_line_get_uk_addresses_url:
+    pattern:  /bl/getUKAddresses
+    defaults: { _controller: ESERVMAINHelpersBundle:Default:getUKAddresses }
+eserv_bottom_line_validate_uk_bank_account_url:
+    pattern:  /bl/validateUKBankAccount
+    defaults: { _controller: ESERVMAINHelpersBundle:Default:validateUKBankAccount }
+eserv_bottom_line_validate_uk_bank_account_and_address_url:
+    pattern:  /bl/validateUKBankAccountAndAddress
+    defaults: { _controller: ESERVMAINHelpersBundle:Default:validateUKBankAccountAndAddress }
+eserv_bottom_line_verify_uk_account_ownership_with_addresses_url:
+    pattern:  /bl/verifyUKAccountOwnershipWithAddresses
+    defaults: { _controller: ESERVMAINHelpersBundle:Default:verifyUKAccountOwnershipWithAddresses }
+    

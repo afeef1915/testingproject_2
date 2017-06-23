@@ -1,0 +1,15 @@
+eservmain_document_homepage:
+    path:     /document/{name}
+    defaults: { _controller: ESERVMAINDocumentBundle:Default:index }
+    
+eserv_main_document_contact_uploaded_doc_store_upload_files:
+    path:     /document/contact-uploaded-doc-store/upload
+    defaults: { _controller: ESERVMAINDocumentBundle:Files:upload }
+    
+eserv_main_document_contact_uploaded_doc_store_download_files:
+    path:     /document/contact-uploaded-doc-store/download/{id}
+    defaults: { _controller: ESERVMAINDocumentBundle:Files:download, id: null}
+    
+eserv_main_document_contact_uploaded_doc_store_remove_files:
+    path:     /document/contact-uploaded-doc-store/remove/{id}
+    defaults: { _controller: ESERVMAINDocumentBundle:Files:remove }

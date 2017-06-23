@@ -1,0 +1,73 @@
+ESERV\MAIN\ProductBundle\Entity\ProductStockAdjustment: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ProductBundle\Entity\ProductStockAdjustmentRepository
+    table: product_stock_adjustment
+    indexes:
+        fk_product_stock_adjustment_product1_idx:
+            columns:
+                - product_id
+        fk_product_stock_adjustment_system_code1_idx:
+            columns:
+                - stock_adj_type_sys_code_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        stockCredit:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: stock_credit
+        stockDebit:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: stock_debit
+        description:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        product:
+            targetEntity: ESERV\MAIN\ProductBundle\Entity\Product
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                product_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        stockAdjTypeSysCode:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                stock_adj_type_sys_code_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

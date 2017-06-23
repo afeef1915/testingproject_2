@@ -1,0 +1,17 @@
+#eserv_main_media_interface_import_files:
+#    path:     /interface/import_files
+#    defaults: { _controller: ESERVMAINMediaBundle:Interface:importFiles }
+eserv_main_media_interface_export_files:
+    path:     /interface/export_files
+    defaults: { _controller: ESERVMAINMediaBundle:Interface:exportFiles }
+
+# Files
+eserv_main_media_files_upload_files:
+    path:     /files/upload_files
+    defaults: { _controller: ESERVMAINMediaBundle:Files:upload }
+eserv_main_media_files_download_files:
+    path:     /files/download/{id}
+    defaults: { _controller: ESERVMAINMediaBundle:Files:download, id: null }
+eserv_main_media_files_remove_files:
+    path:     /files/remove/{id}
+    defaults: { _controller: ESERVMAINMediaBundle:Files:remove }

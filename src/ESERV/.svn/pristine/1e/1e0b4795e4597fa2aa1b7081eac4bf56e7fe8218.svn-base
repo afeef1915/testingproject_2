@@ -1,0 +1,91 @@
+<div id="eserv_updatePhoneDetails_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'updatePhoneDetails' } })}}
+<div class="eserv_container_form_errors"></div>
+<fieldset>
+    <span>
+        <div class="col-lg-12">
+            {#{ form_eservSelectRow (form.phoneType, { 'customPlaceHolder': 'Phone Type', 'fieldSize': 4 }) }#}
+            <div class="form-group ">
+                <label class="col-lg-4 control-label ">{{ "Phone Type" | trans }}</label>
+                <div class="col-lg-5">
+                    <div class="eserv_field_value">
+                        {{ phone_type_name }}
+                    </div>
+                </div>
+            </div>
+            {{ form_eservRow (form.primaryRecord, {'isCheckbox': 'true', 'fieldSize' : 1 }) }} 
+            {% set is_primary_record = 'N' %}
+            {% if form.primaryRecord.vars.data %}
+                {% set is_primary_record = 'Y' %}
+                <div id="{{ form.primaryRecord.vars.id }}_msg" class="form-group " style="display: none">
+                    <label class="col-lg-4 control-label "></label>
+                    <div class="col-md-8">
+                        <div class="controls has-error">                            
+                                <span class="help-block" style="display: block">This is a primary record!</span>                            
+                        </div>
+                    </div>
+                </div> 
+            {% endif %} 
+            {#{{ form_eservRow (form.phoneStd, { 'customPlaceHolder': 'e.g. +44', 'fieldSize': 4  }) }}#}
+            {{ form_eservRow (form.phoneNumber, { 'customPlaceHolder': 'e.g. 07812345678', 'fieldSize': 4  }) }}
+        </div>
+    </span>
+</fieldset>
+
+<fieldset>
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'cancelNgClick' : 'cancel()', 'closeBtnId' : 'cancel_updatePhoneDetails_btn' } %}        
+    {% set message = 'You are about to delete a phone record. Are you sure? <br/> <p class=\'alert alert-danger\'> This action cannot be undone!</p>' %}
+    {% if phone_count >1 and is_primary_record == 'Y' %}            
+        <button ng-controller='EservConfirmCtrl' ng-click='OpenConfirm("Warning", "{{ message }}", {type: "url", 
+                    url: "{{ path ('eservcore_contact_bundle_components_contact_details_phone_delete', { 'id' : phone_id }) }}", 
+                    close_modals: "current", close_button_id : "cancel_updatePhoneDetails_btn", dataTable_id: "eserv_phone_table",
+                    refresh_portlet: "current", portlet_id:"eserv_render_teacher_main", form_id: "updatePhoneDetails"
+                    })' type="button" id="delete_updatePhoneDetails_btn" class="btn btn-warning pull-right direction2" data-target="#confirm-delete"
+                    disabled="disabled">
+            <i class="fa fa-trash-o"></i>
+            Delete
+        </button>
+    {% else %}                 
+        <button ng-controller='EservConfirmCtrl' ng-click='OpenConfirm("Warning", "{{ message }}", {type: "url", 
+                    url: "{{ path ('eservcore_contact_bundle_components_contact_details_phone_delete', { 'id' : phone_id}) }}", 
+                    close_modals: "current", close_button_id : "cancel_updatePhoneDetails_btn", dataTable_id: "eserv_phone_table",
+                    refresh_portlet: "current", portlet_id:"eserv_render_teacher_main", form_id: "updatePhoneDetails"
+                    })' type="button" id="delete_updatePhoneDetails_btn" class="btn btn-warning pull-right direction2" data-target="#confirm-delete">
+
+            <i class="fa fa-trash-o"></i>
+            Delete
+        </button>
+    {% endif %}                    
+</fieldset>
+
+<div style="display: none">
+    {{form_rest(form)}}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+      $(document).ready(function () {
+        prepareAppForms('{{ form.vars.name }}', false, {
+            type: 'dataTable',
+            id: 'eserv_phone_table'
+        }, false, 'updatePhoneDetails', function () {
+            $('#cancel_updatePhoneDetails_btn').click();
+            refreshProtlet($('#eserv_render_teacher_main'));
+        });
+                     
+        $('#{{form.phoneType.vars.id}}').change(function () {            
+            $('#{{form.primaryRecord.vars.id }}_msg').hide();
+        });
+        
+        $('#{{form.primaryRecord.vars.id}}').change(function () {
+            if ('Y' == '{{ is_primary_record }}' ) {
+                $('#{{form.primaryRecord.vars.id}}').prop('checked', true);
+                $('#{{form.primaryRecord.vars.id }}_msg').show();
+            }
+        });
+      
+    });   
+
+</script>
+

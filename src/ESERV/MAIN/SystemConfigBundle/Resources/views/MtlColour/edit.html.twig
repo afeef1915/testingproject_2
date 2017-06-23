@@ -1,0 +1,71 @@
+<h3>{{ 'Edit MTL Colour' | trans }}</h3>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' with {'viewMode': 'view'} %}
+
+<div id="eserv_user_output"></div>
+{{form_start(form, { 'attr' : { 'id': 'editMtlColour' } })}}
+
+<fieldset>
+    {# {{ form_eservRow (form.code, { 'fieldSize': 4, 'labelSize':3, }) }}#}
+    <div class="form-group ">
+        <label class="col-lg-3 control-label" >Code</label>
+        <div class="col-lg-5">
+            <div style="padding: 3px 0;">{{ form.code.vars.value }}</div>
+        </div>
+    </div>
+    {{ form_eservRow (form.name, { 'labelSize':3, 'fieldSize': 4 }) }}   
+</fieldset>
+
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12">
+            <a id="cancel_editMtlColour_btn" class="btn btn-danger direction1" href="#/admin/mtl-colour">{{ 'Cancel' | trans }} </a>
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right direction2',  'btn-loading': "is_processing.application_code_add", 'data-loading-text': "Saving..." | trans } }) }}
+            <input class="btn btn-default pull-right direction2" value="{{ 'Reset' | trans }}" type="reset" id="_reset"/>
+            {#For now delete button is disabled.
+            <a class="btn btn-danger eserv_delete_anchor pull-right direction2"
+                data-delMsg="{{ 'Are you sure you want to delete this MTL Colour?' | trans }}"
+                data-delUrl="{{ path ('eserv_main_system_config_mtl_colour_delete', {'id':  mtl_colour_id }) }}"
+            >
+                <i class="fa fa-trash-o"></i>
+                {{ "Delete" | trans }}
+            </a>#}
+        </div>
+    </div>        
+</fieldset>
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+
+{{form_end(form)}}
+
+<script type="text/javascript">    
+    $(document).ready(function() {        
+        prepareAppForms('{{ form.vars.name }}', false, false, '#/admin/mtl-colour');
+        
+        $('.eserv_delete_anchor').click(function(){
+            var url = $(this).data('delurl');
+            var msg = $(this).data('delmsg');
+
+            if (confirm(msg)){
+                $('#eserv_main_loader').show();            
+                $.ajax({
+                    url: url,
+                    success: function(responseText){
+                        $('#eserv_main_loader').hide();
+                        $('#cancel_editMtlColour_btn').click();
+                        if (responseText.success) {
+                            DisplayAppAlert('success', responseText.msg);
+                        } else {
+                            DisplayAppAlert('danger', responseText.msg);
+                        }
+                    },
+                    error: function(){
+                        $('#eserv_main_loader').hide();
+                    }
+                })
+            }
+        });
+        
+        
+    });    
+</script>

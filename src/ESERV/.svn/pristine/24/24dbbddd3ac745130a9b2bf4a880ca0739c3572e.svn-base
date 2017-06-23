@@ -1,0 +1,139 @@
+ESERV\MAIN\MembershipBundle\Entity\EmploymentDetail: 
+    type: entity
+    repositoryClass: ESERV\MAIN\MembershipBundle\Entity\EmploymentDetailRepository
+    table: employment_detail
+    indexes:
+        fk_employment_detail_contact1_idx:
+            columns:
+                - contact_id
+        fk_employment_detail_application_code1_idx:
+            columns:
+                - job_id
+        fk_employment_detail_application_code2_idx:
+            columns:
+                - hours_id
+        fk_employment_detail_employer1_idx:
+            columns:
+                - employer_id
+        fk_employment_detail_workplace1_idx:
+            columns:
+                - workplace_id
+        fk_employment_detail_branch1_idx:
+            columns:
+                - branch_id
+        fk_empdet_emplyr_idx:
+            columns:
+                - other_employer_id        
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        primaryRecord:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: primary_record
+        startDate:
+            type: datetime
+            nullable: true
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: true
+            column: end_date
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+        empLevel:
+            type: string
+            nullable: true
+            length: 5
+            fixed: false
+            column: emp_level
+    manyToOne:
+        contact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        job:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                job_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        hours:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                hours_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        employer:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\Employer
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                employer_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        workplace:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\Workplace
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                workplace_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        branch:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\Branch
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                branch_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        otherEmployer:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\Employer
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                other_employer_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

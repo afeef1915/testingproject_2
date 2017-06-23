@@ -1,0 +1,69 @@
+ESERV\MAIN\MembershipBundle\Entity\EservVMemDisc: 
+    type: entity
+    table: eserv_v_mem_disc    
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        memberId:
+            type: integer
+            nullable: false
+            column: member_id
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        memOrgId:
+            type: integer
+            nullable: false
+            column: mem_org_id
+        description:
+            type: string
+            length: 255
+            nullable: false
+            column: description
+        memOrgCode:
+            type: string
+            nullable: false
+            length: 30
+            column: mem_org_code
+        startDate:
+            type: datetime
+            nullable: false
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: false
+            column: end_date
+        disciplinaryNote:
+            type: text
+            nullable: false
+            column: disciplinary_note
+        webEnabledId:
+            type: integer
+            nullable: true
+            column: web_enabled_id
+        webEnabledCode:
+            type: string
+            nullable: true
+            length: 255
+            column: web_enabled_code 
+        webDispOptions:
+            type: string
+            nullable: false
+            length: 255
+            column: web_disp_options    
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by

@@ -1,0 +1,60 @@
+ESERV\TestBundle\Entity\GtcwVContactDocList: 
+    type: entity
+    table: gtcw_v_contact_doc_list
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: dtindex
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        contactDocId:
+            type: integer
+            nullable: false
+            column: contact_doc_id
+        documentCode:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: document_code
+        documentName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: document_name
+        documentTypeCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: document_type_code
+        documentTypeName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: document_type_name
+        versionNo:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: version_no
+        createdDate:
+            type: datetime            
+            column: created_date
+        orderBy:
+            type: integer
+            nullable: true
+            column: order_by
+        

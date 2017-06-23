@@ -1,0 +1,27 @@
+weblogs_core_main_media_files_upload_files:
+    path:     weblogs/media-files/upload-files
+    defaults: { _controller: WEBLOGSCOREMAINMediaBundle:Files:upload }
+weblogs_core_main_media_files_download_files:
+    path:     weblogs/media-files/download/{id}
+    defaults: { _controller: WEBLOGSCOREMAINMediaBundle:Files:download, id:null}
+weblogs_core_main_media_files_remove_files:
+    path:     weblogs/media-files/remove/{id}
+    defaults: { _controller: WEBLOGSCOREMAINMediaBundle:Files:remove }
+    
+    
+#    
+#weblogs_core_main_media_interface_export_files:
+#    path:     /interface/export_files
+#    defaults: { _controller: ESERVMAINMediaBundle:Interface:exportFiles }
+#
+## Files
+#weblogs_core_main_media_files_upload_files:
+#    path:     /files/upload_files
+#    defaults: { _controller:WEBLOGSCOREMAINMediaBundle:Files:upload }
+#weblogs_core_main_media_files_download_files:
+#    path:     /files/download/{id}
+#    defaults: { _controller: WEBLOGSCOREMAINMediaBundle:Files:download, id: null }
+#weblogs_core_main_media_files_remove_files:
+#    path:     /files/remove/{id}
+#    defaults: { _controller: WEBLOGSCOREMAINMediaBundle:Files:remove }
+

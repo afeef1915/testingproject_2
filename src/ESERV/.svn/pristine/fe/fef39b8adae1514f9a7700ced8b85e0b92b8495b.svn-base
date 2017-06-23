@@ -1,0 +1,50 @@
+ESERV\MAIN\ProfileBundle\Entity\UserAlertFosGroup:
+    type: entity
+    table: user_alert_fos_group
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+    manyToOne:
+        fosGroup:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\Group
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fos_group_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contactType:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

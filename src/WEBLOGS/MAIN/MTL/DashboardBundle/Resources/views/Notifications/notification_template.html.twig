@@ -1,0 +1,85 @@
+    <li class="dropdown">
+        <a data-toggle="dropdown" title="{{ 'View Notifications' | trans }}" class="dropdown-toggle mtl_tooltip" data-tooltip-pos-at="bottom center" data-tooltip-pos-my="top left">
+            <i class="fa fa-bell"></i>
+            
+            <span class="navbar-visible-collapsed">
+                &nbsp;<span class="desktop_only_inline_text">{{ 'Notifications' | trans }}</span>&nbsp
+                {% verbatim %}
+                    {{notification_count}}
+                {% endverbatim %}
+            </span>
+            <span ng-show="userNotifications.new_notif_count > 0">
+                <span class="badge alert-danger">
+                    <div ng-bind="userNotifications.new_notif_count">
+
+                    </div>
+                </span>
+            </span>
+        </a>
+        <ul role="menu" class="dropdown-menu topmenu-menu eserv_top_notifications">
+            <li class="nav-header">
+                <div class="pull-left text-notif">
+                    Notifications
+                </div>
+                <div class="pull-right">
+                    <span class="badge" ng-class="(userNotifications.new_notif_count > 0 ? 'alert-warning' : 'alert-success')">
+                        <div ng-bind="userNotifications.new_notif_count"></div>
+                    </span>
+                </div>
+            </li>
+            <li ng-controller="notification_content">
+                <ul  class="unread_notifications all">
+
+                    <li class="notification" ng-repeat="user_notification in all_notifications_data">
+
+                        <a id="notification_ids" ng-click="doClick(user_notification.LOG_ID,user_notification.CUSTOMER_ID)"  >
+                            <input type="hidden" ng-model="notf" value="{%verbatim%}{{user_notification.LOG_ID}}{%endverbatim%}" data-customer="{%verbatim%}{{user_notification.CUSTOMER_ID}}{%endverbatim%}" >
+                            <span class="pull-left notification-icon" ng-class="(user_notification.NOTIFICATION == 'H' ? 'text-danger' : 'text-primary')">
+                                <i class="fa fa-info-circle"></i>
+                                <div class="text" ng-bind-html="user_notification.NOTIFICATION"></div>
+                            </span>
+                            <span class="pull-left notification-body">
+                                <h5 class="notification-heading"><strong><div ng-bind-html="user_notification.NOTIFICATION"></div></strong></h5>
+                                <span class="small text-muted">
+                                    <i class="fa fa-clock-o pull-left"></i>
+
+
+                                    <div class="datetime" ng-bind-html="user_notification.CREATED_AT"></div>
+                                </span>
+                                <!--
+                                <div class="notification-description" ng-bind-html="user_notification.description"></div>
+                                -->
+                            </span>
+                        </a>
+                    </li>
+                    <!--
+                    <li ng-repeat="user_notification in userNotifications.notifications">
+                        <a class="topmenu-item">
+                            <div class="notification-image">
+                                <i class="fa text-success"><div ng-bind-html="user_notification.priority"></div></i>
+                            </div>
+                            <div class="notification-body">
+                                <strong class="topmenu-item-title"><div ng-bind-html="user_notification.title"></div></strong>
+                                <span class="topmenu-item-text"><div ng-bind-html="user_notification.description"></div></span>
+                                <span class="topmenu-item-time"><i class="fa fa-clock-o"></i> <div ng-bind-html="user_notification.createdAt.date"></div></span>
+                            </div>
+                        </a>
+                    </li>
+                    -->
+                </ul>
+                {# <ul  class="unread_notifications none">
+                     <li>
+                         No unread notifications at present
+                     </li>
+                 </ul>#}
+
+            </li>
+            {#<li class="view_all">
+                <a ui-sref="notificationss">View All Notifications</a>                            
+            </li>#}
+        </ul>
+    </li>
+    {# </ul>  
+      </div> #}
+
+

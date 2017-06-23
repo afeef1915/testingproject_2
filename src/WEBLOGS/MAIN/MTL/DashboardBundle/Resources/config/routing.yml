@@ -1,0 +1,45 @@
+weblogsmainmtl_dashboard_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Default:index }
+weblogsmainmtl_dashboard_mtl:
+    path:     /logsdashboard
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:dashboardCount }
+weblogsmainmtl_dashboard_home:
+    path:     /dashboard/data
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:dashboardHome }
+weblogsmainmtl_dashboard_customer_name:
+    path:     /customers
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:Customers }
+weblogsmainmtl_dashboard_notification_view:
+    path:      notification/view
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:viewNotification } 
+    
+   
+weblogsmainmtl_dashboard_customer_save:
+    path:     /customersave
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:CustomersSave }
+weblogsmainmtl_dashboard_customer_show:
+    path:     /show-customers
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:showCustomer }
+weblogsmainmtl_dashboard_userid_show:
+    path:     /show-userid
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:showUserid }
+weblogsmainmtl_dashboard_count:
+    path:     /logsdashboard
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:dashboardCount }
+weblogsmainmtl_dashboard_task_count:
+    path:     /taskcount
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:taskCount }
+weblogsmainmtl_dashboard_category_count:
+    path:     /categorycount
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:categoryCount }
+weblogsmainmtl_dashboard_priority_count:
+    path:     /prioritycount
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:priorityCount }
+
+weblogsmainmtl_dashboard_notifications_count:
+    path:     /notificationscount
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:notificationsCount }
+weblogsmainmtl_dashboard_check_staff:
+    path:     /check_staff
+    defaults: { _controller: WEBLOGSMAINMTLDashboardBundle:Dashboard:CheckStaff }

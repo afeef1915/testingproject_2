@@ -1,0 +1,66 @@
+ESERV\TestBundle\Entity\GtcwVMemMepDetail: 
+    type: entity
+    table: gtcw_v_mem_mep_detail
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        gtcwMemMepDetailId:
+            type: integer
+            nullable: false
+            column: gtcw_mem_mep_detail_id
+        startDate:
+            type: datetime            
+            fixed: false
+            comment: '' 
+            column: start_date            
+        completionDate:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: completion_date
+        leaveDate:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: leave_date
+        bodyId:
+            type: integer
+            nullable: false
+            column: body_id
+        bodyContactId:
+            type: integer
+            nullable: false
+            column: body_contact_id
+        bodyName:
+            type: string                    
+            column: body_name
+        schoolId:
+            type: integer
+            nullable: false
+            column: school_id
+        schoolContactId:
+            type: integer
+            nullable: false
+            column: school_contact_id
+        schoolName:
+            type: string                    
+            column: school_name
+        externalMentor:
+            type: string                    
+            column: external_mentor
+        externalMentorContactId:
+            type: integer
+            nullable: false
+            column: external_mentor_contact_id

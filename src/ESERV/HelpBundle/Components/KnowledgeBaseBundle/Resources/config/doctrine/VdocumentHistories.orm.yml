@@ -1,0 +1,41 @@
+ESERV\HelpBundle\Components\KnowledgeBaseBundle\Entity\VdocumentHistories:
+    type: entity
+    table: vdocument_histories
+    id:
+        document_id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        doc_name:
+            type: string 
+            length: 100
+        author_id:
+            type: integer
+        source_id:
+            type: integer
+        title:
+            type: string
+            length: 100
+        document_type:
+            type: string 
+            length: 1
+        external_text:
+            type: string 
+            length: 600
+        internal_text:
+            type: string 
+            length: 2000
+        size_text:
+            type: string
+            length: 15
+        document_extension:
+            type: string
+            length: 20
+        user_version_no:
+            type: string
+            length: 30
+        version_date:
+            type: string
+        version_no:
+            type: integer
+

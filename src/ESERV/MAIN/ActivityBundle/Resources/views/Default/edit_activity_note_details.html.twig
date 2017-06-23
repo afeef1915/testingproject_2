@@ -1,0 +1,54 @@
+<h3>Edit Note</h3>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+<div id="eserv_editEservNote_output"></div>
+
+{{ form_start(form, { 'attr': { 'id': 'editEservNote' } }) }}
+<div class="eserv_container_form_errors"></div>
+<fieldset>
+    {{ form_eservRow(form.shortDescription, { 'labelSize': 3, 'fieldSize': 6 }) }}
+    {{ form_eservSelectRow(form.activitySource, { 'labelSize': 3, 'fieldSize': 6 }) }}
+    {{ form_eservRow(form.longDescription, { 'labelSize': 3, 'fieldSize': 8 }) }}
+    {{ form_eservRow(form.showAlert, { 'isCheckbox': true, 'labelSize': 3, 'fieldSize': 1 }) }}     
+</fieldset>
+
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12">
+            <a id="cancel_add_note_btn" class="btn btn-danger direction1" ng-click="cancel()">Cancel</a>
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right direction2',  'btn-loading': "is_processing.send_note", 'data-loading-text': "Saving Note..."} }) }}
+            <input class="btn btn-default pull-right direction2" value="Reset" type="reset" />
+            {% set message = 'You are about to delete an activity note. Are you sure? <br/> 
+                            <p class=\'alert alert-danger\'> This action cannot be undone!</p>' %}
+            <button ng-controller='EservConfirmCtrl' ng-click='OpenConfirm("Warning", "{{ message }}", {type: "url", 
+                            url: "{{ path ('eserv_main_activity_note_delete', { 'id' : activity_id }) }}", 
+                            close_modals: "current", close_button_id : "cancel_add_note_btn", dataTable_id: "eserv_v_activity_table",
+                            refresh_portlet: "current", portlet_id:"eserv_render_teacher_main", form_id: "editEservNote"
+                            }, "updateTeacherNotesAlert"
+                    )' type="button" id="delete_editEservNote_btn" class="btn btn-warning pull-right direction2" data-target="#confirm-delete">
+                    <i class="fa fa-trash-o"></i>
+                    {{ "Delete" | trans }}
+                </button>
+        </div>
+    </div>        
+</fieldset>
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+
+{{ form_end(form) }}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        prepareAppForms('{{ form.vars.name }}', false, {
+                type: 'dataTable',
+                id: 'eserv_v_activity_table'
+            }, false, 'editEservNote', function(ev){
+                RootScope.notes = ev.teacher_notes_json;
+                $('#cancel_add_note_btn').click();
+        });
+    });
+    
+    function updateTeacherNotesAlert(ev){
+        RootScope.notes = ev.teacher_notes_json;
+    }
+</script>

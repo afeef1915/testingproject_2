@@ -1,0 +1,59 @@
+<div class="modal-header panel-primary">
+    <h3 class="modal-title"><i class="fa fa-info-circle"></i> {{ 'About' | trans }}</h3>
+</div>
+<div class="modal-body">
+    <div class="center-block">
+        <div class="about_client_brand" style="{% if show_client_title is defined and show_client_title is sameas(false) %}height: 50px{% endif %}">
+            {% if show_client_title is not defined or (show_client_title is defined and show_client_title is sameas(true)) %}
+                {{ (isMerlin is defined and isMerlin is sameas(false) ? '' : ('Merlin ' | trans)) ~ app_client_short_name }}
+            {% endif %}
+            <div class="clearfix"></div>
+        </div>
+            <div class="about_version text-danger">v{{ app_version }}</div>
+        <hr />
+        {#
+        <div class="row">
+            <div class="col-xs-6 text-right">{{ 'Version' | trans }}:</div>
+            <div class="col-xs-6 text-danger">{{ app_version }}</div>
+        </div>
+        #}
+
+        {% if app_environment is defined and app_environment is not sameas(null) %}
+            <div class="row">
+                <div class="col-xs-6 text-right">{{ 'Environment' | trans }}:</div>
+                <div class="col-xs-6 text-info">{{ app_environment }}</div>
+            </div>
+            {% if database_name is defined %}
+                <div class="row">
+                    <div class="col-xs-6 text-right">{{ 'Database' | trans }}:</div>
+                    <div class="col-xs-6 text-info">{{ database_name }}</div>
+                </div>
+            {% endif %}
+            {% if database_user is defined %}
+                <div class="row">
+                    <div class="col-xs-6 text-right">{{ 'Schema' | trans }}:</div>
+                    <div class="col-xs-6 text-info">{{ database_user }}</div>
+                </div>
+            {% endif %}
+            {% if db_core_version is defined %}
+                <div class="row">
+                    <div class="col-xs-6 text-right">{{ 'DB CORE Version' | trans }}:</div>
+                    <div class="col-xs-6 text-info">{{ db_core_version }}</div>
+                </div>
+            {% endif %}
+        {% endif %}
+        {% if merlin_core_version is defined %}
+            <div class="row">
+                <div class="col-xs-6 text-right">{{ 'PHP CORE Version' | trans }}:</div>
+                <div class="col-xs-6 text-warning">{{ merlin_core_version }}</div>
+            </div>
+        {% endif %}
+        <hr />
+        <div class="about_copyright">
+            Copyright &copy; {{ "now"|date("Y") }} {{ 'Miller Technology LTD' | trans }}
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-client1 center-block" ng-click="cancel()">Close</button>
+</div>

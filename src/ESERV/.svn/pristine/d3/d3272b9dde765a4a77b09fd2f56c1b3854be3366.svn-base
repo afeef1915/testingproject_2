@@ -1,0 +1,42 @@
+ESERV\MAIN\ProfileBundle\Entity\UserDepartment: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ProfileBundle\Entity\UserDepartmentRepository
+    table: user_department
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+        description:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

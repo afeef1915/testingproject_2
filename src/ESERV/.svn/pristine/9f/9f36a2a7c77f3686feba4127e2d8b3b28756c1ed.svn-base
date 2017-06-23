@@ -1,0 +1,77 @@
+ESERV\MAIN\ContactBundle\Entity\Organisation: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Entity\OrganisationRepository
+    table: organisation
+    indexes:
+        IDX_E6E132B4E7A1254A:
+            columns:
+                - contact_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        previousName:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            column: previous_name
+        referenceNo:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: 'This will be used for situations where we need to have a code for an organisation that wiill always apply even if the organisation has several types (contact_subtype).'
+            column: reference_no
+        volunteerOrg:
+            type: string
+            nullable: true
+            length: 1
+            column: volunteer_org
+        dateOpened:
+            type: datetime
+            nullable: true
+            column: date_opened
+        dateClosed:
+            type: datetime
+            nullable: true
+            column: date_closed
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

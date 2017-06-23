@@ -1,0 +1,96 @@
+ESERV\MAIN\ActivityBundle\Entity\ActivityCategory: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\ActivityCategoryRepository
+    table: activity_category
+    indexes:
+        fk_actcat_acttyp_idx:
+            columns:
+                - activity_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        entitiyName:
+            type: string
+            nullable: false
+            length: 250
+            fixed: false
+            column: entitiy_name
+        code:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+        description:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+        autoCreateOnly:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: Y
+            column: auto_create_only
+        noOfReminders:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: no_of_reminders
+        firstReminderDays:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: first_reminder_days
+        subsequentReminderDays:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: subsequent_reminder_days
+        allowSubcatMaint:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: allow_subcat_maint
+        dueDays:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: due_days
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        activityType:
+            targetEntity: ESERV\MAIN\ActivityBundle\Entity\ActivityType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                activity_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

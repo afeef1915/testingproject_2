@@ -1,0 +1,63 @@
+ESERV\MAIN\SystemConfigBundle\Entity\DocumentSetList: 
+    type: entity
+    repositoryClass: ESERV\MAIN\SystemConfigBundle\Entity\DocumentSetListRepository
+    table: document_set_list
+    indexes:
+        fk_docsetlis_docmas_idx:
+            columns:
+                - document_master_id
+        fk_docsetlis_docset_idx:
+            columns:
+                - document_set_id
+    uniqueConstraints:
+        docsetlis_idx:
+            columns:
+                - document_set_id
+                - document_master_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        documentMaster:
+            targetEntity: ESERV\MAIN\DocumentBundle\Entity\DocumentMaster
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                document_master_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        documentSet:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\DocumentSet
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                document_set_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

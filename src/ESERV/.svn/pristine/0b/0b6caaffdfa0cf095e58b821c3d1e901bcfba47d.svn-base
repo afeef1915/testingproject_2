@@ -1,0 +1,29 @@
+<h3>{{ 'Edit System Configurations' | trans }}</h3>
+
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' with {'viewMode': 'view'} %}
+
+<div id="eserv_user_output"></div>
+{{form_start(form, { 'attr' : { 'id': 'updateSystemConfig' } })}}
+
+<fieldset>
+    {{ form_eservRow(form.ESERV01, { 'fieldSize' : 4 }) }}    
+    {{ form_eservRow(form.ESERV02, { 'fieldSize' : 4 }) }}    
+    {{ form_eservRow(form.ESERV03, { 'fieldSize' : 4 }) }}    
+    {{ form_eservRow(form.ESERV04, { 'fieldSize' : 4 }) }}    
+    {{ form_eservSelectRow(form.ESERV05, { 'fieldSize' : 2 }) }}    
+</fieldset>
+
+<fieldset>
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'hide_cancel' : true, 'cancel_link' : true,  'cancelHref' : '#/admin', 'closeBtnId' : 'cancel_systemConfig_btn' } %}                                                                             
+</fieldset>
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+
+{{form_end(form)}}
+
+<script type="text/javascript">    
+     $(document).ready(function() {
+        prepareAppForms('{{ form.vars.name }}', false, false, '#/admin', 'updateSystemConfig');        
+    });
+</script>

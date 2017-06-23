@@ -1,0 +1,54 @@
+ESERV\MAIN\HistoryBundle\Entity\DeletedRecords: 
+    type: entity
+    repositoryClass: ESERV\MAIN\HistoryBundle\Entity\DeletedRecordsRepository
+    table: deleted_records
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        sequenceNo:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: sequence_no
+        deletedFrom:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: deleted_from
+        tableName:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: table_name
+        columnsAndValues:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: columns_and_values
+        deletedBy:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: deleted_by
+        deletedAt:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: deleted_at
+    lifecycleCallbacks: {  }

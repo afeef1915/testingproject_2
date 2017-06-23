@@ -1,0 +1,86 @@
+<div id="eserv_updateWorkplace_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'updateWorkplace' } })}}
+<div class="eserv_container_form_errors"></div>
+
+<h3 class="">General info</h3>
+
+<fieldset>
+    {{ form_eservRow (form.code, { 'fieldSize': 3, 'customPlaceHolder': '' }) }}
+    {{ form_eservRow (form.name, { 'customPlaceHolder': 'English Name'}) }}
+    {% include 'ESERVMAINHelpersBundle:Form:alt_languages_edit.html.twig' with { 'alt_languages' : alt_languages, 'existing_alt_languages_equivs' : existing_alt_languages_equivs} %}
+    {% if label_array is defined %}            
+        {% set relationshipLabel = label_array['relationship'] %}           
+    {% else %}    
+        {% set relationshipLabel = '' %}
+    {% endif %} 
+    {#{{ form_eservSelectRow (form.relationship, { 'customLabel': relationshipLabel }) }}#}
+    {{ form_eservRow(form.relationship, { 'isAutocomplete': true, 'acValues': ac_values_arr is defined ? ac_values_arr['employer_ac'] : false }) }}
+    {{ form_eservSelectRow (form.denom, { 'customLabel': 'Denomination' }) }}
+    {{ form_eservSelectRow (form.type) }}
+</fieldset>
+<h3 class="">Contact Info </h3>
+
+<fieldset>
+    <span class="postCodeLookupArea">
+        {{ form_eservPostCodeLookup (form.postcode) }}
+        {% include 'ESERVMAINHelpersBundle:Form:eserv_address_selector.html.twig' %}
+        {{ form_eservRow (form.address1, { 'extraGroupClass': 'target', 'extraFieldClass': 'street', 'customPlaceHolder': 'i.e. Flat 4', 'fieldSize': 4}) }}
+        {{ form_eservRow (form.address2, { 'extraGroupClass': 'target', 'extraFieldClass': 'ad2', 'fieldSize': 4  }) }}
+        {{ form_eservRow (form.address3, { 'extraFieldClass': 'ad3', 'fieldSize': 4 }) }}
+        {{ form_eservRow (form.town, { 'extraFieldClass': 'town', 'fieldSize': 4 }) }}
+        {{ form_eservRow (form.county, { 'extraFieldClass': 'county', 'fieldSize': 4 }) }}
+    </span>
+
+    {#{ form_eservSelectRow (form.phoneType) }#}
+    {{ form_eservRow (form.phoneNumber, { 'fieldSize': 4, 'customPlaceHolder': '' }) }}
+    {{ form_eservRow (form.webAddress, { 'fieldSize': 4, 'customPlaceHolder': '' }) }}
+
+    {{ form_eservRow (form.dateOpened, { 'fieldType': 'date', 'customPlaceHolder': '' }) }}
+    {{ form_eservRow (form.dateClosed, { 'fieldType': 'date', 'customPlaceHolder': '' }) }}
+</fieldset>
+
+<fieldset>
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save } %}
+</fieldset>
+
+{{form_rest(form)}}
+
+{{form_end(form)}}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        prepareAppForms('{{ form.vars.name }}', true, {
+            type: 'portlet',
+            status: 'current'
+        }, false, 'updateWorkplace');
+        $('#{{ form.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.address1.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.address2.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.address3.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.town.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.county.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });         
+    });
+    
+    function AddressValidationLoc(){ 
+        var postcodeF = $('#{{ form.postcode.vars.id }}');
+        var addressLine1F = $('#{{ form.address1.vars.id }}');
+        var addressLine2F = $('#{{ form.address2.vars.id }}');
+        var addressLine3F = $('#{{ form.address3.vars.id }}');
+        var townF = $('#{{ form.town.vars.id }}');
+        var countyF = $('#{{ form.county.vars.id }}');        
+        AddressValidation(postcodeF,addressLine1F,addressLine2F,addressLine3F,townF,countyF);        
+    }
+</script>

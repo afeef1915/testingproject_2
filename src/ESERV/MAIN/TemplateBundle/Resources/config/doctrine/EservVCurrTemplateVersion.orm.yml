@@ -1,0 +1,119 @@
+ESERV\MAIN\TemplateBundle\Entity\EservVCurrTemplateVersion:
+    type: entity
+    repositoryClass: ESERV\MAIN\TemplateBundle\Entity\EservVCurrTemplateVersionRepository
+    table: eserv_v_curr_template_version
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+        content:
+            type: text
+            nullable: false
+            length: 65535
+            fixed: false
+        footerId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: footer_id
+        headerId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: header_id
+#        isCustomised:
+#            type: string
+#            nullable: false
+#            length: 1
+#            fixed: false
+#            default: N
+#            column: is_customised
+        isDefault:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            column: is_default
+#      ,tv.language_id
+        languageId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: language_id
+        languageCode:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            column: language_code
+        languageName:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            column: language_name
+        mailMergeTypeId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: mail_merge_type_id
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        reportId:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            column: report_id
+        systemPrinterId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: system_printer_id
+        templateId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: template_id
+#      ,tv.template_document_group_id
+        templateDocumentGroupId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: template_document_group_id
+#      ,tv.template_type_id
+        templateTypeId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: template_type_id
+#      ,tt.code AS template_type_code
+        templateTypeCode:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            column: template_type_code
+        templateTypeName:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            column: template_type_name
+        version:
+            type: integer
+            nullable: false
+            unsigned: false

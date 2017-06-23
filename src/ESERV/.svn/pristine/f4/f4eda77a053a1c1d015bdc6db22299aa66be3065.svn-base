@@ -1,0 +1,41 @@
+ESERV\MAIN\ProfileBundle\Entity\MmHelpMessages:
+    type: entity
+    table: mm_help_messages
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        application_code_id:
+            type: integer
+            length: 4
+        description:
+            type: string
+        is_active:
+            type: string
+        more_link:
+            type: string
+        msg_type:
+            type: string
+        title:
+            type: string            
+        external_id:
+            type: string
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint
+    uniqueConstraints:
+       idx_MmHelpMessages_a_idx: 
+           columns: [ application_code_id ]        
+    manyToOne:
+        application_code:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            inversedBy: mm_help_messages
+            joinColumn:
+                name: application_code_id
+                referencedColumnName: id        

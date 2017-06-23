@@ -1,0 +1,63 @@
+ESERV\MAIN\ProfileBundle\Entity\MmNewsUserProfile: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ProfileBundle\Entity\MmNewsUserProfileRepository
+    table: mm_news_user_profile
+    indexes:
+        FK_5E89C321CE71E6F1:
+            columns:
+                - mm_news_id
+        IDX_5E89C321E8DD4407:
+            columns:
+                - mm_user_profile_id
+    uniqueConstraints:
+        idx_MmNewsUserProfi_a1_idx:
+            columns:
+                - mm_user_profile_id
+                - mm_news_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        mmUserProfile:
+            targetEntity: ESERV\MAIN\ProfileBundle\Entity\MmUserProfile
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mm_user_profile_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        mmNews:
+            targetEntity: ESERV\MAIN\ProfileBundle\Entity\MmNews
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mm_news_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,84 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\VMyLogs:
+    type: entity
+    table: v_my_logs
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+
+    fields:
+        job_no:
+            type: string
+            length: '10'
+            id: true
+            column: job_no
+        customer:
+            type: string
+            length: '20'
+            column: customer
+        
+        category:
+            type: string
+            length: '20'
+            column: category
+        title:
+            type: string
+            length: '5000'
+            column: title
+        attention_of:
+            type: string
+            length: '100'
+            column: attention_of
+        requested_by:
+            type: string
+            length: '100'
+            column: requested_by
+        requested:
+            type: date
+            
+            column: requested
+        priority:
+            type: string
+            length: '20'
+           
+            column: priority
+        status:
+            type: string
+            length: '200'
+            column: status
+        mtl:
+            type: string
+            length: '20'
+            column: mtl
+            
+           
+        updated:
+            type: date
+            column: updated
+        dueby:
+            type: date
+            column: dueby
+        dev_status:
+            type: string
+            length: '20'
+            column: dev_status
+        customer_log_id:
+            type: string
+            length: '100'
+            column: customer_log_id
+        
+        assigned_to:
+            type: string
+            length: '100'
+            column: assigned_to
+            
+        
+        task_description:
+            type: string
+            length: '50'
+            column: task_description
+    
+       
+    lifecycleCallbacks: {  }

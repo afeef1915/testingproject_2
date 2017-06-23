@@ -1,0 +1,16 @@
+eserv_home_homepage:
+    pattern:  /
+    defaults: { _controller: ESERVHomeBundle:Default:index }
+eserv_switch_profile:
+    pattern:  /switchProfile/{user_profile}
+    defaults: { _controller: ESERVHomeBundle:Default:setProfile }
+eserv_home_dashboard:
+    pattern:  /home
+    defaults: { _controller: ESERVHomeBundle:Default:home }
+eserv_about_the_app:
+    pattern:  /about
+    defaults: { _controller: ESERVHomeBundle:Default:about }
+
+eserv_reset_settings:
+    pattern:  /reset-settings/
+    defaults: { _controller: ESERVHomeBundle:Default:resetSettings }

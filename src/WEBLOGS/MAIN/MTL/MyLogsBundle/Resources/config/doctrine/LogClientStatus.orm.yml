@@ -1,0 +1,28 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\LogClientStatus:
+    type: entity
+    table: log_client_status
+#    id:
+#        dtindex:
+#            type: string
+#            nullable: false
+#            length: 10
+#            fixed: false
+#            id: true
+#            generator:
+#            strategy: IDENTITY
+    fields:
+        ACTION_ID:
+            type: string
+            nullable: false
+            length: 100
+            id: true
+            fixed: false
+            column: ACTION_ID
+        DESCRIPTION:
+            type: string
+            nullable: false
+            length: 300
+            fixed: false
+            column: DESCRIPTION
+        
+    lifecycleCallbacks: {  }

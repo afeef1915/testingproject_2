@@ -1,0 +1,116 @@
+ESERV\MAIN\ProductBundle\Entity\TransactionDetail: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ProductBundle\Entity\TransactionDetailRepository
+    table: transaction_detail
+    indexes:
+        fk_tradet_transa_idx:
+            columns:
+                - transaction_id
+        fk_tradet_fund_idx:
+            columns:
+                - fund_id
+        fk_tradet_tratyp_idx:
+            columns:
+                - transaction_type_id
+        fk_tradet_worpla_idx:
+            columns:
+                - workplace_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        lineNo:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: line_no
+        credit:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        debit:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        periodStartDate:
+            type: datetime
+            nullable: false
+            column: period_start_date
+        periodEndDate:
+            type: datetime
+            nullable: false
+            column: period_end_date
+        entityName:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            column: entity_name
+        entityId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: entity_id
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        transaction:
+            targetEntity: ESERV\MAIN\ProductBundle\Entity\Transaction
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                transaction_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        fund:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\Fund
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fund_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        transactionType:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\TransactionType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                transaction_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        workplace:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\Workplace
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                workplace_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

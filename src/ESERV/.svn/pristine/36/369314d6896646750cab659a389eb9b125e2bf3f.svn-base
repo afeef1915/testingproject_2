@@ -1,0 +1,99 @@
+eservcore_contact_bundle_components_contact_details_all:
+    pattern:  /contact_details
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Default:all }
+
+
+# Address routing
+eservcore_contact_bundle_components_contact_details_address_list:
+    path:     /address/list
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Address:addressList }
+
+eservcore_contact_bundle_components_contact_details_address_ajax_list:
+    path:     /address/ajaxList
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Address:data }
+    
+eservcore_contact_bundle_components_contact_details_address_new:
+    path:     /contact_detail/address/new
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Address:new }    
+    
+eservcore_contact_bundle_components_contact_details_address_create:
+    path:     /contact_detail/address/create
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Address:create }
+    
+eservcore_contact_bundle_components_contact_details_address_edit:
+    path:     /contact_detail/address/edit/{history_record}/{id}
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Address:edit, history_record:null, id:null }    
+    
+eservcore_contact_bundle_components_contact_details_address_update:
+    path:     /contact_detail/address/update
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Address:update }    
+    
+eservcore_contact_bundle_components_contact_details_address_send_to_history:
+    path:     /contact_detail/address/send_to_history
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Address:sendAddressToHistory } 
+    
+# Email routing
+eservcore_contact_bundle_components_contact_details_email_type_javascript_var:
+    path:     /contact_detail/javascript-var/email-type
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Email:getEmailTypeAsJavascriptVar }
+    
+eservcore_contact_bundle_components_contact_details_email_list:
+    path:     /email/list
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Email:emailList }
+
+eservcore_contact_bundle_components_contact_details_email_ajax_list:
+    path:     /email/ajaxList
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Email:data }
+    
+eservcore_contact_bundle_components_contact_details_email_new:
+    path:     /contact_detail/email/new
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Email:new }    
+    
+eservcore_contact_bundle_components_contact_details_email_create:
+    path:     /contact_detail/email/create
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Email:create }
+    
+eservcore_contact_bundle_components_contact_details_email_edit:
+    path:     /contact_detail/email/edit/{entity_name}/{entity_id}
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Email:edit, entity_name:null, entity_id:null }    
+    
+eservcore_contact_bundle_components_contact_details_email_update:
+    path:     /contact_detail/email/update
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Email:update }      
+
+eservcore_contact_bundle_components_contact_details_email_delete:
+    path:     /contact_detail/email/delete/{id}
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Email:delete, id:null } 
+    
+# Phone routing
+eservcore_contact_bundle_components_contact_details_phone_type_javascript_var:
+    path:     /contact_detail/javascript-var/phone-type
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Phone:getPhoneTypeAsJavascriptVar }
+    
+eservcore_contact_bundle_components_contact_details_phone_list:
+    path:     /phone/list
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Phone:phoneList }
+
+eservcore_contact_bundle_components_contact_details_phone_ajax_list:
+    path:     /phone/ajaxList
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Phone:data }
+    
+eservcore_contact_bundle_components_contact_details_phone_new:
+    path:     /contact_detail/phone/new
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Phone:new }    
+    
+eservcore_contact_bundle_components_contact_details_phone_create:
+    path:     /contact_detail/phone/create
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Phone:create }
+    
+eservcore_contact_bundle_components_contact_details_phone_edit:
+    path:     /contact_detail/phone/edit/{entity_name}/{entity_id}
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Phone:edit, entity_name:null, entity_id:null  }    
+    
+eservcore_contact_bundle_components_contact_details_phone_update:
+    path:     /contact_detail/phone/update
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Phone:update }     
+    
+eservcore_contact_bundle_components_contact_details_phone_delete:
+    path:     /contact_detail/phone/delete/{id}
+    defaults: { _controller: ESERVMAINContactBundleComponentsContactDetailsBundle:Phone:delete, id:null  } 

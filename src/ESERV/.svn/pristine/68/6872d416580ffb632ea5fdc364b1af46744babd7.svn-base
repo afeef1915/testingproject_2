@@ -1,0 +1,19 @@
+<style>
+    .ds-btn li{ list-style:none; }
+    .ds-btn li a span{padding-left:15px;padding-right:5px;width:100%;display:inline-block; text-align:left;}
+    .ds-btn li a span small{width:100%; display:inline-block; text-align:left;}
+</style>
+<h3>{{ 'Manage Alternative Languages' | trans }}</h3>
+<hr />
+
+<div class="col-md-12">
+    <ul class="ds-btn">
+        {% for k,v in lang_list %}
+            <li>
+                <a class="btn btn-lg btn-info" data-lang="a2" href="#/admin/alternative_language/{{ v.id }}">
+                    <i class="fa fa-cog pull-left"></i><span><h2>{{ v.language.name }}</h2><br><small>{{ 'Manage ' | trans ~ v.language.name ~ ' Language' | trans }}</small></span></a> 
+
+            </li>
+        {% endfor %} 
+    </ul>
+</div>

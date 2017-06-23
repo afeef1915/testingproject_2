@@ -1,0 +1,4 @@
+services:
+#    eserv_release.example:
+#        class: ESERV\ReleaseBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

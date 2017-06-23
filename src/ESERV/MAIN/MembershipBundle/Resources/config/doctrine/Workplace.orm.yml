@@ -1,0 +1,103 @@
+ESERV\MAIN\MembershipBundle\Entity\Workplace: 
+    type: entity
+    repositoryClass: ESERV\MAIN\MembershipBundle\Entity\WorkplaceRepository
+    table: workplace
+    indexes:
+        fk_act_appcode_1_idx:
+            columns:
+                - workplace_type_id
+        fk_act_appcode_2_idx:
+            columns:
+                - denom_id
+    uniqueConstraints:
+        fk_wor_org_idx:
+            columns:
+                - organisation_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+        potentialMembers:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: potential_members
+        potentialMembersDate:
+            type: datetime
+            nullable: true
+            column: potential_members_date
+        noMembers:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: no_members
+        noMembersDate:
+            type: datetime
+            nullable: true
+            column: no_members_date
+        noEmployees:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: no_employees
+        noEmployeesDate:
+            type: datetime
+            nullable: true
+            column: no_employees_date
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        organisation:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Organisation
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                organisation_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        workplaceType:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                workplace_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        denom:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                denom_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

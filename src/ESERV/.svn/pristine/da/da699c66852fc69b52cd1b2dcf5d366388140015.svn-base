@@ -1,0 +1,41 @@
+ESERV\MAIN\ContactBundle\Entity\ContactRoleStatus:
+    type: entity
+    table: contact_role_status
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        contact_role_type_id:
+            type: integer
+            length: 11
+        code:
+            type: string
+        description:
+            type: string
+        date_opened:
+            type: datetime
+        date_closed:
+            type: datetime
+        external_id:
+            type: string
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint
+    uniqueConstraints:
+       idx_ContactRoleStat_a1_idx: 
+           columns: [ code, contact_role_type_id ]
+       idx_ContactRoleStat_a_idx: 
+           columns: [ contact_role_type_id ]        
+    manyToOne:
+        contact_role_type:
+            targetEntity: ContactRoleType
+            inversedBy: contact_role_status
+            joinColumn:
+                name: contact_role_type_id
+                referencedColumnName: id

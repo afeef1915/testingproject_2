@@ -1,0 +1,118 @@
+WEBLOGS\CORE\MAIN\ProfileBundle\Entity\MmUserSetting:
+    type: entity
+    repositoryClass: WEBLOGS\CORE\MAIN\ProfileBundle\Entity\MmUserSettingRepository
+    table: mm_user_setting_fos
+    indexes:
+        fk_mmuseset_fosuse_idx:
+            columns:
+                - fos_user_id
+        fk_mmuseset_mmusepro_idx:
+            columns:
+                - mm_user_profile_id
+                
+    uniqueConstraints:
+        fk_mmuseset_cont_fos_idx:
+            columns:
+                - contact_id
+                - fos_user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        autoSave:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            column: auto_save
+        language:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+        lastViewedNews:
+            type: datetime
+            nullable: false
+            column: last_viewed_news
+        layoutState:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            column: layout_state
+        menuState:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            column: menu_state
+        statusDate:
+            type: datetime
+            nullable: false
+            column: status_date
+        theme:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+        themeFontSize:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            column: theme_font_size
+        themeWidth:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+            column: theme_width
+        personId:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+            column: person_id
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        mmUserProfile:
+            targetEntity: WEBLOGS\CORE\MAIN\ProfileBundle\Entity\MmUserProfile
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mm_user_profile_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        fosUser:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fos_user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,41 @@
+<h3>Table Query - Create New - Step 3 (Sort Order)</h3>
+<br/>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+
+<div id="eserv_tableQueryStep3_output"></div>
+{{form_start(form, { 'attr' : { 'id': 'tableQueryStep3' } })}}
+    <div>
+        {{ form_eservSelectRow (form.field, { 'labelSize':3, 'fieldSize': 8 }) }}
+        {{ form_eservRow(form.descending, { 'isCheckbox': 'true', 'labelSize': 3, 'fieldSize': 1}) }}
+    </div>
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12">
+            <a class="btn btn-danger pull-left direction1 cancelTqWizardBtn" id="cancel_tableQueryStep3_btn" href="#/admin/table_query">{{ 'Cancel' | trans }}</a>
+            <a href="#/admin/table_query/create/step2/{{form.appId.vars.value}}" class="btn btn-default direction1">
+                    {{ 'Previous' | trans }} <span class="fa fa-circle-arrow-right"></span>
+                </a>
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right direction2'} }) }}
+        </div>
+    </div>        
+</fieldset>
+    
+{{form_end(form)}}
+<script type="text/javascript">    
+    $(document).ready(function() {                
+        prepareAppForms('{{ form.vars.name }}', false, false, {ui_state: true, state: 'admin.manage_table_query'}, 'tableQueryStep3', function(e){
+            console.log('AAAAA');
+            e.preventDefault();
+            cancelTqWizard();
+        }); 
+        
+        $('.cancelTqWizardBtn').click(function (e){
+            e.preventDefault();
+            var conf = confirm('This will reset your data in the Table Query Wizard. Are you sure?');
+            if(conf){
+                cancelTqWizard();
+            };            
+        });
+    });    
+</script>
+    

@@ -1,0 +1,73 @@
+ESERV\MAIN\ActivityBundle\Entity\EservVMergingLetter: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\EservVMergingLetterRepository    
+    table: eserv_v_merging_letter
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        shortDescription:
+            type: string
+            nullable: true
+            length: 25
+            fixed: false
+            comment: ''
+            column: short_description
+        contentHeader:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: content_header
+        contentBody:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: content_body
+        contentFooter:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: content_footer
+        entityId:
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: entity_id
+        entityName:
+            type: string
+            nullable: false
+            length: 250
+            fixed: false
+            comment: ''
+            column: entity_name
+        systemPrinterId:
+            type: integer            
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: system_printer_id
+        templateVersionId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: template_version_id
+        templateVersionName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: template_version_name

@@ -1,0 +1,85 @@
+ESERV\MAIN\ActivityBundle\Entity\EservVMergingGroupLetter: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ActivityBundle\Entity\EservVMergingGroupLetterRepository
+    table: eserv_v_merging_group_letter
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        documentJobId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: document_job_id
+        shortDescription:
+            type: string
+            nullable: true
+            length: 25
+            fixed: false
+            comment: ''
+            column: short_description
+        contentHeader:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: content_header
+        contentBody:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: content_body
+        contentFooter:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: content_footer
+        entityId:
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: entity_id
+        entityName:
+            type: string
+            nullable: false
+            length: 250
+            fixed: false
+            comment: ''
+            column: entity_name
+        systemPrinterId:
+            type: integer            
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: system_printer_id
+        templateVersionId:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: template_version_id
+        templateVersionName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: template_version_name
+        activityCreatedBy:
+            type: integer            
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: activity_created_by

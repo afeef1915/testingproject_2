@@ -1,0 +1,63 @@
+<style>
+    .test12{
+        max-height: 500px;
+        min-height: min-content;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+</style>
+    
+    
+<div id="eserv_multipleRec_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+
+<div class="test12">
+{#
+{% for res in result %}
+        <li>{{ res.id }} || {{ res.firstName }}</li>
+{% endfor %}
+#}
+
+<table id="table-transform" data-toolbar="#transform-buttons" class="table test12 table-striped">
+    <thead>
+    <tr>
+        <th>Reference No</th>
+        <th>Initials</th>
+        <th>First Name</th>
+        <th>Last Name</th>        
+        <th>Date of Birth</th>
+        <th>Gender</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for res in result %}
+        <tr id="tr_id_1" class="tr-class-1">
+            <td>{{ res.referenceNo }}</td>
+            <td>{{ res.initials }}</td>
+            <td>{{ res.firstName }}</td>
+            <td>{{ res.lastName }}</td>
+            <td>{{ res.dateOfBirth.date | date("d M Y")}}</td>
+            <td>{{ res.gender }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<script>
+    $(function () {
+        var $table = $('#table-transform');
+        $('#transform').click(function () {
+            $table.bootstrapTable();
+        });
+        $('#destroy').click(function () {
+            $table.bootstrapTable('destroy');
+        });
+    });
+</script>
+
+</div>
+<div class="eserv_container_form_errors"></div>
+<script>
+    $(document).ready(function() {
+        $('#table-transform').DataTable();
+    } );
+</script>

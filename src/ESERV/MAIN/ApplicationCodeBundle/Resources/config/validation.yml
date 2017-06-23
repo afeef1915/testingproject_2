@@ -1,0 +1,17 @@
+# src/ESERV/MAIN/ApplicationCodeBundle/Resources/config/validation.yml
+ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode:
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                max: 100
+                maxMessage: "Name cannot be longer than {{ limit }} characters"
+        code:
+            - NotBlank: ~
+            - Length:
+                max: 10
+                maxMessage: "Code cannot be longer than {{ limit }} characters"
+        applicationCodeType:
+            - NotBlank: ~
+        dateOpened:
+            - NotBlank: ~

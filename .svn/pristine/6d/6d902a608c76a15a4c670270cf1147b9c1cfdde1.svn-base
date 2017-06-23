@@ -1,0 +1,253 @@
+
+<div id="eserv_Addemail_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'CreateNewLogs' } })}}
+<div class="eserv_container_form_errors"></div>
+
+<fieldset>
+    <div class="col-lg-6">
+        {#  {{ form_eservRow (form.userId, { 'labelSize': 6, 'fieldSize': 6, 'extraFieldClass': 'mtl_input_tooltip', 'attr':
+                 {
+                     'title': 'N must be 6 characters or more in length and different from the username above' | trans,
+                     'data-tooltip-pos-at': 'right center',
+                     'data-tooltip-pos-my': 'left center'
+                 }
+             }) }}#}
+        {#  {{ form_eservRow (form.userId, { 'labelSize': 4, 'fieldSize': 8 }) }}#}
+
+        {{ form_eservRow (form.customer, { 'labelSize': 4, 'fieldSize': 8 }) }}
+        {{ form_eservRow (form.customer_log_id, { 'labelSize': 4, 'fieldSize': 8 }) }}
+        {{ form_eservRow (form.category, { 'labelSize': 4, 'fieldSize': 8 }) }}
+        {{ form_eservRow (form.attention_of, { 'labelSize': 4, 'fieldSize': 8 }) }}
+    </div>
+    <div class="col-lg-6">
+        {{ form_eservRow (form.task, { 'labelSize': 4, 'fieldSize': 8 }) }}
+        {{ form_eservRow (form.requested_by, { 'labelSize': 4, 'fieldSize': 4,'value':requested_by  }) }}
+        {{ form_eservRow (form.priority, { 'labelSize': 4, 'fieldSize': 8 }) }}
+        {{ form_eservRow (form.status, { 'labelSize': 4, 'fieldSize': 8 }) }}
+    </div>
+    <div class="col-lg-12">
+        {{ form_eservRow (form.short_description, { 'labelSize': 2, 'fieldSize': 10 }) }}
+        {{ form_eservRow (form.task_description, { 'labelSize': 2, 'fieldSize': 10 }) }}
+    </div>
+    <div id="h_name">
+        <div class="col-lg-6">
+            {{ form_eservRow (form.version_no, { 'labelSize': 4, 'fieldSize': 8 }) }}
+            {{ form_eservRow (form.mtl, { 'labelSize': 4, 'fieldSize': 8 }) }}
+
+            {{ form_eservRow (form.dev_status, { 'labelSize': 4, 'fieldSize': 8 }) }}
+            {{ form_eservRow (form.assigned_to, { 'labelSize': 4, 'fieldSize': 8 }) }}
+            {{ form_eservRow (form.dueby,{ 'fieldType': 'date','labelSize': 4, 'fieldSize': 8, 'customPlaceHolder': 'DD/MM/YYYY'  }) }}
+
+        </div>
+
+        <div class="col-lg-6" >
+            {{ form_eservRow (form.CHARGABLE, { 'labelSize': 4, 'fieldSize': 8 }) }}
+            {{ form_eservRow (form.mlo_quote_id, { 'labelSize': 4, 'fieldSize': 8 }) }}
+            {{ form_eservRow (form.completed_by, { 'labelSize': 4, 'fieldSize': 8 }) }}
+            {# {{ form_eservRow (form.date_completed, { 'labelSize': 4, 'fieldSize': 8 }) }}#}
+            {{ form_eservRow (form.date_completed,{ 'fieldType': 'date','labelSize': 4, 'fieldSize': 8, 'customPlaceHolder': 'DD/MM/YYYY'  }) }}
+
+        </div>
+    </div>
+</fieldset>
+
+<fieldset class="eserv_form_btns">
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'cancelNgClick' : 'cancel()' , 'closeBtnId' : 'addUserCancelBtn'} %}
+</fieldset>
+
+<div style="display: none">
+    {{form_rest(form)}}
+</div>
+{{form_end(form)}}
+
+<input type="hidden" value={{user_group}} id="user_group">
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var req = $("#weblogs_main_mtl_mylogsbundle_vmylogs_requested_by").val();
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").attr('disabled', true);
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_task").attr('disabled', true);
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").attr('disabled', true);
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").addClass('updating_field');
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_task").addClass('updating_field');
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").addClass('updating_field');
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").parents('form').find('button[type="submit"]').attr('disabled', true);
+        if (req.length > 0)
+        {
+            $("#weblogs_main_mtl_mylogsbundle_vmylogs_requested_by").attr("disabled", true);
+        } else
+        {
+            $("#weblogs_main_mtl_mylogsbundle_vmylogs_requested_by").attr("disabled", false);
+        }
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_save").click(function (event) {
+            //event.preventDefault();
+            $("#weblogs_main_mtl_mylogsbundle_vmylogs_requested_by").attr("disabled", false);// Element(s) are now enabled.
+        });
+        $.post(root_url + "customers", function (customers)
+        {
+            //console.log(customers);
+    {#  $.each(customers, function (key, value) {
+            $("#weblogs_codebundle_code_main_task_code").append($("<option>
+            </option>").val(this['CTK_CODE']).html(this['CTK_CODE']));
+        });#}
+
+                    $.each($.parseJSON(customers), function (key, value)
+                    {
+                        $('#weblogs_main_mtl_mylogsbundle_vmylogs_customer')
+                                .append("<option value=" + value.customerId + ">" + value.name + "</option>");
+
+                    });
+                    if ($("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val() != '')
+                    {
+                        $("#weblogs_main_mtl_mylogsbundle_vmylogs_customer").val($("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_customer").val());
+                    }
+
+                    if ($("#p_client_main").val() != '' && $("#p_client_main").val() != undefined)
+                    {
+                        $('#weblogs_main_mtl_mylogsbundle_vmylogs_customer').val($("#p_client_main").val());
+                    }
+                    if ($("#8c609cf1bbb6c5080865df9cfc1fb689_mylogs_details_customer").val() != '' && $("#8c609cf1bbb6c5080865df9cfc1fb689_mylogs_details_customer").val() != undefined)
+                    {
+                        $('#weblogs_main_mtl_mylogsbundle_vmylogs_customer').val($("#8c609cf1bbb6c5080865df9cfc1fb689_mylogs_details_customer").val());
+                    }
+
+                    var id = $("#weblogs_main_mtl_mylogsbundle_vmylogs_customer option:selected").val();
+                    $.post(root_url + "mylogs/logcategory", {id: id}, function (data)
+                    {
+                        //console.log(data);
+    {#  $.each(data, function () {
+            $("#weblogs_codebundle_code_main_task_code").append($("<option>
+            </option>").val(this['CTK_CODE']).html(this['CTK_CODE']));
+        });#}
+
+                        $.each(data, function (i, obj)
+                        {
+                            // alert(obj.CTK_CODE+":"+obj.CTK_CODE);
+                            if ("CATEGORY_CODE" in obj) {
+                                var div_data_et = "<option value=" + obj.CATEGORY_CODE + ">" + obj.NAME + "</option>";
+                            }
+                            if ("CSEV_SEQ_ID" in obj) {
+                                var div_data_e = "<option value=" + obj.CSEV_SEQ_ID + ">" + obj.CSEV_NAME + "</option>";
+                            }
+                            if ("CTK_CODE" in obj) {
+                                var div_data_t = "<option value=" + obj.CTK_CODE + ">" + obj.CTK_NAME + "</option>";
+                            }
+                            // console.log(div_data);
+                            $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").attr('disabled', false);
+                            $("#weblogs_main_mtl_mylogsbundle_vmylogs_task").attr('disabled', false);
+                            $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").attr('disabled', false);
+                            $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").removeClass('updating_field');
+                            $("#weblogs_main_mtl_mylogsbundle_vmylogs_task").removeClass('updating_field');
+                            $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").removeClass('updating_field');
+                            $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").parents('form').find('button[type="submit"]').attr('disabled', false);
+                            $('#weblogs_main_mtl_mylogsbundle_vmylogs_category').append(div_data_et);
+                            $('#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of').append(div_data_e);
+                            $('#weblogs_main_mtl_mylogsbundle_vmylogs_task').append(div_data_t);
+                            ;
+                        });
+    {# $($.parseJSON(data)).map(function () {
+   return $('<option>').val(this.CTK_CODE).text(this.CTK_CODE);
+}).appendTo('#weblogs_codebundle_code_main_task_code');
+      // $("span").html(result);
+   });#}
+               });
+
+           });
+
+           prepareAppForms('{{ form.vars.name }}', false, {
+               type: 'dataTable',
+               id: '{{ refresh_table_id }}'
+           }, false, "AddLogsNotification", function (response, status) {
+               if (response.success == true) {
+                $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_assigned_to_id").val('');
+                $("#4c609cf1bbb6c5080865df9cfc1fb649_mylogs_details_mtl_person_id").val('');
+                   $('#addUserCancelBtn').click();
+                    window.location.href= root_url+'#mylogs/edit-portlets/' + response.log_id + '/customer/' + response.customer_id + '?time=' + new Date().getTime();
+                  // window.location.href = root_url + '#mylogs/list';
+               }
+
+
+           });
+           $("#weblogs_main_mtl_mylogsbundle_vmylogs_save").click(function () {
+               //   
+           });
+           var group = $("#user_group").val();
+           // alert(group);
+           if (group == 'CUSTOMER') {
+               $('#h_name').hide();
+           }
+       });
+
+
+</script>
+
+
+
+</style>
+<script type="text/javascript">
+
+    $('#weblogs_main_mtl_mylogsbundle_vmylogs_customer').change(function ()
+    {
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").parents('form').find('button[type="submit"]').attr('disabled', true);
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").attr('disabled', true);
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_task").attr('disabled', true);
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").attr('disabled', true);
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").addClass('updating_field');
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_task").addClass('updating_field');
+        $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").addClass('updating_field');
+        var category = $('#weblogs_main_mtl_mylogsbundle_vmylogs_category');
+
+        category.empty();
+        var atten = $('#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of');
+        atten.empty();
+        var task = $('#weblogs_main_mtl_mylogsbundle_vmylogs_task');
+        task.empty();
+        var id = $("#weblogs_main_mtl_mylogsbundle_vmylogs_customer option:selected").val();
+        $.post(root_url + "mylogs/logcategory", {id: id}, function (data)
+        {
+
+    {#  $.each(data, function () {
+            $("#weblogs_codebundle_code_main_task_code").append($("<option>
+            </option>").val(this['CTK_CODE']).html(this['CTK_CODE']));
+        });#}
+
+                    $.each(data, function (i, obj)
+                    {
+                        // alert(obj.CTK_CODE+":"+obj.CTK_CODE);
+                        if ("CATEGORY_CODE" in obj) {
+                            var div_data_et = "<option value=" + obj.CATEGORY_CODE + ">" + obj.NAME + "</option>";
+                        }
+                        if ("CSEV_SEQ_ID" in obj) {
+                            var div_data_e = "<option value=" + obj.CSEV_SEQ_ID + ">" + obj.CSEV_NAME + "</option>";
+                        }
+                        if ("CTK_CODE" in obj) {
+                            var div_data_t = "<option value=" + obj.CTK_CODE + ">" + obj.CTK_NAME + "</option>";
+                        }
+                        // console.log(div_data);
+                        $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").removeClass('updating_field');
+                        $("#weblogs_main_mtl_mylogsbundle_vmylogs_task").removeClass('updating_field');
+                        $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").removeClass('updating_field');
+                        $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").parents('form').find('button[type="submit"]').attr('disabled', false);
+                        $("#weblogs_main_mtl_mylogsbundle_vmylogs_category").attr('disabled', false);
+                        $("#weblogs_main_mtl_mylogsbundle_vmylogs_task").attr('disabled', false);
+                        $("#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of").attr('disabled', false);
+                        $('#weblogs_main_mtl_mylogsbundle_vmylogs_category').append(div_data_et);
+                        $('#weblogs_main_mtl_mylogsbundle_vmylogs_attention_of').append(div_data_e);
+                        $('#weblogs_main_mtl_mylogsbundle_vmylogs_task').append(div_data_t);
+                        ;
+                    });
+    {# $($.parseJSON(data)).map(function () {
+   return $('<option>').val(this.CTK_CODE).text(this.CTK_CODE);
+}).appendTo('#weblogs_codebundle_code_main_task_code');
+      // $("span").html(result);
+   });#}
+           });
+       });
+
+
+
+
+</script>

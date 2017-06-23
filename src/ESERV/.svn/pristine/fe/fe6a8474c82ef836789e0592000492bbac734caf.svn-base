@@ -1,0 +1,49 @@
+ESERV\MAIN\ProfileBundle\Entity\MmNews: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ProfileBundle\Entity\MmNewsRepository
+    table: mm_news
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            fixed: false
+        isActive:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: Y
+            column: is_active
+        title:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

@@ -1,0 +1,123 @@
+eserv_communications_view_multiple_recipients:
+    pattern:  /view_multiple_recipients
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Default:viewMultipleRecipients }
+
+eserv_comms_letter_list_recipients:
+    pattern:  /eserv_comms_letter_list_recipients
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Default:letterListRecipientsDt }
+
+eserv_comms_email_list_recipients:
+    pattern:  /eserv_comms_email_list_recipients
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Default:emailListRecipientsDt }
+    
+eserv_communications_home:
+    pattern:  /communications
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Default:index }
+
+eserv_communications_mail_merge_fields:
+    pattern:  /getMailMergeFields
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Default:getMailMergeFields }
+
+eserv_communications_update_user_notes:
+    pattern:  /updateNote/{note_id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Note:updateNote }
+    
+eserv_communications_mark_notes_as_read:
+    pattern:  /mark-note-as-read/{id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Note:markNoteAsRead }
+#eserv_main_note_new:
+#    path:     communications/note/add
+#    defaults: { _controller: ESERVMAINCommunicationsBundle:Note:newNote }
+    
+# Note routing configuration
+eserv_main_note_new:
+    path:     /note/add
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Note:newNote }
+    
+eserv_main_note_create:
+    path:     /note/create/{contact_id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Note:createNote, contact_id: null }
+    methods : [POST]   
+    
+eserv_main_note_update:
+    path:     /note/update/{id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Note:updateNote, id: null }
+    methods : [POST]    
+    
+eserv_main_note_edit:
+    path:     /note/edit/{id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Note:editNote, id: null }
+    
+eserv_main_note_view:
+    path:     /note/view/{entity_id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Note:viewNotes }
+
+eserv_main_note_get_by_contact_id:
+    path:     /getContactNotes/{contact_id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Note:getContactNotes, contact_id: null }
+    
+# Letter routing configuration
+eserv_main_letter_new:
+    path:     /letter/add
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Letter:newLetter }
+    
+eserv_main_letter_create:
+    path:     /letter/create/{contact_id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Letter:createLetter, contact_id: null }
+    methods : [POST]   
+    
+eserv_main_letter_update:
+    path:     /letter/update/{id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Letter:updateLetter, id: null }
+    methods : [POST]    
+    
+eserv_main_letter_edit:
+    path:     /letter/edit/{id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Letter:editLetter, id: null }
+    
+# Output letters
+eserv_main_output_letter_list:
+    path:     /output_letter
+    defaults: { _controller: ESERVMAINCommunicationsBundle:OutputLetter:outputLettersList }
+eserv_main_output_letter_ajax_list:
+    path:     /output_letter/ajaxList
+    defaults: { _controller: ESERVMAINCommunicationsBundle:OutputLetter:data }
+
+# Email routing configuration
+eserv_main_email_new:
+    path:     /email/add
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Email:newEmail }
+    
+eserv_main_email_create:
+    path:     /email/create/{contact_id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Email:createEmail, contact_id: null }
+    methods : [POST]   
+    
+eserv_main_email_update:
+    path:     /email/update/{id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Email:updateEmail, id: null }
+    methods : [POST]    
+    
+eserv_main_email_edit:
+    path:     /email/edit/{id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Email:editEmail, id: null }
+
+deleteOutputDocument:
+    pattern:  /deleteOutputDocument/
+    defaults: { _controller: ESERVMAINCommunicationsBundle:OutputLetter:deleteDocumentQueue }
+
+deleteCommHistory:
+    pattern:  /deleteCommHistory/
+    defaults: { _controller: ESERVMAINCommunicationsBundle:OutputLetter:deleteCommHistory }
+
+mergeLetter:
+    pattern:  /mergeLetter
+    defaults: { _controller: ESERVMAINCommunicationsBundle:OutputLetter:mergeLetter }
+    
+mergeLetterById:
+    pattern:  /mergeLetterById/{id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:OutputLetter:mergeLetter, id: null }
+
+eserv_main_email_attach:
+    path:     /email/attachment/{id}
+    defaults: { _controller: ESERVMAINCommunicationsBundle:Email:viewEmailAttachment, id: null }

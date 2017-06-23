@@ -1,0 +1,37 @@
+ESERV\MAIN\ContactBundle\Entity\ContactRoleCustom:
+    type: entity
+    table: contact_role_custom
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        contact_role_id:
+            type: integer
+            length: 11
+        date_a:
+            type: datetime
+        date_b:
+            type: datetime
+        date_c:
+            type: datetime
+        external_id:
+            type: string
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint
+    uniqueConstraints:
+       idx_ContactRoleCust_a_idx: 
+           columns: [ contact_role_id ]                 
+    manyToOne:
+        contact_role:
+            targetEntity: ContactRole
+            inversedBy: contact_role_custom
+            joinColumn:
+                name: contact_role_id
+                referencedColumnName: id

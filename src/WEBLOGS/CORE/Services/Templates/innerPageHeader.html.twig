@@ -1,0 +1,35 @@
+<div class="page_main_header {{ status_color is defined ? 'mtl_status ' ~ status_color : '' }}">
+    <div class="status_area">
+        <h3 class="pull-left">
+            {% if fa_icon is defined %}
+                <i class="fa fa-{{ fa_icon }}"></i>
+            {% endif %} {{ label }}
+        </h3>
+
+        {% if buttons is defined %}
+            <span class="clear_mobile">
+            {% for btn in buttons %}
+                <a 
+                    class="btn pull-right {% if btn.css_class is defined %}{{ btn.css_class }}{% else %} btn-default direction2{% endif %}" 
+                    {% if btn.ng_show is defined %} ng-show="{{ btn.ng_show }}" {% endif %}
+                    {% if btn.ui_sref is defined %} ui-sref="{{ btn.ui_sref }}" {% endif %} 
+                    {% if btn.href is defined %} href="{{ btn.href }}" {% endif %}
+                    {% if btn.id is defined %} id="{{ btn.id }}" {% endif %}
+                    {% if btn.ng_controller is defined %} ng-controller="{{ btn.ng_controller }}" {% endif %}
+                    {% if btn.ng_click is defined %} ng-click="{{ btn.ng_click }}" {% endif %}
+                    style="margin-left: 5px;"
+                    >
+                    {% if btn.fa_icon is defined %}
+                        <i class="fa fa-{{ btn.fa_icon }}"></i>
+                    {% endif %} <span class="desktop_tablet_inline_text">{{ btn.label }}</span>
+                </a>
+                {% if innerMenu is defined %}
+                    {% include innerMenu.template with innerMenu.params %}
+                {% endif %}
+            {% endfor %}
+            </span>
+        {% endif %}
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="clearfix"></div>

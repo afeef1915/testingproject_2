@@ -1,0 +1,49 @@
+ESERV\MAIN\SystemConfigBundle\Entity\SystemPrinter: 
+    type: entity
+    repositoryClass: ESERV\MAIN\SystemConfigBundle\Entity\SystemPrinterRepository
+    table: system_printer
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        colourPrinter:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: colour_printer
+        location:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

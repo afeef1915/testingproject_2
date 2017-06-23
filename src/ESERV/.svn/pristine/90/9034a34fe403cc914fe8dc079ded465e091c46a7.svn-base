@@ -1,0 +1,7 @@
+parameters:
+#    eserv_dashboard.example.class: ESERV\DashboardBundle\Example
+
+services:
+#    eserv_dashboard.example:
+#        class: %eserv_dashboard.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

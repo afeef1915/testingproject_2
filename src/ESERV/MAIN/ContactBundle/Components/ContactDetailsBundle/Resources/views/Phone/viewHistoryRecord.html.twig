@@ -1,0 +1,89 @@
+<div id="eserv_historyPhoneDetails_output"></div>
+<div class="alert alert-info" role="alert">
+    <i class="fa fa-info-circle"></i> {{ "You are viewing a history record." | trans }}
+</div>
+<form class="eserv_form form-horizontal eserv_form_editable ng-pristine ng-valid ng-scope">  
+    {% if record_type == 'edited_record' %}
+        <fieldset>
+            <div class="col-lg-12">
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Phone Type" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value">
+                            {{ eserv_v_phone.phoneTypeName }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Phone Number" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value ">{{ eserv_v_phone.phoneNumber }}</div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Phone Number Changed To" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value ">{{ eserv_v_phone.newPhoneNumber }}</div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Changed At" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value ">
+                            {{ eserv_v_phone.createdAt ? eserv_v_phone.createdAt | date('d/m/Y') : '' }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Changed By" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value">{{ eserv_v_phone.createdByUserName }}</div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>          
+    {% else %} 
+        <fieldset>
+            <div class="col-lg-12">
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Phone Type" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value">
+                            {{ deleted_phone.phoneTypeName }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Phone Number" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value ">{{ deleted_phone.phoneNumber }}</div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Deleted At" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value ">
+                            {{ deleted_phone.deletedAt ? deleted_phone.deletedAt | date('d/m/Y') : '' }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-lg-4 control-label ">{{ "Deleted By" | trans }}</label>
+                    <div class="col-lg-5">
+                        <div class="eserv_field_value">
+                            {{ deleted_phone.deletedByUserName }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset> 
+    {% endif %}
+
+    <fieldset>
+        <div class="form-group">
+            <div class="col-md-12"> 
+                <button type="button" class="btn btn-default direction1" ng-click="cancel()">{{ "Close" | trans }}</button>
+            </div>
+        </div>        
+    </fieldset> 
+</form>

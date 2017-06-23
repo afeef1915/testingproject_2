@@ -1,0 +1,113 @@
+fos_user_security_user_profile:
+    pattern:  /user
+    defaults: { _controller: SecurityUserBundle:Profile:index }
+    
+#overridden of _security routing
+fos_user_security_mtllogin:
+    pattern:  /login
+    defaults: { _controller: SecurityUserBundle:Security:login }
+fos_user_security_mtl_login_check:
+    pattern:  /login_check
+    defaults: { _controller: SecurityUserBundle:Security:check }
+fos_user_security_logout:
+    pattern:  /logout
+    defaults: { _controller: SecurityUserBundle:Security:logout }
+    
+#overridden of profile routing
+fos_user_profile_show:
+    pattern:  /user_profile
+    defaults: { _controller: SecurityUserBundle:Profile:show }
+
+fos_user_profile_edit:
+    pattern:  /profile/edit
+    defaults: { _controller: SecurityUserBundle:Profile:edit }
+
+#overridden of change password routing
+fos_user_eserv_change_password:
+    pattern:  /change_password
+    defaults: { _controller: SecurityUserBundle:ChangePassword:changePassword }
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    #prefix: /security
+
+#fos_user_profile:
+#    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+#    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    #prefix: /change_password
+    
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
+    
+fos_user_logout:
+    pattern:  /logout
+    defaults: { _controller: FOSUserBundle:Security:logout }
+
+
+eserv_user_bundle_user_do_logout:
+    pattern:  /doLogout
+    defaults: { _controller: SecurityUserBundle:Security:ESERVLogout }
+
+
+#Start users
+merlin_security_users_list:
+    path:     /users/manage-users
+    defaults: { _controller: SecurityUserBundle:FosUser:fosUserList }
+    
+merlin_security_users_data_ajax_list:
+    path:     /users/manage-users/ajax-list
+    defaults: { _controller: SecurityUserBundle:FosUser:dataFosUser }
+
+merlin_security_users_add:
+    path:     /users/manage-users/add
+    defaults: { _controller: SecurityUserBundle:FosUser:newFosUser }
+    
+merlin_security_users_create:
+    path:     /users/manage-users/create
+    defaults: { _controller: SecurityUserBundle:FosUser:createUser }
+    
+merlin_security_users_edit:
+    path:     /users/manage-users/edit/{id}
+    defaults: { _controller: SecurityUserBundle:FosUser:editUser }
+    
+merlin_security_users_update:
+    path:     /users/manage-users/update/{id}
+    defaults: { _controller: SecurityUserBundle:FosUser:updateUser }
+
+merlin_security_person_search:
+    path:     /users/manage-users/person-search
+    defaults: { _controller: SecurityUserBundle:FosUser:personSearch }
+    
+merlin_security_users_delete:
+    path:     /users/manage-users/delete/{id}
+    defaults: { _controller: SecurityUserBundle:FosUser:deleteUser }    
+
+
+## Activation    
+fos_user_security_render_user_activation:
+    pattern:  /user/r/a/{conf_token}/{success_path}
+    defaults: { _controller: SecurityUserBundle:Activation:renderUserActivation }
+fos_user_security_process_user_activation:
+    pattern:  /user/p/a/{conf_token}/{success_path}
+    defaults: { _controller: SecurityUserBundle:Activation:processUserActivation }    
+    
+## Activation re-send
+fos_user_security_view_activation_resend:
+    pattern:  /user/r/a/act-resent/view/{mmUserSettingId}/{fosGroupId}
+    defaults: { _controller: SecurityUserBundle:Activation:viewResendActivationLink, mmUserSettingId: null, fosGroupId: null }
+    
+fos_user_security_proces_activation_resend:
+    pattern:  /user/r/a/act-resent/process/{mmUserSettingId}/{fosGroupId}
+    defaults: { _controller: SecurityUserBundle:Activation:processResendActivationLink, mmUserSettingId: null, fosGroupId: null }

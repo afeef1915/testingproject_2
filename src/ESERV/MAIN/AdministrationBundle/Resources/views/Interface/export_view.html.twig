@@ -1,0 +1,27 @@
+<h3>{{ 'Export Files' | trans }}</h3>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' with {'viewMode': 'view'} %}
+
+<div id="eserv_InterfaceExportFiles_output"></div>
+{{form_start(export_form, { 'attr' : { 'id': 'InterfaceExportFiles' } })}}
+
+<fieldset>
+    {{ form_eservRow (export_form.name, {'labelSize':3,}) }}   
+    {{ form_eservSelectRow (export_form.category, {'labelSize':3,}) }}
+    {{ form_eservRow (export_form.description, {'labelSize':3,}) }}
+    {{ form_eservSelectRow (export_form.priority, {'labelSize':3,}) }}    
+</fieldset>
+
+<fieldset>
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : export_form.save, 'hide_edit_button' : true, 'hide_cancel' : true, 'cancel_link' : true,  'cancelHref' : '#/admin', 'closeBtnId' : 'cancel_exportView_btn' } %}                                                                             
+</fieldset>
+<div style="display: none">
+    {{ form_rest(export_form) }}
+</div>
+
+{{form_end(export_form)}}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        prepareAppForms('{{ export_form.vars.name }}', false, false, '#/admin', 'InterfaceExportFiles');
+    });
+</script>

@@ -1,0 +1,63 @@
+ESERV\MAIN\ContactBundle\Entity\ContactTag: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Entity\ContactTagRepository
+    table: contact_tag
+    indexes:
+        FK_FEB3D6BB99D11E87:
+            columns:
+                - contact_tag_type_id
+        IDX_FEB3D6BBE7A1254A:
+            columns:
+                - contact_id
+    uniqueConstraints:
+        idx_ContactTag_a1_idx:
+            columns:
+                - contact_id
+                - contact_tag_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contactTagType:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactTagType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_tag_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

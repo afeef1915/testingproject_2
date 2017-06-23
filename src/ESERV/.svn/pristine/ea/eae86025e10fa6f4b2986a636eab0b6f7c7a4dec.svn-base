@@ -1,0 +1,114 @@
+ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\Address: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\AddressRepository
+    table: address
+    indexes:
+        fk_add_addtype_idx:
+            columns:
+                - address_type_id
+        fk_add_cou_idx:
+            columns:
+                - country_id
+        fk_add_con_idx:
+            columns:
+                - contact_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        addressLine1:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: address_line1
+        addressLine2:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: address_line2
+        addressLine3:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: address_line3
+        town:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        county:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        postcode:
+            type: string
+            nullable: true
+            length: 30
+            fixed: false
+        startDate:
+            type: datetime
+            nullable: false
+            column: start_date
+        primaryRecord:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: primary_record
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        addressType:
+            targetEntity: ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\AddressType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                address_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        country:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\Country
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                country_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

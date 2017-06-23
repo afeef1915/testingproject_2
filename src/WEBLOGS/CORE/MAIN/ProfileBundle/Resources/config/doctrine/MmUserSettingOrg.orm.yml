@@ -1,0 +1,51 @@
+WEBLOGS\CORE\MAIN\ProfileBundle\Entity\MmUserSettingOrg:
+    type: entity
+    repositoryClass: WEBLOGS\CORE\MAIN\ProfileBundle\Entity\MmUserSettingOrgRepository
+    table: mm_user_setting_org
+    indexes:
+        fk_mmusor_mmusfo_idx:
+            columns:
+                - mm_user_setting_fos_id                    
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        customer_code:
+            type: string
+            nullable: false
+            length: 20
+            column: customer_code        
+        created_at:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        created_by:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updated_by:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        mmUserSettingFos:
+            targetEntity: WEBLOGS\CORE\MAIN\ProfileBundle\Entity\MmUserSetting
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mm_user_setting_fos_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

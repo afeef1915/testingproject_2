@@ -1,0 +1,7 @@
+parameters:
+#    eservcore_wizard.example.class: ESERV\MAIN\WizardBundle\Example
+
+services:
+#    eservcore_wizard.example:
+#        class: %eservcore_wizard.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

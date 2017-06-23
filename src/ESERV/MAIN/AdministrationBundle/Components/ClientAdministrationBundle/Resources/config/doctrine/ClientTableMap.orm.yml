@@ -1,0 +1,39 @@
+ESERV\MAIN\AdministrationBundle\Components\ClientAdministrationBundle\Entity\ClientTableMap:
+    type: entity
+    repositoryClass: ESERV\MAIN\AdministrationBundle\Components\ClientAdministrationBundle\Entity\ClientTableMapRepository
+    table: client_table_map
+    indexes:
+        fk_field_group_id_idx:
+            columns:
+                - client_table_id
+        fk_entity_id_idx:
+            columns:
+                - client_entity_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        clientTable:
+            targetEntity: ESERV\MAIN\AdministrationBundle\Components\ClientAdministrationBundle\Entity\ClientTable
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                client_table_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        clientEntity:
+            targetEntity: ESERV\MAIN\AdministrationBundle\Components\ClientAdministrationBundle\Entity\ClientEntity
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                client_entity_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

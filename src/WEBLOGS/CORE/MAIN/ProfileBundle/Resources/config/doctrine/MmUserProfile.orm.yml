@@ -1,0 +1,54 @@
+WEBLOGS\CORE\MAIN\ProfileBundle\Entity\MmUserProfile:
+    type: entity
+    repositoryClass: WEBLOGS\CORE\MAIN\ProfileBundle\Entity\MmUserProfileRepository
+    table: mm_user_profile
+    uniqueConstraints:
+        IDX_MMUSEPROWEB_COD:
+            columns:
+                - code
+        IDX_MMUSEPROWEB_DEFGROID:
+            columns:
+                - default_group_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        description:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        defaultGroupId:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: default_group_id
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

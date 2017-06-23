@@ -1,0 +1,86 @@
+ESERV\MAIN\ProfileBundle\Entity\MmHelpMessage: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ProfileBundle\Entity\MmHelpMessageRepository
+    table: mm_help_message
+    indexes:
+        fk_mmhelmes_syscode1_idx:
+            columns:
+                - message_type_id
+        fk_mmhelmes_syscode2_idx:
+            columns:
+                - severity_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 20
+            fixed: false
+        name:
+            type: text
+            nullable: false
+            length: 65535
+            fixed: false
+        isActive:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: Y
+            column: is_active
+        moreLink:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: more_link
+        title:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        messageType:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                message_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        severity:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                severity_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

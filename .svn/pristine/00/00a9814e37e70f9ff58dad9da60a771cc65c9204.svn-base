@@ -1,0 +1,128 @@
+WEBLOGS\MAIN\MTL\MylogsassignBundle\Entity\Vlogsassign:
+    type: entity
+    table: v_logs_assign
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+
+    fields:
+        job_no:
+            type: string
+            length: '10'
+            id: true
+            column: job_no
+        customer:
+            type: string
+            length: '100'
+            column: customer
+        customer_name:
+            type: string
+            length: '100'
+            column: customer_name
+        customer_log_id:
+            type: string
+            length: '50'
+            column: customer_log_id
+        requested_by:
+            type: string
+            length: '50'
+            column: requested_by
+        requested:
+            type: date            
+            column: requested
+        priority_level:
+            type: string
+            length: '10'
+            column: priority_level
+        priority_desc:
+            type: string
+            length: '20'
+            column: priority_desc
+        
+        approved_by:
+            type: string
+            length: '50'
+            column: approved_by
+        title:
+            type: string
+            length: '200'       
+            column: title
+        description:
+            type: string
+            length: '4000'
+            column: description
+        mtl_person_id:
+            type: string
+            length: '10'
+            column: mtl_person_id
+        version_no:
+            type: string
+            length: '10'
+            column: version_no
+        chargeable:
+            type: string
+            length: '1'
+            column: chargeable
+        
+        mlo_quote_id:
+            type: string
+            length: '10'
+            column: mlo_quote_id
+        mtl_description:
+            type: string
+            length: '4000'
+            column: mtl_description
+        
+        completed_by:
+            type: string
+            length: '10'
+            column: completed_by
+        
+        date_completed:
+            type: date            
+            column: date_completed
+        mtl_action:
+            type: string
+            length: '3'
+            column: mtl_action
+        task:
+            type: string
+            length: '10'
+            column: task
+        user_display_name:
+            type: string
+            length: '61'
+            column: user_display_name
+        client_status_code:
+            type: string
+            length: '10'
+            column: client_status_code
+        
+        category:
+            type: string
+            length: '10'
+            column: category
+        log_due_date:
+            type: date           
+            column: log_due_date
+        
+        mtl_dev_id:
+            type: string
+            length: '10'
+            column: mtl_dev_id
+        mtl_status:
+            type: string
+            length: '30'
+            column: mtl_status
+            
+        dev_status:
+            type: string
+            length: '30'
+            column: dev_status
+    
+    
+       
+    lifecycleCallbacks: {  }

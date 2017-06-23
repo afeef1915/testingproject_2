@@ -1,0 +1,77 @@
+ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\Phone: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\PhoneRepository
+    table: phone
+    indexes:
+        IDX_444F97DDE7A1254A:
+            columns:
+                - contact_id
+        fk_phone_application_code1_idx:
+            columns:
+                - phone_type_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        phoneStd:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            column: phone_std
+        phoneNumber:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            column: phone_number
+        primaryRecord:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: primary_record
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        phoneType:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                phone_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

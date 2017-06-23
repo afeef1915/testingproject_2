@@ -1,0 +1,30 @@
+#wiki datatables example
+wiki_my_datatable_list:
+    pattern:  /my_datatable_list
+    defaults: { _controller: ESERVHelpBundle:WikiDataTable:myDataTableList } 
+
+wiki_my_datatable_data:
+    pattern:  /my_datatable_data
+    defaults: { _controller: ESERVHelpBundle:WikiDataTable:myDataTableData } 
+
+#wiki datatables filters example
+wiki_my_datatable_filters_list:
+    pattern:  /my_datatable_filters_list
+    defaults: { _controller: ESERVHelpBundle:WikiDataTableFilters:myDataTableFiltersList } 
+
+wiki_my_datatable_filters_data:
+    pattern:  /my_datatable_filters_data
+    defaults: { _controller: ESERVHelpBundle:WikiDataTableFilters:myDataTableFiltersData } 
+    
+#wiki datatables data exports example
+wiki_my_datatable_dataexports_list:
+    pattern:  /my_datatable_dataexports_list
+    defaults: { _controller: ESERVHelpBundle:WikiDataTableDataExports:myDataTableDataExportsList } 
+
+wiki_my_datatable_dataexports_data:
+    pattern:  /my_datatable_dataexports_data
+    defaults: { _controller: ESERVHelpBundle:WikiDataTableDataExports:myDataTableDataExportsData } 
+    
+eserv_help_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ESERVHelpBundle:Default:index }

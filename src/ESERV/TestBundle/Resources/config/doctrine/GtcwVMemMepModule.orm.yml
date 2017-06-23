@@ -1,0 +1,45 @@
+ESERV\TestBundle\Entity\GtcwVMemMepModule: 
+    type: entity
+    table: gtcw_v_mem_mep_module
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:        
+        gtcwMemMepModuleId:
+            type: integer
+            nullable: false
+            column: gtcw_mem_mep_module_id
+        gtcwMemMepDetailId:
+            type: integer
+            nullable: false
+            column: gtcw_mem_mep_detail_id
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        startDate:
+            type: datetime            
+            fixed: false
+            comment: '' 
+            column: start_date            
+        completionDate:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: completion_date        
+        module:
+            type: string                    
+            column: module
+        moduleOutcome:
+            type: string                    
+            column: module_outcome
+        credits:
+            type: string                    
+            column: credits        

@@ -1,0 +1,61 @@
+ESERV\TestBundle\Entity\GtcwVConsortiumEmployer: 
+    type: entity
+    table: gtcw_v_consortium_employer
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: id
+            generator:
+                strategy: IDENTITY
+    fields:
+        consortiumEmployerId:
+            type: integer
+            nullable: false
+            column: consortium_employer_id
+        consortiumCode:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+            column: consortium_code
+        consortiumName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: consortium_name
+        consortiumContactId:
+            type: integer
+            nullable: false
+            column: consortium_contact_id
+        employerEmployerId:
+            type: integer
+            nullable: false
+            column: employer_employer_id
+        employerCode:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+            column: employer_code
+        employerName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: employer_name
+        employerContactId:
+            type: integer
+            nullable: false
+            column: employer_contact_id
+        
+        
+          

@@ -1,0 +1,164 @@
+ESERV\TestBundle\Entity\GtcwVMentorAdmin: 
+    type: entity
+    table: gtcw_v_mentor_admin
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        gtcwMentorId:
+            type: integer
+            nullable: false
+            column: gtcw_mentor_id        
+        firstName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: '' 
+            column: last_name
+        fullName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: '' 
+            column: full_name    
+        dateOfBirth:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: '' 
+            column: date_of_birth
+        referenceNo:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: reference_no
+        addressLine1:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: address_line1
+        postcode:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: postcode
+        middleName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: middle_name
+        lastNameSearch:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: last_name_search
+        initials:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+        jobTitle:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: job_title
+        gender:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            comment: 'M-Male, F-Female'
+        previousLastName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: previous_last_name
+        disabled:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            default: N
+        niNumber:
+            type: string
+            nullable: true
+            length: 30
+            fixed: false
+            column: ni_number
+        addressLine2:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: address_line2
+        addressLine3:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: address_line3
+        town:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        county:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false       
+        emailAddress:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: email_address
+        menStatusId:
+            type: integer
+            nullable: true
+            column: men_status_id
+        menStatusCode:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: men_status_code
+        menStatusName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: men_status_name
+        

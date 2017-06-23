@@ -1,0 +1,62 @@
+ESERV\TestBundle\Entity\GtcwVMemEpd: 
+    type: entity
+    table: gtcw_v_mem_epd
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        gtcwMemEpdId:
+            type: integer
+            nullable: false
+            column: gtcw_mem_epd_id
+        year:
+            type: integer            
+            fixed: false
+            comment: '' 
+            column: year            
+        completionDate:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: completion_date
+        startDate:
+            type: datetime            
+            fixed: false
+            comment: ''
+            column: start_date
+        leaveDate:
+            type: datetime
+            nullable: true
+            column: leave_date
+        bodyContactId:
+            type: integer
+            nullable: false
+            column: body_contact_id
+        bodyName:
+            type: string                    
+            column: body_name
+        schoolContactId:
+            type: integer
+            nullable: false
+            column: school_contact_id
+        schoolName:
+            type: string                    
+            column: school_name
+        fundingAmountPaid:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: funding_amount_paid
+        

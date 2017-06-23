@@ -1,0 +1,117 @@
+## Alternative Language
+eserv_main_administration_alt_lang_selected:
+    path:     admin/alt_lang/select_lang/{alt_lang_id}
+    defaults: { _controller: ESERVMAINAdministrationBundle:AltLang:altLangList, alt_lang_id: null }
+    
+eserv_main_administration_alt_lang_select:
+    path:     admin/alt_lang/select
+    defaults: { _controller: ESERVMAINAdministrationBundle:AltLang:selectLanguage }
+    
+#eserv_main_administration_alt_lang_list:
+#    path:     admin/alt_lang/list
+#    defaults: { _controller: ESERVMAINAdministrationBundle:AltLang:altLangList }
+
+eserv_main_administration_view_alt_lang_ajax_list:
+    path:     admin/alt_lang/ajaxList/{alt_lang_id}
+    defaults: { _controller: ESERVMAINAdministrationBundle:AltLang:data, alt_lang_id: null }    
+    
+eserv_main_administration_alt_lang_new:
+    path:     admin/alt_lang/add
+    defaults: { _controller: ESERVMAINAdministrationBundle:AltLang:newAltLang }
+    
+eserv_main_administration_alt_lang_new_with_lang:
+    path:     admin/alt_lang/{alt_lang_id}/add
+    defaults: { _controller: ESERVMAINAdministrationBundle:AltLang:newAltLang, alt_lang_id: null }
+
+eserv_main_administration_alt_lang_create:
+    path:     admin/alt_lang/create/{alt_lang_id}
+    defaults: { _controller: ESERVMAINAdministrationBundle:AltLang:createAltLang, alt_lang_id: null }
+
+eserv_main_administration_alt_lang_edit:
+    path:     admin/alt_lang/edit/{alt_lang_id}/{id}
+    defaults: { _controller: ESERVMAINAdministrationBundle:AltLang:editAltLang }
+
+eserv_main_administration_alt_lang_update:
+    path:     admin/alt_lang/update/{id}
+    defaults: { _controller: ESERVMAINAdministrationBundle:AltLang:updateAltLang }
+
+## User
+eserv_main_administration_users_list:
+    path:     admin/users/list
+    defaults: { _controller: ESERVMAINAdministrationBundle:User:userList }
+
+eserv_main_administration_view_users_ajax_list:
+    path:     admin/users/ajaxList
+    defaults: { _controller: ESERVMAINAdministrationBundle:User:data }
+    
+eserv_main_administration_users_edit:
+    path:     admin/users/edit/{id}
+    defaults: { _controller: ESERVMAINAdministrationBundle:User:editUser }
+
+eserv_main_administration_users_update:
+    path:     admin/users/update/{id}
+    defaults: { _controller: ESERVMAINAdministrationBundle:User:updateUser }
+
+eserv_main_administration_users_delete:
+    path:     admin/users/delete/{id}
+    defaults: { _controller: ESERVMAINAdministrationBundle:User:deleteUser }
+
+eserv_main_administration_users_reset_password:
+    path:     admin/users/reset_password/{id}
+    defaults: { _controller: ESERVMAINAdministrationBundle:User:resetPassword }
+    
+eserv_main_administration_users_new:
+    path:     admin/users/add
+    defaults: { _controller: ESERVMAINAdministrationBundle:User:newUser }
+    
+eserv_main_administration_users_create:
+    path:     admin/users/create
+    defaults: { _controller: ESERVMAINAdministrationBundle:User:createUser }
+    
+eserv_main_administration_people_search_ac:
+    path:     admin/users/auto_complete
+    defaults: { _controller: ESERVMAINAdministrationBundle:User:peopleSearchAutoComp }
+
+eserv_main_administration_user_assign_temp_password_new:
+    path:     admin/users/temp-password/new/{id}
+    defaults: { _controller: ESERVMAINAdministrationBundle:User:newTempPassword }
+    
+eserv_main_administration_user_assign_temp_password_create:
+    path:     admin/users/temp-password/create/{id}
+    defaults: { _controller: ESERVMAINAdministrationBundle:User:createTempPassword }
+
+## Interfaces    
+
+
+eserv_main_administration_export_view:
+    path:     interface/export_files
+    defaults: { _controller: ESERVMAINAdministrationBundle:Interface:exportView }
+    
+eserv_main_administration_export_process:
+    path:     /admin/export/process
+    defaults: { _controller: ESERVMAINAdministrationBundle:Interface:processExport }
+    
+eserv_main_administration_import_view:
+    path:     interface/import_files
+    defaults: { _controller: ESERVMAINAdministrationBundle:Interface:importView }
+
+eserv_main_administration_import_process:
+    path:     /admin/import/process
+    defaults: { _controller: ESERVMAINAdministrationBundle:Interface:processImport }
+    
+eserv_main_administration:
+    path:     /admin
+    defaults: { _controller: ESERVMAINAdministrationBundle:Default:index }
+eserv_main_administration_home:
+    path:     /admin/home
+    defaults: { _controller: ESERVMAINAdministrationBundle:Default:home }
+
+
+## System config 
+eserv_main_administration_system_config_edit:
+    path:     admin/system_config/edit
+    defaults: { _controller: ESERVMAINAdministrationBundle:SystemConfig:editSystemConfig }
+    
+eserv_main_administration_system_config_update:
+    path:     admin/system_config/update
+    defaults: { _controller: ESERVMAINAdministrationBundle:SystemConfig:updateSystemConfig }

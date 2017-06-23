@@ -1,0 +1,32 @@
+weblogsmainmtl_code_maintainance_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: WEBLOGSMAINMTLCodeMaintainanceBundle:Default:index }
+weblogsmainmtl_code_maintainance_codelist:
+    path:     /code/list
+    defaults: { _controller: WEBLOGSMAINMTLCodeMaintainanceBundle:CodeMaintainance:codeList }
+weblogsmainmtl_code_maintainance_codedata:
+    path:     /code/data
+    defaults: { _controller: WEBLOGSMAINMTLCodeMaintainanceBundle:CodeMaintainance:codeData }
+weblogsmainmtl_code_maintainance_form_create:
+    path:     /create/new_code
+    defaults: { _controller: WEBLOGSMAINMTLCodeMaintainanceBundle:CodeMaintainance:codeCreate }
+weblogsmainmtl_code_maintainance_form_add:
+    path:     /code/show
+    defaults: { _controller: WEBLOGSMAINMTLCodeMaintainanceBundle:CodeMaintainance:codeNew }
+weblogsmainmtl_code_maintainance_customer:
+    path:     /customer_view
+    defaults: { _controller: WEBLOGSMAINMTLCodeMaintainanceBundle:CodeMaintainance:Customers }
+weblogsmainmtl_code_maintainance_customer_edit:
+    path:     /code/edit/{id}/customer/{customer}
+    defaults: { _controller: WEBLOGSMAINMTLCodeMaintainanceBundle:CodeMaintainance:codeEdit }
+weblogsmainmtl_code_maintainance_customer_update:
+    path:     /code/update/{id}
+    defaults: { _controller: WEBLOGSMAINMTLCodeMaintainanceBundle:CodeMaintainance:codeUpdate }
+    
+    
+weblogsmainmtl_code_maintainance_task:
+    path:     code/task
+    defaults: { _controller: WEBLOGSMAINMTLCodeMaintainanceBundle:CodeMaintainance:task }
+    
+
+  

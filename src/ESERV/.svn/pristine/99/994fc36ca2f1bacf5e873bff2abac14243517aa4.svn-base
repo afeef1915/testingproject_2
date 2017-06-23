@@ -1,0 +1,153 @@
+ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\EservVEmail:
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Components\ContactDetailsBundle\Entity\EservVEmailRepository
+    table: eserv_v_email
+
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+
+    fields:
+#        emailId:
+#            type: integer
+#            nullable: false
+#            column: email_id
+#        mtlAuditId:
+#            type: integer
+#            nullable: true
+#            column: mtl_audit_id
+#        mtlDeletedRecordId:
+#            type: integer
+#            nullable: true
+#            column: mtl_deleted_record_id
+        contactId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: contact_id
+        contactDisplayName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: contact_display_name
+        emailTypeId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: email_type_id
+        emailTypeCode:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+            column: email_type_code
+        emailTypeName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: email_type_name
+        emailAddress:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: email_address
+#        oldEmailAddress:
+#            type: string
+#            nullable: false
+#            length: 255
+#            fixed: false
+#            comment: ''
+#            column: old_email_address
+        newEmailAddress:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: new_email_address
+        primaryRecord:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: primary_record
+        createdAt:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: created_at
+        createdByUsername:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            column: created_by_username
+#        updatedAt:
+#            type: datetime
+#            nullable: true
+#            comment: ''
+#            column: updated_at
+#        updatedByUsername:
+#            type: string
+#            nullable: true
+#            length: 255
+#            fixed: false
+#            comment: ''
+#            column: updated_by_username
+        historyRecord:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: history_record
+        deletedRecord:
+            type: string
+            nullable: false
+            length: 2000
+            fixed: false
+            default: N
+            column: deleted_record
+#        deletedAt:
+#            type: datetime
+#            nullable: true
+#            comment: ''
+#            column: deleted_at
+#        deletedByUsername:
+#            type: string
+#            nullable: true
+#            length: 255
+#            fixed: false
+#            comment: ''
+#            column: deleted_by_username
+        entityId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: entity_id
+        entityName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: entity_name

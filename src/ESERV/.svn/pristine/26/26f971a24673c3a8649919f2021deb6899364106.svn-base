@@ -1,0 +1,110 @@
+# Start of Header
+eserv_main_template_header_new:
+    path:     /template/header/add
+    defaults: { _controller: ESERVMAINTemplateBundle:Header:newHeader }
+
+eserv_main_template_header_create:
+    path:     /template/header/create
+    defaults: { _controller: ESERVMAINTemplateBundle:Header:createHeader }
+    methods : [POST]
+    
+eserv_main_template_header_edit:
+    path:     /template/header/edit/{id}
+    defaults: { _controller: ESERVMAINTemplateBundle:Header:editHeader, id: null } 
+
+eserv_main_template_header_update:
+    path:     /template/header/update/{id}
+    defaults: { _controller: ESERVMAINTemplateBundle:Header:updateHeader, id: null }
+    methods : [POST] 
+# End of Header
+
+# Start of Footer
+eserv_main_template_footer_new:
+    path:     /template/footer/add
+    defaults: { _controller: ESERVMAINTemplateBundle:Footer:newFooter }
+
+eserv_main_template_footer_create:
+    path:     /template/footer/create
+    defaults: { _controller: ESERVMAINTemplateBundle:Footer:createFooter }
+    methods : [POST]
+    
+eserv_main_template_footer_edit:
+    path:     /template/footer/edit/{id}
+    defaults: { _controller: ESERVMAINTemplateBundle:Footer:editFooter, id: null } 
+
+eserv_main_template_footer_update:
+    path:     /template/footer/update/{id}
+    defaults: { _controller: ESERVMAINTemplateBundle:Footer:updateFooter, id: null }
+    methods : [POST] 
+# End of Footer
+
+# Start of Letter
+eserv_main_template_letter_new:
+    path:     /template/letter/add
+    defaults: { _controller: ESERVMAINTemplateBundle:Letter:newLetter }
+
+eserv_main_template_letter_create:
+    path:     /template/letter/create
+    defaults: { _controller: ESERVMAINTemplateBundle:Letter:createLetter }
+    methods : [POST]
+    
+eserv_main_template_letter_edit:
+    path:     /template/letter/edit/{id}
+    defaults: { _controller: ESERVMAINTemplateBundle:Letter:editLetter, id: null } 
+
+eserv_main_template_letter_update:
+    path:     /template/letter/update/{id}
+    defaults: { _controller: ESERVMAINTemplateBundle:Letter:updateLetter, id: null }
+    methods : [POST] 
+# End of Letter
+
+# Start of Email
+eserv_main_template_email_new:
+    path:     /template/email/add
+    defaults: { _controller: ESERVMAINTemplateBundle:Email:newEmail }
+
+eserv_main_template_email_create:
+    path:     /template/email/create
+    defaults: { _controller: ESERVMAINTemplateBundle:Email:createEmail }
+    methods : [POST]
+    
+eserv_main_template_email_edit:
+    path:     /template/email/edit/{id}
+    defaults: { _controller: ESERVMAINTemplateBundle:Email:editEmail, id: null } 
+
+eserv_main_template_email_update:
+    path:     /template/email/update/{id}
+    defaults: { _controller: ESERVMAINTemplateBundle:Email:updateEmail, id: null }
+    methods : [POST] 
+# End of Email
+
+
+# Template
+eserv_main_template_get_content:
+    path:     /template/get
+    defaults: { _controller: ESERVMAINTemplateBundle:Template:getTemplate }
+
+eserv_main_template_list:
+    path:     /template
+    defaults: { _controller: ESERVMAINTemplateBundle:Template:templatesList }
+eserv_main_template_ajax_list:
+    path:     /template/ajaxList
+    defaults: { _controller: ESERVMAINTemplateBundle:Template:data }
+       
+eserv_main_template_new:
+    path:     /template/add
+    defaults: { _controller: ESERVMAINTemplateBundle:Template:newTemplate }
+    
+eserv_main_template_create:
+    path:     /template/create
+    defaults: { _controller: ESERVMAINTemplateBundle:Template:createTemplate }
+    methods : [POST]   
+    
+eserv_main_template_update:
+    path:     /template/update/{id}
+    defaults: { _controller: ESERVMAINTemplateBundle:Template:updateTemplate, id: null }
+    methods : [POST]    
+    
+eserv_main_template_edit:
+    path:     /template/edit/{id}
+    defaults: { _controller: ESERVMAINTemplateBundle:Template:editTemplate, id: null }    

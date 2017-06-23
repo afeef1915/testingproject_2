@@ -1,0 +1,112 @@
+<h3>Add new Client Field</h3>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' with {'viewMode': 'view'} %}
+
+<div id="eserv_updateClientField_output"></div>
+{{form_start(form, { 'attr' : { 'id': 'updateClientField' } })}}
+
+{{ form_widget(form.form_select_names) }}
+{{ form_widget(form.form_select_values) }}
+
+<script>
+    var num = 0;
+    function populateFields(val)
+    {
+
+        if (val === 'select' || val === 'radio') {
+            $('.add_field_select_options').show();
+            /* for (a = 0; a < 4; a++) {
+             $('#select_options').append('\
+             <input type="text" name="client_field[form_select_names][]" value="name' + a + '" />\n\
+             <input type="text" name="client_field[form_select_values][]" value="value' + a + '" /><br/>');
+             }
+             */
+
+            $('#select_options').append('\
+            <div class="input-group" style="margin-bottom: 1px;width: 100%;">\n\
+                <span id=\'cf_' + num + '\'><input required="required" style="width: 45%" type="text" class="form-control pull-left" name="client_field[form_select_names][]" value="" placeholder="Title" />\n\
+                <input required="required" style="width: 45%" type="text" class="form-control pull-left" name="client_field[form_select_values][]" value="" placeholder="Value" />\n\
+                <button style="width: 10%;padding: 3px;" class="btn btn-danger" type="button" onclick="removeFields(\'cf_' + num + '\');"><i class="glyphicon glyphicon-remove"></i></button></span>\n\
+            </div>\n\
+            ');
+            this.num = num + 1;
+            $('#add_select_options').html('<span class="input-group-btn"><button style="width:100%" class="btn btn-success" type="button" onclick="populateFields(\'select\');">Add Option <i class="glyphicon glyphicon-plus"></i></button>');
+        } else {
+            $('.add_field_select_options').hide();
+            $('#select_options').html('');
+            $('#add_select_options').html('');
+        }
+    }
+
+    function removeFields(field)
+    {
+        $('#' + field).remove();
+    }
+
+</script>
+
+<fieldset>
+    <div class="form-group">
+        {{ form_label(form.clientTable, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+        <div class="col-lg-5">
+            {{ form_widget(form.clientTable, {'attr': {'class': 'form-control', 'placeholder': 'Table Name'} }) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.title, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+        <div class="col-lg-5">
+            {{ form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Title'} }) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.fieldType, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+        <div class="col-lg-5">
+            {{ form_widget(form.fieldType, {'attr': {'class': 'form-control', 'placeholder': 'Field Type'} }) }}
+        </div>
+    </div>
+    <div class="form-group add_field_select_options" style="display: none">
+        <label class="col-lg-4 control-label">Select Options</label>
+        <div class="col-lg-5">
+            <div id="select_options"></div>
+            <div id="add_select_options"></div>
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.fieldSize, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+        <div class="col-lg-2">
+            {{ form_widget(form.fieldSize, {'attr': {'class': 'form-control', 'placeholder': 'Field Size'} }) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.notNull, null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+        <div class="col-lg-2">
+            {{ form_widget(form.notNull, {'attr': {'class': 'form-control', 'placeholder': 'Not Null'} }) }}
+        </div>
+    </div>
+</fieldset>
+
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12">
+            <a class="btn btn-danger pull-left" href="#/admin">{{ 'Cancel' | trans }}</a>
+            <div class="pull-right">
+                <input class="btn btn-default" value="{{ 'Reset' | trans }}" type="reset" />
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary',  'btn-loading': "is_processing.client_field_add", 'data-loading-text': "Saving..."} }) }}
+            </div>
+        </div>
+    </div>        
+</fieldset>
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#client_field_fieldType').on('change', function() {
+            if ($(this).val() != 'select' && $(this).val() != 'radio') {
+                $('.add_field_select_options').hide();
+            }
+        });
+        prepareAppForms('{{ form.vars.name }}', false, false, '#/admin');
+    });
+</script>

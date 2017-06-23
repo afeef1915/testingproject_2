@@ -1,0 +1,51 @@
+ESERV\TestBundle\Entity\GtcwVMentorCapacityCounts: 
+    type: entity
+    table: gtcw_v_mentor_capacity_counts
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        gtcwMentorId:
+            type: integer
+            nullable: false
+            column: gtcw_mentor_id        
+        noOfMenteesIndOnly:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: no_of_mentees_ind_only
+        noOfMenteesIndAndMep:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: no_of_mentees_ind_and_mep
+        noOfMenteesMepOnly:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: no_of_mentees_mep_only
+        noOfMenteesShortTerm:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: no_of_mentees_short_term
+        

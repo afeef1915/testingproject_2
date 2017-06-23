@@ -1,0 +1,223 @@
+{% form_theme form 'ESERVMAINHelpersBundle:Form:eserv_client_fields_layout.html.twig' %}
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{ form_start(form) }}
+
+{% if client_form_array is defined %} 
+    {% for indx, element in client_form_array %}
+        <fieldset>
+            {% for key,child in element['view'] %}     
+                {% if field_name_and_types[indx][key] is defined %}             
+                    <div class="form-group">
+                        {% set type = field_name_and_types[indx][key]['symfony_form_type'] %}
+
+                        {% if type == 'text' %}
+                            {% for tbl_id,tbl_name in table_names_array %}
+                                {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                                    <label for="eserv_clientbundle_{{tbl_name['name']}}_{{key}}" 
+                                           class="col-lg-4 control-label {{ child.vars.required ? ' required' : '' }}">{{ field_name_and_types[indx][key]['title'] }}</label>
+                                    <div class="col-lg-5">
+                                        {{ form_widget(child, {'id': 'eserv_temp_'~key, 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                                        <div class="eserv_field_value view">{{ child.vars.value }}</div>
+                                        <input type="text" class="form-control eserv_field_value edit" id="eserv_clientbundle_{{tbl_name['name']}}_{{key}}" 
+                                               name="eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}[{{key}}]" 
+                                               {{ child.vars.required ? 'data-eservvalidation="required"' : '' }} 
+                                               value="{{ child.vars.value }}"/>
+                                        <!-- <span class="fa fa-times form-control-feedback"></span> -->
+                                        <span class="help-block"></span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}     
+
+                        {% elseif type == 'select' %}                
+                            {% set select_options = field_name_and_types[indx][key]['options'] %}
+                            {% for tbl_id,tbl_name in table_names_array %}
+                                {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                                    <label for="eserv_clientbundle_{{tbl_name['name']}}_{{key}}" 
+                                           class="col-lg-4 control-label {{ child.vars.required ? ' required' : '' }}">{{ field_name_and_types[indx][key]['title'] }}</label>
+                                    <div class="col-lg-5">
+                                        {{ form_widget(child, {'id': 'eserv_temp_'~key, 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                                        {% set viewVal = '' %}
+                                        <select id="eserv_clientbundle_{{tbl_name['name']}}_{{key}}" 
+                                                name="eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}[{{key}}]"
+                                                class="form-control eserv_field_value edit"
+                                                {{ child.vars.required ? 'data-eservvalidation="required"' : '' }}>
+                                            <option value=''>-- Please Select --</option>
+                                            {% for optVal, optName in select_options %}
+                                                <option value='{{optVal}}'>{{optName}}</option>
+                                                {% if (child.vars.value == optVal) %}
+                                                    {% set viewVal = optName %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+
+                                        <div class="eserv_field_value view">{{ viewVal }}</div>
+                                        <!-- <span class="fa fa-times form-control-feedback"></span> -->
+                                        <span class="help-block"></span>
+                                    </div>          
+                                    <script type="text/javascript">
+                                        temp_val = $('#eserv_temp_{{key}}').val();
+                                        $("#eserv_clientbundle_{{tbl_name['name']}}_{{key}} option[value='" + temp_val + "']").attr("selected", "selected");
+                                    </script>
+                                {% endif %}
+                            {% endfor %}
+
+                        {% elseif type == 'datetime' %}                
+                            {% set select_options = field_name_and_types[indx][key]['options'] %}
+                            {% for tbl_id,tbl_name in table_names_array %}
+                                {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                                    <label for="eserv_clientbundle_{{tbl_name['name']}}_{{key}}" 
+                                           class="col-lg-4 control-label {{ child.vars.required ? ' required' : '' }}">{{ field_name_and_types[indx][key]['title'] }}</label>
+                                    <div class="col-lg-5">
+                                        <div class="eserv_field_value view">
+                                            {% set selected_date = '' %}
+                                            {% if child.vars.value['date']['day'] is defined and child.vars.value['date']['day'] is not sameas('') %}
+                                                {% set full_date = child.vars.value['date']['month'] ~ '/' ~ child.vars.value['date']['day'] ~ '/' ~ child.vars.value['date']['year'] %}
+                                                {% set selected_date = full_date | date('d/m/Y') %}
+                                            {% endif %}
+                                            {{ selected_date }}
+                                        </div>
+                                        <input type="text" 
+                                               id="cd_eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}_{{key}}_date" 
+                                               name="eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}[{{key}}][date]" 
+                                               class="form-control eserv_date_picker eserv_field_value edit"
+                                               data-dateformat="dd/mm/yy"
+                                               data-eservvalidation="date{{ child.vars.required ? ',required' : '' }}"
+                                               data-eservfieldtype="text"
+                                               data-yearrange="-5:+5" 
+                                               value="{{ selected_date }}"                                    
+                                               placeholder="DD/MM/YYYY"                                    
+                                               {{ child.vars.required ? 'data-eservvalidation="required"' : '' }} />
+                                        <!-- <span class="fa fa-times form-control-feedback"></span> -->
+                                        <span class="help-block"></span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
+                        {% elseif type == 'radio' %}                
+                            {% set select_options = field_name_and_types[indx][key]['options'] %}
+                            {% for tbl_id,tbl_name in table_names_array %}
+                                {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}                           
+                                    <label for="eserv_clientbundle_{{tbl_name['name']}}_{{key}}" 
+                                           class="col-lg-4 control-label {{ child.vars.required ? ' required' : '' }}">{{ field_name_and_types[indx][key]['title'] }}</label>
+                                    <div class="col-lg-5">
+                                        {{ form_widget(child, {'id': 'eserv_temp_'~key, 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                                        {% set viewVal = '' %}
+                                        <div class="eserv_field_value edit">
+                                            {% for optVal, optName in select_options %}
+                                                {% if (child.vars.value == optVal) %}
+                                                    {% set viewVal = optName %}
+                                                {% endif %}
+                                                <div class="radio radio-inline">
+                                                    <input type="radio" id="eserv_clientbundle_{{tbl_name['name']}}_{{key}}" 
+                                                           name="eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}[{{key}}]"
+                                                           value="{{optVal}}" 
+                                                           {{ child.vars.required ? 'data-eservvalidation="required"' : '' }} />
+                                                    <label for="eserv_clientbundle_{{tbl_name['name']}}_{{key}}"> {{optName}} </label>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="eserv_field_value view">{{ viewVal }}</div>
+                                        <!-- <span class="fa fa-times form-control-feedback"></span> -->
+                                        <span class="help-block"></span>
+                                    </div>
+                                    <script type="text/javascript">
+                                        temp_val = $('#eserv_temp_{{key}}').val();
+                                        $('input[name="eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}[{{key}}]"][value=' + temp_val + ']').prop('checked', true);
+                                    </script>
+                                {% endif %}
+                            {% endfor %}
+
+                        {% elseif type == 'checkbox' %}
+                            {% set select_options = field_name_and_types[indx][key]['options'] %}
+                            {% for tbl_id,tbl_name in table_names_array %}
+                                {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                                    <label for="eserv_clientbundle_{{tbl_name['name']}}_{{key}}_trigger" 
+                                           class="col-lg-4 control-label {{ child.vars.required ? ' required' : '' }}">{{ field_name_and_types[indx][key]['title'] }}
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div class="eserv_field_value view" style="font-weight: normal;">{{ child.vars.value == 'Y' ? 'Yes' : 'No' }}</div>
+                                        <div class="eserv_field_value edit">
+                                            <div class="checkbox checkbox-default checkbox-inline">
+                                                {{ form_widget(child, {'id': 'eserv_temp_'~key, 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                                                <input id="eserv_clientbundle_{{tbl_name['name']}}_{{key}}" 
+                                                       type="text"
+                                                       name="eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}[{{key}}]" 
+                                                       value="N" 
+                                                       {{ child.vars.required ? 'data-eservvalidation="required"' : '' }} 
+                                                       style="display: none;"/>
+                                                <input id="eserv_clientbundle_{{tbl_name['name']}}_{{key}}_trigger" 
+                                                       type="checkbox"
+                                                       class="eserv_field_value edit"
+                                                       onchange="changeDropDownValue(this.id, 'eserv_clientbundle_{{ tbl_name['name'] ~ '_' ~ key}}');"
+                                                       {{ child.vars.value == 'Y' ? ' checked="checked" ' : '' }}
+                                                       {{ child.vars.required ? 'data-eservvalidation="required"' : '' }} />
+                                                <label for="eserv_clientbundle_{{tbl_name['name']}}_{{key}}_trigger"></label>
+                                            </div>
+                                        </div>
+                                        <!-- <span class="fa fa-times form-control-feedback"></span> -->
+                                        <span class="help-block"></span>
+                                    </div>
+                                    <script type="text/javascript">
+                                        temp_val = $('#eserv_temp_{{key}}').val();
+
+                                        if (temp_val == 'Y' || temp_val == 'true') {
+                                            $('#eserv_clientbundle_{{tbl_name['name']}}_{{key}}_trigger').prop('checked', true);
+                                            $('#eserv_clientbundle_{{tbl_name['name']}}_{{key}}').val('Y');
+                                        } else {
+                                            $('#eserv_clientbundle_{{tbl_name['name']}}_{{key}}_trigger').prop('checked', false);
+                                            $('#eserv_clientbundle_{{tbl_name['name']}}_{{key}}').val('N');
+                                        }
+                                        $('#eserv_temp_{{key}}').attr('name', 'changing_name_of_the_checkbox');
+                                    </script>
+                                {% endif %}
+                            {% endfor %}        
+
+                        {% elseif type == 'number' %}
+                            {% set select_options = field_name_and_types[indx][key]['options'] %}
+                            {% for tbl_id,tbl_name in table_names_array %}
+                                {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                                    <label for="eserv_clientbundle_{{tbl_name['name']}}_{{key}}" 
+                                           class="col-lg-4 control-label {{ child.vars.required ? ' required' : '' }}">{{ field_name_and_types[indx][key]['title'] }}</label>
+                                    <div class="col-lg-5">
+                                        {{ form_widget(child, {'id': '', 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                                        <div class="eserv_field_value view">{{ child.vars.value }}</div>
+                                        <input type="number" class="form-control eserv_field_value edit" id="eserv_clientbundle_{{tbl_name['name']}}_{{key}}"  
+                                               name="eserv_clientbundle_{{tbl_name['name'] | replace({ ('_'): '' })}}[{{key}}]" 
+                                               {{ child.vars.required ? 'data-eservvalidation="required"' : '' }} 
+                                               value="{{ child.vars.value }}"/>
+                                        <!-- <span class="fa fa-times form-control-feedback"></span> -->
+                                        <span class="help-block"></span>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}       
+                    </div>
+                {% else %}
+
+                {% endif %}
+            {% endfor %}
+        </fieldset>
+    {% endfor %}
+{% endif %}
+<fieldset>
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save } %}        
+    
+</fieldset>
+<div style="display:none">
+    {{ form_rest(form) }}
+</div>
+{{ form_end(form) }}
+
+<script type="text/javascript">
+    prepareAppForms('{{ form.vars.name }}', true, {
+        type: 'portlet',
+        status: 'current'
+    });
+
+    $('input, select, textarea').each(function () {
+        var $this = $(this);
+        $this.on('change', function () {
+            $('input[name="' + $(this).attr('name') + '"]').attr('value', $(this).val());
+        });
+    });
+</script>

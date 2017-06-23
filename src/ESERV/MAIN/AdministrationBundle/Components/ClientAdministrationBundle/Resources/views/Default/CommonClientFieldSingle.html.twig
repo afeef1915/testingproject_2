@@ -1,0 +1,157 @@
+{% if myArray is defined %} 
+    {% for indx, element in myArray %}
+       {% if c_d_key is defined and c_d_key == indx %}
+            <h3 class="">{{ element['title']  }}</h3>
+                <fieldset>
+                        {% for key,child in element['view'] %}   
+
+                            {% form_theme child 'ESERVMAINHelpersBundle:Form:eserv_client_fields_layout.html.twig' %}
+
+                            {% if field_name_and_types[indx][key] is defined %} 
+                                <div class="form-group">
+                                    {% set type = field_name_and_types[indx][key]['symfony_form_type'] %}
+
+                                    {% if type == 'text' %}
+                                        {% for tbl_id,tbl_name in table_names_array %}
+                                            {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                                                <label for="{{form_name}}_{{tbl_name['name']}}_{{key}}" class="col-lg-4 control-label {{ child.vars.required ? ' required' : '' }}">{{ field_name_and_types[indx][key]['title'] }}</label>
+                                                <div class="col-lg-5">
+                                                    {{ form_widget(child, {'id': '', 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                                                    <input type="text" class="form-control" id="{{form_name}}_{{tbl_name['name']}}_{{key}}" 
+                                                           name="{{form_name}}[{{tbl_name['name']}}][{{key}}]" 
+                                                           class="form-control"
+                                                           {{ child.vars.required ? 'data-eservvalidation="required"' : '' }} />
+                                                    <!-- <span class="fa fa-times form-control-feedback"></span> -->
+                                                    <span class="help-block"></span>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}     
+
+                                    {% elseif type == 'select' %}                
+                                        {% set select_options = field_name_and_types[indx][key]['options'] %}
+                                        {% for tbl_id,tbl_name in table_names_array %}
+                                            {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                                                <label for="{{form_name}}_{{tbl_name['name']}}_{{key}}" class="col-lg-4 control-label {{ child.vars.required ? ' required' : '' }}">{{ field_name_and_types[indx][key]['title'] }}</label>
+                                                <div class="col-lg-5">
+                                                    {{ form_widget(child, {'id': 'eserv_temp_'~ key, 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                                                    <select id="{{form_name}}_{{tbl_name['name']}}_{{key}}" 
+                                                            name="{{form_name}}[{{tbl_name['name']}}][{{key}}]"
+                                                            class="form-control"
+                                                            {{ child.vars.required ? 'data-eservvalidation="required"' : '' }}>
+                                                        <option value=''>-- Please Select --</option>
+                                                        {% for optVal, optName in select_options %}
+                                                            <option value='{{optVal}}'>{{optName}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <!-- <span class="fa fa-times form-control-feedback"></span> -->
+                                                    <span class="help-block"></span>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    temp_val = $('#eserv_temp_{{key}}').val();
+                                                    $("#{{form_name}}_{{tbl_name['name']}}_{{key}} option[value='" + temp_val + "']").attr("selected", "selected");
+                                                </script>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    {% elseif type == 'datetime' %}                
+                                        {% set select_options = field_name_and_types[indx][key]['options'] %}
+                                        {% for tbl_id,tbl_name in table_names_array %}
+                                            {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                                                <label for="{{form_name}}_{{tbl_name['name']}}_{{key}}" class="col-lg-4 control-label {{ child.vars.required ? ' required' : '' }}">{{ field_name_and_types[indx][key]['title'] }}</label>
+                                                <div class="col-lg-4">
+                                                    {{ form_widget(child, {'id': '', 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+
+                                                    <input type="text" id="{{form_name}}_{{tbl_name['name']}}_{{key}}_date" 
+                                                           name="{{form_name}}[{{tbl_name['name']}}][{{key}}][date]" 
+                                                           class="form-control eserv_date_picker"
+                                                           value="0000-00-00 00:00:00.000000" 
+                                                           {{ child.vars.required ? 'data-eservvalidation="required"' : '' }} />
+                                                    <!-- <span class="fa fa-times form-control-feedback"></span> -->
+                                                    <span class="help-block"></span>
+                                                </div>
+                                                <!--
+                                                <input type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-model="dt" is-open="datepicker_opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                <span class="input-group-btn">
+                                                  <button type="button" class="btn btn-default" ng-click="DateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                </span>
+                                                -->
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    {% elseif type == 'radio' %}                
+                                        {% set select_options = field_name_and_types[indx][key]['options'] %}
+                                        {% for tbl_id,tbl_name in table_names_array %}
+                                            {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                                                <label for="{{form_name}}_{{tbl_name['name']}}_{{key}}" class="col-lg-4 control-label {{ child.vars.required ? ' required' : '' }}">{{ field_name_and_types[indx][key]['title'] }}</label>
+                                                <div class="col-lg-5">
+                                                    {{ form_widget(child, {'id': '', 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                                                    {% for optVal, optName in select_options %}
+                                                        <div class="controls">
+                                                            <label class="checkbox inline">
+                                                                <input type="radio" id="{{form_name}}_{{tbl_name['name']}}_{{key}}" 
+                                                                       name="{{form_name}}[{{tbl_name['name']}}][{{key}}]" 
+                                                                       value="{{optVal}}" 
+                                                                       {{ child.vars.required ? 'data-eservvalidation="required"' : '' }} />{{optName}}
+                                                            </label>
+                                                        </div>
+                                                    {% endfor %}
+                                                    <!-- <span class="fa fa-times form-control-feedback"></span> -->
+                                                    <span class="help-block"></span>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                    {% elseif type == 'checkbox' %}
+
+                                        {% set select_options = field_name_and_types[indx][key]['options'] %}
+                                        {% for tbl_id,tbl_name in table_names_array %}
+                                            {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                                                <label for="eserv_clientbundle_{{tbl_name['name']}}_{{key}}_trigger" 
+                                                       class="col-lg-4 control-label {{ child.vars.required ? ' required' : '' }}">{{ field_name_and_types[indx][key]['title'] }}
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <div class="checkbox checkbox-default checkbox-inline">
+                                                        {{ form_widget(child, {'id': '', 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                                                        <input id="eserv_clientbundle_{{tbl_name['name']}}_{{key}}" 
+                                                               type="text"
+                                                               name="{{form_name}}[{{tbl_name['name']}}][{{key}}]" 
+                                                               {{ child.vars.required ? 'data-eservvalidation="required"' : '' }}
+                                                               style="display:none;"/>
+                                                        <input id="{{form_name}}_{{tbl_name['name']}}_{{key}}_trigger"
+                                                               type="checkbox"
+                                                               onchange="changeDropDownValue(this.id, 'eserv_clientbundle_{{tbl_name['name'] ~ '_' ~ key}}');" 
+                                                               {{ child.vars.value == 'Y' ? ' checked="checked" ' : '' }}
+                                                               {{ child.vars.required ? 'data-eservvalidation="required"' : '' }} />
+                                                        <label for="eserv_clientbundle_{{tbl_name['name']}}_{{key}}_trigger"></label>
+                                                    </div>
+                                                    <!-- <span class="fa fa-times form-control-feedback"></span> -->
+                                                    <span class="help-block"></span>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}        
+
+                                    {% elseif type == 'number' %}
+
+                                        {% set select_options = field_name_and_types[indx][key]['options'] %}
+                                        {% for tbl_id,tbl_name in table_names_array %}
+                                            {% if field_name_and_types[indx][key]['client_table_id'] == tbl_id %}
+                                                <label for="{{form_name}}_{{tbl_name['name']}}_{{key}}" class="col-lg-4 control-label {{ child.vars.required ? ' required' : '' }}">{{ field_name_and_types[indx][key]['title'] }}</label>
+                                                <div class="col-lg-5">
+                                                    {{ form_widget(child, {'id': '', 'name': '', 'required': '', 'attr': {'style': 'display: none'}}) }}
+                                                    <input type="number" class="form-control" id="{{form_name}}_{{tbl_name['name']}}_{{key}}" 
+                                                           name="{{form_name}}[{{tbl_name['name']}}][{{key}}]" 
+                                                           class="form-control"
+                                                           {{ child.vars.required ? 'data-eservvalidation="required"' : '' }} />
+                                                    <!-- <span class="fa fa-times form-control-feedback"></span> -->
+                                                    <span class="help-block"></span>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}      
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                </fieldset>
+            {% endif %}
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,30 @@
+vat:
+    path:     /
+    defaults: { _controller: "ESERVMAINProductBundle:Vat:index" }
+
+vat_show:
+    path:     /{id}/show
+    defaults: { _controller: "ESERVMAINProductBundle:Vat:show" }
+
+vat_new:
+    path:     /new
+    defaults: { _controller: "ESERVMAINProductBundle:Vat:new" }
+
+vat_create:
+    path:     /create
+    defaults: { _controller: "ESERVMAINProductBundle:Vat:create" }
+    requirements: { _method: post }
+
+vat_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ESERVMAINProductBundle:Vat:edit" }
+
+vat_update:
+    path:     /{id}/update
+    defaults: { _controller: "ESERVMAINProductBundle:Vat:update" }
+    requirements: { _method: post|put }
+
+vat_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ESERVMAINProductBundle:Vat:delete" }
+    requirements: { _method: post|delete }

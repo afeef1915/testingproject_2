@@ -1,0 +1,7 @@
+parameters:
+#    eservmain_membership.example.class: ESERV\MAIN\MembershipBundle\Example
+
+services:
+#    eservmain_membership.example:
+#        class: %eservmain_membership.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

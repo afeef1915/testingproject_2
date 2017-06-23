@@ -1,0 +1,55 @@
+    <div id="eserv_editActivityModule_output"></div>
+    {% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+    {{form_start(form, { 'attr' : { 'id': 'editActivityModule' } })}}
+    <fieldset>
+        <div class="col-lg-6">
+            {{ form_eservRow(form.entityId , { 'fieldSize': '3' }) }}  
+            {{ form_eservRow(form.entityName , { 'fieldSize': '3' }) }}  
+            {{ form_eservRow(form.priorityId , { 'fieldSize': '3' }) }}  
+            {{ form_eservRow(form.parentId , { 'fieldSize': '3' }) }}  
+            {{ form_eservRow(form.shortDescription , { 'fieldSize': '4' }) }} 
+            {{ form_eservRow(form.activityDateTime , { 'fieldType': 'date' , 'customPlaceHolder': 'DD/MM/YYYY'}) }}            
+            {{ form_eservRow(form.statusDateTime , { 'fieldType': 'date' , 'customPlaceHolder': 'DD/MM/YYYY'}) }}     
+            {{ form_eservRow(form.longDescription , { 'fieldSize': '4' }) }}
+            {{ form_eservRow(form.adviceGiven , { 'fieldSize': '4' }) }} 
+            {{ form_eservRow(form.isDeleted , { 'isCheckbox': 'true', 'fieldSize': '1' }) }} 
+        </div>
+        <div class="col-lg-6">
+            {{ form_eservRow(form.reissue , { 'fieldSize': '3' }) }}
+            {{ form_eservRow(form.showAlert , { 'fieldSize': '3' }) }} 
+            {{ form_eservRow(form.isReminder , { 'fieldSize': '3' }) }} 
+            {{ form_eservRow(form.noOfReminders , { 'fieldSize': '3' }) }} 
+            {{ form_eservRow(form.firstReminderDays , { 'fieldSize': '3' }) }} 
+            {{ form_eservRow(form.subsequentReminderDays , { 'fieldSize': '3' }) }} 
+            {{ form_eservRow(form.commFirstName , { 'fieldSize': '3' }) }} 
+            {{ form_eservRow(form.commLastName , { 'fieldSize': '3' }) }} 
+            {{ form_eservRow(form.commPhoneNo , { 'fieldSize': '3' }) }} 
+            {{ form_eservRow(form.commEmail , { 'fieldSize': '3' }) }}
+        </div>
+    </fieldset>
+    <fieldset>
+        <div class="form-group">
+            <div class="col-md-12">
+                <button id="cancel_editActivityModule_btn" type="button" class="btn btn-danger direction1" ng-click="cancel()">Cancel</button>
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right direction2',  'btn-loading': "is_processing.employer", 'data-loading-text': "Saving..."} }) }}
+                <input class="btn btn-default pull-right direction2" value="Reset" type="reset" />                
+            </div>
+        </div>        
+    </fieldset>
+
+    <div style="display: none"> 
+        {{ form_rest(form) }}
+    </div>
+    {{form_end(form)}}  
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            prepareAppForms('{{ form.vars.name }}', false, {
+                    type: 'dataTable',
+                    id: 'eserv_v_activity_table'
+                }, false, 'editActivityModule', function(){
+                    $('#cancel_editActivityModule_btn').click();
+            });
+        });
+    </script>
+

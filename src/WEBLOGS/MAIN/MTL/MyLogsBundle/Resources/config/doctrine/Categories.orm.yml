@@ -1,0 +1,27 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\Categories:
+    type: entity
+    table: categories
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+  
+          
+   
+    fields:
+        CATEGORY_CODE:
+            type: string
+            length: '10'
+            id: true
+            column: CATEGORY_CODE
+        NAME:
+            type: string
+            length: '200'
+            column: NAME
+        SHORT_NAME:
+            type: string
+            length: '100'
+            column: SHORT_NAME
+        

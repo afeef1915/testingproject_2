@@ -1,0 +1,29 @@
+ESERV\MAIN\ActivityBundle\Entity\ActivityCatContRoleType:
+    type: entity
+    table: activity_cat_cont_role_type
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        activity_category_id:
+            type: integer
+            length: 4
+        contact_role_type_id:
+            type: integer
+            length: 4
+        external_id:
+            type: string
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint
+    uniqueConstraints:
+       idx_ActivityCatCont_a_idx: 
+           columns: [ activity_category_id ]
+       idx_ActivityCatCont_b_idx: 
+           columns: [ contact_role_type_id ]         

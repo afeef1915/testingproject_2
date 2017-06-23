@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" id="ng-app" ng-app="MTLESERV" xmlns:ng="http://angularjs.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        {% set NOW = "now" | date('U') %}
+        <title>{{ app_client_short_name }}</title>
+        <link  href="{{ asset ('common/assets/images/icons/search-icon.gif') }}" />
+        <link rel="shortcut icon" href="{{ asset ('common/assets/images/icons/favicon.ico') }}" />
+        <link href="{{ asset ('common/assets/libs/bootstrap/css/bootstrap.min.css') }}?v={{ app_version }}_{{ NOW }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/bootstrap/css/bootstrap-theme.min.css') }}?v={{ app_version }}_{{ NOW }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/jquery-ui/css/jquery-ui.min.css') }}?v={{ app_version }}_{{ NOW }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/font-awesome/css/font-awesome.min.css') }}?v={{ app_version }}_{{ NOW }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/bootstrap-switch/css/bootstrap-switch.min.css') }}?v={{ app_version }}_{{ NOW }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/select2/dist/css/select2.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/morris/morris.css') }}" rel="stylesheet" />
+
+        <link href="{{ asset ('common/assets/libs/jquery-qtip/css/jquery.qtip.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/jquery-file-upload/css/file_upload_all.css') }}?v={{ app_version }}_{{ NOW }}" rel="stylesheet" />
+
+        {% stylesheets '@data_tables_css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+        <link href="{{ asset ('common/assets/libs/merlin/css/mtl_eserv.css') }}?v={{ app_version }}_{{ NOW }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/css/themes/'~ app_theme ~'/main.css') }}?v={{ app_version }}_{{ NOW }}" rel="stylesheet" />
+        <link href="{{ asset ('clients/'~ app_client ~'/themes/'~ app_theme ~'/css/client_main.css') }}?v={{ app_version }}_{{ NOW }}" rel="stylesheet" />
+
+        <link themer-link />
+    </head>
+    <body ng-controller="MainController">
+        <div id="page-cover"></div>
+        <div class="eserv_main_loader loading_app_files" ng-show="isLoading">
+            <div class="sk-wave">
+                <div class="sk-rect sk-rect1"></div>
+                <div class="sk-rect sk-rect2"></div>
+                <div class="sk-rect sk-rect3"></div>
+                <div class="sk-rect sk-rect4"></div>
+                <div class="sk-rect sk-rect5"></div>
+            </div>
+            <div class="processing">
+                <h3>
+                    {{ 'Loading theme files' | trans }}..
+                </h3>
+                <div ng-switch="isLoading">
+                    <p ng-switch-when="true">
+                        {{ 'Please wait' | trans }}... <span ng-bind-html="percentLoaded"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="selected_dashboard_portlets" name="selected_dashboard_portlets" value="{{ selected_dashboard_portlets is defined ? selected_dashboard_portlets : '' }}" />
+        <input type="hidden" id="merlin_screen_width" value="{{ UserScreenWidth is defined ? UserScreenWidth : 'normal' }}" />
+        <input type="hidden" id="merlin_developer_help" value="{{ DeveloperHelp is defined ? DeveloperHelp : 'hide' }}" />
+        <img src="{{ asset ('clients/'~ app_client ~'/themes/'~ app_theme ~'/images/bgs/screen_pattern.png') }}" class="login_screen_pattern" />
+
+        <div id="eserv_main_loader" class="eserv_main_loader">
+            <div class="sk-wave">
+                <div class="sk-rect sk-rect1"></div>
+                <div class="sk-rect sk-rect2"></div>
+                <div class="sk-rect sk-rect3"></div>
+                <div class="sk-rect sk-rect4"></div>
+                <div class="sk-rect sk-rect5"></div>
+            </div>
+            <div class="processing">{{ 'Processing...' | trans }}</div>
+        </div>
+
+        <div id="wrapper" class="container">
+            <div id="settings_panel">
+                <div class="trigger settings_expander_trigger desktop-only">
+                    <i class="fa fa-gear"></i>
+                </div>
+                <div class="content">
+                    <input type="hidden" id="view_font_size" name="view_font_size" value="100" />
+                    <div class="settings_title">
+                        <div class="pull-left">Settings</div>
+                        <a class="btn btn-danger btn-xs mtl_tooltip pull-right control-btn" href="#" id="settings_close" title="{{ 'Close Panel' | eserv_trans }}">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                        <a id="eserv_user_save_settings" ng-click="saveSettings()" class="btn btn-success btn-xs mtl_tooltip pull-right control-btn save_settings_btn" title="{{ 'Save Settings' | eserv_trans }}" 
+                           data-tooltip-pos-at="bottom center" data-tooltip-pos-my="top center">
+                            <i class="fa fa-save"></i>
+                        </a>
+                    </div>
+
+                    <tabset>
+                        <tab heading="View Options">
+                            <h5>Themes</h5>
+                            <div themer-switcher></div>
+                            <div class="clearfix"></div>
+                            <hr />
+                            <h5>Font Size</h5>
+                            <div id="font_resize_slider_container" class="mtl_tooltip" title="This will set the application font to the selected value">
+                                <div class="smallest" title="Smallest"></div>
+                                <div id="font_resize_slider"></div>
+                                <div class="largest" title="Largest"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr />
+                            <span class="desktop-only">
+                                <h5>{{ 'View Dimensions' | trans }}</h5>
+                                <ul class="list-group">
+                                    {% include 'settingsToggle.html.twig' with {
+                                            'id': 'fullwidth_trigger_id',
+                                            'class': 'fullwidth_trigger',
+                                            'title': 'Switch view width size' | trans, 
+                                            'label': 'Wide View' | trans
+                                        } %}
+                                </ul>
+                                <div class="clearfix"></div>
+                                <hr />
+                            </span>
+                            <h5>Full Screen</h5>
+                            <button class="btn btn-danger" ng-click="goFullscreen()">Enable/Disable Fullscreen</button>
+                            <hr />
+                            <h5>General</h5>
+                            <button class="btn btn-danger" ng-click="resetSettings('{{ path('eserv_reset_settings') }}')">Reset Settings <i class="fa fa-refresh"></i></button>
+                        </tab>
+                        {% if use_dev_help() %}
+                            <tab heading="{{ 'Developer' | trans }}">
+                                <h5>{{ 'Developer Help' | trans }}</h5>
+                                <ul class="list-group">
+                                    {% include 'settingsToggle.html.twig' with {
+                                            'id': 'use_dev_help_trigger_id',
+                                            'class': 'use_dev_help_trigger',
+                                            'title': 'Switch Developer Help' | trans, 
+                                            'label': 'Show Help' | trans,
+                                            'description': 'When this option is swtiched on all available help info for developers (i.e. database column names.. etc) will be shown' | trans
+                                        } %}
+                                </ul>
+                                <div class="clearfix"></div>
+                            </tab>
+                        {% endif %}        
+                        <tab heading="Servers">
+                            <h5>{{ 'Server Status' | trans }}</h5>
+
+                            <ul class="list-group">
+                                {% include 'settingsToggle.html.twig' with {
+                                    'id': 'notification_server_trigger',
+                                    'class': 'notification_server_trigger',
+                                    'title': 'Notifications Server status' | trans, 
+                                    'label': 'Notifications Server' | trans,
+                                    'description': 'When this option is swtiched off you need to cleck on Notifications > Refresh to recieve new ones' | trans
+                                } %}
+                            </ul>
+
+                            <div class="clearfix"></div>
+                            <hr />
+
+                            <div class="">
+                                <div class="notifications_server_connected" style="display: none">
+                                    <div class="btn btn-sm btn-success"><i class="fa fa-check-circle"></i> {{ 'Connected' | trans }}</div>
+                                </div>
+                                <div class="notifications_server_disconnected btn-group">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-minus-circle"></i> {{ 'Disconnected' | trans }}</button>
+                                        <button type="button" id="notif_connect_to_server_btn" class="btn btn-sm btn-info"><i class="fa fa-refresh"></i> {{ 'Connect' | trans }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+                        {#
+                        <tab heading="More...">
+                            More...
+                        </tab>
+                        #}
+                    </tabset>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            {% include 'topMenu.html.twig' with {} %}
+            <div id="page-wrapper" class="fixed_nav">
+                {% include 'mainMenu.html.twig' %}
+                <div class="content-wrapper">
+                    <div ncy-breadcrumb></div>
+                    <div id="app_main_alerts_area"></div>
+                    <div class="main_app_content">
+                        <div ui-view></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <!-- /#page-wrapper -->
+            <div class="footer">
+                <div class="col-lg-12 copyright_msg">
+                    <div class="copyright_label">
+                        Powered by: Miller Technology Group, 340 Gray's Inn Road, Kings Cross, London WC1X 8BG, United Kingdom Copyright &copy;{{ 'now' | date('Y') }}&nbsp;<a target="_blank" href="http://millertech.co.uk/">Miller Technology Group</a>
+                    </div>
+                    <span class="clearfix"></span>
+                </div>
+                <span class="clearfix"></span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <script type="text/ng-template" id="eservModalContent.html">
+            <div ng-attr-id="{% verbatim %}{{ modalId }}{% endverbatim %}">
+            <div class="modal-header">
+            <a class="btn btn-danger close" ng-click="cancel()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></a>
+            <h3 class="modal-title" ng-bind-html="modalHeader">I'm a modal!</h3>
+            </div>
+            <div class="modal-body"><div class="eserv_container_form_errors"></div><div class="area_content_loading"><div class="processing">Loading data.. Please wait</div></div></div>
+            <div ng-show="EservShowModalFooter" class="modal-footer">
+            <a class="btn btn-warning" ng-click="cancel()">Cancel</a>
+            </div>
+            </div>
+        </script>
+        <script type="text/ng-template" id="logoutContent.html">
+            <div class="modal-header">
+            <h3 class="modal-title">Logout?</h3>
+            </div>
+            <div class="modal-body">
+            Are you sure?
+            <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+            <a class="btn btn-client2" data-ng-click="ok()" btn-loading="is_logging_out" data-loading-text="Logging out...">
+            Logout
+            </a>
+            <a class="btn btn-client1" ng-click="cancel()">Cancel</a>
+            </div>
+        </script>
+
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+
+            var domain = '56756truyju';
+            var datatables_loaded = true;
+            var root_url = '{{ path ('weblogs_home_homepage') }}';
+            var app_pre_title = '{{ app_client_short_name | trans }} ';
+            var change_password_url = '{{ path ('fos_user_change_password') }}';
+            var logout_url = '{{ path ('eserv_user_bundle_user_do_logout') }}';
+            var customerCode = '{{ app.session.get('cc') }}';
+            regex_str = '{{ constant('\\ESERV\\MAIN\\Services\\AppConstants::DATE_IN_DD_MM_YY_REG_EXP') | escape('js') }}';
+            var DateDDMMYYRegex = new RegExp(regex_str.substring(1, regex_str.length - 1));
+            var DateDDMMYYRegexError = '{{ constant('\\ESERV\\MAIN\\Services\\AppConstants::DATE_IN_DD_MM_YY_REG_EXP_ERROR') }}';
+
+            regex_str = '{{ constant('\\ESERV\\MAIN\\Services\\AppConstants::DATE_IN_MM_YY_REG_EXP') | escape('js') }}';
+            var DateMMYYRegex = new RegExp(regex_str.substring(1, regex_str.length - 1));
+            var DateMMYYRegexError = '{{ constant('\\ESERV\\MAIN\\Services\\AppConstants::DATE_IN_MM_YY_REG_EXP_ERROR') }}';
+
+            regex_str = '{{ constant('\\ESERV\\MAIN\\Services\\AppConstants::DATE_IN_YY_REG_EXP') | escape('js') }}';
+            var DateYYRegex = new RegExp(regex_str.substring(1, regex_str.length - 1));
+            var DateYYRegexError = '{{ constant('\\ESERV\\MAIN\\Services\\AppConstants::DATE_IN_YY_REG_EXP_ERROR') }}';
+
+            {% if app.user is not null and is_granted('IS_AUTHENTICATED_FULLY') %}
+                var isAuthenticated = true;
+                var portletColMinHeight = 42;
+                var default_app_font_size = 100;
+                var documentMainContainer = '#wrapper, .panel-title';
+                var smallestFontSize = 100;
+                var largestFontSize = 200;
+                var CurrentFontSize = '{{ user_settings is defined ? user_settings.themeFontSize : '100' }}';
+                var app_client_color_1 = '{{ app_client_color1 }}';
+                var app_client_color_2 = '{{ app_client_color2 }}';
+                var app_theme_color_1 = '{{ app_theme_color1 }}';
+                var app_theme_color_2 = '{{ app_theme_color2 }}';
+                var UserTheme = '{{ user_settings is defined ? user_settings.theme | eserv_get_user_theme('main') : 'mtl' }}';
+                var UserColorTheme = '{{ user_settings is defined ? user_settings.theme | eserv_get_user_theme('color') : 'DEFAULT' }}';
+                var UserScreenWidth = '{{ UserScreenWidth is defined ? UserScreenWidth : 'normal' }}';
+                var ClientDefaultTheme = '{{ app_client_short_name | trans }} Default';
+                var appAlertTimeOut = 20000;
+                var theme_folder = '{{ asset ('common/assets/css/themes/'~ app_theme ~'/') }}';
+                var client_theme_folder = '{{ asset ('clients/'~ app_client ~'/themes/'~ app_theme ~'/') }}';
+                var PreloaderImagePath = '{{ asset ('clients/'~ app_client ~'/themes/'~ app_theme ~'/images/main/processing_data.gif') }}?v={{ app_version }}_{{ NOW }}';
+                var QtipPreloaderImage = '{{ asset ('common/assets/images/icons/qtip_preloader.gif') }}';
+            {% else %}
+                var isAuthenticated = false;
+            {% endif %}
+        </script>
+        <script src="{{ asset ('common/assets/libs/jquery/jquery.min.js') }}?v={{ app_version }}"></script>
+        <script src="{{ asset ('common/assets/libs/jquery-ui/js/jquery-ui.min.js') }}?v={{ app_version }}"></script>
+        <script src="{{ asset ('common/assets/libs/jquery-cookie/jquery.cookie.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/libs/bootstrap/js/bootstrap.min.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/libs/bootstrap-switch/js/bootstrap-switch.min.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/libs/jquery-form/jquery.form.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/libs/jquery-qtip/js/jquery.qtip.min.js') }}"></script>
+        <script src="{{ asset ('common/assets/libs/angular/angular.min.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/libs/angular/angular-sanitize.min.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/libs/angular-ui-router/release/angular-ui-router.min.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/libs/angular-extra-modules/ui-bootstrap-tpls.min.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/libs/angular-extra-modules/angular-breadcrumb.min.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/libs/angular-extra-modules/dialogs.min.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/libs/select2/dist/js/select2.min.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/libs/jquery-metisMenu/js/metisMenu.min.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/libs/jquery-file-upload/js/file_upload_all.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+
+        {#--start of graphs js #}
+        {#
+        Samir 12.Feb.2017: Removed invalid if condition below
+        #}
+        {#% if app.request.uri~'#/dashboard/data'  %#}
+        <script src="{{ asset ('common/assets/libs/raphael/raphael.min.js') }}"></script>
+        <script src="{{ asset ('common/assets/libs/morris/morris.min.js') }}"></script>
+        {# <script src="{{ asset ('common/assets/libs/merlin/morris/morris.unmin.js') }}"></script>#}
+        {#%endif%#}
+        {#--end of graphs js #}
+
+        {% javascripts '@data_tables_js' %}
+        <script type="text/javascript" src="{{ asset_url }}?v={{ app_version }}_{{ NOW }}"></script>
+        {% endjavascripts %}
+        <script src="{{ asset ('common/assets/libs/merlin/js/eserv_functions.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/js/app.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/js/extras.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+    </body>
+</html>

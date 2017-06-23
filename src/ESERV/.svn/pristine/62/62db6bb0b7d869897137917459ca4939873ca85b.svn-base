@@ -1,0 +1,56 @@
+<style>    
+    {{ (app.request.scheme ~'://' ~ app.request.httpHost ~ asset ('common/assets/css/extras/print_pages.css')) | file_get_contents | raw }}
+    table.printable-table td:first-child {  
+        width: auto !important;
+        font-weight: normal !important;
+    }
+</style>
+<div class="printable-area">
+    {# header text area #}
+    {% if header_text is defined and header_text != '' %}        
+        <h2>{{ header_text }}</h2>
+        <hr />
+    {% endif %}
+    
+    {# content text area #}
+    {% if content_text is defined and content_text != '' %}        
+        <br/>
+        {{ content_text }}
+        <hr/>
+        <br/>
+    {% endif %}    
+    
+
+    <table class="printable-table">        
+        <tr>
+            {% for v in column_titles %}
+                <th>{{ v }}</th>
+            {% endfor %}              
+        </tr>
+        
+            {% for k,d in data %}
+                {% if d is not null %}
+                    <tr>
+                    {% for d1 in d %}
+                        <td>
+                            {% if '00:00:00' in d1  %}
+                                {{ d1 | slice(0, 10) }}
+                            {% else %}
+                                {{ d1 }}
+                            {% endif %}                            
+                        </td>
+                    {% endfor %}
+                    </tr> 
+                {% endif %}
+            {% endfor %}              
+        
+    </table>
+    
+    {% if extra_details is defined and extra_details == true %}        
+        <div>
+            <br/>
+            <span>Total Records :- {{ data | length  }}</span>
+        </div>
+    {% endif %}
+    
+</div>

@@ -1,0 +1,48 @@
+{% include '@weblogs_templates/innerPageHeader.html.twig' with {
+            'label': 'Code Maintenance' | trans,
+            'fa_icon': 'user-circle',
+            'buttons': [
+                {
+                    'label': 'New Code' | trans,
+                    'id':'new_code',
+                    'css_class': 'btn btn-success direction2',
+                    'ng_controller': 'EservModalCtrl',
+                    'ng_click': "openEservModal('eserv_main_user_add_new_code', 'New CODE', 'lg', {target_url: '" ~ path('weblogsmainmtl_code_maintainance_form_add', {}) ~ "'})",
+                    'fa_icon': 'plus-circle'
+                }
+            ]
+        }
+%}
+<hr/>
+
+ {{ dataTable | raw }}
+
+ <script>
+      $( document ).ready(function() {
+   
+    $(".select2-hidden-accessible").select2({
+  maximumSelectionLength: 1
+});
+    {#if($(".select2-hidden-accessible").val()!='')
+    {
+
+    }#}
+            {#$('#new_code').click(function(event) {
+
+            //alert("clcick");
+
+                if($(".select2-hidden-accessible").val()==null) 
+                {
+                    alert("true");
+
+                    
+                    $(".modal ").attr("style","display:hide");
+                    $(".ng-isolate-scope").hide();
+                }
+                else
+                {
+                    alert("else");
+                }
+                     });#}
+     });
+ </script>

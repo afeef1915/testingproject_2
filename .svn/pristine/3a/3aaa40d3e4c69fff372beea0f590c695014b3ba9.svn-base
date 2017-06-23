@@ -1,0 +1,50 @@
+imports:
+    - { resource: config.yml }
+
+parameters:
+#    database_driver: pdo_oci
+#    database_host: 81.144.135.118
+#    database_port: 1521
+#    database_name: logs 
+#    database_user: miller_web_demo
+#        database_password: mtl
+    database_driver: pdo_oci
+    database_host: mtldb11gvm4
+    database_port: 1521
+    database_name: logsdev 
+    database_user: miller_web_demo
+    database_password: mtl
+    
+ 
+    router:
+        resource: "%kernel.root_dir%/config/routing_dev.yml"
+        strict_requirements: true
+    profiler: { only_exceptions: false }
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
+
+monolog:
+    handlers:
+        main:
+            type:   stream
+            path:   "%kernel.logs_dir%/%kernel.environment%.log"
+            level:  debug
+        console:
+            type:   console
+            bubble: false
+        # uncomment to get logging in your browser
+        # you may have to allow bigger header sizes in your Web server configuration
+        #firephp:
+        #    type:   firephp
+        #    level:  info
+        #chromephp:
+        #    type:   chromephp
+        #    level:  info
+
+assetic:
+    use_controller: true
+
+#swiftmailer:
+#    delivery_address: me@example.com

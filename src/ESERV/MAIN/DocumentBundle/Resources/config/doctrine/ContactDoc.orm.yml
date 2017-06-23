@@ -1,0 +1,91 @@
+ESERV\MAIN\DocumentBundle\Entity\ContactDoc: 
+    type: entity
+    repositoryClass: ESERV\MAIN\DocumentBundle\Entity\ContactDocRepository
+    table: contact_doc
+    indexes:
+        fk_condoc_condocsub_idx:
+            columns:
+                - con_doc_sub_id
+        fk_condoc_docmasver_idx:
+            columns:
+                - document_master_version_id
+        fk_condoc_condocsto_idx:
+            columns:
+                - contact_doc_store_id
+        fk_condoc_fosuse1_idx:
+            columns:
+                - locked_by
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        version:
+            type: integer
+            nullable: false
+            unsigned: false
+        orderBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: order_by
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        conDocSub:
+            targetEntity: ESERV\MAIN\DocumentBundle\Entity\ContactDocumentSubscription
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                con_doc_sub_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        documentMasterVersion:
+            targetEntity: ESERV\MAIN\DocumentBundle\Entity\DocumentMasterVersion
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                document_master_version_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        contactDocStore:
+            targetEntity: ESERV\MAIN\DocumentBundle\Entity\ContactDocStore
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_doc_store_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        lockedBy:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                locked_by:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

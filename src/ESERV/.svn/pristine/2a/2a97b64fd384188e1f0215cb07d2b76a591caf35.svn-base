@@ -1,0 +1,6 @@
+parameters:
+
+services:
+    mm_user_web_service:
+             class: ESERV\MAIN\ProfileBundle\Services\ws\MmUserWebServices
+             arguments: ["@doctrine.orm.entity_manager","@service_container"] 

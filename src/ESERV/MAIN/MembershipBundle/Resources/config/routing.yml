@@ -1,0 +1,132 @@
+# Workplace
+eserv_main_workplace_new:
+    path:     /school/add
+    defaults: { _controller: ESERVMAINMembershipBundle:Workplace:newWorkplace }
+
+eserv_main_workplace_create:
+    path:     /school/create
+    defaults: { _controller: ESERVMAINMembershipBundle:Workplace:createWorkplace }
+    methods: [POST]
+    
+eserv_main_workplace_employer_auto_complete:
+    path:     /school/employer/auto_complete
+    defaults: { _controller: ESERVMAINMembershipBundle:Workplace:workplaceEmployerAutoComp }
+    
+eserv_main_workplace_render:
+    path:     /school/render/{id}
+    defaults: { _controller: ESERVMAINMembershipBundle:Workplace:renderWorkplace, id: null }    
+
+eserv_main_workplace_edit:
+    path:     /school/edit/{id}
+    defaults: { _controller: ESERVMAINMembershipBundle:Workplace:editWorkplace, id: null }    
+
+eserv_main_workplace_list:
+    path:     /school/list
+    defaults: { _controller: ESERVMAINMembershipBundle:Workplace:workplacesList }
+eserv_main_workplace_ajax_list:
+    path:     /school/ajaxList
+    defaults: { _controller: ESERVMAINMembershipBundle:Workplace:data }
+    
+eserv_main_workplace_by_employer_list:
+    path:     /school/listByEmployer
+    defaults: { _controller: ESERVMAINMembershipBundle:Workplace:workplacesListByEmployerOrgId }
+eserv_main_workplace_by_employer_ajax_list:
+    path:     /school/ajaxListByEmployer
+    defaults: { _controller: ESERVMAINMembershipBundle:Workplace:dataByEmployerOrgId }
+
+# Employer
+eserv_main_employer_new_test:
+    path:     /employer/add_test
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:newTestEmployer }
+
+eserv_main_employer_save_test:
+    path:     /employer/save_test
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:saveTestEmployer }
+    methods : [POST]
+    
+eserv_main_employer_new:
+    path:     /employer/add
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:newEmployer }
+    
+eserv_main_employer_create:
+    path:     /employer/create
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:createEmployer }
+    methods : [POST]
+    
+eserv_main_employer_update:
+    path:     /employer/update/{id}
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:updateEmployer, id: null }
+    methods : [POST]
+    
+eserv_main_employer_consortium_auto_complete:
+    path:     /employer/consortium/auto_complete
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:EmployerConsortiumAutoComp }  
+    
+eserv_main_employer_render:
+    path:     /employer/render/{id}
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:renderEmployer, id: null }
+
+eserv_main_employer_edit:
+    path:     /employer/edit/{id}
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:editEmployer, id: null }
+
+eserv_main_employer_list:
+    path:     /employer/list
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:employersList }
+
+eserv_main_employer_ajax_list:
+    path:     /employer/ajaxList
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:data }
+
+
+eservmain_membership_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ESERVMAINMembershipBundle:Default:index }
+    
+eserv_main_employer_employee_list:
+    path:     /employer/employee/list
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:employerEmployeesList }
+    
+eserv_main_employer_employee_list_data:
+    path:     /employer/employee/data
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:employerEmployeesData }
+
+# Member
+eservmain_membership_member_status_edit:
+    path:     /member/status/edit/{id}
+    defaults: { _controller: ESERVMAINMembershipBundle:Member:editMemberStatus, id: null }
+    
+eservmain_membership_member_status_update:
+    path:     /member/status/update/{id}
+    defaults: { _controller: ESERVMAINMembershipBundle:Member:updateMemberStatus, id: null }
+
+# Member Subject
+eserv_main_member_subject_list:
+    path:     /member-subject
+    defaults: { _controller: ESERVMAINMembershipBundle:Subject:subjectsList }
+    
+eserv_main_member_subject_ajax_list:
+    path:     /member-subject/ajaxList
+    defaults: { _controller: ESERVMAINMembershipBundle:Subject:data }
+
+eserv_main_member_subject_new:
+    path:     /member-subject/add
+    defaults: { _controller: ESERVMAINMembershipBundle:Subject:newSubject }
+    
+eserv_main_member_subject_create:
+    path:     /member-subject/create
+    defaults: { _controller: ESERVMAINMembershipBundle:Subject:createSubject }
+    methods : [POST]   
+    
+eserv_main_member_subject_update:
+    path:     /member-subject/update/{id}
+    defaults: { _controller: ESERVMAINMembershipBundle:Subject:updateSubject, id: null }
+    methods : [POST]    
+    
+eserv_main_member_subject_edit:
+    path:     /member-subject/edit/{id}
+    defaults: { _controller: ESERVMAINMembershipBundle:Subject:editSubject, id: null } 
+    
+eserv_main_employer_contractor_auto_complete:
+    path:     /employer/contractor/auto_complete
+    defaults: { _controller: ESERVMAINMembershipBundle:Employer:EmployerContractorAutoComp }      

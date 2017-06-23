@@ -1,0 +1,64 @@
+ESERV\MAIN\QualificationBundle\Entity\Establishment: 
+    type: entity
+    repositoryClass: ESERV\MAIN\QualificationBundle\Entity\EstablishmentRepository
+    table: establishment
+    indexes:
+        fk_est_appcode_1_idx:
+            columns:
+                - qual_type_id
+    uniqueConstraints:
+        fk_est_org_idx:
+            columns:
+                - organisation_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        qualType:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                qual_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        organisation:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Organisation
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                organisation_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

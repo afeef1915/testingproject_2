@@ -1,0 +1,14 @@
+{% for i, element in alt_languages %}
+    {% if i in existing_alt_languages_equivs|keys %}
+        {% set alt_name = existing_alt_languages_equivs[i] %}
+    {% else %}
+        {% set alt_name = null %}
+    {% endif %}
+    <div class="form-group">
+        {{ form_label(form[element] , null, {'label_attr': {'class': 'col-lg-4 control-label'} }) }}
+        <div class="col-lg-5">
+            <div class="eserv_field_value view">{{ alt_name }}</div>
+            {{ form_widget(form[element], {'attr': {'value': alt_name ,'class': 'form-control eserv_field_value edit', 'placeholder': element | trans } }) }}
+        </div>
+    </div>    
+{% endfor %}

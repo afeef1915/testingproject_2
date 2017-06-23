@@ -1,0 +1,38 @@
+ESERV\MAIN\ExternalBundle\Entity\QueuedDbProcesses:
+    type: entity
+    table: queued_db_processes
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 100
+        type:
+            type: string
+            length: 64
+            nullable: true
+        description:
+            type: string
+            length: 4000
+        processed:
+            type: string
+            length: 1
+        attempts:
+            type: integer
+            default: 0
+        result:
+            type: string
+            length: 4000
+        file_id:
+            type: integer 
+            length: 15
+        sf_guard_user_id:
+            type: integer 
+            length: 15
+        created_at:
+            type: datetime
+        created_by:
+            type: string 
+            length: 250

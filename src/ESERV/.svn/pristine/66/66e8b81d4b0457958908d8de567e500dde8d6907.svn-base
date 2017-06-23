@@ -1,0 +1,86 @@
+ESERV\TestBundle\Entity\GtcwVMentorTeacher: 
+    type: entity
+    table: gtcw_v_mentor_teacher
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        gtcwMentorTeacherId:
+            type: integer
+            nullable: false
+            column: gtcw_mentor_teacher_id
+        gtcwMentorId:
+            type: integer
+            nullable: false 
+            column: gtcw_mentor_id        
+        referenceNo:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: '' 
+            column: reference_no
+        firstName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: '' 
+            column: last_name
+        dateOfBirth:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: '' 
+            column: date_of_birth
+        fullName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: '' 
+            column: full_name    
+        startDate:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: '' 
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: true
+            fixed: false
+            comment: ''
+            column: end_date
+        visibleOnline:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: ''
+            column: visible_online
+        newMentee:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: ''
+            column: new_mentee

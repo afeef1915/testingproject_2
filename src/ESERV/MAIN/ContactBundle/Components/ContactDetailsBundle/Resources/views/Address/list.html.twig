@@ -1,0 +1,38 @@
+{#{{ include('ESERVMAINHelpersBundle:Form:colorCodeLegendForRecordType.html.twig') }}
+<hr />#}
+{{ dataTable | raw }}
+<div class="clearfix"></div><hr />
+<label for="include_hist_address" class="btn btn-success checkbox_switch_label">Show History</label>
+<input id="include_hist_address" type="checkbox" value="Y" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var fname_filter = '';
+        $("#include_hist_address").bootstrapSwitch({
+            onText: 'Yes',
+            offText: 'No',
+        });
+        $('#include_hist_address').on('switchChange.bootstrapSwitch', function (event, state) {
+            if (state) {
+                fname_filter = 'Y';                
+                //column.bVisible = true;
+            } else {
+                //column.bVisible = false;
+                fname_filter = 'N';
+            }
+            dataTableVar_{{ dataTable_id }}.fnMultiFilter({"history_record": fname_filter,});
+        });
+    });
+    
+    function eservAddressTableRowCallbackFunc(row, data) {
+        var cell_text = $("td", row).eq(7).html(); 
+        if (data[6] === "Y") {
+            var new_text = cell_text.replace("Edit", "View"); 
+            $("td", row).eq(7).html(new_text); 
+            $("td", row).eq(7).find( "span" ).each(function() {
+                $(this).replaceWith("View");
+            });
+        }
+    }
+    
+</script> 

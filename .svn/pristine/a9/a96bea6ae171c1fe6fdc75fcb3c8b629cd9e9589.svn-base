@@ -1,0 +1,76 @@
+
+<h3>{{ 'File to upload' | trans }}</h3>
+
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'attachment_id' } })}}
+<div class="eserv_container_form_errors"></div>
+<fieldset>
+
+    {{ form_eservRow (form.attachment, {
+            'labelSize':3,
+            'isUploadFile': true,
+            'formName': form.vars.name,
+            'uploadUrl': path('weblogs_core_main_media_files_upload_files', {'save_to_blob' : true }),
+            'formId': 'attachment_id',
+            'autoUpload': true,
+            'singleFileUpload': true,
+            'maxNumberOfFiles': 1,
+            'maxFileSize':3000000,
+            'acceptFileTypes': 'csv|txt|jpg|jpeg|png|bmp',
+            'addFilesLabel': 'Browse..' | trans
+    }) }}
+</fieldset>
+<input type="hidden"  name="log_id" id="log_id">
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12"  ng-controller="EservlogsModalCtrl">
+            <a class="btn btn-danger direction1"  ng-click="cancel()" id="addImageCancelBtn" >{{ 'Cancel' | trans }}</a>
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right direction2'} }) }}
+                
+        </div>
+    </div>
+</fieldset>
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+
+{{form_end(form)}}
+
+<script type="text/javascript">
+
+    var log_id = $("#weblogs_main_mtl_mylogsbundle_vmylogs_job_no").val();
+    // alert(log_id);
+    $("#log_id").val(log_id);
+    $(document).ready(function() {
+
+        //membershipField.closest('.form-group').hide();
+
+
+        //   prepareAppForms('{{ form.vars.name }}', false, false, '#/admin', 'InterfaceImportFiles');
+        prepareAppForms('{{ form.vars.name }}', false, {
+            type: 'dataTable',
+            id: '{{ refresh_table_id }}'
+        }, false, "AddEmailNotification", function(response,status) {
+            
+        if(response.success==true){          
+            $('#addImageCancelBtn').click();
+          }
+           
+        });
+    });{#    $('#{{ form.membershipOrg.vars.id }}').change(function () {
+            var thisVal = $(this).val();
+            var catMemOrgArray = {{ cat_mem_org | json_encode | raw }};
+
+            if(catMemOrgArray.indexOf(thisVal) > -1){
+                membershipField.closest('.form-group').show();
+                membershipField.show();
+                AddRequired(membershipField);
+            } else {
+                membershipField.closest('.form-group').hide();
+                membershipField.val('');
+                membershipField.hide();
+                RemoveRequired(membershipField);
+            }
+        });#}
+
+</script>

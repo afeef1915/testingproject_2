@@ -1,0 +1,43 @@
+ESERV\MAIN\HistoryBundle\Entity\Audit:
+    type: entity
+    table: audit
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        type:
+            type: string  
+            length: 1  
+        entity_name:
+            type: string
+            length: 64 
+        entity_id:
+            type: string
+            length: 1000 
+        field_name:
+            type: string
+            length: 64            
+        field_type:
+            type: string
+            length: 32
+        old_value:
+            type: string
+            length: 1000
+        new_value:
+            type: string
+            length: 1000
+        update_date:
+            type: datetime
+        db_user_name:
+            type: string
+            length: 64
+        application_user_name:
+            type: string
+            length: 64
+        synchronise_flag:
+            type: string
+            length: 1
+        synchronise_job_id:
+            type: string
+            length: 1

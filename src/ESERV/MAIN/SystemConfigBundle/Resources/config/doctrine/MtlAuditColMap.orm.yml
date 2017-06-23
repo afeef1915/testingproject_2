@@ -1,0 +1,62 @@
+ESERV\MAIN\SystemConfigBundle\Entity\MtlAuditColMap: 
+    type: entity
+    repositoryClass: ESERV\MAIN\SystemConfigBundle\Entity\MtlAuditColMapRepository
+    table: mtl_audit_col_map
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        entityName:
+            type: string
+            length: 200
+            fixed: false
+            column: entity_name
+        fieldName:
+            type: string
+            length: 100
+            fixed: false
+            column: field_name
+        fieldDesc:
+            type: string
+            length: 500
+            fixed: false
+            column: field_desc
+        masterTable:
+            type: string
+            length: 100
+            fixed: false
+            column: master_table
+        codeColumn:
+            type: string
+            length: 100
+            fixed: false
+            column: code_column
+        valueColumn:
+            type: string
+            length: 100
+            fixed: false
+            column: value_column        
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    lifecycleCallbacks: {  }

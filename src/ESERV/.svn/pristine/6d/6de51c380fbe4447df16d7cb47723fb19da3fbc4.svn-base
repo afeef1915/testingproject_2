@@ -1,0 +1,136 @@
+{% set counterStartTime = '00:' ~ locked_page_config.total_time_minutes  ~ ':05' %}
+{#{% set counterStartTime = '00:00:30' %}#}
+{% set counterWarningTime = [00,locked_page_config.warning_time_minutes,00] %}
+{#{% set counterWarningTime = [00,00,02] %}#}
+{% set counterEndTime = [00,00,01] %}
+<div id="eserv_timer_and_refresh" data-spy="affix" data-offset-top="400" id="nav">
+    <div class="user-locked-page-alert alert alert-danger pull-left border">
+        <div class="icon">
+            <i class="fa fa-exclamation-triangle"></i>
+        </div>
+        <span class="user-locked-page-message"></span>
+    </div>
+    <div class="btn btn-success btn-sm pull-right col-md-2 col-xs-12 user-locked-page-refresh-btn"         
+         data-locked-page-code="{{ locked_page_code }}"
+         data-locked-page-id="{{ locked_page_id }}"
+         style="margin: 1px">
+        <i class="fa fa-refresh"></i> {{"Refresh" | eservices_db_trans}}
+    </div>
+    <div class="btn btn-info btn-sm pull-right col-md-2 col-xs-10 eserv-blinker user-locked-page-counter" style="margin: 1px">
+        <i class="fa fa-clock-o"></i> <span class="time">{{ counterStartTime }}</span>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var formLockCounter;
+   
+    $(document).ready(function (e) {  
+        
+        getCounter(); 
+        
+        $('.user-locked-page-refresh-btn').click(function () {
+            var thisElement = $(this);
+            thisElement.find('.fa .fa-refresh').removeClass('fa fa-refresh').addClass('glyphicon glyphicon-refresh spin');
+            var pageCode = thisElement.data('locked-page-code');
+            var pageId = thisElement.data('locked-page-id');
+            $.ajax({                      
+                url: '{{ path('eserv_main_profile_user_locked_page_refresh')}}'+'/'+pageCode+'/'+pageId,
+                type: 'POST',
+                success: function (responseText) {
+                    if (responseText.success) {  
+                        thisElement.find('.glyphicon.glyphicon-refresh.spin').removeClass('glyphicon glyphicon-refresh spin').addClass('fa fa-refresh');
+                        $(".user-locked-page-counter .time").html('{{ counterStartTime }}');
+                        $("#eserv_timer_and_refresh").find('.user-locked-page-message').html('');
+                        $("#eserv_timer_and_refresh").find('.user-locked-page-alert').hide();
+                        $("#eserv_timer_and_refresh").find('.user-locked-page-counter').removeClass('btn-danger').addClass('btn-info');
+                        $(".user-locked-page-counter").show();
+                        $(".user-locked-page-refresh-btn").show();
+                        DisplayAppAlert('success', responseText.msg);                        
+                    }else {
+                        DisplayAppAlert('danger', responseText.msg, true, true, true, 2100000);
+                        if(responseText.redirect_to_home == true){
+                            window.location.href = '{{ path("eserv_home_homepage") }}';
+                        }
+                    }                   
+                }
+            });
+        });
+    });//end of document ready function 
+
+    function getCounter() {        
+        var warningTime;
+        var endTime;
+        var counter = $(".user-locked-page-counter .time");
+        var counterTimeStr = counter.html();
+        var counterTime = timeStringToDateTime(counterTimeStr);
+        var newCounterTime = new Date(counterTime.valueOf() - 1000);
+        var timeStr = newCounterTime.toTimeString().split(" ")[0];
+        counter.html(timeStr);
+        warningTime = new Date(counterTime.valueOf() - 1000);
+        warningTime.setHours({{ counterWarningTime[0] }}, {{ counterWarningTime[1] }}, {{ counterWarningTime[2] }});
+        endTime = new Date(counterTime.valueOf() - 1000);
+        endTime.setHours({{ counterEndTime[0] }}, {{ counterEndTime[1] }}, {{ counterEndTime[2] }});               
+        if(newCounterTime < endTime){
+            $("#eserv_timer_and_refresh").find('.user-locked-page-message').html('The session has expired!');
+            //$("#eserv_timer_and_refresh").find('.user-locked-page-message').show();
+            $("#eserv_timer_and_refresh").find('.user-locked-page-alert').show();
+            $(".user-locked-page-counter").hide();
+            $(".user-locked-page-refresh-btn").hide();
+            unlockLockedPage('{{ locked_page_code }}','{{ locked_page_id }}', true);            
+        }else if((newCounterTime <= warningTime) && (newCounterTime >= endTime)){
+            $("#eserv_timer_and_refresh").find('.user-locked-page-counter').removeClass('btn-info').addClass('btn-danger');
+            $("#eserv_timer_and_refresh").find('.user-locked-page-message').html('The session is going to expire. Please save your work or press the refresh button!');
+            //$("#eserv_timer_and_refresh").find('.user-locked-page-message').show();
+            $("#eserv_timer_and_refresh").find('.user-locked-page-alert').show();
+            blinker();
+            formLockCounter = setTimeout(getCounter, 1000);
+        }else {           
+            //$("#eserv_timer_and_refresh").find('.user-locked-page-message').hide();
+            $("#eserv_timer_and_refresh").find('.user-locked-page-alert').hide();
+            $(".user-locked-page-counter").show();
+            $(".user-locked-page-refresh-btn").show();
+            formLockCounter = setTimeout(getCounter, 1000);
+        }
+    }
+    
+    function timeStringToDateTime(timeStr) {
+        var ss = timeStr.split(":");
+        var dt = new Date();
+        dt.setHours(ss[0]);
+        dt.setMinutes(ss[1]);
+        dt.setSeconds(ss[2]);
+        return dt;
+    }
+    
+    function unlockLockedPage(pageCode, pageId, call_exp_callbk, success_callbk) {
+        $('#eserv_main_loader').show();
+        clearTimeout(formLockCounter);
+        $.ajax({
+            url: '{{ path('eserv_main_profile_user_locked_page_unlock_page')}}'+ '/'+pageCode+'/'+pageId,
+            type: 'POST',
+            success: function (responseText) {
+                if (responseText.success) {   
+                        
+                        {% if expired_callback is defined %}
+                            if((call_exp_callbk !== 'undefined' && true == call_exp_callbk) && '{{ expired_callback }}' !== 'undefined'){
+                                {{ expired_callback }}();
+                            }                         
+                        {% endif %} 
+                        
+                        if(success_callbk !== 'undefined' && false !== success_callbk){
+                            success_callbk();
+                        }                     
+            
+                }else {
+                    $('#eserv_main_loader').hide();
+                    DisplayAppAlert('danger', responseText.msg);
+                }                   
+            }
+        });
+    }
+
+    function blinker() {
+        $('.eserv-blinker').fadeOut(500);
+        $('.eserv-blinker').fadeIn(500);
+    }
+</script>

@@ -1,0 +1,57 @@
+ESERV\MAIN\ProfileBundle\Entity\UserNotifications:
+    type: entity
+    table: user_notifications
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        type:
+            type: string
+            length: 64
+        mm_user_profile_id:
+            type: integer
+        fos_user_id:
+            type: integer
+            nullable: true
+        file_id:
+            type: integer
+            nullable: true
+        priority:
+            type: string
+        title:
+            type: string
+        description:
+            type: string    
+            length: 3000
+        is_active:
+            type: string    
+            length: 1            
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint
+    manyToOne:
+        mm_user_profile:
+            targetEntity: MmUserProfile
+            inversedBy: user_notifications
+            joinColumn:
+                name: mm_user_profile_id
+                referencedColumnName: id
+        fos_user:
+            targetEntity: FOS\UserBundle\Model\User
+            inversedBy: user_notifications
+            joinColumn:
+                name: fos_user_id
+                referencedColumnName: id
+    oneToMany:
+        user_notifications_status:
+            targetEntity: UserNotificationsStatus
+            mappedBy: user_notifications
+            joinColumn:
+                name: id
+                referencedColumnName: user_notifications_id            

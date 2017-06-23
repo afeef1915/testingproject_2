@@ -1,0 +1,7 @@
+[app_info]
+version = 'v1.0.0'
+merlin_core_version = 'v1.0.0'
+merlinora_version = 'v1.0.0'
+environments = 'weblogs_dev|logsdev'
+logo_path = 'web/clients/mtl/themes/default/images/logos/login_screen_logo.png'
+qa_env = 'weblogs_dev|logsdev'

@@ -1,0 +1,52 @@
+<table width="100%">
+    <tbody>
+        <tr>
+            <td>
+                <table width="100%" style="font-family: 'Myriad Pro',Helvetica,Arial,sans-serif; color: rgb(51, 51, 51); font-size: 90%;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h3 style="font-family: 'Myriad Pro',Helvetica,Arial,sans-serif; font-size: 20px; color: rgb(102, 102, 102);">Dear {{ diplayName }},</h3>
+                                <p style="color:#333;font-family: 'Myriad Pro',Helvetica,Arial,sans-serif; font-size: 14px;">
+                                    We have created your account.
+                                    <br />
+                                    <br />
+                                    You are a step away from setting up your account
+                                </p>
+                                <p>&nbsp;</p>
+                                <p style="text-align: center;font-family: 'Myriad Pro',Helvetica,Arial,sans-serif; font-size: 14px;"><a href="{{ activation_link }}" class="btn-primary">Click here to activate your account!</a></p>
+                                <p>&nbsp;</p>
+                                <p style="color:#333;font-family: 'Myriad Pro',Helvetica,Arial,sans-serif; font-size: 14px;">
+                                    <strong>Username: </strong>{{ username }}
+                                    <br /><br />
+                                    <strong>Verification Code: </strong><span>{{ password }}</span>
+                                </p>
+                            </td>
+                            <td class="expander"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>&nbsp;</p>
+                <table width="100%" align="center">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table width="100%" cellspacing="0" cellpadding="10" align="center">
+                                    <tbody>
+                                        <tr bgcolor="#FFE6E6">
+                                            <td width="5px"></td>
+                                            <td>
+                                                <p style="color:#CC0000;font-family: 'Myriad Pro',Helvetica,Arial,sans-serif; font-size: 14px;">Please note that this link will expire in 48 hours.</p>
+                                            </td>
+                                            <td width="5px"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

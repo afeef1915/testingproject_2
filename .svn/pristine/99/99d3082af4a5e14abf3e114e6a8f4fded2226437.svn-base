@@ -1,0 +1,161 @@
+WEBLOGS\MAIN\MTL\MyLogsBundle\Entity\MtlLogs:
+    type: entity
+    table: mtl_logs
+#    id:
+#        id:
+#            type: integer
+#            id: true
+#            generator:
+#                strategy: AUTOselect 
+  
+          
+   
+    fields:
+        LOG_ID:
+            type: string
+            length: '10'
+            id: true
+            column: LOG_ID
+        CUSTOMER:
+            type: string
+            length: '20'
+            column: CUSTOMER
+        DATE_REQUESTED:
+            type: date
+            column: DATE_REQUESTED
+        DATE_REQUIRED:
+            type: date
+            column: DATE_REQUIRED
+        REQUESTED_BY:
+            type: string
+            length: '50'
+            column: REQUESTED_BY
+        APPROVED_BY:
+            type: string
+            length: '20'
+            column: APPROVED_BY
+        PRIORITY_LEVEL:
+            type: string
+            length: '20'
+            column: PRIORITY_LEVEL
+        CATEGORY:
+            type: string
+            length: '10'
+            column: CATEGORY 
+        DESCRIPTION:
+            type: string
+            length: '4000'
+            column: DESCRIPTION 
+        MTL_PERSON_ID:
+            type: string
+            length: '20'
+            column: MTL_PERSON_ID 
+        ESTIMATE:
+            type: string
+            length: '10'
+            column: ESTIMATE 
+        DATE_COMPLETED:
+            type: date
+            column: DATE_COMPLETED
+        TIME_TAKEN:
+            type: string
+            length: '50'
+            column: TIME_TAKEN
+        COMPLETED_BY:
+            type: string
+            length: '50'
+            column: COMPLETED_BY
+        MTL_DESCRIPTION:
+            type: string
+            length: '4000'
+            column: MTL_DESCRIPTION
+        MTL_CATEGORY:
+            type: string
+            length: '20'
+            column: MTL_CATEGORY
+        MTL_ACTION:
+            type: string
+            length: '50'
+            column: MTL_ACTION
+        CHARGABLE:
+            type: string
+            length: '50'
+            column: CHARGABLE
+        INVOICE_NO:
+            type: string
+            length: '50'
+            column: INVOICE_NO
+        DATE_INVOICED:
+            type: date
+            column: DATE_INVOICED
+        SLO_USER_ID:
+            type: string
+            length: '50'
+            column: SLO_USER_ID
+        SLO_DATE_LAST_UPDATED:
+            type: date
+            column: SLO_DATE_LAST_UPDATED
+        SLO_DATE_ENTERED:
+            type: date
+            column: SLO_DATE_ENTERED
+        MLO_QUOTE_ID:
+            type: string
+            length: '50'
+            column: MLO_QUOTE_ID
+        CUSTOMER_LOG_ID:
+            type: string
+            length: '50'
+            column: CUSTOMER_LOG_ID
+        SHORT_DESCRIPTION:
+            type: string
+            length: '200'
+            column: SHORT_DESCRIPTION
+        INVOICE_AMOUNT:
+            type: integer
+            column: INVOICE_AMOUNT
+        RELEASE_DATE:
+            type: date
+            column: RELEASE_DATE
+        SIGN_OFF_DATE:
+            type: date
+            column: SIGN_OFF_DATE
+        MTL_IMPACT:
+            type: string
+            length: '50'
+            column: MTL_IMPACT
+        VERSION_NO:
+            type: string
+            length: '50'
+            column: VERSION_NO
+        MTL_BUDGET_CODE:
+            type: string
+            length: '50'
+            column: MTL_BUDGET_CODE
+        MTL_BUDGET_CODE:
+            type: string
+            length: '50'
+            column: MTL_BUDGET_CODE
+        MTL_DEV_ID:
+            type: string
+            length: '50'
+            column: MTL_DEV_ID
+        MTL_DEV_START_DATE:
+            type: date
+            column: MTL_DEV_START_DATE
+        MTL_DEV_END_DATE:
+            type: date
+            column: MTL_DEV_END_DATE
+        DATE_DOWNLOADED:
+            type: date
+            column: DATE_DOWNLOADED
+        URGENT:
+            type: string
+            length: '50'
+            column: URGENT
+        DATE_UPDATED:
+            type: date
+            column: DATE_UPDATED
+        LOG_DUE_DATE:
+            type: date
+            column: LOG_DUE_DATE
+    lifecycleCallbacks: {  }

@@ -1,0 +1,79 @@
+ESERV\MAIN\DocumentBundle\Entity\DocumentMasterAccess: 
+    type: entity
+    repositoryClass: ESERV\MAIN\DocumentBundle\Entity\DocumentMasterAccessRepository
+    table: document_master_access
+    indexes:
+        fk_docmasacc_docmas_idx:
+            columns:
+                - document_master_id
+        fk_docmasacc_fosgro_idx:
+            columns:
+                - fos_group_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        signOffAccess:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: sign_off_access
+        updateAccess:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: update_access
+        viewAccess:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: view_access
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        documentMaster:
+            targetEntity: ESERV\MAIN\DocumentBundle\Entity\DocumentMaster
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                document_master_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        fosGroup:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\Group
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fos_group_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

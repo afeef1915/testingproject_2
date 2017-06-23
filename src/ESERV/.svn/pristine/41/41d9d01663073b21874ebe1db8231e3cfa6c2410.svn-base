@@ -1,0 +1,77 @@
+<div class="edit_page_header">
+    {% if header is defined %}
+    <h4>{{ header }}</h4>
+    {% endif %}
+    {% if id is defined and name is defined%}
+    <!-- <h4>Editing </h4> -->
+    <div class="edit_page_name">  
+        <span class="edit_record_header_id">{{ id | raw}}</span>, <span class="edit_record_header_name">{{ name }}</span> {% if contact_id is defined %}<span class="edit_record_header_id">({{ contact_id }})</span>{% endif %}
+    </div>
+    {% endif %}
+    {% if showComms is defined %}
+        {% set CommsOpts = '{entity_name: "' ~ showComms.entity_name ~ '", entity_id: "' ~ showComms.entity_id ~ '", contact_id: "' ~ showComms.contact_id ~ '", csl_code: "'  ~ (csl_code is defined ? csl_code : '') ~ '"}' %}
+        <button ng-show="comms_btn" ng-controller="CommsCtrl" class="btn btn-sm btn-default pull-right" ng-click="openComms('lg', {{ CommsOpts }})">
+            <i class="fa fa-globe"></i> 
+            <!-- <span class="desktop_inline_text">Communication</span> -->
+            Communication
+        </button>
+    {% endif %}
+    {% if showActivities is defined %}
+        {% set ActivitiesOpts = '{entity_name: "' ~ showActivities.entity_name ~ '", entity_id: "' ~ showActivities.entity_id ~ '", contact_id: "' ~ showActivities.contact_id ~ '"}' %}
+        <button ng-show="activities_btn" ng-controller="ActivitiesCtrl" class="btn btn-sm btn-default pull-right" ng-click="openActivities('lg', {{ ActivitiesOpts }})">
+            <i class="fa fa-th-large"></i> 
+            <!-- <span class="desktop_inline_text">Activities</span> -->
+            Activities
+        </button>
+    {% endif %}
+
+    {% if showNotes is defined %}        
+        <div ng-controller="EservNotesCtrl">
+            <script type="text/javascript">        
+                var EservNotes = {{ showNotes.notes_json | raw }};
+                var NotesEntityId = {{ showComms.entity_id }};
+            </script>
+            <button type="button" class="btn btn-sm btn-default pull-right" ng-click="OpenNotes('lg')">
+                <i class="fa fa-info-circle"></i> 
+                Alerts <span class="badge {% verbatim %} {{ notes.length > 0 ? 'alert-danger' : ''  }} {% endverbatim %}"><div>{% verbatim %} {{ notes.length }} {% endverbatim %}</div></span>
+            </button>
+                
+            
+        </div>
+    {% endif %}
+    {% if buttons is defined %}        
+        {% for button in buttons %}
+            {% if button is not empty %}
+                {% if button.type is defined and button.type == 'template' %}
+                     {{ include(button.source, button.params) }}
+                {% elseif button.type is defined and button.type == 'modal' %}
+                    <a ng-click="openEservModal('{{button.modal_id is defined ? button.modal_id : 'eserv_main_modal_id'}}', '{{button.modal_title is defined ? button.modal_title : 'New Modal'}}', 'lg', {target_url: '{{button.url}}'})" 
+                       ng-controller="EservModalCtrl"
+                       class="{{ button.button_class is defined ? button.button_class : 'btn btn-success' }}" 
+                       >
+                        {% if button.icon_class is defined and button.icon_class is not sameas(null) and button.icon_class is not sameas(false)%}
+                            <i class="{{button.icon_class}}"></i> 
+                        {% endif %}
+                        {% if button.label is defined and button.label is not sameas(false) %} 
+                            <span class="navbar-profile-label {% if button.label_for_pc_only is defined and button.label_for_pc_only is sameas(true) %} desktop_inline_text {% endif %}">{{ button.label }}</span>
+                        {% endif %}
+                    </a>
+                {% else %}
+                    <a {{ button.url is defined ? ' href=' ~ button.url  }} 
+                        class="{{ button.button_class is defined ? button.button_class : 'btn btn-success' }} pull-right" 
+                        {% if button.extra_attr is defined and button.extra_attr is iterable %}
+                            {% for k,attr in button.extra_attr %}
+                                {{ (' ' ~ k ~ '="' ~ attr ~ '" ') | raw }}
+                            {% endfor %}
+                        {% endif %}
+                        target="{{ button.target is defined ? button.target : '_blank' }}">
+                         <i class="{{ button.icon_class is defined ? button.icon_class : 'fa fa-print' }}"></i>
+                         {% if button.label is defined and button.label is not sameas(false) %} <span class="navbar-profile-label {% if button.label_for_pc_only is defined and button.label_for_pc_only is sameas(true) %} desktop_inline_text {% endif %}">{{ button.label }}</span>{% endif %}
+
+                     </a>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <div class="clearfix"></div>
+</div>

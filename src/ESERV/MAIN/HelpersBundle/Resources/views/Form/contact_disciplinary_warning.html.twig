@@ -1,0 +1,9 @@
+{% if cont_disc is defined and cont_disc.show_error == 'Y' %}
+    <div class="alert alert-danger" role="alert" style="margin-top: 5px">
+        <strong> {{ cont_disc.title }}</strong> {{ cont_disc.message }}
+        <button type="button" class="btn btn-danger close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+    </div>
+{% endif %}

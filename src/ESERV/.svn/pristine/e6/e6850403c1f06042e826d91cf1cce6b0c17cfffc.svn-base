@@ -1,0 +1,7 @@
+parameters:
+#    eservcore_history.example.class: ESERV\MAIN\HistoryBundle\Example
+
+services:
+#    eservcore_history.example:
+#        class: %eservcore_history.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

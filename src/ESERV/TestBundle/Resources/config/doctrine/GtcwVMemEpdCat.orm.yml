@@ -1,0 +1,30 @@
+ESERV\TestBundle\Entity\GtcwVMemEpdCat: 
+    type: entity
+    table: gtcw_v_mem_epd_cat
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        gtcwMemEpdCatId:
+            type: integer
+            nullable: false
+            column: gtcw_mem_epd_cat_id
+        gtcwMemEpdId:
+            type: integer
+            nullable: false
+            column: gtcw_mem_epd_id
+        category:
+            type: string                    
+            column: category
+        award:
+            type: integer            
+            fixed: false
+            comment: '' 
+            column: award         

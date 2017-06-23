@@ -1,0 +1,7 @@
+{{ dataTable | raw }}
+
+<hr />
+<button class="btn btn-success pull-right direction2" ng-controller="EservModalCtrl" ng-click="openEservModal('eserv_main_contact_relationship_new_modal_id', 'Add New Related Contact', 'lg', {target_url: '{{ path('eserv_main_contact_relationship_new', { 'contact_a': contact_a }) }}'})">
+    <i class="fa fa-plus-circle"></i>
+    {{ 'Add New Related Contact' | trans }}
+</button>

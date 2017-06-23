@@ -1,0 +1,28 @@
+WEBLOGS\MAIN\MTL\DashboardBundle\Entity\VWwvCustomers:
+    type: entity
+    table: v_wwv_customers
+#    id:
+#        dtindex:
+#            type: string
+#            nullable: false
+#            length: 10
+#            fixed: false
+#            id: true
+#            generator:
+#            strategy: IDENTITY
+    fields:
+        customer_id:
+            type: string
+            nullable: false
+            length: 100
+            id: true
+            fixed: false
+            column: customer_id
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            column: name
+        
+    lifecycleCallbacks: {  }

@@ -1,0 +1,44 @@
+ESERV\MAIN\ContactBundle\Entity\ContactRoleLogo:
+    type: entity
+    table: contact_role_logo
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        contact_role_id:
+            type: integer
+            length: 11
+        description:
+            type: string        
+        date_created:
+            type: datetime
+        date_approved:
+            type: datetime
+        contact_approved_id:
+            type: integer
+            length: 11
+        external_id:
+            type: string
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint
+    uniqueConstraints:
+       idx_ContactRoleLogo_a_idx: 
+           columns: [ contact_role_id ]
+       idx_ContactRoleLogo_b_idx: 
+           columns: [ contact_approved_id ]        
+    manyToOne:
+        contact_role:
+            targetEntity: ContactRole
+            inversedBy: contact_role_logo
+            joinColumn:
+                name: contact_role_id
+                referencedColumnName: id
+    oneToMany:
+        

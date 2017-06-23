@@ -1,0 +1,13 @@
+<li class="list-group-item settings-toggler">
+    {{ label }}
+    <div class="material-switch pull-right">
+        <input id="{{ id }}" class="{{ class }}" type="checkbox" />
+        <label for="{{ id }}" class="label-success"></label>
+    </div>
+    {% if description is defined %}
+        <div class="clearfix"></div>
+        <small class="text-muted">
+            {{ description }}
+        </small>
+    {% endif %}
+</li>

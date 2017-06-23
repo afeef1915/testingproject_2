@@ -1,0 +1,156 @@
+<div class="eserv_admin_area">
+    <div class="col-sm-3 col-md-3 inner_side_nav">
+        <accordion>
+            <!--
+            <accordion-group is-open="client_data_open">
+                <accordion-heading>
+                    Client Data <i class="pull-right fa" ng-class="{'fa-chevron-down': client_data_open, 'fa-chevron-right': !client_data_open}"></i>
+                </accordion-heading>
+                <ul class="">
+                    <li ng-class="{active: $state.includes('admin.add_client_group')}"><a ui-sref="admin.add_client_group"><i class="fa fa-plus-circle"></i> Add new group</a></li>
+                    <li ng-class="{active: $state.includes('admin.add_client_field')}"><a ui-sref="admin.add_client_field"><i class="fa fa-plus-circle"></i> Add new field</a></li>
+                </ul>
+            </accordion-group>  
+            -->
+            <accordion-group is-open="application_code_open">
+                <accordion-heading>
+                    Application Code <i class="pull-right fa" ng-class="{'fa-chevron-down': application_code_open, 'fa-chevron-right': !application_code_open}"></i>
+                </accordion-heading>
+                <ul class="">
+                    <li ng-class="{active: $state.includes('admin.manage_application_codes.add')}"><a ui-sref="admin.manage_application_codes.add"><i class="fa fa-plus-circle"></i> Add Application Code</a></li>
+                    <li ng-class="{active: $state.includes('admin.manage_application_codes')}"><a ui-sref="admin.manage_application_codes"><i class="fa fa-cog"></i> Application Code Groups</a></li>
+                </ul>
+            </accordion-group>
+            <accordion-group is-open="manage_contact_status_open">
+                <accordion-heading>
+                    Contact Status <i class="pull-right fa" ng-class="{'fa-chevron-down': manage_contact_status_open, 'fa-chevron-right': !manage_contact_status_open}"></i>
+                </accordion-heading>
+                <ul class="">                    
+                    <li ng-class="{active: $state.includes('admin.manage_contact_status.add')}"><a ui-sref="admin.manage_contact_status.add"><i class="fa fa-plus-circle"></i> Add Contact Status</a></li>                    
+                    <li ng-class="{active: $state.includes('admin.manage_contact_status')}"><a ui-sref="admin.manage_contact_status"><i class="fa fa-cog"></i> Manage Contact Status </a></li>
+                </ul>
+            </accordion-group>
+            <accordion-group is-open="qualification_open">
+                <accordion-heading>
+                    Qualifications <i class="pull-right fa" ng-class="{'fa-chevron-down': qualification_open, 'fa-chevron-right': !qualification_open}"></i>
+                </accordion-heading>
+                <ul class="">
+                    <li ng-class="{active: $state.includes('admin.manage_qualifications.add')}"><a ui-sref="admin.manage_qualifications.add"><i class="fa fa-plus-circle"></i> Add Qualification</a></li>
+                    <li ng-class="{active: $state.includes('admin.manage_qualifications')}"><a ui-sref="admin.manage_qualifications"><i class="fa fa-cog"></i> Manage Qualifications</a></li>
+                </ul>
+            </accordion-group>
+            <accordion-group is-open="subject_open">
+                <accordion-heading>
+                    Subjects <i class="pull-right fa" ng-class="{'fa-chevron-down': subject_open, 'fa-chevron-right': !subject_open}"></i>
+                </accordion-heading>
+                <ul class="">
+                    <li ng-class="{active: $state.includes('admin.manage_subjects.add')}"><a ui-sref="admin.manage_subjects.add"><i class="fa fa-plus-circle"></i> Add Subject</a></li>
+                    <li ng-class="{active: $state.includes('admin.manage_subjects')}"><a ui-sref="admin.manage_subjects"><i class="fa fa-cog"></i> Manage Subjects</a></li>
+                </ul>
+            </accordion-group>
+            <accordion-group is-open="template_open">
+                <accordion-heading>
+                    Templates <i class="pull-right fa" ng-class="{'fa-chevron-down': template_open, 'fa-chevron-right': !template_open}"></i>
+                </accordion-heading>
+                <ul class="">
+                    <li ng-class="{active: $state.includes('admin.manage_templates.add_header')}"><a ui-sref="admin.manage_templates.add_header"><i class="fa fa-plus-circle"></i> Add Header</a></li>
+                    <li ng-class="{active: $state.includes('admin.manage_templates.add_footer')}"><a ui-sref="admin.manage_templates.add_footer"><i class="fa fa-plus-circle"></i> Add Footer</a></li>
+                    <li ng-class="{active: $state.includes('admin.manage_templates.add_letter')}"><a ui-sref="admin.manage_templates.add_letter"><i class="fa fa-plus-circle"></i> Add Letter</a></li>
+                    <li ng-class="{active: $state.includes('admin.manage_templates.add_email')}"><a ui-sref="admin.manage_templates.add_email"><i class="fa fa-plus-circle"></i> Add Email</a></li>
+                    <li ng-class="{active: $state.includes('admin.manage_templates')}"><a ui-sref="admin.manage_templates"><i class="fa fa-cog"></i> Manage Templates</a></li>
+                </ul>
+            </accordion-group>
+            <accordion-group is-open="category_open">
+                <accordion-heading>
+                    Categories <i class="pull-right fa" ng-class="{'fa-chevron-down': category_open, 'fa-chevron-right': !category_open}"></i>
+                </accordion-heading>
+                <ul class="">
+                    <li ng-class="{active: $state.includes('admin.manage_categories.add')}"><a ui-sref="admin.manage_categories.add"><i class="fa fa-plus-circle"></i> Add Category</a></li>
+                    <li ng-class="{active: $state.includes('admin.manage_categories')}"><a ui-sref="admin.manage_categories"><i class="fa fa-cog"></i> Manage Categories</a></li>
+                </ul>
+            </accordion-group>
+            <!--
+            <accordion-group is-open="individual_open">
+                <accordion-heading>
+                    Individuals <i class="pull-right fa" ng-class="{'fa-chevron-down': individual_open, 'fa-chevron-right': !individual_open}"></i>
+                </accordion-heading>
+                <ul class="">
+                    <li ng-class="{active: $state.includes('admin.add_individual')}"><a ui-sref="admin.add_individual"><i class="fa fa-plus-circle"></i> Add Individual</a></li>
+                    <li ng-class="{active: $state.includes('admin.manage_individuals')}"><a ui-sref="admin.manage_individuals"><i class="fa fa-cog"></i> Manage Individuals</a></li>
+                </ul>
+            </accordion-group>
+            <accordion-group is-open="mentor_open">
+                <accordion-heading>
+                    Mentors <i class="pull-right fa" ng-class="{'fa-chevron-down': mentor_open, 'fa-chevron-right': !mentor_open}"></i>
+                </accordion-heading>
+                <ul class="">
+                    <li ng-class="{active: $state.includes('admin.add_mentor')}"><a ui-sref="admin.add_mentor"><i class="fa fa-plus-circle"></i> Add Mentor</a></li>
+                    <li ng-class="{active: $state.includes('admin.manage_mentors')}"><a ui-sref="admin.manage_mentors"><i class="fa fa-cog"></i> Manage Mentors</a></li>
+                </ul>
+            </accordion-group>
+            -->
+            <accordion-group is-open="help_messages_open">
+                <accordion-heading>
+                    Help Messages <i class="pull-right fa" ng-class="{'fa-chevron-down': help_messages_open, 'fa-chevron-right': !help_messages_open}"></i>
+                </accordion-heading>
+                <ul class="">
+                    <li ng-class="{active: $state.includes('admin.manage_help_messages.add')}"><a ui-sref="admin.manage_help_messages.add"><i class="fa fa-plus-circle"></i> Add Help Message</a></li>
+                    <li ng-class="{active: $state.includes('admin.manage_help_messages')}"><a ui-sref="admin.manage_help_messages"><i class="fa fa-cog"></i> Manage Help Messages</a></li>
+                </ul>
+            </accordion-group>            
+            <accordion-group is-open="interfaces_open">
+                <accordion-heading>
+                    Interfaces <i class="pull-right fa" ng-class="{'fa-chevron-down': interfaces_open, 'fa-chevron-right': !interfaces_open}"></i>
+                </accordion-heading>
+                <ul class="">
+                    <li ng-class="{active: $state.includes('admin.interface_import_files')}"><a ui-sref="admin.interface_import_files"><i class="fa fa-download"></i> Import Files</a></li>
+                    <li ng-class="{active: $state.includes('admin.interface_export_files')}"><a ui-sref="admin.interface_export_files"><i class="fa fa-upload"></i> Export Files</a></li>
+                </ul>
+            </accordion-group>            
+            <accordion-group is-open="manage_users_open">
+                <accordion-heading>
+                    Users <i class="pull-right fa" ng-class="{'fa-chevron-down': manage_users_open, 'fa-chevron-right': !manage_users_open}"></i>
+                </accordion-heading>
+                <ul class="">                    
+                    <li ng-class="{active: $state.includes('admin.manage_users.add')}"><a ui-sref="admin.manage_users.add"><i class="fa fa-plus-circle"></i> Add User</a></li>                    
+                    <li ng-class="{active: $state.includes('admin.manage_users')}"><a ui-sref="admin.manage_users"><i class="fa fa-cog"></i> Manage Users </a></li>
+                </ul>
+            </accordion-group>
+            <accordion-group is-open="manage_alt_languages_open">
+                <accordion-heading>
+                    Alternative Languages <i class="pull-right fa" ng-class="{'fa-chevron-down': manage_alt_languages_open, 'fa-chevron-right': !manage_alt_languages_open}"></i>
+                </accordion-heading>
+                <ul class="">    
+                    <li ng-class="{active: $state.includes('admin.manage_alt_lang')}"><a ui-sref="admin.manage_alt_lang"><i class="fa fa-cog"></i> Manage Languages </a></li>
+                </ul>
+            </accordion-group>
+            <accordion-group is-open="manage_sys_config_open">
+                <accordion-heading>
+                    System Configurations <i class="pull-right fa" ng-class="{'fa-chevron-down': manage_sys_config_open, 'fa-chevron-right': !manage_sys_config_open}"></i>
+                </accordion-heading>
+                <ul class="">
+                    <!-- TO DO: Enable mtlColours when it works fine.
+                    <li ng-class="{active: $state.includes('admin.manage_mtl_colour.add')}"><a ui-sref="admin.manage_mtl_colour.add"><i class="fa fa-plus-circle"></i> Add MTL Colour</a></li>                    
+                    <li ng-class="{active: $state.includes('admin.manage_mtl_colour')}"><a ui-sref="admin.manage_mtl_colour"><i class="fa fa-cog"></i> Manage MTL Colour </a></li>
+                    -->
+                    <li ng-class="{active: $state.includes('admin.manage_system_config')}"><a ui-sref="admin.manage_system_config"><i class="fa fa-plus-circle"></i> Manage Configurations</a></li>                    
+                </ul>
+            </accordion-group>
+            <accordion-group is-open="manage_table_query_open">
+                <accordion-heading>
+                    Table Query <i class="pull-right fa" ng-class="{'fa-chevron-down': manage_table_query_open, 'fa-chevron-right': !manage_table_query_open}"></i>
+                </accordion-heading>
+                <ul class="">              
+                    <li ng-class="{active: $state.includes('admin.manage_table_query')}"><a ui-sref="admin.manage_table_query"><i class="fa fa-plus-circle"></i> Manage Table Query</a></li>                    
+                    <li ng-class="{active: $state.includes('admin.manage_table_query.create')}"><a ui-sref="admin.manage_table_query.create"><i class="fa fa-plus-circle"></i> Add Table Query</a></li>                    
+                </ul>
+            </accordion-group>
+        </accordion>
+    </div>
+    <div class="col-sm-9 col-md-9">
+        <div ui-view="main_admin_content">
+            {% include 'ESERVMAINAdministrationBundle:Default:home.html.twig' with {all_application_code: application_code_count, all_qualifications: qualification_count, all_subjects: subject_count} %}
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div> 

@@ -1,0 +1,23 @@
+ESERV\MAIN\CommunicationsBundle\Entity\PdfMergingLookupArchive:
+    type: entity
+    table: pdf_merging_lookup_archive
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        entity_name:
+            type: string                     
+        entity_id:
+            type: integer
+            length: 4
+        external_id:
+            type: string            
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint

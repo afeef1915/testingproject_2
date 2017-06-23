@@ -1,0 +1,145 @@
+ESERV\MAIN\DocumentBundle\Entity\DocumentMaster: 
+    type: entity
+    repositoryClass: ESERV\MAIN\DocumentBundle\Entity\DocumentMasterRepository
+    table: document_master
+    indexes:
+        fk_docmas_docmas3_idx:
+            columns:
+                - footer_id
+        fk_docmas_lan_idx:
+            columns:
+                - language_id
+        fk_docmas_syscode1_idx:
+            columns:
+                - doc_category_id
+        fk_docmas_syscode2_idx:
+            columns:
+                - document_type_id
+        fk_docmas_docmas1_idx:
+            columns:
+                - header_page1_id
+        fk_docmas_docmas2_idx:
+            columns:
+                - header_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+        content:
+            type: text
+            nullable: false
+            length: 65535
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        version:
+            type: integer
+            nullable: false
+            unsigned: false
+        visibleOnline:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+            column: visible_online
+        dateOpened:
+            type: datetime
+            nullable: true
+            column: date_opened
+        dateClosed:
+            type: datetime
+            nullable: true
+            column: date_closed
+        orderBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: order_by
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        footer:
+            targetEntity: ESERV\MAIN\DocumentBundle\Entity\DocumentMaster
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                footer_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        language:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\Language
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                language_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        docCategory:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                doc_category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        documentType:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                document_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        headerPage1:
+            targetEntity: ESERV\MAIN\DocumentBundle\Entity\DocumentMaster
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                header_page1_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        header:
+            targetEntity: ESERV\MAIN\DocumentBundle\Entity\DocumentMaster
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                header_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

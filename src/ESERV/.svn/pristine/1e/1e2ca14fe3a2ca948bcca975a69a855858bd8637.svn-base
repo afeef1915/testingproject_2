@@ -1,0 +1,31 @@
+<h3>{{ 'Add Subject Studied' | trans }}</h3>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' with {'viewMode': 'view'} %}
+
+<div id="eserv_updateSubject_output"></div>
+{{form_start(form, { 'attr' : { 'id': 'updateSubject' } })}}
+
+<fieldset>
+    {{ form_eservRow (form.name) }}
+
+    {% include 'ESERVMAINHelpersBundle:Form:alt_languages.html.twig' with { 'alt_languages' : alt_languages } %}
+
+    {{ form_eservRow (form.code, { 'fieldSize': 3 }) }}
+    {{ form_eservRow (form.dateOpened, { 'fieldType': 'date' }) }}
+    {{ form_eservRow (form.dateClosed, { 'fieldType': 'date' }) }}
+    {{ form_eservSelectRow (form.qualType) }}
+</fieldset>
+
+<fieldset>
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'hide_cancel' : true, 'cancel_link' : true,  'cancelHref' : '#/admin/subjects', 'closeBtnId' : 'cancel_AddSubjects_btn' } %}                                                                             
+</fieldset>
+<div style="display: none">
+    {{ form_rest(form) }}
+</div>
+
+{{form_end(form)}}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        prepareAppForms('{{ form.vars.name }}', false, false, '#/admin/subjects');
+    });
+</script>

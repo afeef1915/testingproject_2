@@ -1,0 +1,62 @@
+ESERV\MAIN\ApplicationCodeBundle\Entity\EservVApplicationCode: 
+    type: entity
+    table: eserv_v_application_code
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        application_code_type_id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        dateOpened:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: date_opened
+        dateClosed:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: date_closed
+#        createdAt:
+#            type: datetime
+#            nullable: true
+#            comment: ''
+#            column: created_at
+#        updatedAt:
+#            type: datetime
+#            nullable: true
+#            comment: ''
+#            column: updated_at
+#        createdBy:
+#            type: integer
+#            nullable: true
+#            unsigned: false
+#            comment: ''
+#            column: created_by
+#        updatedBy:
+#            type: integer
+#            nullable: true
+#            unsigned: false
+#            comment: ''
+#            column: updated_by

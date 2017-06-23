@@ -1,0 +1,70 @@
+<div id="eserv_updateEmailDetails_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'updateEmailDetails' } })}}
+<div class="eserv_container_form_errors"></div>
+
+{% set isNewRecord = 'N' %}
+{% if has_records is defined %}
+    {% if has_records == 'N' %}
+        {% set isNewRecord = 'Y'%}
+    {% endif %}
+{% endif %}
+
+<fieldset>
+    <span >
+        <div class="col-lg-12">
+            {{ form_eservSelectRow (form.emailType, { 'customPlaceHolder': 'Address Type', 'fieldSize': 4, 'data-eservvalidation':'required'}) }}             
+            {% if isNewRecord == 'Y' %}
+                {{ form_eservRow(form.primaryRecord, { 'isCheckbox': 'true', 'fieldSize' : 1 , 'attr': {'checked': 'checked'} }) }}                  
+                <div id="{{ form.primaryRecord.vars.id }}_msg" class="form-group " style="display: none">
+                    <label class="col-lg-4 control-label "></label>
+                    <div class="col-md-8">
+                        <div class="controls has-error">                            
+                            <span class="help-block" style="display: block">The first record should be primary!</span>                            
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                {{ form_eservRow(form.primaryRecord, { 'isCheckbox': 'true', 'fieldSize' : 1 }) }} 
+            {% endif %}
+            {{ form_eservRow (form.emailAddress, { 'customPlaceHolder': 'e.g. abc@millertech.co.uk', 'fieldSize': 4, 'required':'required'}) }}
+        </div>
+    </span>
+</fieldset>
+
+<fieldset>
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'cancelNgClick' : 'cancel()' } %}        
+</fieldset>
+
+<div style="display: none">
+    {{form_rest(form)}}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+$(document).ready(function() {        
+        prepareAppForms('{{ form.vars.name }}', false, {
+            type: 'dataTable',
+            id: 'eserv_email_table'
+        }, false, 'updateEmailDetails', function(){
+            $('#cancel_updateEmailDetails_btn').click();
+            refreshProtlet($('#eserv_render_teacher_main'));
+        });
+        
+        $('#{{form.emailType.vars.id}}').change(function () {
+            if ('{{ isNewRecord }}' == 'Y') {
+                $('#{{form.primaryRecord.vars.id}}').prop('checked', true);
+            }
+            $('#{{form.primaryRecord.vars.id }}_msg').hide();
+        });
+         
+        $('#{{form.primaryRecord.vars.id}}').change(function () { 
+            if ('{{ isNewRecord }}' == 'Y') {
+                $('#{{form.primaryRecord.vars.id}}').prop('checked', true);
+                $('#{{form.primaryRecord.vars.id }}_msg').show();
+            }
+        });
+    });  
+    
+</script>
+

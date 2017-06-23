@@ -1,0 +1,48 @@
+{% include '@weblogs_templates/innerPageHeader.html.twig' with {
+            'label': 'Show Users' | trans,
+            'fa_icon': 'user-circle',
+            'buttons': [
+                {
+                    'label': 'Create New User' | trans, 
+                    'css_class': 'btn btn-success direction2',
+                    'ng_controller': 'EservModalCtrl',
+                   
+                    'fa_icon': 'plus-circle'
+                }
+            ]
+        }
+%}
+<hr/>
+{{ dataTable | raw }}
+
+
+
+
+
+
+
+<script>
+
+         $( document ).ready(function() {
+
+  
+
+    $(".select2-hidden-accessible").select2({
+
+  maximumSelectionLength: 1
+
+});
+
+ 
+
+      
+
+         
+
+ 
+
+    });
+
+ 
+
+    </script>

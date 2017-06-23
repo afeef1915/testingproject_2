@@ -1,0 +1,59 @@
+ESERV\TestBundle\Entity\GtcwVContactDocHist: 
+    type: entity
+    table: gtcw_v_contact_doc_hist
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: id
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        contactDocId:
+            type: integer
+            nullable: false
+            column: contact_doc_id
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        contactFullName:
+            type: string                    
+            column: contact_full_name
+        code:
+            type: string                    
+            column: code
+        name:
+            type: string                    
+            column: name
+        version:
+            type: integer
+            nullable: false
+            column: version 
+        createdAt:
+            type: datetime            
+            column: created_at
+        createdBy:
+            type: integer
+            nullable: false
+            column: created_by
+        createdByUser:
+            type: string                    
+            column: created_by_user
+        updatedAt:
+            type: datetime            
+            column: updated_at
+        updatedBy:
+            type: integer
+            nullable: false
+            column: updated_by
+        updatedByUser:
+            type: string                    
+            column: updated_by_user
+        orderBy:
+            type: integer
+            nullable: false
+            column: order_by

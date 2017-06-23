@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        {% set NOW = "now" | date('U') %}
+
+        <title>{{ 'DataTables Test Page' | trans }}</title>
+        <link rel="shortcut icon" href="{{ asset ('common/assets/images/icons/favicon.ico') }}" />
+
+        <link href="{{ asset ('clients/'~ app_client ~'/themes/'~ app_theme ~'/css/bootstrap.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/bootstrap/css/bootstrap-switch.min.css') }}?v={{ app_version }}_{{ NOW }}" rel="stylesheet" />
+        <link href="{{ asset ('clients/'~ app_client ~'/themes/'~ app_theme ~'/css/bootstrap.min.css.map') }}?v={{ app_version }}_{{ NOW }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/libs/jquery/jquery-ui/css/jquery-ui.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/css/libs/dataTables/datatables.css') }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/css/font-awesome.min.css') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ '%kernel.root_dir%/../../../vendor/datatables/css/datatables.css' }}" />
+        <link href="{{ asset ('common/assets/css/mtl_eserv.css') }}" rel="stylesheet" />
+        <link href="{{ asset ('common/assets/css/themes/'~ app_theme ~'/main.css') }}" rel="stylesheet" />
+        {% block extra_css_block %}
+        {% endblock %}
+        <!--[if lt IE 9]>
+        <script src="{{ asset ('common/assets/js/html5shiv.min.js') }}"></script>
+        <script src="{{ asset ('common/assets/js/respond.min.js') }}"></script>
+        <![endif]-->
+
+        <script type="text/javascript">
+                        
+        </script>
+
+        <script src="{{ asset ('common/assets/libs/jquery/jquery.min.js') }}?v={{ app_version }}"></script>
+        <script src="{{ asset ('common/assets/libs/jquery/jquery-ui/js/jquery-ui.min.js') }}?v={{ app_version }}"></script>
+        <script src="{{ asset ('common/assets/js/jquery.cookie.js') }}?v={{ app_version }}"></script>
+        <script src="{{ asset ('clients/'~ app_client ~'/themes/'~ app_theme ~'/js/bootstrap.min.js') }}?v={{ app_version }}"></script>
+        <script src="{{ asset ('common/assets/js/jquery/jquery.form.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+
+        <script type="text/javascript" src="{{ '%kernel.root_dir%/../../../vendor/datatables/js/jquery.dataTables.min.js' }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script type="text/javascript" src="{{ '%kernel.root_dir%/../../../vendor/datatables/js/datatables.bootstrap3.min.js' }}?v={{ app_version }}_{{ NOW }}"></script>
+
+        <script src="{{ asset ('common/assets/js/common/eserv_functions.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script src="{{ asset ('common/assets/js/extras.js') }}?v={{ app_version }}_{{ NOW }}"></script>
+        <script type="text/javascript">
+
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <h2>{{ 'DataTables Test' | trans }}</h2>
+            <hr/>
+            {{ dataTable | raw }}
+        </div>
+    </body>
+</html>

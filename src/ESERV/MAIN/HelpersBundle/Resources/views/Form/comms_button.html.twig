@@ -1,0 +1,22 @@
+<div class="edit_page_header">    
+    {% if showComms is defined %} 
+        {% set csl_code = '' %}
+        {% if showComms.csl_code is defined %}
+            {% set csl_code = showComms.csl_code %}
+        {% endif %}
+        
+        {% set CommsOpts = '{entity_name: "' ~ showComms.entity_name ~ '", entity_id: "' ~ showComms.entity_id ~ '", contact_id: "' ~ showComms.contact_id ~ '", CommsQ_id: "' ~ showComms.CommsQ_id ~ '", csl_code: "' ~ csl_code ~ '"}' %}
+        <button ng-show="comms_btn" ng-controller="CommsCtrl" class="btn btn-sm btn-default pull-right de_{{ dataTable_id }}_btn" ng-click="openComms('lg', {{ CommsOpts }})">
+            <i class="fa fa-globe"></i> 
+            Communication
+        </button>
+    {% endif %}    
+    {% if showActivities is defined %}
+        {% set ActivitiesOpts = '{entity_name: "' ~ showActivities.entity_name ~ '", entity_id: "' ~ showActivities.entity_id ~ '", contact_id: "' ~ showActivities.contact_id ~ '"}' %}
+        <button ng-show="activities_btn" ng-controller="ActivitiesCtrl" class="btn btn-sm btn-default pull-right" ng-click="openActivities('lg', {{ ActivitiesOpts }})">
+            <i class="fa fa-th-large"></i> 
+            Activities
+        </button>
+    {% endif %}
+    <div class="clearfix"></div>
+</div>

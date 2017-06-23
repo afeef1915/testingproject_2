@@ -1,0 +1,94 @@
+ESERV\MAIN\ExternalBundle\Entity\QueuedDbProcess: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ExternalBundle\Entity\QueuedDbProcessRepository
+    table: queued_db_process
+    indexes:
+        fk_quedbpro_fosuser_idx:
+            columns:
+                - fos_user_id
+        fk_quedbpro_syscod_idx:
+            columns:
+                - notification_priority_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        type:
+            type: string
+            nullable: true
+            length: 64
+            fixed: false
+        description:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+        processed:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: N
+        attempts:
+            type: integer
+            nullable: true
+            unsigned: false
+            default: '0'
+        result:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+        fileId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: file_id
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        fosUser:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fos_user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        notificationPriority:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                notification_priority_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

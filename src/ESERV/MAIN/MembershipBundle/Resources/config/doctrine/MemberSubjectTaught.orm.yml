@@ -1,0 +1,66 @@
+ESERV\MAIN\MembershipBundle\Entity\MemberSubjectTaught: 
+    type: entity
+    repositoryClass: ESERV\MAIN\MembershipBundle\Entity\MemberSubjectTaughtRepository
+    table: member_subject_taught
+    indexes:
+        fk_memsut_memsub_idx:
+            columns:
+                - member_subject_id
+        fk_memsut_member_idx:
+            columns:
+                - member_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:        
+        startDate:
+            type: datetime
+            nullable: false
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: true
+            column: end_date
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        memberSubject:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\MemberSubject
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                member_subject_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        member:
+            targetEntity: ESERV\MAIN\MembershipBundle\Entity\Member
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                member_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

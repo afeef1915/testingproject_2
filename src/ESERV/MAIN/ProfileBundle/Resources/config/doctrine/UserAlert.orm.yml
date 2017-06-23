@@ -1,0 +1,69 @@
+ESERV\MAIN\ProfileBundle\Entity\UserAlert:
+    type: entity
+    table: user_alert
+    indexes:
+        fk_usealt_usafgr_idx:
+            columns:
+                - user_alert_fos_group_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        alertTitle:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            column: alert_title
+        alertBody:
+            type: string
+            nullable: false
+            length: 300
+            fixed: false
+            column: alert_body
+        alertPublishDate:
+            type: datetime
+            nullable: false
+            column: alert_publish_date
+        alertExpiryDate:
+            type: datetime
+            nullable: false
+            column: alert_expiry_date
+        alertCreatedDate:
+            type: datetime
+            nullable: true
+            column: alert_created_date
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+    manyToOne:
+        userAlertFosGroup:
+            targetEntity: UserAlertFosGroup
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_alert_fos_group_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

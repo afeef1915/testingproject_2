@@ -1,0 +1,36 @@
+ESERV\TestBundle\Entity\GtcwVMemSubject: 
+    type: entity
+    table: gtcw_v_mem_subject
+    id:
+        dtindex:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: dtindex
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        id:
+            type: integer
+            nullable: false
+            column: id
+        code:
+            type: string                    
+            column: code
+        name:
+            type: string                    
+            column: name
+        membershipOrgCode:
+            type: string                    
+            column: membership_org_code
+        membershipOrgName:
+            type: string                    
+            column: membership_org_name
+        dateOpened:
+            type: datetime            
+            column: date_opened
+        dateClosed:
+            type: datetime            
+            column: date_closed

@@ -1,0 +1,90 @@
+ESERV\TestBundle\Entity\GtcwVIndividual: 
+    type: entity
+    table: gtcw_v_individual
+    id:
+        personId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: person_id
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dtindex:
+            type: integer
+            nullable: false
+            column: dtindex
+        contactId:
+            type: integer
+            nullable: false
+            column: contact_id
+        firstName:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            comment: ''
+            column: first_name
+        lastName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: last_name
+        dateOfBirth:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: date_of_birth
+        middleName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: middle_name
+        lastNameSearch:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: last_name_search
+        initials:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+        jobTitle:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: job_title
+        gender:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            comment: 'M-Male, F-Female'
+        previousLastName:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: previous_last_name
+        disabled:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+            default: N
+        niNumber:
+            type: string
+            nullable: true
+            length: 30
+            fixed: false
+            column: ni_number

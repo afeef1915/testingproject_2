@@ -1,0 +1,104 @@
+<div id="eserv_updateEmailDetails_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'updateEmailDetails' } })}}
+<div class="eserv_container_form_errors"></div>
+<fieldset>
+    <span>
+        <div class="col-lg-12">
+            {#{ form_eservSelectRow (form.emailType, { 'customPlaceHolder': 'Address Type', 'fieldSize': 4, 'data-eservvalidation':'required'}) }#}            
+            <div class="form-group ">
+                <label class="col-lg-4 control-label ">{{ "Email Type" | trans }}</label>
+                <div class="col-lg-5">
+                    <div class="eserv_field_value">
+                        {{ email_type_name }}
+                    </div>
+                </div>
+            </div>
+            {{ form_eservRow (form.primaryRecord, {'isCheckbox': 'true', 'fieldSize' : 1 }) }} 
+            {% set is_primary_record = 'N' %}
+            {% if form.primaryRecord.vars.data %}
+                {% set is_primary_record = 'Y' %}
+                <div id="{{ form.primaryRecord.vars.id }}_msg" class="form-group " style="display: none">
+                    <label class="col-lg-4 control-label "></label>
+                    <div class="col-md-8">
+                        <div class="controls has-error">                            
+                                <span class="help-block" style="display: block">This is a primary record!</span>                            
+                        </div>
+                    </div>
+                </div> 
+            {% endif %}
+            {{ form_eservRow (form.emailAddress, { 'customPlaceHolder': 'e.g. abc@millertech.co.uk', 'fieldSize': 4, 'data-eservvalidation':'required'}) }}
+        </div>
+    </span>
+</fieldset>
+
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12">
+            {#{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary',  'btn-loading': "is_processing.application_code_add", 'data-loading-text': "Saving..."} }) }}
+ #}         
+            {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'cancelNgClick' : 'cancel()', 'closeBtnId' : 'cancel_updateEmailDetails_btn' } %}        
+            
+            {% set message = 'You are about to delete an email record. Are you sure? <br/> 
+                            <p class=\'alert alert-danger\'> This action cannot be undone!</p>' %}
+            {% if email_count >1 and is_primary_record == 'Y' %}                
+                <button ng-controller='EservConfirmCtrl' ng-click='OpenConfirm("Warning", "{{ message }}", {type: "url", 
+                            url: "{{ path ('eservcore_contact_bundle_components_contact_details_email_delete', { 'id' : email_id}) }}", 
+                            close_modals: "current", close_button_id : "cancel_updateEmailDetails_btn", dataTable_id: "eserv_email_table",
+                            refresh_portlet: "current", portlet_id:"eserv_render_teacher_main", form_id: "updateEmailDetails"
+                            })' type="button" id="delete_updateEmailDetails_btn" class="btn btn-warning pull-right direction2" data-target="#confirm-delete"
+                            disabled="disabled">
+                    <i class="fa fa-trash-o"></i>
+                    Delete
+                </button>
+            {% else %}            
+                    <button ng-controller='EservConfirmCtrl' ng-click='OpenConfirm("Warning", "{{ message }}", {type: "url", 
+                            url: "{{ path ('eservcore_contact_bundle_components_contact_details_email_delete', { 'id' : email_id}) }}", 
+                            close_modals: "current", close_button_id : "cancel_updateEmailDetails_btn", dataTable_id: "eserv_email_table",
+                            refresh_portlet: "current", portlet_id:"eserv_render_teacher_main", form_id: "updateEmailDetails"
+                            })' type="button" id="delete_updateEmailDetails_btn" class="btn btn-warning pull-right direction2" data-target="#confirm-delete">
+                    <i class="fa fa-trash-o"></i>
+                    Delete
+                </button>
+            {% endif %}
+            {#
+            {% set message = 'You are about to delete an email record. Are you sure? <br/> <p class=\'alert alert-danger\'> This action cannot be undone!</p>' %}
+            <button ng-controller='EservConfirmCtrl' ng-click='OpenConfirm("Warning", "{{ message }}", {type: "url", url: "{{ path ('eservcore_contact_bundle_components_contact_details_email_delete', { 'id' : app.request.attributes.get('id')}) }}", 
+                        })' type="button" id="delete_updateEmailDetails_btn" class="btn btn-warning" data-target="#confirm-delete">
+                <i class="fa fa-trash-o"></i>
+                Delete
+            </button> #}
+        </div>
+    </div>        
+</fieldset>
+
+<div style="display: none">
+    {{form_rest(form)}}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+  
+    $(document).ready(function () {
+        prepareAppForms('{{ form.vars.name }}', false, {
+            type: 'dataTable',
+            id: 'eserv_email_table'
+        }, false, 'updateEmailDetails', function () {
+            $('#cancel_updateEmailDetails_btn').click();
+            refreshProtlet($('#eserv_render_teacher_main'));
+        }); 
+               
+        $('#{{form.emailType.vars.id}}').change(function () {            
+            $('#{{form.primaryRecord.vars.id }}_msg').hide();
+        });
+        
+        $('#{{form.primaryRecord.vars.id}}').change(function () {
+            if ('Y' == '{{ is_primary_record }}' ) {
+                $('#{{form.primaryRecord.vars.id}}').prop('checked', true);
+                $('#{{form.primaryRecord.vars.id }}_msg').show();
+            }
+        }); 
+    });    
+
+</script>
+

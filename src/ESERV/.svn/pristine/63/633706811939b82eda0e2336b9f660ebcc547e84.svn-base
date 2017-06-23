@@ -1,0 +1,50 @@
+ESERV\MAIN\AdministrationBundle\Components\ClientAdministrationBundle\Entity\ClientTable:
+    type: entity
+    repositoryClass: ESERV\MAIN\AdministrationBundle\Components\ClientAdministrationBundle\Entity\ClientTableRepository
+    table: client_table
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 15
+            fixed: false
+        title:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        description:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        groupOrder:
+            type: integer
+            nullable: false
+            unsigned: false
+            default: '1'
+            column: group_order
+        userRestrict:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            comment: 'If set to ''Y'' then these types cannot be maintained by users as they have been added as part of one of the system modules'
+            default: N
+            column: user_restrict
+        showOnAddNew:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: Y
+            column: show_on_add_new
+    lifecycleCallbacks: {  }

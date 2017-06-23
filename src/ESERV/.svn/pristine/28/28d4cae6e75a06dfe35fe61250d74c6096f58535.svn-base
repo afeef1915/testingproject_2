@@ -1,0 +1,102 @@
+ESERV\MAIN\ProfileBundle\Entity\UserNotification: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ProfileBundle\Entity\UserNotificationRepository
+    table: user_notification
+    indexes:
+        fk_usenot_mmusepro_idx:
+            columns:
+                - mm_user_profile_id
+        fk_usenot_fosuse_idx:
+            columns:
+                - fos_user_id
+        fk_usenot_syscod_idx:
+            columns:
+                - level_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        type:
+            type: string
+            nullable: false
+            length: 64
+            fixed: false
+        fileId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: file_id
+        priority:
+            type: string
+            nullable: true
+            length: 32
+            fixed: false
+        title:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        description:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+        isActive:
+            type: string
+            nullable: false
+            length: 1
+            fixed: false
+            default: Y
+            column: is_active
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        mmUserProfile:
+            targetEntity: ESERV\MAIN\ProfileBundle\Entity\MmUserProfile
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                mm_user_profile_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        fosUser:
+            targetEntity: ESERV\MAIN\SecurityBundle\Entity\User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fos_user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        level:
+            targetEntity: ESERV\MAIN\SystemConfigBundle\Entity\SystemCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                level_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

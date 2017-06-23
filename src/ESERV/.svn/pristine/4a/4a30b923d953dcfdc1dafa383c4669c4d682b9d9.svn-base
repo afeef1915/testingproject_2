@@ -1,0 +1,82 @@
+ESERV\MAIN\ProductBundle\Entity\Product: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ProductBundle\Entity\ProductRepository
+    table: product
+    indexes:
+        fk_product_product_type1_idx:
+            columns:
+                - product_type_id
+        fk_product_vat1_idx:
+            columns:
+                - vat_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+        longDescription:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            column: long_description
+        dateOpened:
+            type: datetime
+            nullable: false
+            column: date_opened
+        dateClosed:
+            type: datetime
+            nullable: true
+            column: date_closed
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        productType:
+            targetEntity: ESERV\MAIN\ProductBundle\Entity\ProductType
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                product_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        vat:
+            targetEntity: ESERV\MAIN\ProductBundle\Entity\Vat
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                vat_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

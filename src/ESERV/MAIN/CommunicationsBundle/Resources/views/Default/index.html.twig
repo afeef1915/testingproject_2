@@ -1,0 +1,31 @@
+{% set note_cat_code = 'TN' %}
+{% set letter_cat_code = 'TL' %}
+{% set email_cat_code = 'TE' %}
+{% set school_note_cat_code = 'SN' %}
+
+{% if category_code is defined and category_code is iterable %}
+    {% set note_cat_code = category_code.note %}
+    {% set letter_cat_code = category_code.letter %}
+    {% set email_cat_code = category_code.email %}
+{% endif %}
+<div ng-controller="CommsCtrl">    
+    <div class="modal-header panel-primary">
+        <button type="button" class="btn btn-danger close" ng-click="cancel()">&times;</button>
+        <h3 class="modal-title">Communication</h3>
+    </div>
+    <div class="modal-body">
+        <tabset-remote>
+            {% if csl_code == 'WP'%}
+                <taburl title="Note" template-url="{{ path ('eserv_main_note_new', {'entity_id':entity_id, 'entity_name':entity_name, 'category_code': school_note_cat_code, 'contact_id':contact_id, 'comms_q' : comms_q}) }}"></taburl>
+            {% else %}
+            
+                <!-- Showing notes has been ignored when coming through a list -->
+                {% if comms_q is defined and comms_q == '0' %}               
+                   <taburl title="Note" template-url="{{ path ('eserv_main_note_new', {'entity_id':entity_id, 'entity_name':entity_name, 'category_code': note_cat_code, 'contact_id':contact_id, 'comms_q' : comms_q}) }}"></taburl>
+                {% endif %}            
+                <taburl title="Letter" template-url="{{ path ('eserv_main_letter_new', {'entity_id':entity_id, 'entity_name':entity_name, 'category_code': letter_cat_code, 'contact_id':contact_id, 'comms_q' : comms_q, 'csl_code' : csl_code}) }}"></taburl>
+                <taburl title="Email" template-url="{{ path ('eserv_main_email_new', {'entity_id':entity_id, 'entity_name':entity_name, 'category_code': email_cat_code, 'contact_id':contact_id, 'comms_q' : comms_q, 'csl_code' : csl_code}) }}"></taburl>          
+            {% endif %}    
+        </tabset-remote>
+    </div> 
+</div>

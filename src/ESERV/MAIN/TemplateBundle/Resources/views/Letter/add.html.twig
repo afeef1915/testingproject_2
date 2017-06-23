@@ -1,0 +1,39 @@
+<div id="eserv_addLetter_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'addLetter' } })}}
+
+<h3>{{ 'Add a Letter' | trans }}</h3>
+<fieldset>
+    {{ form_eservSelectRow(form.header , {'labelSize': 3}) }}
+    {{ form_eservSelectRow(form.footer , {'labelSize': 3}) }}
+    {{ form_eservRow(form.name , {'customPlaceHolder' : '', 'labelSize': 3, 'fieldSize': 4 }) }}
+    {{ form_eservRow(form.code , {'customPlaceHolder' : '', 'labelSize': 3, 'fieldSize': 4 }) }}
+    {{ form_eservSelectRow(form.mailMergeType , {'labelSize': 3 }) }} 
+    {{ form_eservSelectRow(form.templateDocumentGroup , {'labelSize': 3 }) }} 
+    {#{ form_eservSelectRow(form.systemPrinter , {'labelSize': 3 }) }#} 
+    {{ form_eservSelectRow(form.language , {'labelSize': 3 }) }}
+    {% include 'ESERVMAINHelpersBundle:Form:eserv_ckeditor_field_layout.html.twig' with { 
+                'form_field': form.content,
+                'labelSize': 3
+            } %}
+</fieldset>
+<fieldset>
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'hide_cancel' : true, 'cancel_link' : true,  'cancelHref' : '#/admin/templates', 'closeBtnId' : 'cancel_AddLetter_btn' } %}                                                                             
+</fieldset>
+
+<div style="display: none"> 
+    {{ form_rest(form) }}
+</div>
+{{form_end(form)}}  
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        prepareAppForms('{{ form.vars.name }}', false, false, '#/admin/templates');
+        
+        getMergeFields('{{ form.mailMergeType.vars.value }}');
+
+    $('#{{ form.mailMergeType.vars.id }}').change(function () {
+            getMergeFields($(this).val());
+        });
+    });
+</script>

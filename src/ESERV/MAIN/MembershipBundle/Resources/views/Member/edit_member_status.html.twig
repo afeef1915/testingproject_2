@@ -1,0 +1,49 @@
+<div id="eserv_updateMemberStatus_output"></div>
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' %}
+{{form_start(form, { 'attr' : { 'id': 'updateMemberStatus' } })}}
+
+<fieldset>
+    {{ form_eservSelectRow(form.status, { 'labelSize': 3 }) }}
+    {{ form_eservRow(form.registration_date, { 'fieldType': 'date', 'labelSize': 3 }) }}
+    <div id="edit_status_payment_method">
+    {% if form.payment_method is defined %}
+         {{ form_eservSelectRow(form.payment_method, { 'labelSize': 3 }) }}
+    {% endif %}
+    </div>
+</fieldset>
+
+<fieldset>
+    <div class="form-group">
+        <div class="col-md-12">        
+            <a id="cancel_updateMemberStatus_btn" class="btn btn-danger pull-left direction1" ng-click="cancel()">{{ 'Cancel' }}</a>
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary pull-right direction2',  'btn-loading': "is_processing.member_status_edit", 'data-loading-text': "Saving..." | trans } }) }}
+            <input class="btn btn-default pull-right direction2" value="{{ 'Reset' | trans }}" type="reset" id="_reset"/> 
+        </div>
+    </div>        
+</fieldset>  
+
+<div style="display: none">
+    {{form_rest(form)}}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+    $(document).ready(function() {   
+        $('#edit_status_payment_method').hide();
+        prepareAppForms('{{ form.vars.name }}', false, {
+            type: 'portlet',
+            status: 'all'
+        }, false, 'updateMemberStatus', function(){
+            $('#cancel_updateMemberStatus_btn').click();
+        });
+        
+        $('#{{ form.status.vars.id }}').change(function (){
+            var active_id_arr = JSON.parse('{{ active_mem_statuses }}');                        
+            if(-1 != $.inArray(parseInt($(this).val()), active_id_arr)){
+                $('#edit_status_payment_method').show();
+            }else{
+                $('#edit_status_payment_method').hide();
+            }
+        });
+    });
+</script>

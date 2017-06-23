@@ -1,0 +1,108 @@
+eserv_main_activity_home:
+    pattern:  /activities
+    defaults: { _controller: ESERVMAINActivityBundle:Default:index }
+eserv_main_activity_list:
+    pattern:  /list_activities
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:activitiesList }
+eserv_main_activity_target_list:
+    pattern:  /activityTargets
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:activitiesList }
+eserv_main_activity_ajax_list:
+    path:     /activity/ajaxList
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:data }
+    
+# ActivitySubCategory
+eserv_main_activity_sub_category_list:
+    path:     /activity_sub_category
+    defaults: { _controller: ESERVMAINActivityBundle:ActivitySubCategory:activitySubCategoryList }
+eserv_main_activity_sub_category_ajax_list:
+    path:     /activity_sub_category/ajaxList
+    defaults: { _controller: ESERVMAINActivityBundle:ActivitySubCategory:data }
+       
+eserv_main_activity_sub_category_new:
+    path:     /activity_sub_category/add
+    defaults: { _controller: ESERVMAINActivityBundle:ActivitySubCategory:newActivitySubCategory }
+    
+eserv_main_activity_sub_category_create:
+    path:     /activity_sub_category/create
+    defaults: { _controller: ESERVMAINActivityBundle:ActivitySubCategory:createActivitySubCategory }
+    methods : [POST]   
+    
+eserv_main_activity_sub_category_update:
+    path:     /activity_sub_category/update/{id}
+    defaults: { _controller: ESERVMAINActivityBundle:ActivitySubCategory:updateActivitySubCategory, id: null }
+    methods : [POST]    
+    
+eserv_main_activity_sub_category_edit:
+    path:     /activity_sub_category/edit/{id}
+    defaults: { _controller: ESERVMAINActivityBundle:ActivitySubCategory:editActivitySubCategory, id: null }   
+    
+eserv_main_activity_edit:
+    path:     /activity/edit/{id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:editActivity, id: null }
+    
+eserv_main_activity_update:
+    path:     /activity/update/{id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:updateActivity, id: null }
+    methods : [POST] 
+    
+eserv_main_activity_note_view:
+    path:     /activity/note/view/{id}/{target_contact_id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:viewActivityNote, id: null, target_contact_id: null }
+
+eserv_main_activity_note_edit:
+    path:     /activity/note/edit/{id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:editActivityNote, id: null }
+    
+eserv_main_activity_note_update:
+    path:     /activity/note/update/{id}/{target_contact_id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:updateActivityNote, id: null, target_contact_id: null }
+    methods : [POST]  
+    
+eserv_main_activity_note_delete:
+    path:     /activity/note/delete/{id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:deleteActivityNote, id: null } 
+    
+eserv_main_activity_letter_edit:
+    path:     /activity/letter/edit/{id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:editActivityLetter, id: null }
+    
+eserv_main_activity_letter_update:
+    path:     /activity/letter/update/{id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:updateActivityLetter, id: null }
+    methods : [POST]   
+    
+eserv_main_activity_letter_view:
+    path:     /activity/letter/view/{id}/{target_contact_id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:viewActivityLetter, id: null, target_contact_id: null } 
+
+eserv_main_activity_letter_document:
+    path:     /activity/letter/document/{activity_id}/{source_contact_id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:viewActivityLetterDocument, activity_id: null, source_contact_id: null } 
+    
+eserv_main_activity_email_view:
+    path:     /activity/email/view/{id}/{target_contact_id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:viewActivityEmail, id: null, target_contact_id: null }  
+    
+eserv_main_activity_email_document:
+    path:     /activity/email/document/{activity_id}/{source_contact_id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:viewActivityEmailDocument, activity_id: null, source_contact_id: null } 
+    
+eserv_main_activity_email_add_to_queue_db_process:
+    path:     /activity/add-to-queued-db-process/{id}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:addEmailToQueuedDbProcess, id: null} 
+    
+eserv_main_activity_view_document:
+    path:     /activity/view/document/{activity_id}/{source_contact_id}/{document_type}
+    defaults: { _controller: ESERVMAINActivityBundle:Activity:viewActivityDocument, activity_id: null, source_contact_id: null, document_type: null } 
+    
+# ActivityMedia
+eserv_main_activity_media_files_upload_files:
+    path:     /activity-media-files/upload-files
+    defaults: { _controller: ESERVMAINActivityBundle:ActivityMedia:upload }
+eserv_main_activity_media_files_download_files:
+    path:     /activity-media-files/download/{id}
+    defaults: { _controller: ESERVMAINActivityBundle:ActivityMedia:download, id: null }
+eserv_main_activity_media_files_remove_files:
+    path:     /activity-media-files/remove/{id}
+    defaults: { _controller: ESERVMAINActivityBundle:ActivityMedia:remove, id: null }

@@ -1,0 +1,5 @@
+{% set ViewMode = 'edit' %}
+{% if viewMode is defined %} 
+    {% set ViewMode = viewMode %} 
+{% endif %}
+<h5 class="eserv_field_value {{ ViewMode }} custom_client_class" style="padding: 0;margin: 0;">All fields marked <span class="required_fields_sign"> * </span> are required</h5>

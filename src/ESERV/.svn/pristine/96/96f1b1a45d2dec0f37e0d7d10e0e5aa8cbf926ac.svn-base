@@ -1,0 +1,60 @@
+ESERV\TestBundle\Entity\GtcwVPeopleSearch: 
+    type: entity
+    table: gtcw_v_people_search
+    id:
+        contactId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: contact_id
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:        
+        personName:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: person_name
+        referenceNo:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+            comment: ''
+            column: reference_no
+        workplaceCode:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+            comment: ''
+            column: workplace_code
+        organisationName:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+            column: organisation_name
+        empDescription:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: emp_description
+        dispnameWithTrn:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            column: dispname_with_trn
+        emailAddress:
+            type: string
+            length: 255
+            column: email_address

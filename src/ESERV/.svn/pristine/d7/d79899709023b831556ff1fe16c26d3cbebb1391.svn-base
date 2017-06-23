@@ -1,0 +1,84 @@
+ESERV\MAIN\ProfileBundle\Entity\MmUserSettings:
+    type: entity
+    table: mm_user_settings
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        auto_save:
+            type: string            
+        language:
+            type: string
+        last_viewed_news:
+            type: datetime
+        layout_state:
+            type: string
+        menu_state:
+            type: string
+        mm_user_profile_id:
+            type: integer
+            length: 4
+        sf_guard_user_id:
+            type: integer
+            length: 8
+        fos_user_id:
+            type: integer
+            length: 11
+        contact_role_id:
+            type: integer
+        relationship_id:
+            type: integer    
+        status_date :
+            type: datetime
+        theme:
+            type: string
+        theme_font_size:
+            type: float
+        theme_width:
+            type: string
+        external_id:
+            type: string
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+        created_by:
+            type: bigint
+        updated_by:
+            type: bigint
+    uniqueConstraints:
+       idx_MmUserSettings_a_idx: 
+           columns: [ mm_user_profile_id ]
+       idx_MmUserSettings_b_idx: 
+           columns: [ sf_guard_user_id ]         
+    manyToOne:
+        mm_user_profile:
+            targetEntity: MmUserProfile
+            inversedBy: mm_user_settings
+            joinColumn:
+                name: mm_user_profile_id
+                referencedColumnName: id
+        contact_role:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactRole
+            inversedBy: mm_user_settings
+            joinColumn:
+                name: contact_role_id
+                referencedColumnName: id
+        relationship:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Relationship
+            inversedBy: mm_user_settings
+            joinColumn:
+                name: relationship_id
+                referencedColumnName: id        
+    oneToOne:
+        
+        
+    oneToMany:            
+        fos_user:
+            targetEntity: FOS\UserBundle\Model\User
+            mappedBy: mm_user_settings
+            joinColumn:
+                name: fos_user_id
+                referencedColumnName: id
+               

@@ -1,0 +1,67 @@
+ESERV\MAIN\ContactBundle\Entity\ContactUnavailable: 
+    type: entity
+    repositoryClass: ESERV\MAIN\ContactBundle\Entity\ContactUnavailableRepository
+    table: contact_unavailable
+    indexes:
+        fk_contact_unavailable_application_code1_idx:
+            columns:
+                - unavail_application_code_id
+    uniqueConstraints:
+        idx_ContactUnavaila_a_idx:
+            columns:
+                - contact_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fromDate:
+            type: datetime
+            nullable: false
+            column: from_date
+        toDate:
+            type: datetime
+            nullable: false
+            column: to_date
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contact:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\Contact
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        unavailApplicationCode:
+            targetEntity: ESERV\MAIN\ApplicationCodeBundle\Entity\ApplicationCode
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                unavail_application_code_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

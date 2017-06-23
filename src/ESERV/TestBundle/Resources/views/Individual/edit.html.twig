@@ -1,0 +1,81 @@
+<h3 class="">Edit Individual</h3>
+
+{% include 'ESERVMAINHelpersBundle:Form:required_msg.html.twig' with {'viewMode': 'view'} %}
+
+<div id="eserv_updateIndividual_output"></div>
+{{form_start(form, { 'attr' : { 'id': 'updateIndividual' } })}}
+
+<fieldset>
+    {{ form_eservRow (form.lastName, { 'customPlaceHolder': 'Surname' }) }}
+    {{ form_eservRow (form.firstName, { 'customPlaceHolder': 'Forename(s)' }) }}
+    {#{ form_eservRow (form.middleName, { 'customPlaceHolder': 'Middle Name' }) } see log: 9041655#}
+    {#{ form_eservRow (form.previousLastName, { 'customPlaceHolder': 'Previous Surname' }) } see log: 9042994 #} 
+    {{ form_eservSelectRow (form.gender) }}
+    {{ form_eservRow (form.dateOfBirth, { 'fieldType': 'dateNoDatepicker' }) }}
+    {{ form_eservRow(form.disabled, { 'isCheckbox': 'true', 'fieldSize' : 1 }) }}  
+      
+    <span class="postCodeLookupArea">
+        {{ form_eservPostCodeLookup (form.address.postcode) }}
+        {% include 'ESERVMAINHelpersBundle:Form:eserv_address_selector.html.twig' %}
+        {{ form_eservRow (form.address.addressLine1, { 'extraGroupClass': 'target', 'extraFieldClass': 'street', 'customPlaceHolder': 'i.e. Flat 4', 'fieldSize': 4}) }}
+        {{ form_eservRow (form.address.addressLine2, { 'extraGroupClass': 'target', 'extraFieldClass': 'ad2', 'fieldSize': 4  }) }}
+        {{ form_eservRow (form.address.addressLine3, { 'extraFieldClass': 'ad3', 'fieldSize': 4 }) }}
+        {{ form_eservRow (form.address.town, { 'extraFieldClass': 'town', 'fieldSize': 4 }) }}
+        {{ form_eservRow (form.address.county, { 'extraFieldClass': 'county', 'fieldSize': 4 }) }}
+    </span>   
+    
+    {{ form_eservRow (form.phone.phoneNumber) }}
+    {{ form_eservRow (form.mobile.phoneNumber) }}
+    {{ form_eservRow (form.email.emailAddress) }}
+    {{ form_eservSelectRow (form.ethnicGroup) }}
+    {{ form_eservSelectRow (form.nationalen) }}
+    
+   {# {% include 'ESERVMAINHelpersBundle:Form:alt_languages_edit.html.twig' with { 'alt_languages' : alt_languages, 'existing_alt_languages_equivs' : existing_alt_languages_equivs} %} #}
+    
+
+</fieldset>
+   
+<fieldset>
+    {% include 'ESERVMAINHelpersBundle:Form:form_general_btns.html.twig' with { 'form_save' : form.save, 'hide_edit_button' : true, 'hide_cancel' : true, 'cancel_link' : true,  'cancelHref' : '#/people/individuals', 'closeBtnId' : 'cancel_addTravelAndConsultantPayment_btn' } %}                                                                          
+</fieldset>
+<div style="display: none">    
+    {{ form_rest(form) }}
+</div>
+{{form_end(form)}}
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        prepareAppForms('{{ form.vars.name }}', false, false, "#/people/individuals");
+    
+        $('#{{ form.address.postcode.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.address.addressLine1.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.address.addressLine2.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.address.addressLine3.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.address.town.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        });
+        $('#{{ form.address.county.vars.id }}').keyup(function () {
+            AddressValidationLoc();            
+        }); 
+        AddressValidationLoc(); 
+    });
+    
+    function AddressValidationLoc(){ 
+        var postcodeF = $('#{{ form.address.postcode.vars.id }}');
+        var addressLine1F = $('#{{ form.address.addressLine1.vars.id }}');
+        var addressLine2F = $('#{{ form.address.addressLine2.vars.id }}');
+        var addressLine3F = $('#{{ form.address.addressLine3.vars.id }}');
+        var townF = $('#{{ form.address.town.vars.id }}');
+        var countyF = $('#{{ form.address.county.vars.id }}');
+        AddressValidation(postcodeF,addressLine1F,addressLine2F,addressLine3F,townF,countyF);        
+    }
+</script>

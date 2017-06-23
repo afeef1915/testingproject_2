@@ -1,0 +1,66 @@
+ESERV\TestBundle\Entity\GtcwVHistory: 
+    type: entity
+    table: gtcw_v_history
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        entityId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: entity_id
+        entityName:
+            type: string
+            nullable: true
+            length: 1000
+            fixed: false
+            column: entity_name
+        fieldName:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            column: field_name
+        oldValue:
+            type: string
+            nullable: true
+            length: 2000
+            fixed: false
+            column: old_value
+        newValue:
+            type: string
+            nullable: true
+            length: 2000
+            fixed: false
+            column: new_value
+        reason:
+            type: string
+            nullable: true
+            length: 2000
+            fixed: false
+            column: reason
+        createdById:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by_id
+        createdByName:
+            type: string
+            nullable: true
+            length: 2000
+            column: created_by_name
+        createdByEmail:
+            type: string
+            nullable: true
+            length: 2000
+            column: created_by_email
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at

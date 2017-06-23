@@ -1,0 +1,8 @@
+#soap server
+eservcore_soap_soap_server:
+    pattern:  /soap/{service}/{file}
+    defaults: { _controller: ESERVMAINSoapBundle:Default:soap }    
+
+eservcore_soap_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ESERVMAINSoapBundle:Default:index }

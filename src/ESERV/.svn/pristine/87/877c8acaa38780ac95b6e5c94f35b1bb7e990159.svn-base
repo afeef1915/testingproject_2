@@ -1,0 +1,266 @@
+{% if uploadRoute is defined and uploadRoute != '' %} 
+    {% set UploadUrl = path (uploadRoute) %} 
+{% else %} 
+    {% set UploadUrl = path ('eserv_main_media_files_upload_files') %}
+{% endif %}
+
+{% if uploadUrl is defined and uploadUrl != '' %} 
+    {% set UploadUrl = uploadUrl %} 
+{% endif %}
+
+<div class="fileUploadFiles" id="{{ field_id }}_upload_area">
+    <!-- The file upload form used as target for the file upload widget -->
+    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+    <div class="row fileupload-buttonbar">
+        <div class="col-lg-7">
+            <!-- The fileinput-button span is used to style the file input field as button -->
+            <span class="btn btn-info fileinput-button pull-left">
+                <span>{% if addFilesLabel is defined %}{{ addFilesLabel }}{% else %}<i class="fa fa-plus"></i>&nbsp;Add files...{% endif %}</span>
+                <input type="file" name="files[]" {% if singleFileUpload is not defined or (singleFileUpload is defined and singleFileUpload is not sameas(true)) %}multiple{% endif %}>
+            </span>
+            {% if autoUpload is not defined or (autoUpload is defined and autoUpload is not sameas(true)) %}
+                <button type="submit" class="btn btn-primary start pull-left">
+                    <i class="fa fa-upload"></i>
+                    <span>&nbsp;Start upload</span>
+                </button>
+                <button type="reset" class="btn btn-warning cancel pull-left">
+                    <i class="fa fa-ban-circle"></i>
+                    <span>&nbsp;Cancel upload</span>
+                </button>
+            {% endif %}
+            <div class="delete_multiple pull-left" style="display: none">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger delete">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                    <div class="btn btn-default delete_all_cb">
+                        <div class="checkbox checkbox-danger checkbox-inline">
+                            <input id="checkbox_all_{{ field_id }}" class="toggle" id="checkbox_all" type="checkbox" />
+                            <label for="checkbox_all_{{ field_id }}"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- The global file processing state -->
+            <span class="fileupload-process global_fileupload_process" style="display: none"></span>
+        </div>
+        <!-- The global progress state -->
+        <div class="col-lg-5 fileupload-progress fade global_fileupload_process" style="display: none">
+            <!-- The global progress bar -->
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+            </div>
+            <!-- The extended global progress state -->
+            <div class="progress-extended">&nbsp;</div>
+        </div>        
+    </div>                    
+    <!-- The table listing the files available for upload/download -->    
+    <table role="presentation" class="table table-striped fileUploadFilesTable"><tbody class="files"></tbody></table>
+    <div class="file_uploading_message" style="display:none">
+      <i class="fa fa-exclamation-triangle"></i>  {% if waitMessage is defined %} {{ waitMessage }} {% else %} Please wait... {% endif %}
+    </div>    
+</div>
+<!-- The blueimp Gallery widget -->
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+{% verbatim %}
+    <!-- The template to display files available for upload -->
+    <script id="template-upload" type="text/x-tmpl">
+        {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-upload fade">
+        <td>
+        <span class="preview"></span>
+        </td>
+        <td>
+        <p class="name">{%=file.name%}</p>
+        <strong class="error text-danger"></strong>
+        </td>
+        <td>
+        <p class="size">Processing...</p>
+        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+        </td>
+        <td>
+        {% if (!i && !o.options.autoUpload) { %}
+        <button class="btn btn-xs btn-primary start" disabled>
+        <i class="fa fa-upload"></i>
+        <span>Start</span>
+        </button>
+        {% } %}
+        {% if (!i) { %}
+        <button class="btn btn-xs btn-warning cancel">
+        <i class="fa fa-ban-circle"></i>
+        <span>Cancel</span>
+        </button>
+        {% } %}
+        </td>
+        </tr>
+        {% } %}
+    </script>
+    <!-- The template to display files available for download -->
+    <script id="template-download" type="text/x-tmpl">
+        {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-download fade">
+        <td>
+        <span class="preview">
+        {% if (file.thumbnailUrl) { %}
+        <a target="_blank" href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+        {% } %}
+        </span>
+        </td>
+        <td>
+        <p class="name">
+        {% if (file.url) { %}
+        <a target="_blank" href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+        {% } else { %}
+        <span>{%=file.name%}</span>
+        {% } %}
+        </p>
+        {% if (file.error) { %}
+        <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+        {% } %}
+        </td>
+        <td>
+        <span class="size">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+        <td class="btns_td">
+        {% if (file.deleteUrl) { %}
+        <button class="btn btn-xs btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+        <i class="fa fa-trash"></i>
+        </button>
+        <input type="hidden" value="{%=file.id%}" class="{% endverbatim %}{{ field_id }}{% verbatim %}_file_id">
+        <div class="checkbox checkbox-danger checkbox-inline">
+        <input name="delete" value="1" id="checkbox_file_{%=file.id%}" class="toggle" id="checkbox_all" type="checkbox" />
+        <label for="checkbox_file_{%=file.id%}"></label>
+        </div>
+        {% } else { %}
+        <button class="btn btn-xs btn-warning cancel">
+        <i class="fa fa-ban-circle"></i>
+        <span>Cancel</span>
+        </button>
+        {% } %}
+        </td>
+        </tr>
+        {% } %}
+    </script>
+{% endverbatim %}
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('input[type="reset"]').click(function(){
+            if (typeof formResetConfirm != 'undefined' && formResetConfirm == true) {
+                var conf = confirm('Are you sure you want to Reset Form');
+                if(conf){
+                    $('.delete').each(function (){ $(this).click(); }); 
+                } 
+            }            
+        });
+    });
+    
+    /*
+     * jQuery File Upload Plugin JS Example 8.9.1
+     * https://github.com/blueimp/jQuery-File-Upload
+     *
+     * Copyright 2010, Sebastian Tschan
+     * https://blueimp.net
+     *
+     * Licensed under the MIT license:
+     * http://www.opensource.org/licenses/MIT
+     */
+
+    /* global $, window */
+
+    $(function () {
+        'use strict';
+
+        // Initialize the jQuery File Upload widget:
+        $('#{{ form_id }}').fileupload({
+            // Uncomment the following to send cross-domain cookies:
+            //xhrFields: {withCredentials: true},
+            url: '{{ UploadUrl }}',
+            maxFileSize: {% if maxFileSize is defined %}{{ maxFileSize }}{% else %}3000000{% endif %}, //3000000 bytes = 3 MB
+            messages: {
+                maxFileSize: 'Maximum allowed size of the file is {% if maxFileSize is defined %}{{ maxFileSize/1000000 }}{% else %}{{3000000/1000000}}{% endif %} MB.',
+                maxNumberOfFiles: 'Maximum allowed number of files is {% if maxNumberOfFiles is defined %}{{ maxNumberOfFiles }}{% else %}5{% endif %}.',
+                acceptFileTypes: 'File type not allowed.{% if acceptFileTypes is defined %} Only {{ acceptFileTypes }} are allowed. {% endif %}',
+            },
+            maxNumberOfFiles: {% if maxNumberOfFiles is defined %}{{ maxNumberOfFiles }}{% else %}5{% endif %},                {% if acceptFileTypes is defined %}
+                        acceptFileTypes: new RegExp("(\.|\/)({{ acceptFileTypes }})$"),{% endif %}
+                        autoUpload: {% if autoUpload is defined %}{{ autoUpload ? 'true' : 'false' }}{% else %}false{% endif %}
+                    });
+
+                    /*
+                     // Enable iframe cross-domain access via redirect option:
+                     $('#{{ form_id }}').fileupload(
+                     'option',
+                     'redirect',
+                     window.location.href.replace(
+                     /\/[^\/]*$/,
+                     '/cors/result.html?%s'
+                     )
+                     );
+                     */
+
+                    /*
+                     // Load existing files:
+                     $('#{{ form_id }}').addClass('fileupload-processing');
+                     $.ajax({
+                     // Uncomment the following to send cross-domain cookies:
+                     //xhrFields: {withCredentials: true},
+                     url: $('#{{ form_id }}').fileupload('option', 'url'),
+                     dataType: 'json',
+                     context: $('#{{ form_id }}')[0]
+                     }).always(function () {
+                     //UpdateUploadField();
+                     $(this).removeClass('fileupload-processing');
+                     }).done(function (result) {
+                     //UpdateUploadField();
+                     $(this).fileupload('option', 'done')
+                     .call(this, $.Event('done'), {result: result});
+                     });
+                     */
+
+                    $('#{{ form_id }}').bind('fileuploadadd', function (e, data) {
+                        $('#{{ field_id }}_upload_area').parents('form').find('button[type="submit"],input[type="submit"]').prop('disabled', true);
+                        $('.file_uploading_message').show();
+                    });
+                    
+                    $('#{{ form_id }}').bind('fileuploadcompleted fileuploaddestroyed', function (e, data) {
+                        $('#{{ field_id }}_upload_area').parents('form').find('button[type="submit"],input[type="submit"]').prop('disabled', false);
+                        $('.file_uploading_message').hide();
+                        UpdateUploadField();
+                    });
+
+                });
+
+                function UpdateUploadField() {
+                    var files_ids = [];
+                    var files_uploaded = $('#{{ field_id }}_upload_area .files input.{{ field_id }}_file_id');
+                    files_uploaded.each(function () {
+                        files_ids.push($(this).val());
+                    });
+
+                    $('.global_fileupload_process').hide();
+
+
+                    if (files_ids.length > 0) {
+                        $('.delete_multiple').show();
+                        if (files_ids.length > 1) {
+                            $('.global_fileupload_process').show();
+                            $('.fileUploadFilesTable input[type="checkbox"].toggle, .fileUploadFiles input[type="checkbox"].toggle').show();
+                        } else {
+                            $('.fileUploadFilesTable input[type="checkbox"].toggle, .fileUploadFiles input[type="checkbox"].toggle').hide();
+                            $('.delete_multiple').hide();
+                        }
+                    } else {
+                        $('.delete_multiple').hide();
+                    }
+                    $('#{{ field_id }}').val(files_ids.join(','));
+                }
+
+    </script>

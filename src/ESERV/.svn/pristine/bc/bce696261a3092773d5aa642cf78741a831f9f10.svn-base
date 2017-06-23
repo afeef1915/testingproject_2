@@ -1,0 +1,51 @@
+ESERV\MAIN\TemplateBundle\Entity\MailMergeType: 
+    type: entity
+    repositoryClass: ESERV\MAIN\TemplateBundle\Entity\MailMergeTypeRepository
+    table: mail_merge_type
+    indexes:
+        fk_maimertyp_consublis_idx:
+            columns:
+                - contact_subtype_list_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        value:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        createdBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: created_by
+        updatedBy:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: updated_by
+    manyToOne:
+        contactSubtypeList:
+            targetEntity: ESERV\MAIN\ContactBundle\Entity\ContactSubtypeList
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                contact_subtype_list_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
